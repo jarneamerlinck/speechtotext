@@ -1,4 +1,4 @@
-name: conda-env-name
+name: speechtotext
 channels:
   - conda-forge
   - defaults

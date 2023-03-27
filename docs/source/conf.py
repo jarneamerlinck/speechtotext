@@ -33,7 +33,7 @@ import os
 # ones.
 extensions = ['sphinx.ext.autodoc',
               'sphinx.ext.napoleon',
-              'sphinx_markdown_builder'
+              'sphinx_markdown_builder',
               ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -49,9 +49,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'packagename'
-copyright = u'2023 Jarne Amerlinck'
-author = u'Jarne Amerlinck'
+project = u'speechtotext'
+copyright = u'2023 Vives'
+author = u'Jarne Amerlinck, Isolde Boussauw, Michel Dekiere, Emiel Feryn, Emile Ravelingeen'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -86,7 +86,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'press'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -130,7 +130,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'robotcontrol.tex', u'robotcontrol Documentation',
+    (master_doc, 'speechtotext.tex', u'speechtotext Documentation',
      u'Xtopia', 'manual'),
 ]
 

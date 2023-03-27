@@ -1,12 +1,12 @@
 
-Functions
-=========
+Datasets
+========
 
 
-packagename.functions module
+speechtotext.datasets module
 ----------------------------
 
-.. automodule:: packagename.functions
+.. automodule:: speechtotext.datasets
     :members:
     :undoc-members:
     :show-inheritance:

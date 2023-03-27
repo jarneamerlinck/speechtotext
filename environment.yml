@@ -1,0 +1,14 @@
+name: conda-env-name
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.9.2
+  - ipython
+  - ipykernel
+  - pip
+  - pip:
+    - -e .
+
+
+

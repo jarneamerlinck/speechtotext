@@ -5,10 +5,10 @@ import os
 from dotenv import load_dotenv
 
 class WhisperVersion(ModelVersion):
-	"""Enum for the available Whisper models
+	"""Enum for the available Whisper models.
 
 	Args:
-		Enum (WhisperModel): Available whisper models
+		Enum (WhisperVersion): Available whisper models.
 	"""
 	TINY 	= "tiny"
 	SMALL 	= "small"
@@ -17,32 +17,30 @@ class WhisperVersion(ModelVersion):
 	BASE 	= "base"
 
 class WhisperWrapper(ModelWrapper): 
-	"""Wrapper for whisper model
-
-	"""    
-	MODEL_DIR = "models/whisper"
+	"""Wrapper for whisper model.
+	"""
 
 	def __init__(self, model_version:WhisperVersion):
-		"""Wrapper for whisper model
+		"""Wrapper for whisper model.
 
 		Args:
-			model_version (WhisperVersion): Model version of whisper to use
+			model_version (WhisperVersion): Model version of whisper to use.
 		"""     
 		self.model_version = model_version
 
 	def get_model(self):
-		"""Get model
+		"""Get model.
 		"""     
 		self.model = whisper.load_model(self.model_version.value)
 
 	def get_transcript_of_file(self, audio_file_name:str) -> str:
-		"""Get transcript of audio file
+		"""Get transcript of audio file.
 
 		Args:
-			audio_file_name (str): Path to audio file
+			audio_file_name (str): Path to audio file.
 
 		Returns:
-			str: Transcript of audio file
+			str: Transcript of audio file.
 		"""		
 		result = self.model.transcribe(audio_file_name)
 		return result["text"]

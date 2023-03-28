@@ -9,12 +9,12 @@ from jiwer import wer, mer, wil, wip, cer
 from speechtotext.functions import string_cleaning 
 
 def notebook_metrics_print(dataset:Dataset, id:str, hypothesis:str):
-	"""Print metrics from transcript and hypothesis
+	"""Print metrics from transcript and hypothesis.
 
 	Args:
-		dataset (Dataset): dataset of audio
-		id (str): _description_
-		hypothesis (str): _description_
+		dataset (Dataset): dataset of audio.
+		id (str): id of the audio file.
+		hypothesis (str): hypothesis transcript.
 	"""    
 	reference = dataset.get_text_of_id(id)
 	m = Metrics(reference,hypothesis, id)
@@ -23,25 +23,25 @@ def notebook_metrics_print(dataset:Dataset, id:str, hypothesis:str):
 	print(m)
 
 class Metrics():
-	"""Class to calulate the metrics
+	"""Class to calulate the metrics.
 	Attributes:
-		class_attribute (str): (class attribute) The class attribute
-		wer (float): (class attribute) word error rate (WER)
-		mer (float): (class attribute) match error rate (MER)
-		wil (float): (class attribute) word information lost (WIL)
-		wip (float): (class attribute) word information preserved (WIP)
-		cer (float): (class attribute) character error rate (CER)
+		class_attribute (str): (class attribute) The class attribute.
+		wer (float): (class attribute) word error rate (WER).
+		mer (float): (class attribute) match error rate (MER).
+		wil (float): (class attribute) word information lost (WIL).
+		wip (float): (class attribute) word information preserved (WIP).
+		cer (float): (class attribute) character error rate (CER).
 		
 	"""    
 
 	def __init__(self, reference:str, hypothesis:str, audio_id:str, with_cleaning=True):
 	
-		"""Class to calulate the metrics
+		"""Class to calulate the metrics.
 
 		Args:
-			reference (str): reference transcript
-			hypothesis (str): hypothesis transcript
-   			audio_id (str): id of the audio file 
+			reference (str): reference transcript.
+			hypothesis (str): hypothesis transcript.
+   			audio_id (str): id of the audio file.
 			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 		"""     
 		if with_cleaning:
@@ -54,7 +54,7 @@ class Metrics():
 		self()
 
 	def __call__(self, *args, **kwds):
-		"""Calculate the metrics
+		"""Calculate the metrics.
 		"""     
 		self.wer = wer(self.reference, self.hypothesis)
 		self.mer = mer(self.reference, self.hypothesis)

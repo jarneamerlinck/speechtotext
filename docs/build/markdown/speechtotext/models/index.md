@@ -1,3 +1,0 @@
-# speechtotext package
-
-## Submodules

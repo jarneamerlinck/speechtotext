@@ -31,7 +31,7 @@ class Metrics():
 		wil (float): (class attribute) word information lost (WIL)
 		wip (float): (class attribute) word information preserved (WIP)
 		cer (float): (class attribute) character error rate (CER)
-		duration (float): (class attribute) duration of transcript in ms
+		
 	"""    
 
 	def __init__(self, reference:str, hypothesis:str, audio_id:str, with_cleaning=True):

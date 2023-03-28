@@ -1,10 +1,8 @@
 from enum import Enum
-import whisper
-import os
 from abc import ABC, abstractmethod
-from speechtotext.datasets import Dataset
+from speechtotext.datasets import Dataset, SampleDataset
 from speechtotext.metrics import Metrics
-
+import pandas as pd
 
 
 class ModelVersion(Enum):
@@ -14,8 +12,6 @@ class ModelVersion(Enum):
 		Enum (ModelVersion): Availible models
 	"""
 	pass
-
-
 
 class ModelWrapper(ABC):
 	"""Abstract Wrapper for model
@@ -49,12 +45,13 @@ class ModelWrapper(ABC):
 		"""     
 		pass
 
-	def benchmark_sample(self, dataset:Dataset, id:str)-> Metrics:
+	def benchmark_sample(self, dataset:Dataset, id:str, with_cleaning=True)-> Metrics:
 		"""Benchmark sample with model
 
 		Args:
 			dataset (Dataset): Dataset of audio
 			id (str): Id of audio file
+			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 
 		Returns:
 			Metrics: Metrics of the transcript
@@ -62,29 +59,40 @@ class ModelWrapper(ABC):
 		self.get_model()
 		reference = dataset.get_text_of_id(id)
 		hypothesis = self.get_transcript_of_file(dataset.get_path_of_fragment(id))
-		m = Metrics(reference,hypothesis)
+		m = Metrics(reference,hypothesis, id, with_cleaning)
 		return m
 
-	def benchmark_n_samples(self, dataset:Dataset, number_of_samples:int) -> list:
+	def benchmark_n_samples(self, dataset:Dataset, number_of_samples:int, with_cleaning=True) -> list:
 		"""Benchmark n samples with model
 
 		Args:
 			dataset (Dataset): Dataset of audio
 			number_of_samples (int): Number of random samples to benchmerk
+			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
+
+		Returns:
+			list: list of metrics for each sample
+		"""     
+		samples = dataset.get_n_samples(number_of_samples)
+		return self.benchmark_samples(samples, with_cleaning)
+
+
+	def benchmark_samples(self, samples: SampleDataset, with_cleaning=True) -> list:
+		"""Benchmark samples with model
+
+		Args:
+			dataset (Dataset): Dataset of audio
+			number_of_samples (int): Number of random samples to benchmerk
+			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 
 		Returns:
 			list: list of metrics for each sample
 		"""     
 		metrics_array = []
-
-		if number_of_samples > dataset.number_of_samples():
-			print("number larger then samples in dataset. Using full dataset")
-			number_of_samples = dataset.number_of_samples()
-
-		df = dataset.dataset.sample(n=number_of_samples)
-		for index, row in df.iterrows():
+  
+		for _, row in samples.dataset.iterrows():
 			id = row["id"]
-			metrics_array.append(self.benchmark_sample(dataset, id))
+			metrics_array.append(self.benchmark_sample(samples, id, with_cleaning))
 
 		return metrics_array
 		

@@ -1,26 +1,17 @@
-from enum import Enum
 from speechtotext.models.modelWrapper import *
 import whisper
-import os
-
-from speechtotext.datasets import Dataset
-from speechtotext.metrics import Metrics
-
-
 
 class WhisperVersion(ModelVersion):
-	"""Enum for the availible Whisper models
+	"""Enum for the available Whisper models
 
 	Args:
-		Enum (WhisperModel): Availible whisper models
+		Enum (WhisperModel): Available whisper models
 	"""
 	TINY 	= "tiny"
 	SMALL 	= "small"
 	MEDIUM 	= "medium"
 	LARGE 	= "large"
 	BASE 	= "base"
-
-
 
 class WhisperWrapper(ModelWrapper): 
 	"""Wrapper for whisper model

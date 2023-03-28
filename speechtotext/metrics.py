@@ -17,10 +17,9 @@ def notebook_metrics_print(dataset:Dataset, id:str, hypothesis:str):
 		hypothesis (str): _description_
 	"""    
 	reference = dataset.get_text_of_id(id)
-	m = Metrics(reference,hypothesis)
+	m = Metrics(reference,hypothesis, id)
 	print(f"reference: {m.reference}")
 	print(f"hypothesis: {m.hypothesis}")
-	m = Metrics(reference,hypothesis)
 	print(m)
 
 class Metrics():
@@ -35,12 +34,15 @@ class Metrics():
 		duration (float): (class attribute) duration of transcript in ms
 	"""    
 
-	def __init__(self, reference:str, hypothesis:str, with_cleaning=True):
+	def __init__(self, reference:str, hypothesis:str, audio_id:str, with_cleaning=True):
+	
 		"""Class to calulate the metrics
 
 		Args:
 			reference (str): reference transcript
 			hypothesis (str): hypothesis transcript
+   			audio_id (str): id of the audio file 
+			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 		"""     
 		if with_cleaning:
 			reference = string_cleaning(reference)
@@ -48,6 +50,7 @@ class Metrics():
 
 		self.reference = reference
 		self.hypothesis = hypothesis
+		self.audio_id = audio_id
 		self()
 
 	def __call__(self, *args, **kwds):

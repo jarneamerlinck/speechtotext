@@ -1,8 +1,7 @@
-Speechtotext.Models package
-===========================
 
-Submodules
-----------
+WhisperWrapper
+==============
+
 
 speechtotext.models.whisperWrapper module
 -----------------------------------------
@@ -11,4 +10,3 @@ speechtotext.models.whisperWrapper module
     :members:
     :undoc-members:
     :show-inheritance:
-

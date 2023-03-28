@@ -11,6 +11,7 @@ Welcome to speechtotext's documentation!
    :caption: Contents:
 
    speechtotext/index.rst
+   speechtotext/models/index.rst
 
 
 

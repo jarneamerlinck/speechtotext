@@ -22,8 +22,16 @@ class Dataset():
 		df= pd.read_csv(file_path, sep="|", header=None)
 		df = df.iloc[:, 0:2] 
 		df.columns = ["id", "text"]
-		#self.transcript = df.set_index('id') , names=
-		self.transcript = df
+		#self.dataset = df.set_index('id') , names=
+		self.dataset = df
+
+	def number_of_samples(self) -> int:
+		"""Get number of samples in dataset
+
+		Returns:
+			int: Number of samples in dataset
+		"""     
+		return self.dataset.shape[0]
   
 	def get_path_of_fragment(self, id:str)-> str:
 		"""Gets path of fragment
@@ -54,7 +62,7 @@ class Dataset():
 		Returns:
 			str: string of spoken text
 		"""     
-		row = self.transcript[self.transcript["id"] == id]
+		row = self.dataset[self.dataset["id"] == id]
 		try:
 			return row.values[0][1]
 		except:

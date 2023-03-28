@@ -1,5 +1,5 @@
-speechtotext package
-====================
+Speechtotext models package
+===========================
 
 Submodules
 ----------

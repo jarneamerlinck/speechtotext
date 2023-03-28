@@ -21,7 +21,7 @@
     
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Speechtotext models package" href="models/index.html" />
+  <link rel="next" title="Benchmarks" href="benchmarks.html" />
   <link rel="prev" title="Datasets" href="datasets.html" /> 
   </head>
 
@@ -115,8 +115,8 @@
        title="previous chapter">← Datasets</a>
   </li>
   <li class="next">
-    <a href="models/index.html"
-       title="next chapter">Speechtotext models package →</a>
+    <a href="benchmarks.html"
+       title="next chapter">Benchmarks →</a>
   </li>
 </ul>
   
@@ -130,9 +130,9 @@
 <span id="speechtotext-metrics-module"></span><h2>speechtotext.metrics module<a class="headerlink" href="#module-speechtotext.metrics" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="speechtotext.metrics.Metrics">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.metrics.</span></span><span class="sig-name descname"><span class="pre">Metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hypothesis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metrics.Metrics" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.metrics.</span></span><span class="sig-name descname"><span class="pre">Metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hypothesis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metrics.Metrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>_summary_
+<p>Class to calulate the metrics
 .. attribute:: class_attribute</p>
 <blockquote>
 <div><p>(class attribute) The class attribute</p>
@@ -197,12 +197,33 @@
 </dl>
 </dd></dl>
 
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metrics.Metrics.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#speechtotext.metrics.Metrics.duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>(class attribute) duration of transcript in ms</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="speechtotext.metrics.notebook_metrics_print">
-<span class="sig-prename descclassname"><span class="pre">speechtotext.metrics.</span></span><span class="sig-name descname"><span class="pre">notebook_metrics_print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hypothesis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metrics.notebook_metrics_print" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-prename descclassname"><span class="pre">speechtotext.metrics.</span></span><span class="sig-name descname"><span class="pre">notebook_metrics_print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hypothesis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metrics.notebook_metrics_print" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print metrics from transcript and hypothesis</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – dataset of audio</p></li>
+<li><p><strong>id</strong> (<em>str</em>) – _description_</p></li>
+<li><p><strong>hypothesis</strong> (<em>str</em>) – _description_</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 </section>
@@ -216,8 +237,8 @@
        title="previous chapter">← Datasets</a>
   </li>
   <li class="next">
-    <a href="models/index.html"
-       title="next chapter">Speechtotext models package →</a>
+    <a href="benchmarks.html"
+       title="next chapter">Benchmarks →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2023 Vives.

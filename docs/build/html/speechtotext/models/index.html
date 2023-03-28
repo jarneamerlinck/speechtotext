@@ -21,7 +21,7 @@
     
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="prev" title="Metrics" href="../metrics.html" /> 
+  <link rel="prev" title="Benchmarks" href="../benchmarks.html" /> 
   </head>
 
   <body>
@@ -91,6 +91,8 @@
                 
                   <li class="toctree-l2"><a href="#submodules" class="reference internal">Submodules</a></li>
                 
+                  <li class="toctree-l2"><a href="#module-speechtotext.models.modelWrapper" class="reference internal">speechtotext.models.modelWrapper module</a></li>
+                
                   <li class="toctree-l2"><a href="#module-speechtotext.models.whisperWrapper" class="reference internal">speechtotext.models.whisperWrapper module</a></li>
                 
               </ul>
@@ -116,8 +118,8 @@
 
   <ul class="page-nav">
   <li class="prev">
-    <a href="../metrics.html"
-       title="previous chapter">← Metrics</a>
+    <a href="../benchmarks.html"
+       title="previous chapter">← Benchmarks</a>
   </li>
 </ul>
   
@@ -130,64 +132,35 @@
 <section id="submodules">
 <h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
 </section>
-<section id="module-speechtotext.models.whisperWrapper">
-<span id="speechtotext-models-whisperwrapper-module"></span><h2>speechtotext.models.whisperWrapper module<a class="headerlink" href="#module-speechtotext.models.whisperWrapper" title="Permalink to this heading">¶</a></h2>
+<section id="module-speechtotext.models.modelWrapper">
+<span id="speechtotext-models-modelwrapper-module"></span><h2>speechtotext.models.modelWrapper module<a class="headerlink" href="#module-speechtotext.models.modelWrapper" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperModel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.models.whisperWrapper.</span></span><span class="sig-name descname"><span class="pre">WhisperModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperModel" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="speechtotext.models.modelWrapper.ModelVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.models.modelWrapper.</span></span><span class="sig-name descname"><span class="pre">ModelVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.models.modelWrapper.ModelVersion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
-<p>Enum for the availible Whisper models</p>
+<p>Enum for the availible models</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>Enum</strong> (<a class="reference internal" href="#speechtotext.models.whisperWrapper.WhisperModel" title="speechtotext.models.whisperWrapper.WhisperModel"><em>WhisperModel</em></a>) – Availible whisper models</p>
+<dd class="field-odd"><p><strong>Enum</strong> (<a class="reference internal" href="#speechtotext.models.modelWrapper.ModelVersion" title="speechtotext.models.modelWrapper.ModelVersion"><em>ModelVersion</em></a>) – Availible models</p>
 </dd>
 </dl>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperModel.BASE">
-<span class="sig-name descname"><span class="pre">BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'base'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperModel.BASE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperModel.LARGE">
-<span class="sig-name descname"><span class="pre">LARGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'large'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperModel.LARGE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperModel.MEDIUM">
-<span class="sig-name descname"><span class="pre">MEDIUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'medium'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperModel.MEDIUM" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperModel.SMALL">
-<span class="sig-name descname"><span class="pre">SMALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'small'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperModel.SMALL" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperModel.TINY">
-<span class="sig-name descname"><span class="pre">TINY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tiny'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperModel.TINY" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperWrapper">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.models.whisperWrapper.</span></span><span class="sig-name descname"><span class="pre">WhisperWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#speechtotext.models.whisperWrapper.WhisperModel" title="speechtotext.models.whisperWrapper.WhisperModel"><span class="pre">WhisperModel</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperWrapper" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Wrapper for whisper model</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperWrapper.MODEL_DIR">
-<span class="sig-name descname"><span class="pre">MODEL_DIR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'models/whisper'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperWrapper.MODEL_DIR" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dt class="sig sig-object py" id="speechtotext.models.modelWrapper.ModelWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.models.modelWrapper.</span></span><span class="sig-name descname"><span class="pre">ModelWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#speechtotext.models.modelWrapper.ModelVersion" title="speechtotext.models.modelWrapper.ModelVersion"><span class="pre">ModelVersion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.models.modelWrapper.ModelWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Abstract Wrapper for model</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperWrapper.benchmark_n_samples">
-<span class="sig-name descname"><span class="pre">benchmark_n_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperWrapper.benchmark_n_samples" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="speechtotext.models.modelWrapper.ModelWrapper.benchmark_n_samples">
+<span class="sig-name descname"><span class="pre">benchmark_n_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#speechtotext.models.modelWrapper.ModelWrapper.benchmark_n_samples" title="Permalink to this definition">¶</a></dt>
 <dd><p>Benchmark n samples with model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dataset</strong> (<a class="reference internal" href="../datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – Dataset of audio</p></li>
 <li><p><strong>number_of_samples</strong> (<em>int</em>) – Number of random samples to benchmerk</p></li>
+<li><p><strong>with_cleaning</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set True to clean transcripts. Defaults to True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -200,14 +173,15 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperWrapper.benchmark_sample">
-<span class="sig-name descname"><span class="pre">benchmark_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../metrics.html#speechtotext.metrics.Metrics" title="speechtotext.metrics.Metrics"><span class="pre">Metrics</span></a></span></span><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperWrapper.benchmark_sample" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="speechtotext.models.modelWrapper.ModelWrapper.benchmark_sample">
+<span class="sig-name descname"><span class="pre">benchmark_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../metrics.html#speechtotext.metrics.Metrics" title="speechtotext.metrics.Metrics"><span class="pre">Metrics</span></a></span></span><a class="headerlink" href="#speechtotext.models.modelWrapper.ModelWrapper.benchmark_sample" title="Permalink to this definition">¶</a></dt>
 <dd><p>Benchmark sample with model</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dataset</strong> (<a class="reference internal" href="../datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – Dataset of audio</p></li>
 <li><p><strong>id</strong> (<em>str</em>) – Id of audio file</p></li>
+<li><p><strong>with_cleaning</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set True to clean transcripts. Defaults to True.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -218,6 +192,102 @@
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.models.modelWrapper.ModelWrapper.benchmark_samples">
+<span class="sig-name descname"><span class="pre">benchmark_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../datasets.html#speechtotext.datasets.SampleDataset" title="speechtotext.datasets.SampleDataset"><span class="pre">SampleDataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#speechtotext.models.modelWrapper.ModelWrapper.benchmark_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Benchmark samples with model</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="../datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – Dataset of audio</p></li>
+<li><p><strong>number_of_samples</strong> (<em>int</em>) – Number of random samples to benchmerk</p></li>
+<li><p><strong>with_cleaning</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set True to clean transcripts. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>list of metrics for each sample</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.models.modelWrapper.ModelWrapper.get_model">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.models.modelWrapper.ModelWrapper.get_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get model. Set self.model</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.models.modelWrapper.ModelWrapper.get_transcript_of_file">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_transcript_of_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.models.modelWrapper.ModelWrapper.get_transcript_of_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get transcript of audio file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>audio_file_name</strong> (<em>str</em>) – Path to audio file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transcript of audio file</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-speechtotext.models.whisperWrapper">
+<span id="speechtotext-models-whisperwrapper-module"></span><h2>speechtotext.models.whisperWrapper module<a class="headerlink" href="#module-speechtotext.models.whisperWrapper" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.models.whisperWrapper.</span></span><span class="sig-name descname"><span class="pre">WhisperVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.models.modelWrapper.ModelVersion" title="speechtotext.models.modelWrapper.ModelVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelVersion</span></code></a></p>
+<p>Enum for the available Whisper models</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Enum</strong> (<em>WhisperModel</em>) – Available whisper models</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperVersion.BASE">
+<span class="sig-name descname"><span class="pre">BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'base'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperVersion.BASE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperVersion.LARGE">
+<span class="sig-name descname"><span class="pre">LARGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'large'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperVersion.LARGE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperVersion.MEDIUM">
+<span class="sig-name descname"><span class="pre">MEDIUM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'medium'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperVersion.MEDIUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperVersion.SMALL">
+<span class="sig-name descname"><span class="pre">SMALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'small'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperVersion.SMALL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperVersion.TINY">
+<span class="sig-name descname"><span class="pre">TINY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tiny'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperVersion.TINY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.models.whisperWrapper.</span></span><span class="sig-name descname"><span class="pre">WhisperWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#speechtotext.models.whisperWrapper.WhisperVersion" title="speechtotext.models.whisperWrapper.WhisperVersion"><span class="pre">WhisperVersion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.models.modelWrapper.ModelWrapper" title="speechtotext.models.modelWrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a></p>
+<p>Wrapper for whisper model</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperWrapper.MODEL_DIR">
+<span class="sig-name descname"><span class="pre">MODEL_DIR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'models/whisper'</span></em><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperWrapper.MODEL_DIR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperWrapper.get_model">
@@ -252,8 +322,8 @@
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
   <li class="prev">
-    <a href="../metrics.html"
-       title="previous chapter">← Metrics</a>
+    <a href="../benchmarks.html"
+       title="previous chapter">← Benchmarks</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2023 Vives.

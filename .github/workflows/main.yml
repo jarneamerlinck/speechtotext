@@ -38,15 +38,18 @@ jobs:
       run: |
         conda env update --file environment.yml --name base
 
-    - name: Build documentation
+    - name: Build documentation html
       run: |
-        cd docs;make html;make markdown;cd ..
-
+        cd docs;make html;cd ..
+    
+    - name: Build documentation markdown
+      run: |
+        cd docs;make markdown;cd ..
     - name: Commit and push documentation 
       run: |-
         git config user.name "Automated"
         git config user.email "actions@users.noreply.github.com"
-        git add -A -f docs/build/
+        git add -A -f docs/build/*
         timestamp=$(date -u)
         git commit -m "Created documentation from github actions: ${timestamp}" || exit 0
         git push

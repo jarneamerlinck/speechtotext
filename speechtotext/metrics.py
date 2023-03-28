@@ -2,13 +2,20 @@
 import threading
 import os
 import re
-
+from speechtotext.datasets import Dataset
 from typing_extensions import override
 from jiwer import wer, mer, wil, wip, cer
 
 from speechtotext.functions import string_cleaning 
 
-def notebook_metrics_print(dataset, id:str, hypothesis:str):
+def notebook_metrics_print(dataset:Dataset, id:str, hypothesis:str):
+	"""Print metrics from transcript and hypothesis
+
+	Args:
+		dataset (Dataset): dataset of audio
+		id (str): _description_
+		hypothesis (str): _description_
+	"""    
 	reference = dataset.get_text_of_id(id)
 	m = Metrics(reference,hypothesis)
 	print(f"reference: {m.reference}")
@@ -17,7 +24,7 @@ def notebook_metrics_print(dataset, id:str, hypothesis:str):
 	print(m)
 
 class Metrics():
-	"""_summary_
+	"""Class to calulate the metrics
 	Attributes:
 		class_attribute (str): (class attribute) The class attribute
 		wer (float): (class attribute) word error rate (WER)
@@ -25,14 +32,15 @@ class Metrics():
 		wil (float): (class attribute) word information lost (WIL)
 		wip (float): (class attribute) word information preserved (WIP)
 		cer (float): (class attribute) character error rate (CER)
+		duration (float): (class attribute) duration of transcript in ms
 	"""    
 
 	def __init__(self, reference:str, hypothesis:str, with_cleaning=True):
-		"""_summary_
+		"""Class to calulate the metrics
 
 		Args:
-			reference (str): _description_
-			hypothesis (str): _description_
+			reference (str): reference transcript
+			hypothesis (str): hypothesis transcript
 		"""     
 		if with_cleaning:
 			reference = string_cleaning(reference)
@@ -43,6 +51,8 @@ class Metrics():
 		self()
 
 	def __call__(self, *args, **kwds):
+		"""Calculate the metrics
+		"""     
 		self.wer = wer(self.reference, self.hypothesis)
 		self.mer = mer(self.reference, self.hypothesis)
 		self.wil = wil(self.reference, self.hypothesis)

@@ -3,13 +3,15 @@ import pandas as pd
 
 
 class Dataset():
-	def __init__(self, dir:str, file_ext:str=".wav"):
+	def __init__(self, dir:str, name: str, file_ext:str=".wav"):
 		"""Creates dataset object
 		There needs to be an transcript.txt directly in the dir
 		Args:
 			dir (str): path to dir ending with /
+			name (str): Name of dataset
 			file_ext (str): Extention of files
 		"""     
+		self.name = name
 		self.path_to_dir = dir
 		self.file_ext = file_ext
 		self.load_transcript()

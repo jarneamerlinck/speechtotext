@@ -23,7 +23,7 @@ VERSION = '0.1.0'
 # What packages are required for this module to be executed?
 REQUIRED = [
     'jiwer', 'pandas', 'numpy', 'torch', 
-    'openai-whisper'
+    'openai-whisper', 'openai', 'python-dotenv'
 ]
 
 # What packages are optional?

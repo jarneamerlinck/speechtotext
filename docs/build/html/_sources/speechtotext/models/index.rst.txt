@@ -4,10 +4,14 @@ speechtotext package
 Submodules
 ----------
 
-.. toctree::
-   :maxdepth: 2
+speechtotext.models.whisperWrapper module
+-----------------------------------------
 
-   functions.rst
+.. automodule:: speechtotext.models.whisperWrapper
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 
 
 

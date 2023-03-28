@@ -1,4 +1,4 @@
-speechtotext package
+Speechtotext package
 ====================
 
 Submodules

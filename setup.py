@@ -22,14 +22,9 @@ VERSION = '0.1.0'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    
-    'jiwer', 'pandas', 'numpy', 'whisper'
+    'jiwer', 'pandas', 'numpy', 'torch', 
+    'openai-whisper'
 ]
-
-
-
-
-
 
 # What packages are optional?
 EXTRAS = {
@@ -99,6 +94,8 @@ class UploadCommand(Command):
 
 
 # Where the magic happens:
+
+
 setup(
     name=NAME,
     version=about['__version__'],

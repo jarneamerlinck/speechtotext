@@ -4,16 +4,6 @@
 
 Module with functions for the speechtotext package.
 
-
-### speechtotext.functions.REGEX_STRING_PARSE()
-Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
-
-
-* **Type**
-
-    str
-
-
 Use this module like this:
 
 ```python
@@ -26,6 +16,16 @@ force_cudnn_initialization()
 # Clean string
 string_cleaning("this has.//./8 to be cleaned::@")
 ```
+
+
+### speechtotext.functions.REGEX_STRING_PARSE()
+Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
+
+
+* **Type**
+
+    str
+
 
 
 ### speechtotext.functions.force_cudnn_initialization()

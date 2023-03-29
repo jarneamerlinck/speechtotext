@@ -1,3 +1,32 @@
+"""Modelwrapper implemented for whisper. Local and API.
+
+Use this module like this:
+	
+.. code-block:: python
+
+	# Imports
+ 	from speechtotext.models.whisperWrapper import *
+	from speechtotext.benchmarks import *
+	from speechtotext.datasets import Dataset
+	
+	# Create dataset
+	number_of_samples = 10
+	dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
+	id = "existing_audio_id"
+	number_of_samples = 10
+	
+	# Create wrapper
+	whisperWrapper = WhisperWrapper(WhisperVersion.TINY)
+
+	# Get model
+	whisperWrapper.get_model()
+
+	# Benchmark choisen sample
+	whisperWrapper.benchmark_sample(dataset, id)
+	
+	# Benchmark n random samples
+	array = whisperWrapper.benchmark_n_samples(dataset, number_of_samples)
+"""
 from speechtotext.models.modelWrapper import *
 import whisper
 import openai

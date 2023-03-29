@@ -1,4 +1,22 @@
-#!/usr/bin/env python
+"""Module with functions for the speechtotext package.
+
+Attributes:
+	REGEX_STRING_PARSE (str): Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
+ 
+Use this module like this:
+	
+.. code-block:: python
+
+	# Imports
+ 	from speechtotext.functions import *
+	
+	# Force torch use for cuda
+	force_cudnn_initialization()
+	
+	# Clean string
+	string_cleaning("this has.//./8 to be cleaned::@")
+"""
+
 import threading
 import os
 import re
@@ -9,7 +27,7 @@ import pandas as pd
 REGEX_STRING_PARSE = '[^A-Za-z0-9 ]+'
 
 def force_cudnn_initialization():
-	"""Force cuda use for torch.
+	"""Force torch use for cuda.
 	"""    
 	s = 32
 	dev = torch.device('cuda')

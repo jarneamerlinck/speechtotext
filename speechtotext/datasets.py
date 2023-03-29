@@ -1,8 +1,40 @@
+"""Module to create the datasets for the speechtotext package.
+
+Use this module like this:
+	
+.. code-block:: python
+
+	# Imports
+ 	from speechtotext.datasets import Dataset
+	from speechtotext.benchmarks import *
+	
+	# Settings
+	path_to_dir = "path/to/dir"
+	dataset_name = "dataset_name"
+	id = "existing_id"
+	number_of_samples = 10
+	
+	# Create dataset
+	dataset = Dataset(path_to_dir=path_to_dir, name= dataset_name)
+ 
+	# Print number of samples
+	print(dataset.number_of_samples())
+ 
+	# Get audio file from id
+	dataset.get_path_of_fragment(id)
+ 
+	# Get transcript from id
+	dataset.get_text_of_id(id)
+	
+	# Get n trandom samples
+	dataset_n_random: SampleDataset = dataset.get_n_samples(number_of_samples)
+"""
+
 from os.path import exists
 import pandas as pd
 
 class DatasetBare():
-	"""Bare dataset class 
+	"""Bare dataset class.
 	"""    
 	def __init__(self, path_to_dir:str, name: str, file_ext:str=".wav"):
 		"""Creates dataset object.
@@ -66,6 +98,8 @@ class SampleDataset(DatasetBare):
 		self.dataset = df
 
 class Dataset(DatasetBare):
+	"""Class to extract data from the dataset folder.
+	"""    
 	def __init__(self, path_to_dir:str, name: str, file_ext:str=".wav"):  
 		super().__init__(path_to_dir, name, file_ext)
 		self.load_transcript()

@@ -1,4 +1,16 @@
-#!/usr/bin/env python
+"""Module that calculates the metrics for speechtotext models.
+
+Use this module like this:
+	
+.. code-block:: python
+
+	# Imports
+	from speechtotext.metrics import Metrics
+	
+	# Create metrics
+	m = Metrics("De stoel heeft krassen gemaakt op de vloer!", "De stoel heeft krassen gemaakt op de vloer", "id_from_dataset")
+	print(m)
+"""
 import threading
 import os
 import re

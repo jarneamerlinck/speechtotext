@@ -130,11 +130,52 @@
 <span id="speechtotext-benchmarks-module"></span><h2>speechtotext.benchmarks module<a class="headerlink" href="#module-speechtotext.benchmarks" title="Permalink to this heading">¶</a></h2>
 <dl class="py class">
 <dt class="sig sig-object py" id="speechtotext.benchmarks.Benchmark">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.benchmarks.</span></span><span class="sig-name descname"><span class="pre">Benchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmarks.Benchmark" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.benchmarks.</span></span><span class="sig-name descname"><span class="pre">Benchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmarks.Benchmark" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Benchmark is used to test/validate an model.
+Parent class for all benchmark classes.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmarks.Benchmark.BENCHMARK_SAMPLES">
-<span class="sig-name descname"><span class="pre">BENCHMARK_SAMPLES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#speechtotext.benchmarks.Benchmark.BENCHMARK_SAMPLES" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">BENCHMARK_SAMPLES</span></span><a class="headerlink" href="#speechtotext.benchmarks.Benchmark.BENCHMARK_SAMPLES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dataset with just samples that is shared for the child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="datasets.html#speechtotext.datasets.SampleDataset" title="speechtotext.datasets.SampleDataset">SampleDataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.benchmarks.Benchmark.DATASET">
+<span class="sig-name descname"><span class="pre">DATASET</span></span><a class="headerlink" href="#speechtotext.benchmarks.Benchmark.DATASET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dataset that is shared for the child classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset">Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Settings</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
+<span class="n">Benchmark</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="c1"># run</span>
+<span class="n">wb</span> <span class="o">=</span> <span class="n">WhisperBenchmark</span><span class="p">()</span>
+<span class="n">wb</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span>
+<span class="n">wb</span><span class="o">.</span><span class="n">convert_to_pandas</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">BENCHMARK_SAMPLES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">DATASET</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#id1" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -176,11 +217,33 @@
 </dl>
 </dd></dl>
 
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.benchmarks.Benchmark.set_dataset">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmarks.Benchmark.set_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set dataset for Benchmark class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dataset</strong> (<a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – Dataset to use with benchmark.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.benchmarks.Benchmark.update_samples">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmarks.Benchmark.update_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the sample dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>number_of_samples</strong> (<em>int</em>) – Number of samples.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="speechtotext.benchmarks.WhisperAPIBenchmark">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.benchmarks.</span></span><span class="sig-name descname"><span class="pre">WhisperAPIBenchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmarks.WhisperAPIBenchmark" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.benchmarks.</span></span><span class="sig-name descname"><span class="pre">WhisperAPIBenchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmarks.WhisperAPIBenchmark" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#speechtotext.benchmarks.Benchmark" title="speechtotext.benchmarks.Benchmark"><code class="xref py py-class docutils literal notranslate"><span class="pre">Benchmark</span></code></a></p>
 <p>Benchmark for API whisper models.</p>
 <dl class="py attribute">
@@ -206,7 +269,7 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="speechtotext.benchmarks.WhisperBenchmark">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.benchmarks.</span></span><span class="sig-name descname"><span class="pre">WhisperBenchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="datasets.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmarks.WhisperBenchmark" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.benchmarks.</span></span><span class="sig-name descname"><span class="pre">WhisperBenchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmarks.WhisperBenchmark" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#speechtotext.benchmarks.Benchmark" title="speechtotext.benchmarks.Benchmark"><code class="xref py py-class docutils literal notranslate"><span class="pre">Benchmark</span></code></a></p>
 <p>Benchmark for local whisper models.</p>
 <dl class="py attribute">
@@ -228,6 +291,20 @@
 </dl>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.benchmarks.benchmark_results_to_csv">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.benchmarks.</span></span><span class="sig-name descname"><span class="pre">benchmark_results_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'benchmark_results_2023-03-29_09-21-00.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmarks.benchmark_results_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>results (list[pd.core.frame.DataFrame]): List of results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>results</strong> (<em>list</em><em>[</em><em>pd.core.frame.DataFrame</em><em>]</em>) – List of results from benchmarks.</p></li>
+<li><p><strong>save_name</strong> (<em>str</em><em>, </em><em>optional</em>) – filename of output. Defaults to DEFAULT_CSV_NAME.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

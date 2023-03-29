@@ -17,7 +17,7 @@ DESCRIPTION = 'Project that is used for my thesis'
 URL = 'https://github.com/jarneamerlinck/speechtotext'
 EMAIL = 'jarneamerlinck@gmail.com'
 AUTHOR = 'Jarne Amerlinck'
-REQUIRES_PYTHON = '>=3.9.2'
+REQUIRES_PYTHON = '>=3.9.2,<3.11'
 VERSION = '0.1.0'
 
 # What packages are required for this module to be executed?

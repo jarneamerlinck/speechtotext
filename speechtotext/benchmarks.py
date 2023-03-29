@@ -1,21 +1,47 @@
 #!/usr/bin/env python
+
+from abc import ABC, abstractmethod
+import pandas as pd
+from datetime import datetime
+
 from speechtotext.models.modelWrapper import ModelWrapper
 from speechtotext.models.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
 from speechtotext.datasets import Dataset
-from abc import ABC, abstractmethod
-import pandas as pd
+from speechtotext.functions import multidispatch
+
+DEFAULT_CSV_NAME = f"benchmark_results_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
 
 class Benchmark(ABC):
+	"""Benchmark is used to test/validate an model.
+ 	Parent class for all benchmark classes. 
+		
+	Attributes:
+		BENCHMARK_SAMPLES (SampleDataset): Dataset with just samples that is shared for the child classes.
+		DATASET (Dataset): Dataset that is shared for the child classes.
+	
+	Use this module like this:
+	
+	.. code-block:: python
+
+		# Settings
+		number_of_samples = 10
+		dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
+		Benchmark.set_dataset(dataset)
+
+		# run
+		wb = WhisperBenchmark()
+		wb(number_of_samples)
+		wb.convert_to_pandas()
+	""" 
+	BENCHMARK_SAMPLES:Dataset = None
+	DATASET:Dataset = None
  
-	BENCHMARK_SAMPLES = None
-	def __init__(self, dataset:Dataset,  with_cleaning=True):
+	def __init__(self, with_cleaning=True):
 		"""Create benchmark object.
 
 		Args:
-			dataset (Dataset): Dataset to test.
 			with_cleaning (bool, optional): Clean . Defaults to True.
 		"""     
-		self.dataset = dataset
 		self.__with_cleaning = with_cleaning
 		self.models = self.create_models()
   
@@ -56,13 +82,12 @@ class Benchmark(ABC):
 			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 		"""     
 		self.metrics = []
-		if Benchmark.BENCHMARK_SAMPLES ==None:
-			Benchmark.BENCHMARK_SAMPLES = self.dataset.get_n_samples(number_of_samples)
+		Benchmark.update_samples(number_of_samples)
 
 		for model in self.models:
-			print(f"benchmark for model {model.model_version} with dataset {self.dataset.name}")
+			print(f"benchmark for model {model.model_version} with dataset {self.BENCHMARK_SAMPLES.name}")
 			try:
-				self.metrics.append(model.benchmark_samples(Benchmark.BENCHMARK_SAMPLES, with_cleaning))
+				self.metrics.append(model.benchmark_samples(self.BENCHMARK_SAMPLES, with_cleaning))
 			except Exception as e:
 				print(e)
 	
@@ -74,6 +99,41 @@ class Benchmark(ABC):
 			list[ModelWrapper]: list of model wrappers.
 		"""     
 		pass
+
+	@classmethod
+	def set_dataset(cls, dataset:Dataset):
+		"""Set dataset for Benchmark class.
+
+		Args:
+			dataset (Dataset): Dataset to use with benchmark.
+		"""     
+		cls.DATASET = dataset
+
+	@classmethod
+	@multidispatch(int)
+	def update_samples(cls, number_of_samples:int):
+		"""Update the sample dataset.
+
+		Args:
+			number_of_samples (int): Number of samples.
+		"""
+		if cls.BENCHMARK_SAMPLES is not None:
+			if number_of_samples is cls.BENCHMARK_SAMPLES.number_of_samples():
+				return None
+		cls.BENCHMARK_SAMPLES = cls.DATASET.get_n_samples(number_of_samples)
+  
+	@classmethod
+	@multidispatch(Dataset, int)
+	def update_samples(cls, new_dataset:Dataset, number_of_samples:int):
+		"""Update the sample dataset.
+
+		Args:
+			new_dataset (Dataset): Full dataset.
+			number_of_samples (int): Number of samples.
+		"""     
+		if new_dataset.name is not cls.DATASET.name:
+			cls.DATASET = new_dataset
+		cls.update_samples(number_of_samples)
 
 class WhisperBenchmark(Benchmark):
 	"""Benchmark for local whisper models.
@@ -96,3 +156,13 @@ class WhisperAPIBenchmark(Benchmark):
 		for version in WhisperAPIVersion:
 			models.append(WhisperAPIWrapper(version))
 		return models
+
+def benchmark_results_to_csv(results: list[pd.core.frame.DataFrame], save_name:str=DEFAULT_CSV_NAME):
+	"""results (list[pd.core.frame.DataFrame]): List of results.
+
+	Args:
+		results (list[pd.core.frame.DataFrame]): List of results from benchmarks.
+		save_name (str, optional): filename of output. Defaults to DEFAULT_CSV_NAME.
+	"""  
+	df = pd.concat(results)
+	df.to_csv(save_name, index=False)

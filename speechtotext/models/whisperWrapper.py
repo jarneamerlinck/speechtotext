@@ -85,4 +85,4 @@ class WhisperAPIWrapper(ModelWrapper):
 		file = open(audio_file_name, "rb")
 		transcription = openai.Audio.transcribe(self.model_version.value, file)
 		file.close()
-		return transcription
+		return transcription["text"]

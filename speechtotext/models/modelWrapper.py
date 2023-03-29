@@ -1,3 +1,5 @@
+"""Module with the parent classes for the model wrapper. Needs to be implemented to use the benchmarks.
+"""
 from enum import Enum
 from abc import ABC, abstractmethod
 from speechtotext.datasets import Dataset, SampleDataset
@@ -86,7 +88,7 @@ class ModelWrapper(ABC):
 			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 
 		Returns:
-			list: list of metrics for each sample
+			list: list of metrics for each sample.
 		"""     
 		metrics_array = []
   

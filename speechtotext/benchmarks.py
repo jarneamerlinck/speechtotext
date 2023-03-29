@@ -1,4 +1,4 @@
-"""Module for benchmarks of speech2text.
+"""Module for benchmarks of speechtotext.
 
 Use this module like this:
 	

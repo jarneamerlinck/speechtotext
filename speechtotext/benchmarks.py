@@ -207,7 +207,6 @@ def separate_benchmark_results_by_model(dataframe: pd.core.frame.DataFrame) -> d
 	
 	model_names = dataframe["model_name"].unique()
 
-	#create a data frame dictionary to store your data frames
 	DataFrameDict = {elem : pd.DataFrame() for elem in model_names}
 
 	for key in DataFrameDict.keys():

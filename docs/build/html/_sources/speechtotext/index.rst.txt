@@ -7,7 +7,7 @@ Submodules
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
-   
+
    functions.rst
    datasets.rst
    metrics.rst

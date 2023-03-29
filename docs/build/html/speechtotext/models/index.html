@@ -135,6 +135,50 @@
 <section id="module-speechtotext.models.modelWrapper">
 <span id="speechtotext-models-modelwrapper-module"></span><h2>speechtotext.models.modelWrapper module<a class="headerlink" href="#module-speechtotext.models.modelWrapper" title="Permalink to this heading">¶</a></h2>
 <p>Module with the parent classes for the model wrapper. Needs to be implemented to use the benchmarks.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.models.moduleWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># Create child class for ModelVersion</span>
+<span class="k">class</span> <span class="nc">ChildModelVersion</span><span class="p">(</span><span class="n">ModelVersion</span><span class="p">):</span>
+        <span class="n">MODEL_VERSION</span>   <span class="o">=</span> <span class="s2">&quot;demo&quot;</span>
+
+<span class="c1"># Create child class for ModelWrapper</span>
+<span class="k">class</span> <span class="nc">ChildModelWrapper</span><span class="p">(</span><span class="n">ModelWrapper</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span><span class="n">ChildModelVersion</span><span class="p">):</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">model_version</span> <span class="o">=</span> <span class="n">model_version</span>
+
+        <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span><span class="n">modelType</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+        <span class="k">def</span> <span class="nf">get_transcript_of_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">audio_file_name</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+
+<span class="c1"># Create child class of benchmark</span>
+<span class="k">class</span> <span class="nc">ChildBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+        <span class="n">MODEL_BASE</span> <span class="o">=</span> <span class="s2">&quot;model_name&quot;</span>
+
+        <span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+                <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">ChildModelVersion</span><span class="p">:</span>
+                        <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ChildModelWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">models</span>
+
+<span class="c1"># Create benchmark</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
+<span class="n">Benchmark</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="n">benchmark</span> <span class="o">=</span> <span class="n">ChildBenchmark</span><span class="p">()</span>
+
+<span class="c1"># Run benchmark</span>
+<span class="n">benchmark</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="speechtotext.models.modelWrapper.ModelVersion">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.models.modelWrapper.</span></span><span class="sig-name descname"><span class="pre">ModelVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.models.modelWrapper.ModelVersion" title="Permalink to this definition">¶</a></dt>
@@ -243,6 +287,32 @@
 </section>
 <section id="module-speechtotext.models.whisperWrapper">
 <span id="speechtotext-models-whisperwrapper-module"></span><h2>speechtotext.models.whisperWrapper module<a class="headerlink" href="#module-speechtotext.models.whisperWrapper" title="Permalink to this heading">¶</a></h2>
+<p>Modelwrapper implemented for whisper. Local and API.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.models.whisperWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># Create dataset</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;existing_audio_id&quot;</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Create wrapper</span>
+<span class="n">whisperWrapper</span> <span class="o">=</span> <span class="n">WhisperWrapper</span><span class="p">(</span><span class="n">WhisperVersion</span><span class="o">.</span><span class="n">TINY</span><span class="p">)</span>
+
+<span class="c1"># Get model</span>
+<span class="n">whisperWrapper</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span>
+
+<span class="c1"># Benchmark choisen sample</span>
+<span class="n">whisperWrapper</span><span class="o">.</span><span class="n">benchmark_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+
+<span class="c1"># Benchmark n random samples</span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">whisperWrapper</span><span class="o">.</span><span class="n">benchmark_n_samples</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="py class">
 <dt class="sig sig-object py" id="speechtotext.models.whisperWrapper.WhisperAPIVersion">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.models.whisperWrapper.</span></span><span class="sig-name descname"><span class="pre">WhisperAPIVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.models.whisperWrapper.WhisperAPIVersion" title="Permalink to this definition">¶</a></dt>

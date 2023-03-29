@@ -2,14 +2,27 @@
 
 ## speechtotext.metrics module
 
+Module that calculates the metrics for speechtotext models.
+
+Use this module like this:
+
+```python
+# Imports
+from speechtotext.metrics import Metrics
+
+# Create metrics
+m = Metrics("De stoel heeft krassen gemaakt op de vloer!", "De stoel heeft krassen gemaakt op de vloer", "id_from_dataset")
+print(m)
+```
+
 
 ### _class_ speechtotext.metrics.Metrics(reference: str, hypothesis: str, audio_id: str, with_cleaning=True)
 Bases: `object`
 
-Class to calulate the metrics
+Class to calulate the metrics.
 .. attribute:: class_attribute
 
-> (class attribute) The class attribute
+> (class attribute) The class attribute.
 
 
 > * **type**
@@ -19,7 +32,7 @@ Class to calulate the metrics
 
 
 #### wer()
-(class attribute) word error rate (WER)
+(class attribute) word error rate (WER).
 
 
 * **Type**
@@ -29,7 +42,7 @@ Class to calulate the metrics
 
 
 #### mer()
-(class attribute) match error rate (MER)
+(class attribute) match error rate (MER).
 
 
 * **Type**
@@ -39,7 +52,7 @@ Class to calulate the metrics
 
 
 #### wil()
-(class attribute) word information lost (WIL)
+(class attribute) word information lost (WIL).
 
 
 * **Type**
@@ -49,7 +62,7 @@ Class to calulate the metrics
 
 
 #### wip()
-(class attribute) word information preserved (WIP)
+(class attribute) word information preserved (WIP).
 
 
 * **Type**
@@ -59,7 +72,7 @@ Class to calulate the metrics
 
 
 #### cer()
-(class attribute) character error rate (CER)
+(class attribute) character error rate (CER).
 
 
 * **Type**
@@ -69,16 +82,16 @@ Class to calulate the metrics
 
 
 ### speechtotext.metrics.notebook_metrics_print(dataset: [Dataset](datasets.md#speechtotext.datasets.Dataset), id: str, hypothesis: str)
-Print metrics from transcript and hypothesis
+Print metrics from transcript and hypothesis.
 
 
 * **Parameters**
 
     
-    * **dataset** ([*Dataset*](datasets.md#speechtotext.datasets.Dataset)) – dataset of audio
+    * **dataset** ([*Dataset*](datasets.md#speechtotext.datasets.Dataset)) – dataset of audio.
 
 
-    * **id** (*str*) – _description_
+    * **id** (*str*) – id of the audio file.
 
 
-    * **hypothesis** (*str*) – _description_
+    * **hypothesis** (*str*) – hypothesis transcript.

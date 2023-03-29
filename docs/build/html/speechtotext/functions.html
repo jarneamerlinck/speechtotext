@@ -128,10 +128,33 @@
 <h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h1>
 <section id="module-speechtotext.functions">
 <span id="speechtotext-functions-module"></span><h2>speechtotext.functions module<a class="headerlink" href="#module-speechtotext.functions" title="Permalink to this heading">¶</a></h2>
+<p>Module with functions for the speechtotext package.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.functions.REGEX_STRING_PARSE">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">REGEX_STRING_PARSE</span></span><a class="headerlink" href="#speechtotext.functions.REGEX_STRING_PARSE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regex string parce used to clean up transcripts that are used to validate the speechtotext models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Force torch use for cuda</span>
+<span class="n">force_cudnn_initialization</span><span class="p">()</span>
+
+<span class="c1"># Clean string</span>
+<span class="n">string_cleaning</span><span class="p">(</span><span class="s2">&quot;this has.//./8 to be cleaned::@&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
 <dl class="py function">
 <dt class="sig sig-object py" id="speechtotext.functions.force_cudnn_initialization">
 <span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">force_cudnn_initialization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.force_cudnn_initialization" title="Permalink to this definition">¶</a></dt>
-<dd><p>Force cuda use for torch.</p>
+<dd><p>Force torch use for cuda.</p>
 </dd></dl>
 
 <dl class="py function">

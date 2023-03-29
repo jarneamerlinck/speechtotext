@@ -1,7 +1,4 @@
 """Module with functions for the speechtotext package.
-
-Attributes:
-	REGEX_STRING_PARSE (str): Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
  
 Use this module like this:
 	
@@ -15,6 +12,9 @@ Use this module like this:
 	
 	# Clean string
 	string_cleaning("this has.//./8 to be cleaned::@")
+
+Attributes:
+	REGEX_STRING_PARSE (str): Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
 """
 
 import threading

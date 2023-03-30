@@ -89,6 +89,24 @@
           </li>
 
         
+          <li class="toctree-l1 ">
+            
+              <a href="speechtotext/benchmark/index.html" class="reference internal ">speechtotext benchmark package</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="speechtotext/plot/index.html" class="reference internal ">speechtotext plot package</a>
+            
+
+            
+          </li>
+
+        
       </ul>
     </div>
   
@@ -125,6 +143,7 @@
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
+ | <a href="#P"><strong>P</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -137,21 +156,23 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="speechtotext/models/index.html#speechtotext.models.whisperWrapper.WhisperVersion.BASE">BASE (speechtotext.models.whisperWrapper.WhisperVersion attribute)</a>
 </li>
-      <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.Benchmark">Benchmark (class in speechtotext.benchmarks)</a>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.BasePlot">BasePlot (class in speechtotext.plot.plotting)</a>
+</li>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.benchmarks.Benchmark">Benchmark (class in speechtotext.benchmark.benchmarks)</a>
 </li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.modelWrapper.ModelWrapper.benchmark_n_samples">benchmark_n_samples() (speechtotext.models.modelWrapper.ModelWrapper method)</a>
 </li>
-      <li><a href="speechtotext/functions.html#speechtotext.functions.benchmark_results_to_csv">benchmark_results_to_csv() (in module speechtotext.functions)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="speechtotext/functions.html#speechtotext.functions.benchmark_results_to_html">benchmark_results_to_html() (in module speechtotext.functions)</a>
+      <li><a href="speechtotext/functions.html#speechtotext.functions.benchmark_results_to_csv">benchmark_results_to_csv() (in module speechtotext.functions)</a>
 </li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.modelWrapper.ModelWrapper.benchmark_sample">benchmark_sample() (speechtotext.models.modelWrapper.ModelWrapper method)</a>
 </li>
-      <li><a href="speechtotext/benchmarks.html#id0">BENCHMARK_SAMPLES (speechtotext.benchmarks.Benchmark attribute)</a>, <a href="speechtotext/benchmarks.html#speechtotext.benchmarks.Benchmark.BENCHMARK_SAMPLES">[1]</a>
+      <li><a href="speechtotext/benchmark/index.html#id0">BENCHMARK_SAMPLES (speechtotext.benchmark.benchmarks.Benchmark attribute)</a>, <a href="speechtotext/benchmark/index.html#speechtotext.benchmark.benchmarks.Benchmark.BENCHMARK_SAMPLES">[1]</a>
 </li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.modelWrapper.ModelWrapper.benchmark_samples">benchmark_samples() (speechtotext.models.modelWrapper.ModelWrapper method)</a>
+</li>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.customPlots.BoxPlotOfModelsWer">BoxPlotOfModelsWer (class in speechtotext.plot.customPlots)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -161,18 +182,28 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="speechtotext/metrics.html#speechtotext.metrics.Metrics.cer">cer (speechtotext.metrics.Metrics attribute)</a>
 </li>
-      <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.Benchmark.convert_to_pandas">convert_to_pandas() (speechtotext.benchmarks.Benchmark method)</a>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.benchmarks.Benchmark.convert_to_pandas">convert_to_pandas() (speechtotext.benchmark.benchmarks.Benchmark method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.Benchmark.create_models">create_models() (speechtotext.benchmarks.Benchmark method)</a>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.benchmarks.Benchmark.create_models">create_models() (speechtotext.benchmark.benchmarks.Benchmark method)</a>
 
       <ul>
-        <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.WhisperAPIBenchmark.create_models">(speechtotext.benchmarks.WhisperAPIBenchmark method)</a>
+        <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark.create_models">(speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark method)</a>
 </li>
-        <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.WhisperBenchmark.create_models">(speechtotext.benchmarks.WhisperBenchmark method)</a>
+        <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.customBenchmarks.WhisperBenchmark.create_models">(speechtotext.benchmark.customBenchmarks.WhisperBenchmark method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.customPlots.BoxPlotOfModelsWer.create_plot">create_plot() (speechtotext.plot.customPlots.BoxPlotOfModelsWer method)</a>
+
+      <ul>
+        <li><a href="speechtotext/plot/index.html#speechtotext.plot.customPlots.MeanOfMetricByModelname.create_plot">(speechtotext.plot.customPlots.MeanOfMetricByModelname method)</a>
+</li>
+        <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.BasePlot.create_plot">(speechtotext.plot.plotting.BasePlot method)</a>
+</li>
+      </ul></li>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS">CUSTOM_PLOTS (speechtotext.plot.plotting.Plotting attribute)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -183,7 +214,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="speechtotext/benchmarks.html#id1">DATASET (speechtotext.benchmarks.Benchmark attribute)</a>, <a href="speechtotext/benchmarks.html#speechtotext.benchmarks.Benchmark.DATASET">[1]</a>
+      <li><a href="speechtotext/benchmark/index.html#id1">DATASET (speechtotext.benchmark.benchmarks.Benchmark attribute)</a>, <a href="speechtotext/benchmark/index.html#speechtotext.benchmark.benchmarks.Benchmark.DATASET">[1]</a>
 </li>
       <li><a href="speechtotext/datasets.html#speechtotext.datasets.DatasetBare">DatasetBare (class in speechtotext.datasets)</a>
 </li>
@@ -243,6 +274,8 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.Plotting.launch_dtale">launch_dtale() (speechtotext.plot.plotting.Plotting method)</a>
+</li>
       <li><a href="speechtotext/datasets.html#speechtotext.datasets.Dataset.load_transcript">load_transcript() (speechtotext.datasets.Dataset method)</a>
 </li>
   </ul></td>
@@ -251,29 +284,31 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.customPlots.MeanOfMetricByModelname">MeanOfMetricByModelname (class in speechtotext.plot.customPlots)</a>
+</li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.whisperWrapper.WhisperVersion.MEDIUM">MEDIUM (speechtotext.models.whisperWrapper.WhisperVersion attribute)</a>
 </li>
       <li><a href="speechtotext/metrics.html#speechtotext.metrics.Metrics.mer">mer (speechtotext.metrics.Metrics attribute)</a>
 </li>
       <li><a href="speechtotext/metrics.html#speechtotext.metrics.Metrics">Metrics (class in speechtotext.metrics)</a>
 </li>
-      <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.WhisperAPIBenchmark.MODEL_BASE">MODEL_BASE (speechtotext.benchmarks.WhisperAPIBenchmark attribute)</a>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark.MODEL_BASE">MODEL_BASE (speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark attribute)</a>
 
       <ul>
-        <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.WhisperBenchmark.MODEL_BASE">(speechtotext.benchmarks.WhisperBenchmark attribute)</a>
+        <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.customBenchmarks.WhisperBenchmark.MODEL_BASE">(speechtotext.benchmark.customBenchmarks.WhisperBenchmark attribute)</a>
 </li>
       </ul></li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.modelWrapper.ModelVersion">ModelVersion (class in speechtotext.models.modelWrapper)</a>
 </li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.modelWrapper.ModelWrapper">ModelWrapper (class in speechtotext.models.modelWrapper)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     module
 
       <ul>
-        <li><a href="speechtotext/benchmarks.html#module-speechtotext.benchmarks">speechtotext.benchmarks</a>
+        <li><a href="speechtotext/benchmark/index.html#module-speechtotext.benchmark.benchmarks">speechtotext.benchmark.benchmarks</a>
+</li>
+        <li><a href="speechtotext/benchmark/index.html#module-speechtotext.benchmark.customBenchmarks">speechtotext.benchmark.customBenchmarks</a>
 </li>
         <li><a href="speechtotext/datasets.html#module-speechtotext.datasets">speechtotext.datasets</a>
 </li>
@@ -285,7 +320,13 @@
 </li>
         <li><a href="speechtotext/models/index.html#module-speechtotext.models.whisperWrapper">speechtotext.models.whisperWrapper</a>
 </li>
+        <li><a href="speechtotext/plot/index.html#module-speechtotext.plot.customPlots">speechtotext.plot.customPlots</a>
+</li>
+        <li><a href="speechtotext/plot/index.html#module-speechtotext.plot.plotting">speechtotext.plot.plotting</a>
+</li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="speechtotext/functions.html#speechtotext.functions.multidispatch">multidispatch() (in module speechtotext.functions)</a>
 </li>
   </ul></td>
@@ -303,10 +344,22 @@
   </ul></td>
 </tr></table>
 
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.Plotting">Plotting (class in speechtotext.plot.plotting)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="speechtotext/functions.html#speechtotext.functions.REGEX_STRING_PARSE">REGEX_STRING_PARSE (in module speechtotext.functions)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.benchmarks.run_benchmarks">run_benchmarks() (in module speechtotext.benchmark.benchmarks)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -316,21 +369,32 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="speechtotext/datasets.html#speechtotext.datasets.SampleDataset">SampleDataset (class in speechtotext.datasets)</a>
 </li>
-      <li><a href="speechtotext/functions.html#speechtotext.functions.save_benchmark_results">save_benchmark_results() (in module speechtotext.functions)</a>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.Plotting.save_all">save_all() (speechtotext.plot.plotting.Plotting method)</a>
 </li>
-      <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.Benchmark.save_to_csv">save_to_csv() (speechtotext.benchmarks.Benchmark method)</a>
+      <li><a href="speechtotext/functions.html#speechtotext.functions.save_folder_name">save_folder_name() (in module speechtotext.functions)</a>
+</li>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.BasePlot.save_plot">save_plot() (speechtotext.plot.plotting.BasePlot method)</a>
+</li>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.benchmarks.Benchmark.save_to_csv">save_to_csv() (speechtotext.benchmark.benchmarks.Benchmark method)</a>
 </li>
       <li><a href="speechtotext/functions.html#speechtotext.functions.separate_benchmark_results_by_model">separate_benchmark_results_by_model() (in module speechtotext.functions)</a>
 </li>
-      <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.Benchmark.set_dataset">set_dataset() (speechtotext.benchmarks.Benchmark class method)</a>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.benchmarks.Benchmark.set_dataset">set_dataset() (speechtotext.benchmark.benchmarks.Benchmark class method)</a>
 </li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.whisperWrapper.WhisperVersion.SMALL">SMALL (speechtotext.models.whisperWrapper.WhisperVersion attribute)</a>
 </li>
       <li>
-    speechtotext.benchmarks
+    speechtotext.benchmark.benchmarks
 
       <ul>
-        <li><a href="speechtotext/benchmarks.html#module-speechtotext.benchmarks">module</a>
+        <li><a href="speechtotext/benchmark/index.html#module-speechtotext.benchmark.benchmarks">module</a>
+</li>
+      </ul></li>
+      <li>
+    speechtotext.benchmark.customBenchmarks
+
+      <ul>
+        <li><a href="speechtotext/benchmark/index.html#module-speechtotext.benchmark.customBenchmarks">module</a>
 </li>
       </ul></li>
       <li>
@@ -370,6 +434,20 @@
         <li><a href="speechtotext/models/index.html#module-speechtotext.models.whisperWrapper">module</a>
 </li>
       </ul></li>
+      <li>
+    speechtotext.plot.customPlots
+
+      <ul>
+        <li><a href="speechtotext/plot/index.html#module-speechtotext.plot.customPlots">module</a>
+</li>
+      </ul></li>
+      <li>
+    speechtotext.plot.plotting
+
+      <ul>
+        <li><a href="speechtotext/plot/index.html#module-speechtotext.plot.plotting">module</a>
+</li>
+      </ul></li>
       <li><a href="speechtotext/functions.html#speechtotext.functions.string_cleaning">string_cleaning() (in module speechtotext.functions)</a>
 </li>
   </ul></td>
@@ -386,7 +464,7 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.Benchmark.update_samples">update_samples() (speechtotext.benchmarks.Benchmark class method)</a>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.benchmarks.Benchmark.update_samples">update_samples() (speechtotext.benchmark.benchmarks.Benchmark class method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -398,7 +476,7 @@
 </li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.whisperWrapper.WhisperAPIVersion.WHISPER_1">WHISPER_1 (speechtotext.models.whisperWrapper.WhisperAPIVersion attribute)</a>
 </li>
-      <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.WhisperAPIBenchmark">WhisperAPIBenchmark (class in speechtotext.benchmarks)</a>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark">WhisperAPIBenchmark (class in speechtotext.benchmark.customBenchmarks)</a>
 </li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.whisperWrapper.WhisperAPIVersion">WhisperAPIVersion (class in speechtotext.models.whisperWrapper)</a>
 </li>
@@ -406,7 +484,7 @@
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="speechtotext/benchmarks.html#speechtotext.benchmarks.WhisperBenchmark">WhisperBenchmark (class in speechtotext.benchmarks)</a>
+      <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.customBenchmarks.WhisperBenchmark">WhisperBenchmark (class in speechtotext.benchmark.customBenchmarks)</a>
 </li>
       <li><a href="speechtotext/models/index.html#speechtotext.models.whisperWrapper.WhisperVersion">WhisperVersion (class in speechtotext.models.whisperWrapper)</a>
 </li>

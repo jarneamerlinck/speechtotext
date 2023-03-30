@@ -11,6 +11,4 @@ Submodules
    functions.rst
    datasets.rst
    metrics.rst
-   benchmarks.rst
-
 

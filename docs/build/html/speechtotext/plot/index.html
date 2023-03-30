@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html  lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>speechtotext plot package</title>
+    
+          <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+          <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
+      
+      <!-- sphinx script_files -->
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+
+      
+      <!-- bundled in js (rollup iife) -->
+      <!-- <script src="../../_static/theme-vendors.js"></script> -->
+      <script src="../../_static/theme.js" defer></script>
+    
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="prev" title="speechtotext benchmark package" href="../benchmark/index.html" /> 
+  </head>
+
+  <body>
+    <div id="app">
+    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
+  <router-link to="../../index.html" class="home-link">
+    
+      <span class="site-name">speechtotext</span>
+    
+  </router-link>
+
+  <div class="links">
+    <navlinks class="can-hide">
+
+
+
+    </navlinks>
+  </div>
+</navbar>
+
+      
+      <div class="sidebar-mask" @click="toggleSidebar(false)">
+      </div>
+        <sidebar @toggle-sidebar="toggleSidebar">
+          
+          <navlinks>
+            
+
+
+
+            
+          </navlinks><div id="searchbox" class="searchbox" role="search">
+  <div class="caption"><span class="caption-text">Quick search</span>
+    <div class="searchformwrapper">
+      <form class="search" action="../../search.html" method="get">
+        <input type="text" name="q" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../../index.html#welcome-to-speechtotext-s-documentation">Contents:</a></span>
+      </p>
+      <ul class="current">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../index.html" class="reference internal ">Speechtotext package</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../models/index.html" class="reference internal ">Speechtotext models package</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../benchmark/index.html" class="reference internal ">speechtotext benchmark package</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 current">
+            
+              <a href="#" class="reference internal current">speechtotext plot package</a>
+            
+
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#submodules" class="reference internal">Submodules</a></li>
+                
+                  <li class="toctree-l2"><a href="#module-speechtotext.plot.plotting" class="reference internal">plotting module</a></li>
+                
+                  <li class="toctree-l2"><a href="#module-speechtotext.plot.customPlots" class="reference internal">customPlots module</a></li>
+                
+              </ul>
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+</div>
+        </sidebar>
+
+      <page>
+          <div class="body-header" role="navigation" aria-label="navigation">
+  
+  <ul class="breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+    
+    <li>speechtotext plot package</li>
+  </ul>
+  
+
+  <ul class="page-nav">
+  <li class="prev">
+    <a href="../benchmark/index.html"
+       title="previous chapter">← speechtotext benchmark package</a>
+  </li>
+</ul>
+  
+</div>
+<hr>
+          <div class="content" role="main" v-pre>
+            
+  <section id="speechtotext-plot-package">
+<h1>speechtotext plot package<a class="headerlink" href="#speechtotext-plot-package" title="Permalink to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="module-speechtotext.plot.plotting">
+<span id="plotting-module"></span><h2>plotting module<a class="headerlink" href="#module-speechtotext.plot.plotting" title="Permalink to this heading">¶</a></h2>
+<p>Module that plots the metrics from the benchmarks.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create class</span>
+<span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span> <span class="n">BasePlot</span><span class="p">,</span> <span class="n">Plotting</span>
+<span class="k">class</span> <span class="nc">BoxPlotOfModelsWer</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">create_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+                <span class="n">plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;wer&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;model_name&quot;</span><span class="p">)</span>
+                <span class="n">fig</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">fig</span>
+
+        <span class="k">def</span> <span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="n">fig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_plot</span><span class="p">()</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_file_name</span><span class="p">)</span>
+<span class="c1"># Add models to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_PLOTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BoxPlotOfModelsWer</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.BasePlot">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.plotting.</span></span><span class="sig-name descname"><span class="pre">BasePlot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.BasePlot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Parent class for custom plots. Code can be generated from d-tale. Child class should be made and added to Plotting.CUSTOM_PLOTS.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.BasePlot.create_plot">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.plotting.BasePlot.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.BasePlot.save_plot">
+<span class="sig-name descname"><span class="pre">save_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.BasePlot.save_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves plot to folder.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.plotting.</span></span><span class="sig-name descname"><span class="pre">Plotting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.Plotting" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class that is used to create plots for an benchmark.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS">
+<span class="sig-name descname"><span class="pre">CUSTOM_PLOTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#speechtotext.plot.plotting.BasePlot" title="speechtotext.plot.plotting.BasePlot"><span class="pre">speechtotext.plot.plotting.BasePlot</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.launch_dtale">
+<span class="sig-name descname"><span class="pre">launch_dtale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.launch_dtale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Launch webui to explore the data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.save_all">
+<span class="sig-name descname"><span class="pre">save_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.save_all" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loops over all customPlot classes in CUSTOM_PLOTS to creates and saves the plots.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-speechtotext.plot.customPlots">
+<span id="customplots-module"></span><h2>customPlots module<a class="headerlink" href="#module-speechtotext.plot.customPlots" title="Permalink to this heading">¶</a></h2>
+<p>Module to create custom plots for the plotting module</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create class</span>
+<span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span> <span class="n">BasePlot</span><span class="p">,</span> <span class="n">Plotting</span>
+<span class="k">class</span> <span class="nc">BoxPlotOfModelsWer</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">create_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+                <span class="n">plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;wer&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;model_name&quot;</span><span class="p">)</span>
+                <span class="n">fig</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">fig</span>
+
+        <span class="k">def</span> <span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="n">fig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_plot</span><span class="p">()</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_file_name</span><span class="p">)</span>
+<span class="c1"># Add models to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_PLOTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BoxPlotOfModelsWer</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.BoxPlotOfModelsWer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">BoxPlotOfModelsWer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.BoxPlotOfModelsWer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlot" title="speechtotext.plot.plotting.BasePlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlot</span></code></a></p>
+<p>Class that is used to create boxplot for wer by models.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.BoxPlotOfModelsWer.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.BoxPlotOfModelsWer.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfMetricByModelname">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MeanOfMetricByModelname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfMetricByModelname" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlot" title="speechtotext.plot.plotting.BasePlot"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlot</span></code></a></p>
+<p>Class that is used to create plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfMetricByModelname.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfMetricByModelname.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          <div class="page-nav">
+            <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="../benchmark/index.html"
+       title="previous chapter">← speechtotext benchmark package</a>
+  </li>
+</ul><div class="footer" role="contentinfo">
+      &#169; Copyright 2023 Vives.
+    <br>
+    Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.1.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
+</div>
+            </div>
+          </div>
+      </page>
+    </div></div>
+    
+    
+  </body>
+</html>

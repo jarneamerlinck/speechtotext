@@ -4,11 +4,20 @@ Use this module like this:
 	
 .. code-block:: python
 
-	# Imports
-	from speechtotext.metrics import Metrics
-	
-	# Create metrics
-	
+	# Create class
+	from speechtotext.plot.plotting import BasePlot, Plotting
+	class BoxPlotOfModelsWer(BasePlot):
+
+		def create_plot(self) -> matplotlib.figure.Figure:
+			plot = sns.boxplot(data=self.df, x="wer", y="model_name")
+			fig = plot.get_figure()
+			return fig
+
+		def save_plot(self):    
+			fig = self.create_plot()
+			fig.savefig(self.save_file_name)
+	# Add models to Plotting
+	Plotting.CUSTOM_PLOTS.append(BoxPlotOfModelsWer)
 """
 import pandas as pd
 import dtale

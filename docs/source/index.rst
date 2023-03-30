@@ -12,6 +12,8 @@ Welcome to speechtotext's documentation!
 
    speechtotext/index.rst
    speechtotext/models/index.rst
+   speechtotext/benchmark/index.rst
+   speechtotext/plot/index.rst
 
 
 

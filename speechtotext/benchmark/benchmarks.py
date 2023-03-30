@@ -6,7 +6,7 @@ Use this module like this:
 
 	# Imports
  	from speechtotext.datasets import Dataset
-	from speechtotext.benchmarks import *
+	from speechtotext.benchmark.benchmarks import *
  
 	# Settings
 	number_of_samples = 10
@@ -25,6 +25,17 @@ Use this module like this:
  
 	# Save metrics to csv (saves with datetime in name)
 	benchmark_results_to_csv([wb])
+ 
+	# Run benchmarks
+ 	## Settings
+	number_of_samples = 5
+	wb = WhisperBenchmark()
+	wAPIb = WhisperAPIBenchmark()
+	benchmark_dataset = dataset_RDH
+	benchmark_list: list[Benchmark] = [wb, wAPIb]
+ 
+	# Run benchmarks
+	results = run_benchmarks(benchmark_list, benchmark_dataset, number_of_samples)
 """
 
 from abc import ABC, abstractmethod
@@ -33,7 +44,7 @@ import pandas as pd
 from speechtotext.models.modelWrapper import ModelWrapper
 from speechtotext.models.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
 from speechtotext.datasets import Dataset
-from speechtotext.functions import multidispatch, join_benchmark_results, separate_benchmark_results_by_model, DEFAULT_HTML_TITLE, DEFAULT_CSV_NAME, DEFAULT_CSV_NAME, DEFAULT_REPORT_FOLDER
+from speechtotext.functions import multidispatch, join_benchmark_results, separate_benchmark_results_by_model, DEFAULT_HTML_TITLE, DEFAULT_CSV_NAME, DEFAULT_CSV_NAME, DEFAULT_REPORTS_FOLDER
 
 
 class Benchmark(ABC):
@@ -149,30 +160,18 @@ class Benchmark(ABC):
 			cls.DATASET = new_dataset
 		cls.update_samples(number_of_samples)
 
+def run_benchmarks(benchmark_list: list[Benchmark], benchmark_dataset:Dataset, number_of_samples:int) -> list[pd.core.frame.DataFrame]:
+	"""Run al benchmarks out of list.
 
-class WhisperBenchmark(Benchmark):
-	"""Benchmark for local whisper models.
-	"""
-	MODEL_BASE = "Whisper"
-
-	def create_models(self) -> list[ModelWrapper]:
-		models = []
-		for version in WhisperVersion:
-			models.append(WhisperWrapper(version))
-		return models
-
-
-class WhisperAPIBenchmark(Benchmark):
-	"""Benchmark for API whisper models.
-	"""
-	MODEL_BASE = "WhisperAPI"
-
-	def create_models(self) -> list[ModelWrapper]:
-		models = []
-		for version in WhisperAPIVersion:
-			models.append(WhisperAPIWrapper(version))
-		return models
-
-
-
-
+	Args:
+		benchmark_list (list[Benchmark]): List of benchmarks to run.
+		dataset (Dataset): Dataset to use for benchmark.
+		number_of_samples (int): Number of samples used in benchmark.
+	""" 
+	results: list[pd.core.frame.DataFrame] = []
+	Benchmark.set_dataset(benchmark_dataset)
+	
+	for index, benchmark in enumerate(benchmark_list):
+		benchmark(number_of_samples)
+		results.append( benchmark.convert_to_pandas())
+	return results

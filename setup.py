@@ -24,7 +24,7 @@ VERSION = '0.1.0'
 REQUIRED = [
     'jiwer', 'pandas', 'numpy', 'torch', 
     'openai-whisper', 'openai', 'python-dotenv',
-    'matplotlib', 'ipywidgets', 'sweetviz',
+    'matplotlib', 'ipywidgets', 'seaborn',
     'dtale'
 ]
 

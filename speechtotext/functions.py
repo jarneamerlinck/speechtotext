@@ -26,10 +26,11 @@ import pandas as pd
 from datetime import datetime
 
 REGEX_STRING_PARSE = '[^A-Za-z0-9 ]+'
-DEFAULT_REPORT_FOLDER = "reports"
-DEFAULT_CSV_NAME = f"{DEFAULT_REPORT_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
-DEFAULT_HTML_NAME = f"{DEFAULT_REPORT_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.html"
-DEFAULT_HTML_TITLE = f"{DEFAULT_REPORT_FOLDER}/Benchmark results of {datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
+
+DEFAULT_REPORTS_FOLDER = "reports"
+DEFAULT_CSV_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y_%m_%d_H_%M_%S')}.csv"
+DEFAULT_HTML_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y_%m_%d_H_%M_%S')}.html"
+DEFAULT_HTML_TITLE = f"{DEFAULT_REPORTS_FOLDER}/Benchmark results of {datetime.now().strftime('%Y_%m_%d_H_%M_%S')}"
 
 
 def force_cudnn_initialization():
@@ -97,34 +98,21 @@ def benchmark_results_to_csv(results: list[pd.core.frame.DataFrame], save_name:s
 	df = pd.concat(results)
 	df.to_csv(save_name, index=False)
  
-def benchmark_results_to_html(dict_results: dict[str, pd.core.frame.DataFrame], title:str = DEFAULT_HTML_TITLE, save_name: str = DEFAULT_HTML_NAME):
-	"""Saves benchmark results to html overview.
+def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) -> str:
+	"""Makes folder path 
 
 	Args:
-		results (list[pd.core.frame.DataFrame]): List of results from benchmarks.
-		title (str, optional): Title on the report. Defaults to DEFAULT_HTML_TITLE.
-		save_name (str, optional): filename of the output. Defaults to DEFAULT_HTML_NAME.
+		report_name (str): name of report
+		folder_name (str, optional): Name of folder. Defaults to DEFAULT_REPORT_FOLDER.
+
+	Returns:
+		str: path to save folder
 	"""    
-	reports = []
-	for _, (key, df) in enumerate(dict_results.items()):
-		print(key, df.columns)
-		raport = ProfileReport(df, title=key)
-		raport.to_file(f"benchmark_results_{key}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.html")
-		reports.append(raport)
-	
-	# comparison_report = compare(reports[0:max])
-	# statistics = comparison_report.get_description()
-	# comparison_report.to_file(save_name)
- 
-def save_benchmark_results(results: list[pd.core.frame.DataFrame]):
-	"""Save benchmark results to csv and html.
+	folder_name =  f"{folder_name}/{report_name}_{datetime.now().strftime('%Y_%m_%d_H_%M_%S')}"
+	if not os.path.isdir(folder_name):
+		os.makedirs(folder_name)
+	return folder_name
 
-	Args:
-		results (list[pd.core.frame.DataFrame]): List of results.
-	"""
-	df = join_benchmark_results(results, set_index=False)
-	dict_of_dfs = separate_benchmark_results_by_model(df)
-	benchmark_results_to_html(dict_of_dfs)
 def multidispatch(*types):
 	"""Allow for Method overloading for classes.
 	"""    

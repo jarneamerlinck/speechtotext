@@ -29,17 +29,11 @@ Use this module like this:
 
 from abc import ABC, abstractmethod
 import pandas as pd
-from datetime import datetime
-from ydata_profiling import ProfileReport, compare
 
 from speechtotext.models.modelWrapper import ModelWrapper
 from speechtotext.models.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
 from speechtotext.datasets import Dataset
-from speechtotext.functions import multidispatch
-
-DEFAULT_CSV_NAME = f"Benchmark_results_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.csv"
-DEFAULT_HTML_NAME = f"Benchmark_results_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.html"
-DEFAULT_HTML_TITLE = f"Benchmark results of {datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}"
+from speechtotext.functions import multidispatch, join_benchmark_results, separate_benchmark_results_by_model, DEFAULT_HTML_TITLE, DEFAULT_CSV_NAME, DEFAULT_CSV_NAME, DEFAULT_REPORT_FOLDER
 
 
 class Benchmark(ABC):
@@ -79,14 +73,14 @@ class Benchmark(ABC):
 				pd.core.frame.DataFrame: pandas dataframe.
 		"""
 		column_names = ["model_name", "audio_ID",
-						"hypothesis", "wer", "mer",  "wil", "wip", "cer"]
+						"reference", "wer", "mer",  "wil", "wip", "cer"]
 		df = pd.DataFrame(columns=column_names)
 
 		for model, metrics in zip(self.models, self.metrics):
 			model_name = f"{self.MODEL_BASE}_{model.model_version.value}"
 			for metric in metrics:
 
-				new_row = pd.Series([model_name, metric.audio_id, metric.hypothesis, metric.wer,
+				new_row = pd.Series([model_name, metric.audio_id, metric.reference, metric.wer,
 									 metric.mer,  metric.wil, metric.wip, metric.cer], index=column_names)
 				df = pd.concat([df, new_row.to_frame().T], ignore_index=True)
 
@@ -180,79 +174,5 @@ class WhisperAPIBenchmark(Benchmark):
 		return models
 
 
-def join_benchmark_results(results: list[pd.core.frame.DataFrame], set_index=True) -> pd.core.frame.DataFrame:
-	"""Join Benchmark results.
 
-	Args:
-			results (list[pd.core.frame.DataFrame]): results of benchmarks.
-			set_index (bool, optional): Set True if ["model_name", "audio_ID"] can be set as index. Defaults to True.
 
-	Returns:
-			pd.core.frame.DataFrame: Dataframe with results of all benchmarks.
-	"""
-	df = pd.concat(results)
-	if set_index:
-		df = df.set_index(["model_name", "audio_ID"])
-	return df
-
-def separate_benchmark_results_by_model(dataframe: pd.core.frame.DataFrame) -> dict[str, pd.core.frame.DataFrame]:
-	"""Seperate benchmark results for each model.
-
-	Args:
-			dataframe pd.core.frame.DataFrame: Dataframe with results of all benchmarks.
-
-	Returns:
-			(list[pd.core.frame.DataFrame]): results of benchmarks. 
-	"""
-	
-	model_names = dataframe["model_name"].unique()
-
-	DataFrameDict = {elem : pd.DataFrame() for elem in model_names}
-
-	for key in DataFrameDict.keys():
-		df = dataframe[:][dataframe["model_name"] == key]
-		df = df.set_index("audio_ID")
-		del df['model_name']
-		DataFrameDict[key] = df
-	
-	return DataFrameDict
-
-def benchmark_results_to_csv(results: list[pd.core.frame.DataFrame], save_name:str=DEFAULT_CSV_NAME):
-	"""Creates csv from benchmark results.
-	
-	Args:
-		results (list[pd.core.frame.DataFrame]): List of results from benchmarks.
-		save_name (str, optional): filename of output. Defaults to DEFAULT_CSV_NAME.
-	"""  
-	df = pd.concat(results)
-	df.to_csv(save_name, index=False)
- 
-def benchmark_results_to_html(dict_results: dict[str, pd.core.frame.DataFrame], title:str = DEFAULT_HTML_TITLE, save_name: str = DEFAULT_HTML_NAME):
-	"""Saves benchmark results to html overview.
-
-	Args:
-		results (list[pd.core.frame.DataFrame]): List of results from benchmarks.
-		title (str, optional): Title on the report. Defaults to DEFAULT_HTML_TITLE.
-		save_name (str, optional): filename of the output. Defaults to DEFAULT_HTML_NAME.
-	"""    
-	reports = []
-	for _, (key, df) in enumerate(dict_results.items()):
-		print(key, df.columns)
-		raport = ProfileReport(df, title=key)
-		raport.to_file(f"benchmark_results_{key}_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.html")
-		reports.append(raport)
-	
-	# comparison_report = compare(reports[0:max])
-	# statistics = comparison_report.get_description()
-	# comparison_report.to_file(save_name)
- 
- 
-def save_benchmark_results(results: list[pd.core.frame.DataFrame]):
-	"""Save benchmark results to csv and html.
-
-	Args:
-		results (list[pd.core.frame.DataFrame]): List of results.
-	"""
-	df = join_benchmark_results(results, set_index=False)
-	dict_of_dfs = separate_benchmark_results_by_model(df)
-	benchmark_results_to_html(dict_of_dfs)

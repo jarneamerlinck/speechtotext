@@ -17,13 +17,13 @@ Attributes:
 	REGEX_STRING_PARSE (str): Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
 """
 
-import threading
 import os
 import re
 import torch
 import functools
 import pandas as pd
 from datetime import datetime
+from abc import ABC, abstractmethod
 
 REGEX_STRING_PARSE = '[^A-Za-z0-9 ]+'
 
@@ -99,10 +99,10 @@ def benchmark_results_to_csv(results: list[pd.core.frame.DataFrame], save_name:s
 	df.to_csv(save_name, index=False)
  
 def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) -> str:
-	"""Makes folder path 
+	"""Makes folder path.
 
 	Args:
-		report_name (str): name of report
+		report_name (str): name of report.
 		folder_name (str, optional): Name of folder. Defaults to DEFAULT_REPORT_FOLDER.
 
 	Returns:
@@ -112,6 +112,26 @@ def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) 
 	if not os.path.isdir(folder_name):
 		os.makedirs(folder_name)
 	return folder_name
+
+class BaseResult(ABC):
+	def __init__(self, df:pd.core.frame.DataFrame, report_folder:str, file_name:str):
+		"""Creates object of BaseResult. Child class should be added to Plotting.CUSTOM_RESULTS.
+
+		Args:
+			df (pd.core.frame.DataFrame): dataframe that needs to be plotted.
+			report_folder (str): path to report folder.
+			file_name (str): Name of saved File.
+		"""     
+		self.report_folder = report_folder
+		self.file_name = file_name
+		self.df = df
+		self.save_file_name = f"{self.report_folder}/{self.file_name}{self.ext}"
+
+	@abstractmethod
+	def save(self):
+		"""Saves Result to report folder.
+		"""     
+		pass
 
 def multidispatch(*types):
 	"""Allow for Method overloading for classes.

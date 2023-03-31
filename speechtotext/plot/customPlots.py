@@ -4,8 +4,11 @@ Use this module like this:
 	
 .. code-block:: python
 
-	# Create class
-	from speechtotext.plot.plotting import BasePlot, Plotting
+	# Imports
+	from speechtotext.functions import BaseResult
+	from speechtotext.plot.plotting import Plotting
+ 
+	# Create class with matplotlib picture
 	class BoxPlotOfModelsWer(BasePlot):
 
 		def create_plot(self) -> matplotlib.figure.Figure:
@@ -16,17 +19,31 @@ Use this module like this:
 		def save_plot(self):    
 			fig = self.create_plot()
 			fig.savefig(self.save_file_name)
-	# Add models to Plotting
-	Plotting.CUSTOM_PLOTS.append(BoxPlotOfModelsWer)
+	# Add model to Plotting
+	Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsWer)
+
+	# Create class with plotly picture
+	from speechtotext.plot.plotting import BasePlot, Plotting
+	class DemoPlotlyExample(BasePlot):
+
+		def create_plot(self) -> plotly.graph_objs._figure.Figure:
+			self.df = px.data.gapminder().query("country=='Canada'")
+			fig = px.line(df, x="year", y="lifeExp", title='Life expectancy in Canada')
+			return fig
+
+	# Add model to Plotting
+	Plotting.CUSTOM_RESULTS.append(DemoPlotlyExample)
 """
-from speechtotext.plot.plotting import BasePlot, Plotting
 import plotly
+import plotly.express as px
 import plotly.tools as tls
 import pandas as pd
 import seaborn as sns
 import matplotlib
 
-class MeanOfMetricByModelname(BasePlot):
+from speechtotext.plot.plotting import BasePlotly, Plotting, BaseMatPlotLib
+
+class MeanOfMetricByModelname(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
 	"""    
 	def create_plot(self) -> plotly.graph_objs._figure.Figure:
@@ -91,16 +108,54 @@ class MeanOfMetricByModelname(BasePlot):
 		}))
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_PLOTS.append(MeanOfMetricByModelname)
+Plotting.CUSTOM_RESULTS.append(MeanOfMetricByModelname)
 
-class BoxPlotOfModelsWer(BasePlot):
+class BoxPlotOfModelsWer(BaseMatPlotLib):
 	"""Class that is used to create boxplot for wer by models.
 	"""    
-	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+	def create_plot(self) -> matplotlib.figure.Figure:
 		plot = sns.boxplot(data=self.df, x="wer", y="model_name")
 		fig = plot.get_figure()
-		return tls.mpl_to_plotly(fig)
-
-
+		return fig
 # Add models to Plotting
-Plotting.CUSTOM_PLOTS.append(BoxPlotOfModelsWer)
+Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsWer)
+
+class BoxPlotOfModelsMer(BaseMatPlotLib):
+	"""Class that is used to create boxplot for mer by models.
+	"""    
+	def create_plot(self) -> matplotlib.figure.Figure:
+		plot = sns.boxplot(data=self.df, x="mer", y="model_name")
+		fig = plot.get_figure()
+		return fig
+# Add models to Plotting
+Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsMer)
+
+class BoxPlotOfModelsWil(BaseMatPlotLib):
+	"""Class that is used to create boxplot for wil by models.
+	"""    
+	def create_plot(self) -> matplotlib.figure.Figure:
+		plot = sns.boxplot(data=self.df, x="wil", y="model_name")
+		fig = plot.get_figure()
+		return fig
+# Add models to Plotting
+Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsWil)
+
+class BoxPlotOfModelsWip(BaseMatPlotLib):
+	"""Class that is used to create boxplot for wip by models.
+	"""    
+	def create_plot(self) -> matplotlib.figure.Figure:
+		plot = sns.boxplot(data=self.df, x="wip", y="model_name")
+		fig = plot.get_figure()
+		return fig
+# Add models to Plotting
+Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsWip)
+
+class BoxPlotOfModelsCer(BaseMatPlotLib):
+	"""Class that is used to create boxplot for cer by models.
+	"""    
+	def create_plot(self) -> matplotlib.figure.Figure:
+		plot = sns.boxplot(data=self.df, x="cer", y="model_name")
+		fig = plot.get_figure()
+		return fig
+# Add models to Plotting
+Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsCer)

@@ -5,19 +5,17 @@ Use this module like this:
 .. code-block:: python
 
 	# Imports
-	from speechtotext.metrics import Metrics
+	from speechtotext.metric.metrics import Metrics
 	
 	# Create metrics
 	m = Metrics("De stoel heeft krassen gemaakt op de vloer!", "De stoel heeft krassen gemaakt op de vloer", "id_from_dataset")
 	print(m)
 """
-import threading
-import os
-import re
-from speechtotext.datasets import Dataset
 from typing_extensions import override
-from jiwer import wer, mer, wil, wip, cer
+from jiwer import wer, mer, wil, wip, cer 
+import pandas as pd
 
+from speechtotext.datasets import Dataset
 from speechtotext.functions import string_cleaning 
 
 def notebook_metrics_print(dataset:Dataset, id:str, hypothesis:str):
@@ -77,8 +75,4 @@ class Metrics():
 	@override
 	def __str__(self) -> str:
 		return f"wer: {self.wer}, mer: {self.mer}, wil: {self.wil}, wip: {self.wip}, cer: {self.cer}"
-
-
-
-
 

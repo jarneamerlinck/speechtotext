@@ -5,8 +5,8 @@ Use this module like this:
 .. code-block:: python
 
 	# Imports
- 	from speechtotext.models.moduleWrapper import *
-	from speechtotext.benchmarks import *
+ 	from speechtotext.model.moduleWrapper import *
+	from speechtotext.benchmark.benchmarks import *
 	from speechtotext.datasets import Dataset
  
 	# Create child class for ModelVersion
@@ -48,10 +48,10 @@ Use this module like this:
 """
 from enum import Enum
 from abc import ABC, abstractmethod
-from speechtotext.datasets import Dataset, SampleDataset
-from speechtotext.metrics import Metrics
 import pandas as pd
 
+from speechtotext.datasets import Dataset, SampleDataset
+from speechtotext.metric.metrics import Metrics
 
 class ModelVersion(Enum):
 	"""Enum for the availible models.

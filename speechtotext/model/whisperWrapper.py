@@ -1,12 +1,13 @@
 """Modelwrapper implemented for whisper. Local and API.
 
+For the API OPENAI_API_KEY and OPENAI_ORGANIZATION need to be in the '.env'.
 Use this module like this:
 	
 .. code-block:: python
 
 	# Imports
- 	from speechtotext.models.whisperWrapper import *
-	from speechtotext.benchmarks import *
+ 	from speechtotext.model.whisperWrapper import *
+	from speechtotext.benchmark.benchmarks import *
 	from speechtotext.datasets import Dataset
 	
 	# Create dataset
@@ -27,11 +28,12 @@ Use this module like this:
 	# Benchmark n random samples
 	array = whisperWrapper.benchmark_n_samples(dataset, number_of_samples)
 """
-from speechtotext.models.modelWrapper import *
 import whisper
 import openai
 import os
 from dotenv import load_dotenv
+
+from speechtotext.model.modelWrapper import *
 
 class WhisperVersion(ModelVersion):
 	"""Enum for the available Whisper models.

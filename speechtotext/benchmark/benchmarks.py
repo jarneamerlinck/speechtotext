@@ -41,8 +41,8 @@ Use this module like this:
 from abc import ABC, abstractmethod
 import pandas as pd
 
-from speechtotext.models.modelWrapper import ModelWrapper
-from speechtotext.models.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
+from speechtotext.model.modelWrapper import ModelWrapper
+from speechtotext.model.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
 from speechtotext.datasets import Dataset
 from speechtotext.functions import multidispatch, join_benchmark_results, separate_benchmark_results_by_model, DEFAULT_HTML_TITLE, DEFAULT_CSV_NAME, DEFAULT_CSV_NAME, DEFAULT_REPORTS_FOLDER
 

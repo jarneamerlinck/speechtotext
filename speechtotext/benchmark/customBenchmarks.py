@@ -6,7 +6,7 @@ Use this module like this:
 
 	# Imports
  	from speechtotext.datasets import Dataset
-	from speechtotext.benchmarks import *
+	from speechtotext.benchmark.benchmarks import *
  
 	# Settings
 	number_of_samples = 10
@@ -31,8 +31,8 @@ from abc import ABC, abstractmethod
 import pandas as pd
 
 from speechtotext.benchmark.benchmarks import *
-from speechtotext.models.modelWrapper import ModelWrapper
-from speechtotext.models.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
+from speechtotext.model.modelWrapper import ModelWrapper
+from speechtotext.model.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
 
 
 class WhisperBenchmark(Benchmark):

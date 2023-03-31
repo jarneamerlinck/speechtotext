@@ -11,13 +11,10 @@ Welcome to speechtotext's documentation!
    :caption: Contents:
 
    speechtotext/index.rst
-   speechtotext/models/index.rst
+   speechtotext/model/index.rst
    speechtotext/benchmark/index.rst
    speechtotext/plot/index.rst
    speechtotext/metric/index.rst
-
-
-
 
 
 Indices and tables

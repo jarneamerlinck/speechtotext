@@ -102,7 +102,7 @@ class WhisperAPIWrapper(ModelWrapper):
 		"""Get model.
 		"""     
 		openai.organization = load_env_variable("OPENAI_ORGANIZATION")
-		openai.organization = load_env_variable("OPENAI_API_KEY")
+		openai.api_key = load_env_variable("OPENAI_API_KEY")
 
 	def get_transcript_of_file(self, audio_file_name:str) -> str:
 		"""Get transcript of audio file with API call.

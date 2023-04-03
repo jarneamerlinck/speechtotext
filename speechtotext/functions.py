@@ -29,9 +29,9 @@ from dotenv import load_dotenv
 REGEX_STRING_PARSE = '[^A-Za-z0-9 ]+'
 
 DEFAULT_REPORTS_FOLDER = "reports"
-DEFAULT_CSV_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y_%m_%d_H_%M_%S')}.csv"
-DEFAULT_HTML_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y_%m_%d_H_%M_%S')}.html"
-DEFAULT_HTML_TITLE = f"{DEFAULT_REPORTS_FOLDER}/Benchmark results of {datetime.now().strftime('%Y_%m_%d_H_%M_%S')}"
+DEFAULT_CSV_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.csv"
+DEFAULT_HTML_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.html"
+DEFAULT_HTML_TITLE = f"{DEFAULT_REPORTS_FOLDER}/Benchmark results of {datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}"
 
 
 def force_cudnn_initialization():
@@ -180,7 +180,6 @@ def multidispatch(*types):
 		return mm
 	return register
 multidispatch.registry = {}
-
 
 def load_env_variable(env_name:str)-> str:
 	"""Loads and returns env variable.

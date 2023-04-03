@@ -51,12 +51,9 @@ class AmazonAPIVersion(ModelVersion):
 
 class AmazonAPIWrapper(ModelWrapper): 
 	"""Wrapper for AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET need to be in the '.env' file in current directory.
-	
-	Attributes:
-			LANGUAGE_CODE (str): Language code for amazon STT api.
  	"""
 
-	LANGUAGE_CODE = 'nl-NL'
+	LANGUAGE_CODE:str = 'nl-NL'
 
 	def __init__(self, model_version:AmazonAPIVersion):
 		"""Wrapper for AMAZON model.

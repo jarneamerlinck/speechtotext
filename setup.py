@@ -25,12 +25,12 @@ REQUIRED = [
     'jiwer', 'pandas', 'numpy', 'torch', 
     'openai-whisper', 'openai', 'python-dotenv',
     'matplotlib', 'ipywidgets', 'seaborn',
-    'dtale', 'boto3'
+    'dtale', 'boto3', 'google-cloud-speech'
 ]
 
 # What packages are optional?
 EXTRAS = {
-    'docs': ['Sphinx==6.1.3', 'sphinx-markdown-builder==0.5.5', 'sphinx_autodoc_typehints==1.22', 'sphinx-press-theme==0.8.0']
+    'docs': ['Sphinx>=6.1.3', 'sphinx-markdown-builder>=0.5.5', 'sphinx_autodoc_typehints>=1.22', 'sphinx-press-theme>=0.8.0']
 }
 
 # The rest you shouldn't have to touch too much :)

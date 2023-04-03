@@ -50,11 +50,6 @@ from speechtotext.functions import multidispatch, join_benchmark_results, separa
 class Benchmark(ABC):
 	"""Benchmark is used to test/validate an model.
 	Parent class for all benchmark classes. 
-
-	Attributes:
-			BENCHMARK_SAMPLES (SampleDataset): Dataset with just samples that is shared for the child classes.
-			DATASET (Dataset): Dataset that is shared for the child classes.
-
 	"""
 	BENCHMARK_SAMPLES: Dataset = None
 	DATASET: Dataset = None
@@ -169,7 +164,7 @@ def run_benchmarks(benchmark_list: list[Benchmark], benchmark_dataset:Dataset, n
 		number_of_samples (int): Number of samples used in benchmark.
 	""" 
 	results: list[pd.core.frame.DataFrame] = []
-	Benchmark.set_dataset(benchmark_dataset)
+	Benchmark.DATASET =  benchmark_dataset
 	
 	for index, benchmark in enumerate(benchmark_list):
 		benchmark(number_of_samples)

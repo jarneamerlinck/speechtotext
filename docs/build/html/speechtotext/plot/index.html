@@ -41,14 +41,14 @@
     <div class="nav-item">
       <a href="../../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link ">
-         Package Contents:
+         Get started
       </a>
     </div>
   
     <div class="nav-item">
       <a href="../../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link  router-link-active">
-         Package Contents:
+         Package Contents
       </a>
     </div>
   
@@ -71,14 +71,14 @@
     <div class="nav-item">
       <a href="../../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link ">
-         Package Contents:
+         Get started
       </a>
     </div>
   
     <div class="nav-item">
       <a href="../../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link  router-link-active">
-         Package Contents:
+         Package Contents
       </a>
     </div>
   
@@ -101,13 +101,22 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../../index.html#welcome-to-speechtotext-s-documentation">Package Contents:</a></span>
+        <span class="caption-text"><a href="../../index.html#welcome-to-speechtotext-s-documentation">Get started</a></span>
       </p>
       <ul class="">
         
           <li class="toctree-l1 ">
             
-              <a href="../../examples.html" class="reference internal ">Code Examples for speechtotext package</a>
+              <a href="../../requirements.html" class="reference internal ">Requirements for speechtotext</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../examples.html" class="reference internal ">Code Examples for speechtotext</a>
             
 
             
@@ -119,7 +128,7 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../../index.html#welcome-to-speechtotext-s-documentation">Package Contents:</a></span>
+        <span class="caption-text"><a href="../../index.html#welcome-to-speechtotext-s-documentation">Package Contents</a></span>
       </p>
       <ul class="current">
         
@@ -158,11 +167,9 @@
             
               <ul>
                 
-                  <li class="toctree-l2"><a href="#submodules" class="reference internal">Submodules</a></li>
+                  <li class="toctree-l2"><a href="#module-speechtotext.plot.plotting" class="reference internal">plotting</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.plot.plotting" class="reference internal">plotting module</a></li>
-                
-                  <li class="toctree-l2"><a href="#module-speechtotext.plot.customPlots" class="reference internal">customPlots module</a></li>
+                  <li class="toctree-l2"><a href="#module-speechtotext.plot.customPlots" class="reference internal">customPlots</a></li>
                 
               </ul>
             
@@ -211,11 +218,8 @@
             
   <section id="speechtotext-plot-package">
 <h1>speechtotext plot package<a class="headerlink" href="#speechtotext-plot-package" title="Permalink to this heading">¶</a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
-</section>
 <section id="module-speechtotext.plot.plotting">
-<span id="plotting-module"></span><h2>plotting module<a class="headerlink" href="#module-speechtotext.plot.plotting" title="Permalink to this heading">¶</a></h2>
+<span id="plotting"></span><h2>plotting<a class="headerlink" href="#module-speechtotext.plot.plotting" title="Permalink to this heading">¶</a></h2>
 <p>Module that plots the results from the benchmarks.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -308,7 +312,7 @@
 
 </section>
 <section id="module-speechtotext.plot.customPlots">
-<span id="customplots-module"></span><h2>customPlots module<a class="headerlink" href="#module-speechtotext.plot.customPlots" title="Permalink to this heading">¶</a></h2>
+<span id="customplots"></span><h2>customPlots<a class="headerlink" href="#module-speechtotext.plot.customPlots" title="Permalink to this heading">¶</a></h2>
 <p>Module to create custom plots for the plotting module</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -448,6 +452,48 @@
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfCerByModelnameByDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MeanOfCerByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfCerByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<p>Class that is used to create plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfCerByModelnameByDataset.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfCerByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfMerByModelnameByDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MeanOfMerByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfMerByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<p>Class that is used to create plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfMerByModelnameByDataset.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfMerByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfMetricByModelname">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MeanOfMetricByModelname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfMetricByModelname" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
@@ -455,6 +501,69 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfMetricByModelname.create_plot">
 <span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfMetricByModelname.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfWerByModelnameByDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MeanOfWerByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfWerByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<p>Class that is used to create plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfWerByModelnameByDataset.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfWerByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfWilByModelnameByDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MeanOfWilByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfWilByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<p>Class that is used to create plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfWilByModelnameByDataset.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfWilByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfWipByModelnameByDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MeanOfWipByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfWipByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<p>Class that is used to create plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfWipByModelnameByDataset.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfWipByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates plot to be saved.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
@@ -484,7 +593,7 @@
        title="next chapter">speechtotext metric package →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023 Vives.
+      &#169; Copyright 2023 Jarne Amerlinck.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.1.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

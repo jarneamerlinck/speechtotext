@@ -1,8 +1,6 @@
 # speechtotext metric package
 
-## Submodules
-
-## metrics module
+## metrics
 
 Module that calculates the metrics for speechtotext models.
 
@@ -99,7 +97,7 @@ Print metrics from transcript and hypothesis.
     * **hypothesis** (*str*) – hypothesis transcript.
 
 
-## customMetrics module
+## customMetrics
 
 Module to create custom metrics to save with the plots from the plotting module.
 

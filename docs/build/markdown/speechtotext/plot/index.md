@@ -1,8 +1,6 @@
 # speechtotext plot package
 
-## Submodules
-
-## plotting module
+## plotting
 
 Module that plots the results from the benchmarks.
 
@@ -87,7 +85,7 @@ Launch webui to explore the data.
 #### save_all()
 Loops over all customPlot classes in CUSTOM_PLOTS to creates and saves the plots.
 
-## customPlots module
+## customPlots
 
 Module to create custom plots for the plotting module
 
@@ -236,7 +234,117 @@ Creates plot to be saved.
 
 
 
+### _class_ speechtotext.plot.customPlots.MeanOfCerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+
+### _class_ speechtotext.plot.customPlots.MeanOfMerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+
 ### _class_ speechtotext.plot.customPlots.MeanOfMetricByModelname(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+
+### _class_ speechtotext.plot.customPlots.MeanOfWerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+
+### _class_ speechtotext.plot.customPlots.MeanOfWilByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+
+### _class_ speechtotext.plot.customPlots.MeanOfWipByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
 Bases: `BasePlotly`
 
 Class that is used to create plots for an benchmark.

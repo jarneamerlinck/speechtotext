@@ -4,6 +4,14 @@
 
 Module to create the datasets for the speechtotext package.
 
+The dataset requires an `transcripts.txt` in the dataset folder. In there are relative links to the audiofiles followed by `|` and the transcript of that file.
+
+Example of entry:
+
+```default
+20000_mijlen/20000_mijlen_0001.wav|This is the trancsript of the audio
+```
+
 Use this module like this:
 
 ```python

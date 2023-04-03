@@ -36,7 +36,13 @@ Bases: `ABC`
 Saves Result to report folder.
 
 
-### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_03_31_H_08_34.csv')
+### _exception_ speechtotext.functions.RequiredEnvVariablesMissing(env_name: str)
+Bases: `Exception`
+
+Exception when an required env variable is missing.
+
+
+### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_03_15_15_48.csv')
 Creates csv from benchmark results.
 
 
@@ -52,6 +58,50 @@ Creates csv from benchmark results.
 
 ### speechtotext.functions.force_cudnn_initialization()
 Force torch use for cuda.
+
+
+### speechtotext.functions.get_extention_of_file_name(file_name: str)
+Get extention ofo file name.
+
+
+* **Parameters**
+
+    **file_name** (*str*) – File name
+
+
+
+* **Returns**
+
+    Extention of tile name
+
+
+
+* **Return type**
+
+    str
+
+
+
+### speechtotext.functions.get_file_name_without_extention(file_name: str)
+Get extention ofo file name.
+
+
+* **Parameters**
+
+    **file_name** (*str*) – File name
+
+
+
+* **Returns**
+
+    Extention of tile name
+
+
+
+* **Return type**
+
+    str
+
 
 
 ### speechtotext.functions.join_benchmark_results(results: list[pandas.core.frame.DataFrame], set_index=True)
@@ -77,6 +127,34 @@ Join Benchmark results.
 * **Return type**
 
     pd.core.frame.DataFrame
+
+
+
+### speechtotext.functions.load_env_variable(env_name: str)
+Loads and returns env variable.
+
+
+* **Parameters**
+
+    **env_name** (*str*) – .env key
+
+
+
+* **Raises**
+
+    **RequiredEnvVariablesMissing** – Prints the variable name if its missing.
+
+
+
+* **Returns**
+
+    value of the .env key.
+
+
+
+* **Return type**
+
+    str
 
 
 

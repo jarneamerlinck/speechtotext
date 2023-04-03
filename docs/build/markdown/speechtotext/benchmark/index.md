@@ -1,8 +1,6 @@
 # speechtotext benchmark package
 
-## Submodules
-
-## benchmarks module
+## benchmarks
 
 Module for benchmarks of speechtotext.
 
@@ -49,26 +47,6 @@ Bases: `ABC`
 
 Benchmark is used to test/validate an model.
 Parent class for all benchmark classes.
-
-
-#### BENCHMARK_SAMPLES()
-Dataset with just samples that is shared for the child classes.
-
-
-* **Type**
-
-    [SampleDataset](../datasets.md#speechtotext.datasets.SampleDataset)
-
-
-
-#### DATASET()
-Dataset that is shared for the child classes.
-
-
-* **Type**
-
-    [Dataset](../datasets.md#speechtotext.datasets.Dataset)
-
 
 
 #### BENCHMARK_SAMPLES(_: [Dataset](../datasets.md#speechtotext.datasets.Dataset_ _ = Non_ )
@@ -153,7 +131,7 @@ Run al benchmarks out of list.
     * **number_of_samples** (*int*) – Number of samples used in benchmark.
 
 
-## customBenchmarks module
+## customBenchmarks
 
 Module for benchmarks of speechtotext.
 
@@ -182,6 +160,54 @@ print(df)
 # Save metrics to csv (saves with datetime in name)
 benchmark_results_to_csv([wb])
 ```
+
+
+### _class_ speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark(with_cleaning=True)
+Bases: `Benchmark`
+
+Benchmark for Amazon API transcribe.
+
+
+#### MODEL_BASE(_ = 'AmazonAPI_ )
+
+#### create_models()
+Creates an list of ModelWrappers.
+
+
+* **Returns**
+
+    list of model wrappers.
+
+
+
+* **Return type**
+
+    list[[ModelWrapper](../model/index.md#speechtotext.model.modelWrapper.ModelWrapper)]
+
+
+
+### _class_ speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark(with_cleaning=True)
+Bases: `Benchmark`
+
+Benchmark for Google API transcribe.
+
+
+#### MODEL_BASE(_ = 'GoogleAPI_ )
+
+#### create_models()
+Creates an list of ModelWrappers.
+
+
+* **Returns**
+
+    list of model wrappers.
+
+
+
+* **Return type**
+
+    list[[ModelWrapper](../model/index.md#speechtotext.model.modelWrapper.ModelWrapper)]
+
 
 
 ### _class_ speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark(with_cleaning=True)

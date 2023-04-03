@@ -1,25 +1,18 @@
 speechtotext benchmark package
 ==============================
 
-Submodules
+benchmarks
 ----------
-
-benchmarks module
------------------
 
 .. automodule:: speechtotext.benchmark.benchmarks
     :members:
     :undoc-members:
     :show-inheritance:
 
-customBenchmarks module
------------------------
+customBenchmarks
+----------------
 
 .. automodule:: speechtotext.benchmark.customBenchmarks
     :members:
     :undoc-members:
     :show-inheritance:
-
-
-
-

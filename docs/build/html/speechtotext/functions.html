@@ -41,14 +41,14 @@
     <div class="nav-item">
       <a href="../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link ">
-         Package Contents:
+         Get started
       </a>
     </div>
   
     <div class="nav-item">
       <a href="../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link ">
-         Package Contents:
+         Package Contents
       </a>
     </div>
   
@@ -71,14 +71,14 @@
     <div class="nav-item">
       <a href="../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link ">
-         Package Contents:
+         Get started
       </a>
     </div>
   
     <div class="nav-item">
       <a href="../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link ">
-         Package Contents:
+         Package Contents
       </a>
     </div>
   
@@ -101,13 +101,22 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../index.html#welcome-to-speechtotext-s-documentation">Package Contents:</a></span>
+        <span class="caption-text"><a href="../index.html#welcome-to-speechtotext-s-documentation">Get started</a></span>
       </p>
       <ul class="">
         
           <li class="toctree-l1 ">
             
-              <a href="../examples.html" class="reference internal ">Code Examples for speechtotext package</a>
+              <a href="../requirements.html" class="reference internal ">Requirements for speechtotext</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples.html" class="reference internal ">Code Examples for speechtotext</a>
             
 
             
@@ -119,7 +128,7 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../index.html#welcome-to-speechtotext-s-documentation">Package Contents:</a></span>
+        <span class="caption-text"><a href="../index.html#welcome-to-speechtotext-s-documentation">Package Contents</a></span>
       </p>
       <ul class="">
         
@@ -240,9 +249,16 @@
 
 </dd></dl>
 
+<dl class="py exception">
+<dt class="sig sig-object py" id="speechtotext.functions.RequiredEnvVariablesMissing">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">RequiredEnvVariablesMissing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.RequiredEnvVariablesMissing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception when an required env variable is missing.</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="speechtotext.functions.benchmark_results_to_csv">
-<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">benchmark_results_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'reports/Benchmark_results_2023_04_03_H_16_39.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.benchmark_results_to_csv" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">benchmark_results_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'reports/Benchmark_results_2023_04_03_15_15_48.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.benchmark_results_to_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates csv from benchmark results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -261,6 +277,40 @@
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.get_extention_of_file_name">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">get_extention_of_file_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.functions.get_extention_of_file_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get extention ofo file name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – File name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extention of tile name</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.get_file_name_without_extention">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">get_file_name_without_extention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.functions.get_file_name_without_extention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get extention ofo file name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – File name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extention of tile name</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="speechtotext.functions.join_benchmark_results">
 <span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">join_benchmark_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#speechtotext.functions.join_benchmark_results" title="Permalink to this definition">¶</a></dt>
 <dd><p>Join Benchmark results.</p>
@@ -276,6 +326,26 @@
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>pd.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.load_env_variable">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">load_env_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.functions.load_env_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads and returns env variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env_name</strong> (<em>str</em>) – .env key</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#speechtotext.functions.RequiredEnvVariablesMissing" title="speechtotext.functions.RequiredEnvVariablesMissing"><strong>RequiredEnvVariablesMissing</strong></a> – Prints the variable name if its missing.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>value of the .env key.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
 </dd>
 </dl>
 </dd></dl>
@@ -356,7 +426,7 @@
        title="next chapter">Datasets →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023 Vives.
+      &#169; Copyright 2023 Jarne Amerlinck.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.1.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

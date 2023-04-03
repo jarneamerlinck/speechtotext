@@ -1,21 +1,8 @@
-# Code Examples for speechtotext package
+# Code Examples for speechtotext
 
 This page is an collection of examples of how to use the package.
 
-## Requirements
-
-
-* Folder with datasets and the `transcripts.txt` to test the models.
-
-
-* Contents of `.env` in the directory of the python script.
-
-```shell
-OPENAI_API_KEY=sk-somemorerandomnumberlettersandmorerandomnessform
-OPENAI_ORGANIZATION=org-somerandomnumberandlette
-```
-
-## Examples
+## Full usage example
 
 Use this module like this:
 
@@ -37,9 +24,9 @@ dataset = Dataset(path_to_dir="path/to/dataset", name= "dataset_name")
 # Settings and to run benchmarks
 number_of_samples = 100
 
-wb = WhisperBenchmark()
-wAPIb = WhisperAPIBenchmark()
-benchmark_list: list[Benchmark] = [wb, wAPIb]
+whisperBenchmark = WhisperBenchmark()
+whisperAPIBenchmark = WhisperAPIBenchmark()
+benchmark_list: list[Benchmark] = [whisperBenchmark, whisperAPIBenchmark]
 
 # Run benchmarks
 results = run_benchmarks(benchmark_list, dataset, number_of_samples)

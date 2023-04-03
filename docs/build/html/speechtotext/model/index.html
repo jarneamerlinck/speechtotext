@@ -41,14 +41,14 @@
     <div class="nav-item">
       <a href="../../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link ">
-         Package Contents:
+         Get started
       </a>
     </div>
   
     <div class="nav-item">
       <a href="../../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link  router-link-active">
-         Package Contents:
+         Package Contents
       </a>
     </div>
   
@@ -71,14 +71,14 @@
     <div class="nav-item">
       <a href="../../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link ">
-         Package Contents:
+         Get started
       </a>
     </div>
   
     <div class="nav-item">
       <a href="../../index.html#welcome-to-speechtotext-s-documentation"
          class="nav-link  router-link-active">
-         Package Contents:
+         Package Contents
       </a>
     </div>
   
@@ -101,13 +101,22 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../../index.html#welcome-to-speechtotext-s-documentation">Package Contents:</a></span>
+        <span class="caption-text"><a href="../../index.html#welcome-to-speechtotext-s-documentation">Get started</a></span>
       </p>
       <ul class="">
         
           <li class="toctree-l1 ">
             
-              <a href="../../examples.html" class="reference internal ">Code Examples for speechtotext package</a>
+              <a href="../../requirements.html" class="reference internal ">Requirements for speechtotext</a>
+            
+
+            
+          </li>
+
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../../examples.html" class="reference internal ">Code Examples for speechtotext</a>
             
 
             
@@ -119,7 +128,7 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../../index.html#welcome-to-speechtotext-s-documentation">Package Contents:</a></span>
+        <span class="caption-text"><a href="../../index.html#welcome-to-speechtotext-s-documentation">Package Contents</a></span>
       </p>
       <ul class="current">
         
@@ -140,11 +149,13 @@
             
               <ul>
                 
-                  <li class="toctree-l2"><a href="#submodules" class="reference internal">Submodules</a></li>
+                  <li class="toctree-l2"><a href="#module-speechtotext.model.modelWrapper" class="reference internal">speechtotext.model.modelWrapper</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.model.modelWrapper" class="reference internal">speechtotext.model.modelWrapper module</a></li>
+                  <li class="toctree-l2"><a href="#module-speechtotext.model.whisperWrapper" class="reference internal">speechtotext.model.whisperWrapper</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.model.whisperWrapper" class="reference internal">speechtotext.model.whisperWrapper module</a></li>
+                  <li class="toctree-l2"><a href="#module-speechtotext.model.amazonWrapper" class="reference internal">speechtotext.model.amazonWrapper</a></li>
+                
+                  <li class="toctree-l2"><a href="#module-speechtotext.model.googleWrapper" class="reference internal">speechtotext.model.googleWrapper</a></li>
                 
               </ul>
             
@@ -211,11 +222,8 @@
             
   <section id="speechtotext-model-package">
 <h1>Speechtotext model package<a class="headerlink" href="#speechtotext-model-package" title="Permalink to this heading">¶</a></h1>
-<section id="submodules">
-<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this heading">¶</a></h2>
-</section>
 <section id="module-speechtotext.model.modelWrapper">
-<span id="speechtotext-model-modelwrapper-module"></span><h2>speechtotext.model.modelWrapper module<a class="headerlink" href="#module-speechtotext.model.modelWrapper" title="Permalink to this heading">¶</a></h2>
+<span id="speechtotext-model-modelwrapper"></span><h2>speechtotext.model.modelWrapper<a class="headerlink" href="#module-speechtotext.model.modelWrapper" title="Permalink to this heading">¶</a></h2>
 <p>Module with the parent classes for the model wrapper. Needs to be implemented to use the benchmarks.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -368,7 +376,7 @@
 
 </section>
 <section id="module-speechtotext.model.whisperWrapper">
-<span id="speechtotext-model-whisperwrapper-module"></span><h2>speechtotext.model.whisperWrapper module<a class="headerlink" href="#module-speechtotext.model.whisperWrapper" title="Permalink to this heading">¶</a></h2>
+<span id="speechtotext-model-whisperwrapper"></span><h2>speechtotext.model.whisperWrapper<a class="headerlink" href="#module-speechtotext.model.whisperWrapper" title="Permalink to this heading">¶</a></h2>
 <p>Modelwrapper implemented for whisper. Local and API.</p>
 <p>API OPENAI_API_KEY and OPENAI_ORGANIZATION need to be in the ‘.env’.</p>
 <p>Use this module like this:</p>
@@ -421,7 +429,7 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.model.whisperWrapper.WhisperAPIWrapper.get_model">
 <span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.whisperWrapper.WhisperAPIWrapper.get_model" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get model</p>
+<dd><p>Get model.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -511,6 +519,170 @@
 </dd></dl>
 
 </section>
+<section id="module-speechtotext.model.amazonWrapper">
+<span id="speechtotext-model-amazonwrapper"></span><h2>speechtotext.model.amazonWrapper<a class="headerlink" href="#module-speechtotext.model.amazonWrapper" title="Permalink to this heading">¶</a></h2>
+<p>Modelwrapper implemented for Amazon STT API.</p>
+<p>AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET  need to be in the ‘.env’.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.amazonWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.benchmark.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># Create dataset</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;existing_audio_id&quot;</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Create wrapper</span>
+<span class="n">amazonWrapper</span> <span class="o">=</span> <span class="n">AmazonAPIVersion</span><span class="p">(</span><span class="n">AmazonAPIVersion</span><span class="o">.</span><span class="n">AMAZON_DEFAULT</span><span class="p">)</span>
+
+<span class="c1"># Get model</span>
+<span class="n">amazonWrapper</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span>
+
+<span class="c1"># Benchmark choisen sample</span>
+<span class="n">amazonWrapper</span><span class="o">.</span><span class="n">benchmark_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+
+<span class="c1"># Benchmark n random samples</span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">amazonWrapper</span><span class="o">.</span><span class="n">benchmark_n_samples</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.amazonWrapper.AmazonAPIVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.amazonWrapper.</span></span><span class="sig-name descname"><span class="pre">AmazonAPIVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.amazonWrapper.AmazonAPIVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelVersion" title="speechtotext.model.modelWrapper.ModelVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelVersion</span></code></a></p>
+<p>Enum for the available AMAZON API models. This is for the  <a class="reference external" href="https://docs.aws.amazon.com/transcribe/latest/APIReference/API_CreateLanguageModel.html">Custom language model</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Enum</strong> (<a class="reference internal" href="#speechtotext.model.amazonWrapper.AmazonAPIVersion" title="speechtotext.model.amazonWrapper.AmazonAPIVersion"><em>AmazonAPIVersion</em></a>) – Available whisper API models.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.amazonWrapper.AmazonAPIVersion.AMAZON_DEFAULT">
+<span class="sig-name descname"><span class="pre">AMAZON_DEFAULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AmazonApi'</span></em><a class="headerlink" href="#speechtotext.model.amazonWrapper.AmazonAPIVersion.AMAZON_DEFAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.amazonWrapper.AmazonAPIWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.amazonWrapper.</span></span><span class="sig-name descname"><span class="pre">AmazonAPIWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#speechtotext.model.amazonWrapper.AmazonAPIVersion" title="speechtotext.model.amazonWrapper.AmazonAPIVersion"><span class="pre">AmazonAPIVersion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.amazonWrapper.AmazonAPIWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a></p>
+<p>Wrapper for AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET need to be in the ‘.env’ file in current directory.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.amazonWrapper.AmazonAPIWrapper.LANGUAGE_CODE">
+<span class="sig-name descname"><span class="pre">LANGUAGE_CODE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nl-NL'</span></em><a class="headerlink" href="#speechtotext.model.amazonWrapper.AmazonAPIWrapper.LANGUAGE_CODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.amazonWrapper.AmazonAPIWrapper.get_model">
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.amazonWrapper.AmazonAPIWrapper.get_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.amazonWrapper.AmazonAPIWrapper.get_transcript_of_file">
+<span class="sig-name descname"><span class="pre">get_transcript_of_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.model.amazonWrapper.AmazonAPIWrapper.get_transcript_of_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get transcript of audio file with API call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>audio_file_name</strong> (<em>str</em>) – Path to audio file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transcript of audio file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-speechtotext.model.googleWrapper">
+<span id="speechtotext-model-googlewrapper"></span><h2>speechtotext.model.googleWrapper<a class="headerlink" href="#module-speechtotext.model.googleWrapper" title="Permalink to this heading">¶</a></h2>
+<p>Modelwrapper implemented for google STT API.</p>
+<p>GOOGLE_APPLICATION_CREDENTIALS needs to be in the ‘.env’.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.googleWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.benchmark.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># Create dataset</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;existing_audio_id&quot;</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Create wrapper</span>
+<span class="n">googleWrapper</span> <span class="o">=</span> <span class="n">googleAPIVersion</span><span class="p">(</span><span class="n">googleAPIVersion</span><span class="o">.</span><span class="n">google_DEFAULT</span><span class="p">)</span>
+
+<span class="c1"># Get model</span>
+<span class="n">googleWrapper</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span>
+
+<span class="c1"># Benchmark choisen sample</span>
+<span class="n">googleWrapper</span><span class="o">.</span><span class="n">benchmark_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+
+<span class="c1"># Benchmark n random samples</span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">googleWrapper</span><span class="o">.</span><span class="n">benchmark_n_samples</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.googleWrapper.</span></span><span class="sig-name descname"><span class="pre">GoogleAPIVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelVersion" title="speechtotext.model.modelWrapper.ModelVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelVersion</span></code></a></p>
+<p>Enum for the available google API models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Enum</strong> (<em>googleAPIVersion</em>) – Available whisper API models.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIVersion.GOOGLE_DEFAULT">
+<span class="sig-name descname"><span class="pre">GOOGLE_DEFAULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'googleApi'</span></em><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIVersion.GOOGLE_DEFAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.googleWrapper.</span></span><span class="sig-name descname"><span class="pre">GoogleAPIWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#speechtotext.model.googleWrapper.GoogleAPIVersion" title="speechtotext.model.googleWrapper.GoogleAPIVersion"><span class="pre">GoogleAPIVersion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a></p>
+<p>Wrapper for google API. GOOGLE_APPLICATION_CREDENTIALS needs to be in the ‘.env’ file in current directory.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.LANGUAGE_CODE">
+<span class="sig-name descname"><span class="pre">LANGUAGE_CODE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nl-BE'</span></em><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.LANGUAGE_CODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.get_model">
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.get_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.get_transcript_of_file">
+<span class="sig-name descname"><span class="pre">get_transcript_of_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.get_transcript_of_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get transcript of audio file with API call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>audio_file_name</strong> (<em>str</em>) – Path to audio file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transcript of audio file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -526,7 +698,7 @@
        title="next chapter">speechtotext benchmark package →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023 Vives.
+      &#169; Copyright 2023 Jarne Amerlinck.
     <br>
     Created using <a href="http://sphinx-doc.org/">Sphinx</a> 6.1.3 with <a href="https://github.com/schettino72/sphinx_press_theme">Press Theme</a> 0.8.0.
 </div>

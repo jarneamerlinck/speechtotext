@@ -1,8 +1,6 @@
 # Speechtotext model package
 
-## Submodules
-
-## speechtotext.model.modelWrapper module
+## speechtotext.model.modelWrapper
 
 Module with the parent classes for the model wrapper. Needs to be implemented to use the benchmarks.
 
@@ -183,11 +181,12 @@ Get transcript of audio file.
     str
 
 
-## speechtotext.model.whisperWrapper module
+## speechtotext.model.whisperWrapper
 
 Modelwrapper implemented for whisper. Local and API.
 
-For the API OPENAI_API_KEY and OPENAI_ORGANIZATION need to be in the ‘.env’.
+API OPENAI_API_KEY and OPENAI_ORGANIZATION need to be in the ‘.env’.
+
 Use this module like this:
 
 ```python
@@ -237,7 +236,7 @@ Wrapper for whisper API. OPENAI_ORGANIZATION and OPENAI_API_KEY need to be in .e
 
 
 #### get_model()
-Get model
+Get model.
 
 
 #### get_transcript_of_file(audio_file_name: str)
@@ -296,6 +295,168 @@ Get model.
 
 #### get_transcript_of_file(audio_file_name: str)
 Get transcript of audio file.
+
+
+* **Parameters**
+
+    **audio_file_name** (*str*) – Path to audio file.
+
+
+
+* **Returns**
+
+    Transcript of audio file.
+
+
+
+* **Return type**
+
+    str
+
+
+## speechtotext.model.amazonWrapper
+
+Modelwrapper implemented for Amazon STT API.
+
+AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET  need to be in the ‘.env’.
+
+Use this module like this:
+
+```python
+# Imports
+from speechtotext.model.amazonWrapper import *
+from speechtotext.benchmark.benchmarks import *
+from speechtotext.datasets import Dataset
+
+# Create dataset
+number_of_samples = 10
+dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
+id = "existing_audio_id"
+number_of_samples = 10
+
+# Create wrapper
+amazonWrapper = AmazonAPIVersion(AmazonAPIVersion.AMAZON_DEFAULT)
+
+# Get model
+amazonWrapper.get_model()
+
+# Benchmark choisen sample
+amazonWrapper.benchmark_sample(dataset, id)
+
+# Benchmark n random samples
+array = amazonWrapper.benchmark_n_samples(dataset, number_of_samples)
+```
+
+
+### _class_ speechtotext.model.amazonWrapper.AmazonAPIVersion(value)
+Bases: `ModelVersion`
+
+Enum for the available AMAZON API models. This is for the  [Custom language model](https://docs.aws.amazon.com/transcribe/latest/APIReference/API_CreateLanguageModel.html).
+
+
+* **Parameters**
+
+    **Enum** (*AmazonAPIVersion*) – Available whisper API models.
+
+
+
+#### AMAZON_DEFAULT(_ = 'AmazonApi_ )
+
+### _class_ speechtotext.model.amazonWrapper.AmazonAPIWrapper(model_version: AmazonAPIVersion)
+Bases: `ModelWrapper`
+
+Wrapper for AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET need to be in the ‘.env’ file in current directory.
+
+
+#### LANGUAGE_CODE(_: st_ _ = 'nl-NL_ )
+
+#### get_model()
+Get model.
+
+
+#### get_transcript_of_file(audio_file_name: str)
+Get transcript of audio file with API call.
+
+
+* **Parameters**
+
+    **audio_file_name** (*str*) – Path to audio file.
+
+
+
+* **Returns**
+
+    Transcript of audio file.
+
+
+
+* **Return type**
+
+    str
+
+
+## speechtotext.model.googleWrapper
+
+Modelwrapper implemented for google STT API.
+
+GOOGLE_APPLICATION_CREDENTIALS needs to be in the ‘.env’.
+
+Use this module like this:
+
+```python
+# Imports
+from speechtotext.model.googleWrapper import *
+from speechtotext.benchmark.benchmarks import *
+from speechtotext.datasets import Dataset
+
+# Create dataset
+number_of_samples = 10
+dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
+id = "existing_audio_id"
+number_of_samples = 10
+
+# Create wrapper
+googleWrapper = googleAPIVersion(googleAPIVersion.google_DEFAULT)
+
+# Get model
+googleWrapper.get_model()
+
+# Benchmark choisen sample
+googleWrapper.benchmark_sample(dataset, id)
+
+# Benchmark n random samples
+array = googleWrapper.benchmark_n_samples(dataset, number_of_samples)
+```
+
+
+### _class_ speechtotext.model.googleWrapper.GoogleAPIVersion(value)
+Bases: `ModelVersion`
+
+Enum for the available google API models.
+
+
+* **Parameters**
+
+    **Enum** (*googleAPIVersion*) – Available whisper API models.
+
+
+
+#### GOOGLE_DEFAULT(_ = 'googleApi_ )
+
+### _class_ speechtotext.model.googleWrapper.GoogleAPIWrapper(model_version: GoogleAPIVersion)
+Bases: `ModelWrapper`
+
+Wrapper for google API. GOOGLE_APPLICATION_CREDENTIALS needs to be in the ‘.env’ file in current directory.
+
+
+#### LANGUAGE_CODE(_: st_ _ = 'nl-BE_ )
+
+#### get_model()
+Get model.
+
+
+#### get_transcript_of_file(audio_file_name: str)
+Get transcript of audio file with API call.
 
 
 * **Parameters**

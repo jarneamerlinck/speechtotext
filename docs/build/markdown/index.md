@@ -1,70 +1,66 @@
-<!-- examplecode documentation master file, created by
-sphinx-quickstart on Mon Mar  6 11:10:24 2017.
-You can adapt this file completely to your liking, but it should at least
-contain the root `toctree` directive. -->
 # Welcome to speechtotext’s documentation!
 
-# Package Contents:
+# Get started
 
 
-* [Code Examples for speechtotext package](examples.md)
+* [Requirements for speechtotext](requirements.md)
 
 
-# Package Contents:
+* [Code Examples for speechtotext](examples.md)
+
+
+# Package Contents
 
 
 * [Speechtotext package](speechtotext/index.md)
 
 
-    * [Submodules](speechtotext/index.md#submodules)
+    * [Functions](speechtotext/functions.md)
+
+
+    * [Datasets](speechtotext/datasets.md)
 
 
 * [Speechtotext model package](speechtotext/model/index.md)
 
 
-    * [Submodules](speechtotext/model/index.md#submodules)
+    * [speechtotext.model.modelWrapper](speechtotext/model/index.md#module-speechtotext.model.modelWrapper)
 
 
-    * [speechtotext.model.modelWrapper module](speechtotext/model/index.md#module-speechtotext.model.modelWrapper)
+    * [speechtotext.model.whisperWrapper](speechtotext/model/index.md#module-speechtotext.model.whisperWrapper)
 
 
-    * [speechtotext.model.whisperWrapper module](speechtotext/model/index.md#module-speechtotext.model.whisperWrapper)
+    * [speechtotext.model.amazonWrapper](speechtotext/model/index.md#module-speechtotext.model.amazonWrapper)
+
+
+    * [speechtotext.model.googleWrapper](speechtotext/model/index.md#module-speechtotext.model.googleWrapper)
 
 
 * [speechtotext benchmark package](speechtotext/benchmark/index.md)
 
 
-    * [Submodules](speechtotext/benchmark/index.md#submodules)
+    * [benchmarks](speechtotext/benchmark/index.md#module-speechtotext.benchmark.benchmarks)
 
 
-    * [benchmarks module](speechtotext/benchmark/index.md#module-speechtotext.benchmark.benchmarks)
-
-
-    * [customBenchmarks module](speechtotext/benchmark/index.md#module-speechtotext.benchmark.customBenchmarks)
+    * [customBenchmarks](speechtotext/benchmark/index.md#module-speechtotext.benchmark.customBenchmarks)
 
 
 * [speechtotext plot package](speechtotext/plot/index.md)
 
 
-    * [Submodules](speechtotext/plot/index.md#submodules)
+    * [plotting](speechtotext/plot/index.md#module-speechtotext.plot.plotting)
 
 
-    * [plotting module](speechtotext/plot/index.md#module-speechtotext.plot.plotting)
-
-
-    * [customPlots module](speechtotext/plot/index.md#module-speechtotext.plot.customPlots)
+    * [customPlots](speechtotext/plot/index.md#module-speechtotext.plot.customPlots)
 
 
 * [speechtotext metric package](speechtotext/metric/index.md)
 
 
-    * [Submodules](speechtotext/metric/index.md#submodules)
+    * [metrics](speechtotext/metric/index.md#module-speechtotext.metric.metrics)
 
 
-    * [metrics module](speechtotext/metric/index.md#module-speechtotext.metric.metrics)
-
-
-    * [customMetrics module](speechtotext/metric/index.md#module-speechtotext.metric.customMetrics)
+    * [customMetrics](speechtotext/metric/index.md#module-speechtotext.metric.customMetrics)
 
 
 # Indices and tables

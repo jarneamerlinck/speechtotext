@@ -1,6 +1,7 @@
 """Modelwrapper implemented for whisper. Local and API.
 
-For the API OPENAI_API_KEY and OPENAI_ORGANIZATION need to be in the '.env'.
+API OPENAI_API_KEY and OPENAI_ORGANIZATION need to be in the '.env'.
+
 Use this module like this:
 	
 .. code-block:: python

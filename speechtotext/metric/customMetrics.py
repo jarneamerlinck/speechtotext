@@ -31,6 +31,7 @@ class BaseMetrics(BaseResult):
 	def __init__(self, df: pd.core.frame.DataFrame, report_folder: str, file_name: str):
 		self.ext = ".csv"
 		super().__init__(df, report_folder, file_name)
+
 	def save(self):
 		df_result = self.create_df()
 		df_result.to_csv(self.save_file_name, index=False)

@@ -7,8 +7,16 @@ Welcome to speechtotext's documentation!
 ========================================
 
 .. toctree::
+   	:maxdepth: 1
+	:caption: Package Contents:
+	
+	examples.rst
+
+
+
+.. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :caption: Package Contents:
 
    speechtotext/index.rst
    speechtotext/model/index.rst

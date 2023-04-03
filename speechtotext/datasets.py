@@ -1,5 +1,11 @@
 """Module to create the datasets for the speechtotext package.
 
+The dataset requires an ``transcripts.txt`` in the dataset folder. In there are relative links to the audiofiles followed by ``|`` and the transcript of that file.
+
+Example of entry::
+
+	20000_mijlen/20000_mijlen_0001.wav|This is the trancsript of the audio
+
 Use this module like this:
 	
 .. code-block:: python
@@ -38,7 +44,7 @@ class DatasetBare():
 	"""    
 	def __init__(self, path_to_dir:str, name: str, file_ext:str=".wav"):
 		"""Creates dataset object.
-		There needs to be an transcript.txt directly in the dir.
+		There needs to be an transcripts.txt directly in the dir.
 		Args:
 			path_to_dir (str): path to dir ending with "/".
 			name (str): Name of dataset.

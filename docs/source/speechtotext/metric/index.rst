@@ -1,16 +1,16 @@
 speechtotext metric package
 ===========================
 
-metrics module
---------------
+metrics
+-------
 
 .. automodule:: speechtotext.metric.metrics
     :members:
     :undoc-members:
     :show-inheritance:
 
-customMetrics module
---------------------
+customMetrics
+-------------
 
 .. automodule:: speechtotext.metric.customMetrics
     :members:

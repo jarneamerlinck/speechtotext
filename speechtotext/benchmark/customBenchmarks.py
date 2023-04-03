@@ -34,6 +34,7 @@ from speechtotext.benchmark.benchmarks import *
 from speechtotext.model.modelWrapper import ModelWrapper
 from speechtotext.model.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
 from speechtotext.model.amazonWrapper import AmazonAPIVersion, AmazonAPIWrapper
+from speechtotext.model.googleWrapper import GoogleAPIVersion, GoogleAPIWrapper
 
 
 class WhisperBenchmark(Benchmark):
@@ -69,5 +70,14 @@ class AmazonAPIBenchmark(Benchmark):
 			models.append(AmazonAPIWrapper(version))
 		return models
 
+class GoogleAPIBenchmark(Benchmark):
+	"""Benchmark for Google API transcribe.
+	"""
+	MODEL_BASE = "GoogleAPI"
 
+	def create_models(self) -> list[ModelWrapper]:
+		models = []
+		for version in GoogleAPIVersion:
+			models.append(GoogleAPIWrapper(version))
+		return models
 

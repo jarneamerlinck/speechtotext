@@ -86,7 +86,6 @@ class ModelWrapper(ABC):
 		"""		
 		pass
 
-
 	@abstractmethod
 	def get_model(self):
 		"""Get model. Set self.model.

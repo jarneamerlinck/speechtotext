@@ -28,7 +28,14 @@ Amazon transcribe
 
 .. code-block:: shell
 
-	AWS_ACCESS_KEY_ID = access-id
-	AWS_SECRET_ACCESS_KEY = acces-key
-	AMAZON_REGION = eu-west-3
-	AMAZON_BUCKET = bucketName
+	AWS_ACCESS_KEY_ID=access-id
+	AWS_SECRET_ACCESS_KEY=acces-key
+	AMAZON_REGION=eu-west-3
+	AMAZON_BUCKET=bucketName
+
+Google API
+----------
+
+.. code-block:: shell
+
+	GOOGLE_APPLICATION_CREDENTIALS="/path/to/keyfile.json"

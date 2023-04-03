@@ -1,16 +1,16 @@
 speechtotext plot package
 =========================
 
-plotting module
----------------
+plotting
+--------
 
 .. automodule:: speechtotext.plot.plotting
     :members:
     :undoc-members:
     :show-inheritance:
 
-customPlots module
-------------------
+customPlots
+-----------
 
 .. automodule:: speechtotext.plot.customPlots
     :members:

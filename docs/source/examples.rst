@@ -1,34 +1,10 @@
-Code Examples for speechtotext package
-======================================
+Code Examples for speechtotext
+==============================
 
 This page is an collection of examples of how to use the package.
 
-Requirements
-------------
-
-* Folder with datasets and the ``transcripts.txt`` to test the models.
-
-* Contents of ``.env`` in the directory of the python script.
-
-	* For whisper
-
-	.. code-block:: shell
-
-		OPENAI_API_KEY=sk-somemorerandomnumberlettersandmorerandomnessform
-		OPENAI_ORGANIZATION=org-somerandomnumberandlette
-
-	* For Amazon
-
-	.. code-block:: shell
-
-		AWS_ACCESS_KEY_ID = access-id
-		AWS_SECRET_ACCESS_KEY = acces-key
-		AMAZON_REGION = eu-west-3
-		AMAZON_BUCKET = bucketName
-
-
-Examples
---------
+Full usage example
+------------------
 
 Use this module like this:
 	
@@ -51,9 +27,9 @@ Use this module like this:
 	# Settings and to run benchmarks
 	number_of_samples = 100
 
-	wb = WhisperBenchmark()
-	wAPIb = WhisperAPIBenchmark()
-	benchmark_list: list[Benchmark] = [wb, wAPIb]
+	whisperBenchmark = WhisperBenchmark()
+	whisperAPIBenchmark = WhisperAPIBenchmark()
+	benchmark_list: list[Benchmark] = [whisperBenchmark, whisperAPIBenchmark]
 
 	# Run benchmarks
 	results = run_benchmarks(benchmark_list, dataset, number_of_samples)

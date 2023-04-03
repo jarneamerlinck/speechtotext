@@ -13,8 +13,9 @@ Welcome to speechtotext's documentation!
 
 .. toctree::
    	:maxdepth: 1
-	:caption: Examples:
+	:caption: Get started:
 	
+	requirements.rst
 	examples.rst
 
 Indices and tables

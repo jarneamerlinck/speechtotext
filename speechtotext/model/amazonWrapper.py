@@ -39,8 +39,7 @@ from speechtotext.model.modelWrapper import *
 from speechtotext.functions import get_extention_of_file_name, get_file_name_without_extention, load_env_variable
 
 class AmazonAPIVersion(ModelVersion):
-	"""Enum for the available AMAZON API models. This is for the Custom language model. _Link to page
-		.. _Link: https://docs.aws.amazon.com/transcribe/latest/APIReference/API_CreateLanguageModel.html
+	"""Enum for the available AMAZON API models. This is for the  `Custom language model <https://docs.aws.amazon.com/transcribe/latest/APIReference/API_CreateLanguageModel.html>`_.
 
 	Args:
 		Enum (AmazonAPIVersion): Available whisper API models.

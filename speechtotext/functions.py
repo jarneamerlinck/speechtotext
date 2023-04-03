@@ -28,10 +28,11 @@ from dotenv import load_dotenv
 
 REGEX_STRING_PARSE = '[^A-Za-z0-9 ]+'
 
+DEFAULT_DATATIME_FORMAT = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
 DEFAULT_REPORTS_FOLDER = "reports"
-DEFAULT_CSV_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.csv"
-DEFAULT_HTML_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}.html"
-DEFAULT_HTML_TITLE = f"{DEFAULT_REPORTS_FOLDER}/Benchmark results of {datetime.now().strftime('%Y_%m_%d_%H_%M_%S')}"
+DEFAULT_CSV_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{DEFAULT_DATATIME_FORMAT}.csv"
+DEFAULT_HTML_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{DEFAULT_DATATIME_FORMAT}.html"
+DEFAULT_HTML_TITLE = f"{DEFAULT_REPORTS_FOLDER}/Benchmark results of {DEFAULT_DATATIME_FORMAT}"
 
 
 def force_cudnn_initialization():
@@ -109,7 +110,7 @@ def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) 
 	Returns:
 		str: path to save folder
 	"""    
-	folder_name =  f"{folder_name}/{report_name}_{datetime.now().strftime('%Y_%m_%d_H_%M_%S')}"
+	folder_name =  f"{folder_name}/{report_name}_{DEFAULT_DATATIME_FORMAT}"
 	if not os.path.isdir(folder_name):
 		os.makedirs(folder_name)
 	return folder_name

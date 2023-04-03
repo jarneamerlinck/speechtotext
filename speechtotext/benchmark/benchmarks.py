@@ -78,7 +78,7 @@ class Benchmark(ABC):
 		Returns:
 				pd.core.frame.DataFrame: pandas dataframe.
 		"""
-		column_names = ["model_name", "audio_ID",
+		column_names = ["model_name", "audio_ID","dataset",
 						"reference", "wer", "mer",  "wil", "wip", "cer"]
 		df = pd.DataFrame(columns=column_names)
 
@@ -86,7 +86,7 @@ class Benchmark(ABC):
 			model_name = f"{self.MODEL_BASE}_{model.model_version.value}"
 			for metric in metrics:
 
-				new_row = pd.Series([model_name, metric.audio_id, metric.reference, metric.wer,
+				new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name, metric.reference, metric.wer,
 									 metric.mer,  metric.wil, metric.wip, metric.cer], index=column_names)
 				df = pd.concat([df, new_row.to_frame().T], ignore_index=True)
 
@@ -138,7 +138,7 @@ class Benchmark(ABC):
 				number_of_samples (int): Number of samples.
 		"""
 		if cls.BENCHMARK_SAMPLES is not None:
-			if number_of_samples is cls.BENCHMARK_SAMPLES.number_of_samples():
+			if number_of_samples is cls.BENCHMARK_SAMPLES.number_of_samples() and cls.BENCHMARK_SAMPLES.name == cls.DATASET.name:
 				return None
 		cls.BENCHMARK_SAMPLES = cls.DATASET.get_n_samples(number_of_samples)
 

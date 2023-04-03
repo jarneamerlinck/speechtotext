@@ -1,9 +1,6 @@
 speechtotext metric package
 ===========================
 
-Submodules
-----------
-
 metrics module
 --------------
 

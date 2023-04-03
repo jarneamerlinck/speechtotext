@@ -1,9 +1,6 @@
 speechtotext benchmark package
 ==============================
 
-Submodules
-----------
-
 benchmarks module
 -----------------
 

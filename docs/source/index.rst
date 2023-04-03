@@ -1,18 +1,5 @@
-.. examplecode documentation master file, created by
-   sphinx-quickstart on Mon Mar  6 11:10:24 2017.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to speechtotext's documentation!
 ========================================
-
-.. toctree::
-   	:maxdepth: 1
-	:caption: Package Contents:
-	
-	examples.rst
-
-
 
 .. toctree::
    :maxdepth: 2
@@ -24,6 +11,11 @@ Welcome to speechtotext's documentation!
    speechtotext/plot/index.rst
    speechtotext/metric/index.rst
 
+.. toctree::
+   	:maxdepth: 1
+	:caption: Examples:
+	
+	examples.rst
 
 Indices and tables
 ==================

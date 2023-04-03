@@ -1,9 +1,6 @@
 speechtotext plot package
 =========================
 
-Submodules
-----------
-
 plotting module
 ---------------
 

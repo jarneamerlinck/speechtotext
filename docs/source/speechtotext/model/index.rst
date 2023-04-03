@@ -1,9 +1,6 @@
 Speechtotext model package
 ==========================
 
-Submodules
-----------
-
 speechtotext.model.modelWrapper module
 --------------------------------------
 

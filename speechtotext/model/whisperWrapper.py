@@ -32,10 +32,10 @@ Use this module like this:
 import whisper
 import openai
 import os
-from dotenv import load_dotenv
+
 
 from speechtotext.model.modelWrapper import *
-
+from speechtotext.functions import load_env_variable
 class WhisperVersion(ModelVersion):
 	"""Enum for the available Whisper models.
 
@@ -99,11 +99,10 @@ class WhisperAPIWrapper(ModelWrapper):
 		self.model_version = model_version
 
 	def get_model(self):
-		"""Get model
+		"""Get model.
 		"""     
-		load_dotenv()
-		openai.organization = os.getenv("OPENAI_ORGANIZATION")
-		openai.api_key = os.getenv("OPENAI_API_KEY")
+		openai.organization = load_env_variable("OPENAI_ORGANIZATION")
+		openai.organization = load_env_variable("OPENAI_API_KEY")
 
 	def get_transcript_of_file(self, audio_file_name:str) -> str:
 		"""Get transcript of audio file with API call.

@@ -25,7 +25,7 @@ REQUIRED = [
     'jiwer', 'pandas', 'numpy', 'torch', 
     'openai-whisper', 'openai', 'python-dotenv',
     'matplotlib', 'ipywidgets', 'seaborn',
-    'dtale'
+    'dtale', 'boto3'
 ]
 
 # What packages are optional?

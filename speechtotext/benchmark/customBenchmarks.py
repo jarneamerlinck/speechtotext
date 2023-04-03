@@ -33,6 +33,7 @@ import pandas as pd
 from speechtotext.benchmark.benchmarks import *
 from speechtotext.model.modelWrapper import ModelWrapper
 from speechtotext.model.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
+from speechtotext.model.amazonWrapper import AmazonAPIVersion, AmazonAPIWrapper
 
 
 class WhisperBenchmark(Benchmark):
@@ -57,6 +58,16 @@ class WhisperAPIBenchmark(Benchmark):
 			models.append(WhisperAPIWrapper(version))
 		return models
 
+class AmazonAPIBenchmark(Benchmark):
+	"""Benchmark for Amazon API transcribe.
+	"""
+	MODEL_BASE = "AmazonAPI"
+
+	def create_models(self) -> list[ModelWrapper]:
+		models = []
+		for version in AmazonAPIVersion:
+			models.append(AmazonAPIWrapper(version))
+		return models
 
 
 

@@ -24,6 +24,7 @@ import functools
 import pandas as pd
 from datetime import datetime
 from abc import ABC, abstractmethod
+from dotenv import load_dotenv
 
 REGEX_STRING_PARSE = '[^A-Za-z0-9 ]+'
 
@@ -133,6 +134,30 @@ class BaseResult(ABC):
 		"""     
 		pass
 
+def get_extention_of_file_name(file_name:str)-> str:
+	"""Get extention ofo file name.
+
+	Args:
+		file_name (str): File name
+
+	Returns:
+		str: Extention of tile name
+	"""    
+	_ , file_extension = os.path.splitext(file_name)
+	return file_extension
+
+def get_file_name_without_extention(file_name:str)-> str:
+	"""Get extention ofo file name.
+
+	Args:
+		file_name (str): File name
+
+	Returns:
+		str: Extention of tile name
+	"""    
+	file_name, _ = os.path.splitext(file_name)
+	return file_name
+
 def multidispatch(*types):
 	"""Allow for Method overloading for classes.
 	"""    
@@ -156,3 +181,28 @@ def multidispatch(*types):
 	return register
 multidispatch.registry = {}
 
+
+def load_env_variable(env_name:str)-> str:
+	"""Loads and returns env variable.
+
+	Args:
+		env_name (str): .env key
+
+	Raises:
+		RequiredEnvVariablesMissing: Prints the variable name if its missing.
+
+	Returns:
+		str: value of the .env key.
+	"""    
+	try:
+		load_dotenv()
+		return os.getenv(env_name)
+	except:
+		raise RequiredEnvVariablesMissing(env_name)
+
+class RequiredEnvVariablesMissing(Exception):
+	"""Exception when an required env variable is missing.
+	"""    
+	def __init__(self, env_name:str):     
+				
+		super().__init__(f"Required env variable {env_name} is missing")

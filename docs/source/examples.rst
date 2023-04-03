@@ -7,12 +7,25 @@ Requirements
 ------------
 
 * Folder with datasets and the ``transcripts.txt`` to test the models.
+
 * Contents of ``.env`` in the directory of the python script.
 
-.. code-block:: shell
+	* For whisper
 
-	OPENAI_API_KEY=sk-somemorerandomnumberlettersandmorerandomnessform
-	OPENAI_ORGANIZATION=org-somerandomnumberandlette
+	.. code-block:: shell
+
+		OPENAI_API_KEY=sk-somemorerandomnumberlettersandmorerandomnessform
+		OPENAI_ORGANIZATION=org-somerandomnumberandlette
+
+	* For Amazon
+
+	.. code-block:: shell
+
+		AWS_ACCESS_KEY_ID = access-id
+		AWS_SECRET_ACCESS_KEY = acces-key
+		AMAZON_REGION = eu-west-3
+		AMAZON_BUCKET = bucketName
+
 
 Examples
 --------

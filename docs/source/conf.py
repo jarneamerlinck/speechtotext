@@ -50,8 +50,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'speechtotext'
-copyright = u'2023 Vives'
-author = u'Jarne Amerlinck, Isolde Boussauw, Michel Dekiere, Emiel Feryn, Emile Ravelingeen'
+copyright = u'2023 Jarne Amerlinck'
+author = u'Jarne Amerlinck'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -99,7 +99,7 @@ html_theme = 'press'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-
+html_favicon = "_static/favicon.ico"
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
@@ -131,7 +131,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'speechtotext.tex', u'speechtotext Documentation',
-     u'Xtopia', 'manual'),
+     u'Jarne Amerlinck', 'manual'),
 ]
 
 

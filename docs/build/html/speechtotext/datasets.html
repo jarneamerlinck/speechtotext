@@ -37,6 +37,22 @@
   <div class="links">
     <navlinks class="can-hide">
 
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-speechtotext-s-documentation"
+         class="nav-link ">
+         Package Contents:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-speechtotext-s-documentation"
+         class="nav-link ">
+         Package Contents:
+      </a>
+    </div>
+  
+
 
 
     </navlinks>
@@ -50,6 +66,22 @@
           
           <navlinks>
             
+
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-speechtotext-s-documentation"
+         class="nav-link ">
+         Package Contents:
+      </a>
+    </div>
+  
+    <div class="nav-item">
+      <a href="../index.html#welcome-to-speechtotext-s-documentation"
+         class="nav-link ">
+         Package Contents:
+      </a>
+    </div>
+  
 
 
 
@@ -69,7 +101,25 @@
   
     <div class="sidebar-group">
       <p class="caption">
-        <span class="caption-text"><a href="../index.html#welcome-to-speechtotext-s-documentation">Contents:</a></span>
+        <span class="caption-text"><a href="../index.html#welcome-to-speechtotext-s-documentation">Package Contents:</a></span>
+      </p>
+      <ul class="">
+        
+          <li class="toctree-l1 ">
+            
+              <a href="../examples.html" class="reference internal ">Code Examples for speechtotext package</a>
+            
+
+            
+          </li>
+
+        
+      </ul>
+    </div>
+  
+    <div class="sidebar-group">
+      <p class="caption">
+        <span class="caption-text"><a href="../index.html#welcome-to-speechtotext-s-documentation">Package Contents:</a></span>
       </p>
       <ul class="">
         
@@ -156,6 +206,11 @@
 <section id="module-speechtotext.datasets">
 <span id="speechtotext-datasets-module"></span><h2>speechtotext.datasets module<a class="headerlink" href="#module-speechtotext.datasets" title="Permalink to this heading">¶</a></h2>
 <p>Module to create the datasets for the speechtotext package.</p>
+<p>The dataset requires an <code class="docutils literal notranslate"><span class="pre">transcripts.txt</span></code> in the dataset folder. In there are relative links to the audiofiles followed by <code class="docutils literal notranslate"><span class="pre">|</span></code> and the transcript of that file.</p>
+<p>Example of entry:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">20000</span><span class="n">_mijlen</span><span class="o">/</span><span class="mi">20000</span><span class="n">_mijlen_0001</span><span class="o">.</span><span class="n">wav</span><span class="o">|</span><span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">trancsript</span> <span class="n">of</span> <span class="n">the</span> <span class="n">audio</span>
+</pre></div>
+</div>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>

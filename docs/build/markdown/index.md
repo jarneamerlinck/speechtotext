@@ -4,7 +4,13 @@ You can adapt this file completely to your liking, but it should at least
 contain the root `toctree` directive. -->
 # Welcome to speechtotext’s documentation!
 
-# Contents:
+# Package Contents:
+
+
+* [Code Examples for speechtotext package](examples.md)
+
+
+# Package Contents:
 
 
 * [Speechtotext package](speechtotext/index.md)

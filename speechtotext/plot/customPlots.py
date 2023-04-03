@@ -43,6 +43,292 @@ import matplotlib
 
 from speechtotext.plot.plotting import BasePlotly, Plotting, BaseMatPlotLib
 
+class MeanOfMerByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+
+		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
+		df = df.reset_index().drop('index', axis=1, errors='ignore')
+		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df['wer'],
+			df['dataset'],
+		], axis=1)
+		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		chart_data = chart_data.sort_values(['dataset', 'model_name'])
+		chart_data = chart_data.rename(columns={'model_name': 'x'})
+		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wer']].mean()
+		chart_data_mean.columns = ['wer|mean']
+		chart_data = chart_data_mean.reset_index()
+		chart_data = chart_data.dropna()
+		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
+		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
+		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
+
+		import plotly.graph_objs as go
+
+		charts = []
+		charts.append(go.Bar(
+			x=chart_data['x'],
+			y=chart_data['wer|mean'],
+			name='(dataset: 20000_mijlen)'
+		))
+		figure = go.Figure(data=charts, layout=go.Layout({
+			'barmode': 'group',
+			'legend': {'orientation': 'h', 'y': -0.3},
+			'title': {'text': '(dataset: 20000_mijlen) - Mean of wer by model_name'},
+			'xaxis': {'title': {'text': 'model_name'}},
+			'yaxis': {'title': {'text': 'Mean of wer'}, 'type': 'linear'}
+		}))
+		return figure
+
+class MeanOfWerByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+
+		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
+		df = df.reset_index().drop('index', axis=1, errors='ignore')
+		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df['wer'],
+			df['dataset'],
+		], axis=1)
+		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		chart_data = chart_data.sort_values(['dataset', 'model_name'])
+		chart_data = chart_data.rename(columns={'model_name': 'x'})
+		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wer']].mean()
+		chart_data_mean.columns = ['wer|mean']
+		chart_data = chart_data_mean.reset_index()
+		chart_data = chart_data.dropna()
+		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
+		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
+		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
+
+		import plotly.graph_objs as go
+
+		charts = []
+		charts.append(go.Bar(
+			x=chart_data['x'],
+			y=chart_data['wer|mean'],
+			name='(dataset: 20000_mijlen)'
+		))
+		figure = go.Figure(data=charts, layout=go.Layout({
+			'barmode': 'group',
+			'legend': {'orientation': 'h', 'y': -0.3},
+			'title': {'text': '(dataset: 20000_mijlen) - Mean of wer by model_name'},
+			'xaxis': {'title': {'text': 'model_name'}},
+			'yaxis': {'title': {'text': 'Mean of wer'}, 'type': 'linear'}
+		}))
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(MeanOfWerByModelnameByDataset)
+
+class MeanOfWilByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+
+		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
+		df = df.reset_index().drop('index', axis=1, errors='ignore')
+		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df['wil'],
+			df['dataset'],
+		], axis=1)
+		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		chart_data = chart_data.sort_values(['dataset', 'model_name'])
+		chart_data = chart_data.rename(columns={'model_name': 'x'})
+		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wil']].mean()
+		chart_data_mean.columns = ['wil|mean']
+		chart_data = chart_data_mean.reset_index()
+		chart_data = chart_data.dropna()
+		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
+		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
+		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
+
+		import plotly.graph_objs as go
+
+		charts = []
+		charts.append(go.Bar(
+			x=chart_data['x'],
+			y=chart_data['wil|mean'],
+			name='(dataset: 20000_mijlen)'
+		))
+		figure = go.Figure(data=charts, layout=go.Layout({
+			'barmode': 'group',
+			'legend': {'orientation': 'h', 'y': -0.3},
+			'title': {'text': '(dataset: 20000_mijlen) - Mean of wil by model_name'},
+			'xaxis': {'title': {'text': 'model_name'}},
+			'yaxis': {'title': {'text': 'Mean of wil'}, 'type': 'linear'}
+		}))
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(MeanOfWilByModelnameByDataset)
+
+class MeanOfCerByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+
+		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
+		df = df.reset_index().drop('index', axis=1, errors='ignore')
+		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df['cer'],
+			df['dataset'],
+		], axis=1)
+		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		chart_data = chart_data.sort_values(['dataset', 'model_name'])
+		chart_data = chart_data.rename(columns={'model_name': 'x'})
+		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['cer']].mean()
+		chart_data_mean.columns = ['cer|mean']
+		chart_data = chart_data_mean.reset_index()
+		chart_data = chart_data.dropna()
+		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
+		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
+		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
+
+		import plotly.graph_objs as go
+
+		charts = []
+		charts.append(go.Bar(
+			x=chart_data['x'],
+			y=chart_data['cer|mean'],
+			name='(dataset: 20000_mijlen)'
+		))
+		figure = go.Figure(data=charts, layout=go.Layout({
+			'barmode': 'group',
+			'legend': {'orientation': 'h', 'y': -0.3},
+			'title': {'text': '(dataset: 20000_mijlen) - Mean of cer by model_name'},
+			'xaxis': {'title': {'text': 'model_name'}},
+			'yaxis': {'title': {'text': 'Mean of cer'}, 'type': 'linear'}
+		}))
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(MeanOfCerByModelnameByDataset)
+
+class MeanOfWipByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+
+		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
+		df = df.reset_index().drop('index', axis=1, errors='ignore')
+		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df['wip'],
+			df['dataset'],
+		], axis=1)
+		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		chart_data = chart_data.sort_values(['dataset', 'model_name'])
+		chart_data = chart_data.rename(columns={'model_name': 'x'})
+		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wip']].mean()
+		chart_data_mean.columns = ['wip|mean']
+		chart_data = chart_data_mean.reset_index()
+		chart_data = chart_data.dropna()
+		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
+		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
+		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
+
+		import plotly.graph_objs as go
+
+		charts = []
+		charts.append(go.Bar(
+			x=chart_data['x'],
+			y=chart_data['wip|mean'],
+			name='(dataset: 20000_mijlen)'
+		))
+		figure = go.Figure(data=charts, layout=go.Layout({
+			'barmode': 'group',
+			'legend': {'orientation': 'h', 'y': -0.3},
+			'title': {'text': '(dataset: 20000_mijlen) - Mean of wip by model_name'},
+			'xaxis': {'title': {'text': 'model_name'}},
+			'yaxis': {'title': {'text': 'Mean of wip'}, 'type': 'linear'}
+		}))
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(MeanOfWipByModelnameByDataset)
+
+class MeanOfMerByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+
+		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
+		df = df.reset_index().drop('index', axis=1, errors='ignore')
+		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df['mer'],
+			df['dataset'],
+		], axis=1)
+		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		chart_data = chart_data.sort_values(['dataset', 'model_name'])
+		chart_data = chart_data.rename(columns={'model_name': 'x'})
+		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['mer']].mean()
+		chart_data_mean.columns = ['mer|mean']
+		chart_data = chart_data_mean.reset_index()
+		chart_data = chart_data.dropna()
+		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
+		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
+		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
+
+		import plotly.graph_objs as go
+
+		charts = []
+		charts.append(go.Bar(
+			x=chart_data['x'],
+			y=chart_data['mer|mean'],
+			name='(dataset: 20000_mijlen)'
+		))
+		figure = go.Figure(data=charts, layout=go.Layout({
+			'barmode': 'group',
+			'legend': {'orientation': 'h', 'y': -0.3},
+			'title': {'text': '(dataset: 20000_mijlen) - Mean of mer by model_name'},
+			'xaxis': {'title': {'text': 'model_name'}},
+			'yaxis': {'title': {'text': 'Mean of mer'}, 'type': 'linear'}
+		}))
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(MeanOfMerByModelnameByDataset)
+
 class MeanOfMetricByModelname(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
 	"""    

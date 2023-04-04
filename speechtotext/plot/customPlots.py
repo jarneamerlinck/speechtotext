@@ -37,6 +37,7 @@ Use this module like this:
 import plotly
 import plotly.express as px
 import plotly.tools as tls
+import plotly.graph_objs as go
 import pandas as pd
 import seaborn as sns
 import matplotlib
@@ -58,36 +59,43 @@ class MeanOfMerByModelnameByDataset(BasePlotly):
 
 		chart_data = pd.concat([
 			df['model_name'],
-			df['wer'],
+			df['mer'],
 			df['dataset'],
 		], axis=1)
 		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		s = chart_data['model_name']
+		chart_data.loc[:, 'model_name'] = s
+		s = chart_data['dataset']
+		chart_data.loc[:, 'dataset'] = s
 		chart_data = chart_data.sort_values(['dataset', 'model_name'])
 		chart_data = chart_data.rename(columns={'model_name': 'x'})
-		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wer']].mean()
-		chart_data_mean.columns = ['wer|mean']
+		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['mer']].mean()
+		chart_data_mean.columns = ['mer|mean']
 		chart_data = chart_data_mean.reset_index()
 		chart_data = chart_data.dropna()
-		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
-		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
-		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
-
-		import plotly.graph_objs as go
 
 		charts = []
+		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
+		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
 		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['wer|mean'],
+			x=chart_data_20000['x'],
+			y=chart_data_20000['mer|mean'],
 			name='(dataset: 20000_mijlen)'
+		))
+		charts.append(go.Bar(
+			x=chart_data_RDH_VL['x'],
+			y=chart_data_RDH_VL['mer|mean'],
+			name='(dataset: RDH_VL)'
 		))
 		figure = go.Figure(data=charts, layout=go.Layout({
 			'barmode': 'group',
 			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': '(dataset: 20000_mijlen) - Mean of wer by model_name'},
+			'title': {'text': 'Mean of mer by model_name'},
 			'xaxis': {'title': {'text': 'model_name'}},
-			'yaxis': {'title': {'text': 'Mean of wer'}, 'type': 'linear'}
+			'yaxis': {'title': {'text': 'Mean of mer'}, 'type': 'linear'}
 		}))
 		return figure
+Plotting.CUSTOM_RESULTS.append(MeanOfMerByModelnameByDataset)
 
 class MeanOfWerByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -108,28 +116,34 @@ class MeanOfWerByModelnameByDataset(BasePlotly):
 			df['dataset'],
 		], axis=1)
 		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		s = chart_data['model_name']
+		chart_data.loc[:, 'model_name'] = s
+		s = chart_data['dataset']
+		chart_data.loc[:, 'dataset'] = s
 		chart_data = chart_data.sort_values(['dataset', 'model_name'])
 		chart_data = chart_data.rename(columns={'model_name': 'x'})
 		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wer']].mean()
 		chart_data_mean.columns = ['wer|mean']
 		chart_data = chart_data_mean.reset_index()
 		chart_data = chart_data.dropna()
-		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
-		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
-		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
-
-		import plotly.graph_objs as go
 
 		charts = []
+		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
+		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
 		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['wer|mean'],
+			x=chart_data_20000['x'],
+			y=chart_data_20000['wer|mean'],
 			name='(dataset: 20000_mijlen)'
+		))
+		charts.append(go.Bar(
+			x=chart_data_RDH_VL['x'],
+			y=chart_data_RDH_VL['wer|mean'],
+			name='(dataset: RDH_VL)'
 		))
 		figure = go.Figure(data=charts, layout=go.Layout({
 			'barmode': 'group',
 			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': '(dataset: 20000_mijlen) - Mean of wer by model_name'},
+			'title': {'text': 'Mean of wer by model_name'},
 			'xaxis': {'title': {'text': 'model_name'}},
 			'yaxis': {'title': {'text': 'Mean of wer'}, 'type': 'linear'}
 		}))
@@ -156,28 +170,34 @@ class MeanOfWilByModelnameByDataset(BasePlotly):
 			df['dataset'],
 		], axis=1)
 		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		s = chart_data['model_name']
+		chart_data.loc[:, 'model_name'] = s
+		s = chart_data['dataset']
+		chart_data.loc[:, 'dataset'] = s
 		chart_data = chart_data.sort_values(['dataset', 'model_name'])
 		chart_data = chart_data.rename(columns={'model_name': 'x'})
 		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wil']].mean()
 		chart_data_mean.columns = ['wil|mean']
 		chart_data = chart_data_mean.reset_index()
 		chart_data = chart_data.dropna()
-		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
-		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
-		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
-
-		import plotly.graph_objs as go
 
 		charts = []
+		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
+		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
 		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['wil|mean'],
+			x=chart_data_20000['x'],
+			y=chart_data_20000['wil|mean'],
 			name='(dataset: 20000_mijlen)'
+		))
+		charts.append(go.Bar(
+			x=chart_data_RDH_VL['x'],
+			y=chart_data_RDH_VL['wil|mean'],
+			name='(dataset: RDH_VL)'
 		))
 		figure = go.Figure(data=charts, layout=go.Layout({
 			'barmode': 'group',
 			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': '(dataset: 20000_mijlen) - Mean of wil by model_name'},
+			'title': {'text': 'Mean of wil by model_name'},
 			'xaxis': {'title': {'text': 'model_name'}},
 			'yaxis': {'title': {'text': 'Mean of wil'}, 'type': 'linear'}
 		}))
@@ -204,28 +224,34 @@ class MeanOfCerByModelnameByDataset(BasePlotly):
 			df['dataset'],
 		], axis=1)
 		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		s = chart_data['model_name']
+		chart_data.loc[:, 'model_name'] = s
+		s = chart_data['dataset']
+		chart_data.loc[:, 'dataset'] = s
 		chart_data = chart_data.sort_values(['dataset', 'model_name'])
 		chart_data = chart_data.rename(columns={'model_name': 'x'})
 		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['cer']].mean()
 		chart_data_mean.columns = ['cer|mean']
 		chart_data = chart_data_mean.reset_index()
 		chart_data = chart_data.dropna()
-		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
-		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
-		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
-
-		import plotly.graph_objs as go
 
 		charts = []
+		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
+		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
 		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['cer|mean'],
+			x=chart_data_20000['x'],
+			y=chart_data_20000['cer|mean'],
 			name='(dataset: 20000_mijlen)'
+		))
+		charts.append(go.Bar(
+			x=chart_data_RDH_VL['x'],
+			y=chart_data_RDH_VL['cer|mean'],
+			name='(dataset: RDH_VL)'
 		))
 		figure = go.Figure(data=charts, layout=go.Layout({
 			'barmode': 'group',
 			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': '(dataset: 20000_mijlen) - Mean of cer by model_name'},
+			'title': {'text': 'Mean of cer by model_name'},
 			'xaxis': {'title': {'text': 'model_name'}},
 			'yaxis': {'title': {'text': 'Mean of cer'}, 'type': 'linear'}
 		}))
@@ -252,28 +278,34 @@ class MeanOfWipByModelnameByDataset(BasePlotly):
 			df['dataset'],
 		], axis=1)
 		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		s = chart_data['model_name']
+		chart_data.loc[:, 'model_name'] = s
+		s = chart_data['dataset']
+		chart_data.loc[:, 'dataset'] = s
 		chart_data = chart_data.sort_values(['dataset', 'model_name'])
 		chart_data = chart_data.rename(columns={'model_name': 'x'})
 		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wip']].mean()
 		chart_data_mean.columns = ['wip|mean']
 		chart_data = chart_data_mean.reset_index()
 		chart_data = chart_data.dropna()
-		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
-		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
-		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
-
-		import plotly.graph_objs as go
 
 		charts = []
+		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
+		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
 		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['wip|mean'],
+			x=chart_data_20000['x'],
+			y=chart_data_20000['wip|mean'],
 			name='(dataset: 20000_mijlen)'
+		))
+		charts.append(go.Bar(
+			x=chart_data_RDH_VL['x'],
+			y=chart_data_RDH_VL['wip|mean'],
+			name='(dataset: RDH_VL)'
 		))
 		figure = go.Figure(data=charts, layout=go.Layout({
 			'barmode': 'group',
 			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': '(dataset: 20000_mijlen) - Mean of wip by model_name'},
+			'title': {'text': 'Mean of wip by model_name'},
 			'xaxis': {'title': {'text': 'model_name'}},
 			'yaxis': {'title': {'text': 'Mean of wip'}, 'type': 'linear'}
 		}))
@@ -300,28 +332,34 @@ class MeanOfMerByModelnameByDataset(BasePlotly):
 			df['dataset'],
 		], axis=1)
 		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		s = chart_data['model_name']
+		chart_data.loc[:, 'model_name'] = s
+		s = chart_data['dataset']
+		chart_data.loc[:, 'dataset'] = s
 		chart_data = chart_data.sort_values(['dataset', 'model_name'])
 		chart_data = chart_data.rename(columns={'model_name': 'x'})
 		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['mer']].mean()
 		chart_data_mean.columns = ['mer|mean']
 		chart_data = chart_data_mean.reset_index()
 		chart_data = chart_data.dropna()
-		# WARNING: This is not taking into account grouping of any kind, please apply filter associated with
-		#          the group in question in order to replicate chart. For this we're using '"""`dataset` == '20000_mijlen'"""'
-		chart_data = chart_data.query("""`dataset` == '20000_mijlen'""")
-
-		import plotly.graph_objs as go
 
 		charts = []
+		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
+		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
 		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['mer|mean'],
+			x=chart_data_20000['x'],
+			y=chart_data_20000['mer|mean'],
 			name='(dataset: 20000_mijlen)'
+		))
+		charts.append(go.Bar(
+			x=chart_data_RDH_VL['x'],
+			y=chart_data_RDH_VL['mer|mean'],
+			name='(dataset: RDH_VL)'
 		))
 		figure = go.Figure(data=charts, layout=go.Layout({
 			'barmode': 'group',
 			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': '(dataset: 20000_mijlen) - Mean of mer by model_name'},
+			'title': {'text': 'Mean of mer by model_name'},
 			'xaxis': {'title': {'text': 'model_name'}},
 			'yaxis': {'title': {'text': 'Mean of mer'}, 'type': 'linear'}
 		}))
@@ -356,8 +394,6 @@ class MeanOfMetricByModelname(BasePlotly):
 		chart_data_mean.columns = ['wer|mean','mer|mean','wil|mean','wip|mean','cer|mean']
 		chart_data = chart_data_mean.reset_index()
 		chart_data = chart_data.dropna()
-
-		import plotly.graph_objs as go
 
 		charts = []
 		charts.append(go.Bar(

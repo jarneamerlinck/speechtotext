@@ -53,7 +53,6 @@ class MeanOfMerByModelnameByDataset(BasePlotly):
 		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
 			df = df.to_frame(index=False)
 
-		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
 		df = df.reset_index().drop('index', axis=1, errors='ignore')
 		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
 
@@ -62,7 +61,7 @@ class MeanOfMerByModelnameByDataset(BasePlotly):
 			df['mer'],
 			df['dataset'],
 		], axis=1)
-		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		
 		s = chart_data['model_name']
 		chart_data.loc[:, 'model_name'] = s
 		s = chart_data['dataset']
@@ -106,7 +105,6 @@ class MeanOfWerByModelnameByDataset(BasePlotly):
 		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
 			df = df.to_frame(index=False)
 
-		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
 		df = df.reset_index().drop('index', axis=1, errors='ignore')
 		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
 
@@ -115,7 +113,7 @@ class MeanOfWerByModelnameByDataset(BasePlotly):
 			df['wer'],
 			df['dataset'],
 		], axis=1)
-		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		
 		s = chart_data['model_name']
 		chart_data.loc[:, 'model_name'] = s
 		s = chart_data['dataset']
@@ -160,7 +158,6 @@ class MeanOfWilByModelnameByDataset(BasePlotly):
 		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
 			df = df.to_frame(index=False)
 
-		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
 		df = df.reset_index().drop('index', axis=1, errors='ignore')
 		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
 
@@ -169,7 +166,7 @@ class MeanOfWilByModelnameByDataset(BasePlotly):
 			df['wil'],
 			df['dataset'],
 		], axis=1)
-		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		
 		s = chart_data['model_name']
 		chart_data.loc[:, 'model_name'] = s
 		s = chart_data['dataset']
@@ -214,7 +211,6 @@ class MeanOfCerByModelnameByDataset(BasePlotly):
 		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
 			df = df.to_frame(index=False)
 
-		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
 		df = df.reset_index().drop('index', axis=1, errors='ignore')
 		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
 
@@ -223,7 +219,7 @@ class MeanOfCerByModelnameByDataset(BasePlotly):
 			df['cer'],
 			df['dataset'],
 		], axis=1)
-		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		
 		s = chart_data['model_name']
 		chart_data.loc[:, 'model_name'] = s
 		s = chart_data['dataset']
@@ -268,7 +264,6 @@ class MeanOfWipByModelnameByDataset(BasePlotly):
 		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
 			df = df.to_frame(index=False)
 
-		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
 		df = df.reset_index().drop('index', axis=1, errors='ignore')
 		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
 
@@ -277,7 +272,7 @@ class MeanOfWipByModelnameByDataset(BasePlotly):
 			df['wip'],
 			df['dataset'],
 		], axis=1)
-		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		
 		s = chart_data['model_name']
 		chart_data.loc[:, 'model_name'] = s
 		s = chart_data['dataset']
@@ -322,7 +317,6 @@ class MeanOfMerByModelnameByDataset(BasePlotly):
 		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
 			df = df.to_frame(index=False)
 
-		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
 		df = df.reset_index().drop('index', axis=1, errors='ignore')
 		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
 
@@ -331,7 +325,7 @@ class MeanOfMerByModelnameByDataset(BasePlotly):
 			df['mer'],
 			df['dataset'],
 		], axis=1)
-		chart_data = chart_data.query("""(`dataset` == '20000_mijlen') or (`dataset` == 'RDH_VL')""")
+		
 		s = chart_data['model_name']
 		chart_data.loc[:, 'model_name'] = s
 		s = chart_data['dataset']
@@ -367,6 +361,60 @@ class MeanOfMerByModelnameByDataset(BasePlotly):
 # Add model to Plotting
 Plotting.CUSTOM_RESULTS.append(MeanOfMerByModelnameByDataset)
 
+class MeanOfDurationByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+   
+		df = df.reset_index().drop('index', axis=1, errors='ignore')
+		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df['duration'],
+			df['dataset'],
+		], axis=1)
+
+		s = chart_data['model_name']
+		chart_data.loc[:, 'model_name'] = s
+		s = chart_data['dataset']
+		chart_data.loc[:, 'dataset'] = s
+		chart_data = chart_data.sort_values(['dataset', 'model_name'])
+		chart_data = chart_data.rename(columns={'model_name': 'x'})
+		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['duration']].mean()
+		chart_data_mean.columns = ['duration|mean']
+		chart_data = chart_data_mean.reset_index()
+		chart_data = chart_data.dropna()
+
+		charts = []
+		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
+		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
+		charts.append(go.Bar(
+			x=chart_data_20000['x'],
+			y=chart_data_20000['duration|mean'],
+			name='(dataset: 20000_mijlen)'
+		))
+		charts.append(go.Bar(
+			x=chart_data_RDH_VL['x'],
+			y=chart_data_RDH_VL['duration|mean'],
+			name='(dataset: RDH_VL)'
+		))
+		figure = go.Figure(data=charts, layout=go.Layout({
+			'barmode': 'group',
+			'legend': {'orientation': 'h', 'y': -0.3},
+			'title': {'text': 'Mean of duration by model_name'},
+			'xaxis': {'title': {'text': 'model_name'}},
+			'yaxis': {'title': {'text': 'Mean of duration in seconds'}, 'type': 'linear'}
+		}))
+
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(MeanOfDurationByModelnameByDataset)
+
 class MeanOfMetricByModelname(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
 	"""    
@@ -376,7 +424,6 @@ class MeanOfMetricByModelname(BasePlotly):
 		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
 			df = df.to_frame(index=False)
 
-		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
 		df = df.reset_index().drop('index', axis=1, errors='ignore')
 		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
 

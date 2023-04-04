@@ -53,6 +53,7 @@ class AmazonAPIWrapper(ModelWrapper):
  	"""
 
 	LANGUAGE_CODE:str = 'nl-NL'
+	BUCKET_EXIST = False
 
 	def __init__(self, model_version:AmazonAPIVersion):
 		"""Wrapper for AMAZON model.
@@ -69,7 +70,15 @@ class AmazonAPIWrapper(ModelWrapper):
 		load_env_variable("AWS_ACCESS_KEY_ID"), load_env_variable("AWS_SECRET_ACCESS_KEY")
 		self.BUCKET = load_env_variable("AMAZON_BUCKET")
 		self.AMAZON_REGION = load_env_variable("AMAZON_REGION")
+
 		self.s3 = boto3.resource('s3')
+		self.client = boto3.client('s3')
+		if AmazonAPIWrapper.BUCKET_EXIST is False:
+			self.client.create_bucket(
+				ACL = 'private',
+				Bucket=self.BUCKET
+			)
+			AmazonAPIWrapper.BUCKET_EXIST = True
 
 	def get_transcript_of_file(self, audio_file_name:str) -> str:
 		"""Get transcript of audio file with API call.

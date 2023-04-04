@@ -138,8 +138,11 @@ class ModelWrapper(ABC):
 		metrics_array = []
   
 		for _, row in samples.dataset.iterrows():
-			id = row["id"]
-			metrics_array.append(self.benchmark_sample(samples, id, with_cleaning))
+			try:
+				id = row["id"]
+				metrics_array.append(self.benchmark_sample(samples, id, with_cleaning))
+			except Exception as e:
+				print(e)
 
 		return metrics_array
 		

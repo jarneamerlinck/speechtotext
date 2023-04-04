@@ -30,13 +30,13 @@ Use this module like this:
 	array = amazonWrapper.benchmark_n_samples(dataset, number_of_samples)
 """
 
-import os
-import io
+import urllib.request
+import json
 import time
 import boto3
 
 from speechtotext.model.modelWrapper import *
-from speechtotext.functions import get_extention_of_file_name, get_file_name_without_extention, load_env_variable
+from speechtotext.functions import get_extention_of_file_name, string_cleaning, load_env_variable
 
 class AmazonAPIVersion(ModelVersion):
 	"""Enum for the available AMAZON API models. This is for the  `Custom language model <https://docs.aws.amazon.com/transcribe/latest/APIReference/API_CreateLanguageModel.html>`_.
@@ -53,7 +53,7 @@ class AmazonAPIWrapper(ModelWrapper):
  	"""
 
 	LANGUAGE_CODE:str = 'nl-NL'
-	BUCKET_EXIST = False
+	BUCKET_EXIST = True
 
 	def __init__(self, model_version:AmazonAPIVersion):
 		"""Wrapper for AMAZON model.
@@ -79,6 +79,7 @@ class AmazonAPIWrapper(ModelWrapper):
 				Bucket=self.BUCKET
 			)
 			AmazonAPIWrapper.BUCKET_EXIST = True
+			print(f"bucket created with name {self.BUCKET}")
 
 	def get_transcript_of_file(self, audio_file_name:str) -> str:
 		"""Get transcript of audio file with API call.
@@ -91,20 +92,28 @@ class AmazonAPIWrapper(ModelWrapper):
 		"""
 
 		# Upload
-		object_name = get_file_name_without_extention(audio_file_name)
-		self.s3.Bucket(self.BUCKET).upload_file(audio_file_name, object_name)
+		# object_name = get_file_name_without_extention(audio_file_name)
+		self.s3.Bucket(self.BUCKET).upload_file(audio_file_name, audio_file_name)
 
 		# Transcribe
 		transcribe_client = boto3.client('transcribe', region_name = self.AMAZON_REGION)
-		file_uri = f's3://{self.BUCKET}/{object_name}'
-		transcriptFileUri = self.__get_transcribe_file_location(file_uri, transcribe_client)
+		file_uri = f's3://{self.BUCKET}/{audio_file_name}'
+		transcriptFileUri = self.__get_transcribe_file_location(file_uri, transcribe_client, f"Transcribe-{string_cleaning(audio_file_name)}")
 
-		# Download transcript
-		object = self.s3.Bucket(self.BUCKET).Object(transcriptFileUri)
-		file_stream = io.StringIO()
-		object.download_fileobj(file_stream)
+		return self.__get_transcript_from_json_uri(transcriptFileUri)
 
-		return file_stream.getvalue()
+	def __get_transcript_from_json_uri(self, json_uri:str)-> str:
+		"""Get transcript from amazon transcribe json result.
+
+		Args:
+			json_uri (str): Uri of the resulting json file.
+
+		Returns:
+			str: Transcript of the audio.
+		"""     
+		with urllib.request.urlopen(json_uri) as response:
+			data = json.load(response)
+			return data.get("results").get("transcripts")[0].get("transcript")
 
 	def __get_transcribe_file_location(self, file_uri:str, transcribe_client, job_name:str="Transcribe") ->str:
 		"""Transcribe and return result location. 
@@ -112,16 +121,20 @@ class AmazonAPIWrapper(ModelWrapper):
 		Args:
 			file_uri (str): s3 path to audio file.
 			transcribe_client (_type_): boto3 transcribe client.
+			file_ext (str): file extention of audio file.
 			job_name (str, optional): Name of amazon AWS job. Defaults to "Transcribe".
-		"""		
-		transcribe_client.start_transcription_job(
-			TranscriptionJobName = job_name,
-			Media = {
-				'MediaFileUri': file_uri
-			},
-			MediaFormat = get_extention_of_file_name(file_uri)[1:],
-			LanguageCode = self.LANGUAGE_CODE
-		)
+		"""	
+		try:
+			transcribe_client.start_transcription_job(
+				TranscriptionJobName = job_name,
+				Media = {
+					'MediaFileUri': file_uri
+				},
+				MediaFormat = get_extention_of_file_name(file_uri)[1:], #removed the .
+				LanguageCode = self.LANGUAGE_CODE
+			)
+		except:
+			pass
 
 		max_tries = 60
 		while max_tries > 0:
@@ -137,4 +150,7 @@ class AmazonAPIWrapper(ModelWrapper):
 				# print(f"Waiting for {job_name}. Current status is {job_status}.")
 				pass
 			time.sleep(10)
+		response = transcribe_client.delete_transcription_job(
+			TranscriptionJobName=job_name
+		)
 		return download_uri

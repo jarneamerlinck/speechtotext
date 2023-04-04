@@ -25,13 +25,18 @@ Whisper API
 
 Amazon transcribe
 -----------------
-
 .. code-block:: shell
 
 	AWS_ACCESS_KEY_ID=access-id
 	AWS_SECRET_ACCESS_KEY=acces-key
 	AMAZON_REGION=eu-west-3
-	AMAZON_BUCKET=bucketName
+	AMAZON_BUCKET=bucket-name
+
+* For bucket with name ``foo`` following command returns the region.
+
+.. code-block:: shell
+
+	curl -sI foo.s3.amazonaws.com | awk '/^x-amz-bucket-region:/ { print $2 }'
 
 Google API
 ----------

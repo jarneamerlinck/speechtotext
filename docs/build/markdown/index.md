@@ -39,6 +39,9 @@
     * [speechtotext.model.deepgramWrapper](speechtotext/model/index.md#module-speechtotext.model.deepgramWrapper)
 
 
+    * [speechtotext.model.assemblyAIWrapper](speechtotext/model/index.md#module-speechtotext.model.assemblyAIWrapper)
+
+
 * [speechtotext benchmark package](speechtotext/benchmark/index.md)
 
 

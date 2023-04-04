@@ -48,3 +48,9 @@ GOOGLE_APPLICATION_CREDENTIALS="/path/to/keyfile.json"
 ```shell
 DEEPGRAM_API_KEY=somemorerandomnumberlettersandmorerandomnessform
 ```
+
+### AssemblyAI API
+
+```shell
+ASSEMBLY_AI_API_KEY=somemorerandomnumberlettersandmorerandomnessform
+```

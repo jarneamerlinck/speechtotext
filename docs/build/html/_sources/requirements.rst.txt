@@ -56,3 +56,11 @@ Deepgram API
 .. code-block:: shell
 
 	DEEPGRAM_API_KEY=somemorerandomnumberlettersandmorerandomnessform
+
+AssemblyAI API
+------------
+
+.. code-block:: shell
+
+	ASSEMBLY_AI_API_KEY=somemorerandomnumberlettersandmorerandomnessform
+

@@ -559,3 +559,94 @@ Get transcript of audio file with API call.
 * **Return type**
 
     str
+
+
+## speechtotext.model.assemblyAIWrapper
+
+Modelwrapper implemented for assemblyAi API.
+
+ASSEMBLY_AI_API_KEY needs to be in the ‘.env’.
+
+Use this module like this:
+
+```python
+# Imports
+from speechtotext.model.assemblyAiWrapper import *
+from speechtotext.benchmark.benchmarks import *
+from speechtotext.datasets import Dataset
+
+# Create dataset
+number_of_samples = 10
+dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
+id = "existing_audio_id"
+number_of_samples = 10
+
+# Create wrapper
+assemblyAiWrapper = assemblyAiAPIVersion(assemblyAiAPIVersion.assemblyAi_DEFAULT)
+
+# Get model
+assemblyAiWrapper.get_model()
+
+# Benchmark choisen sample
+assemblyAiWrapper.benchmark_sample(dataset, id)
+
+# Benchmark n random samples
+array = assemblyAiWrapper.benchmark_n_samples(dataset, number_of_samples)
+```
+
+
+### _class_ speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion(value)
+Bases: `ModelVersion`
+
+Enum for the available assemblyAi API models.
+
+
+* **Parameters**
+
+    **Enum** (*assemblyAiAPIVersion*) – Available whisper API models.
+
+
+
+#### ASSEMBLYAI_DEFAULT(_ = 'default_ )
+
+### _class_ speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper(model_version: AssemblyAIAPIVersion)
+Bases: `ModelWrapper`
+
+Wrapper for assemblyAi API. ASSEMBLY_AI_API_KEY needs to be in the ‘.env’ file in current directory.
+
+
+#### API_URL(_: st_ _ = 'https://api.assemblyai.com/v2/upload_ )
+
+#### LANGUAGE_CODE(_: st_ _ = 'nl_ )
+
+#### POLLING_ENDPOINT(_: st_ _ = 'https://api.assemblyai.com/v2/transcript/_ )
+
+#### TIME_SLEEP(_: in_ _ = _ )
+
+#### TRANSCRIPT_ENDPOINT(_: st_ _ = 'https://api.assemblyai.com/v2/transcript_ )
+
+#### UPLOAD_ENDPOINT(_: st_ _ = 'https://api.assemblyai.com/v2/upload_ )
+
+#### get_model()
+Get model.
+
+
+#### get_transcript_of_file(audio_file_name: str)
+Get transcript of audio file with API call.
+
+
+* **Parameters**
+
+    **audio_file_name** (*str*) – Path to audio file.
+
+
+
+* **Returns**
+
+    Transcript of audio file.
+
+
+
+* **Return type**
+
+    str

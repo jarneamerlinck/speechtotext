@@ -186,6 +186,30 @@ Creates an list of ModelWrappers.
 
 
 
+### _class_ speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark(with_cleaning=True)
+Bases: `Benchmark`
+
+Benchmark for AssemblyAI API.
+
+
+#### MODEL_BASE(_ = 'AssemblyAIAPI_ )
+
+#### create_models()
+Creates an list of ModelWrappers.
+
+
+* **Returns**
+
+    list of model wrappers.
+
+
+
+* **Return type**
+
+    list[[ModelWrapper](../model/index.md#speechtotext.model.modelWrapper.ModelWrapper)]
+
+
+
 ### _class_ speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark(with_cleaning=True)
 Bases: `Benchmark`
 

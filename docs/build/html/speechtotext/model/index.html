@@ -159,6 +159,8 @@
                 
                   <li class="toctree-l2"><a href="#module-speechtotext.model.deepgramWrapper" class="reference internal">speechtotext.model.deepgramWrapper</a></li>
                 
+                  <li class="toctree-l2"><a href="#module-speechtotext.model.assemblyAIWrapper" class="reference internal">speechtotext.model.assemblyAIWrapper</a></li>
+                
               </ul>
             
           </li>
@@ -760,6 +762,113 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.model.deepgramWrapper.DeepgramAPIWrapper.get_transcript_of_file">
 <span class="sig-name descname"><span class="pre">get_transcript_of_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.model.deepgramWrapper.DeepgramAPIWrapper.get_transcript_of_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get transcript of audio file with API call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>audio_file_name</strong> (<em>str</em>) – Path to audio file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transcript of audio file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-speechtotext.model.assemblyAIWrapper">
+<span id="speechtotext-model-assemblyaiwrapper"></span><h2>speechtotext.model.assemblyAIWrapper<a class="headerlink" href="#module-speechtotext.model.assemblyAIWrapper" title="Permalink to this heading">¶</a></h2>
+<p>Modelwrapper implemented for assemblyAi API.</p>
+<p>ASSEMBLY_AI_API_KEY needs to be in the ‘.env’.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.assemblyAiWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.benchmark.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># Create dataset</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;existing_audio_id&quot;</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Create wrapper</span>
+<span class="n">assemblyAiWrapper</span> <span class="o">=</span> <span class="n">assemblyAiAPIVersion</span><span class="p">(</span><span class="n">assemblyAiAPIVersion</span><span class="o">.</span><span class="n">assemblyAi_DEFAULT</span><span class="p">)</span>
+
+<span class="c1"># Get model</span>
+<span class="n">assemblyAiWrapper</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span>
+
+<span class="c1"># Benchmark choisen sample</span>
+<span class="n">assemblyAiWrapper</span><span class="o">.</span><span class="n">benchmark_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+
+<span class="c1"># Benchmark n random samples</span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">assemblyAiWrapper</span><span class="o">.</span><span class="n">benchmark_n_samples</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.assemblyAIWrapper.</span></span><span class="sig-name descname"><span class="pre">AssemblyAIAPIVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelVersion" title="speechtotext.model.modelWrapper.ModelVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelVersion</span></code></a></p>
+<p>Enum for the available assemblyAi API models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Enum</strong> (<em>assemblyAiAPIVersion</em>) – Available whisper API models.</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion.ASSEMBLYAI_DEFAULT">
+<span class="sig-name descname"><span class="pre">ASSEMBLYAI_DEFAULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'default'</span></em><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion.ASSEMBLYAI_DEFAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.assemblyAIWrapper.</span></span><span class="sig-name descname"><span class="pre">AssemblyAIAPIWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion" title="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion"><span class="pre">AssemblyAIAPIVersion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a></p>
+<p>Wrapper for assemblyAi API. ASSEMBLY_AI_API_KEY needs to be in the ‘.env’ file in current directory.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.API_URL">
+<span class="sig-name descname"><span class="pre">API_URL</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://api.assemblyai.com/v2/upload'</span></em><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.API_URL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.LANGUAGE_CODE">
+<span class="sig-name descname"><span class="pre">LANGUAGE_CODE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nl'</span></em><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.LANGUAGE_CODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.POLLING_ENDPOINT">
+<span class="sig-name descname"><span class="pre">POLLING_ENDPOINT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://api.assemblyai.com/v2/transcript/'</span></em><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.POLLING_ENDPOINT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.TIME_SLEEP">
+<span class="sig-name descname"><span class="pre">TIME_SLEEP</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.TIME_SLEEP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.TRANSCRIPT_ENDPOINT">
+<span class="sig-name descname"><span class="pre">TRANSCRIPT_ENDPOINT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://api.assemblyai.com/v2/transcript'</span></em><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.TRANSCRIPT_ENDPOINT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.UPLOAD_ENDPOINT">
+<span class="sig-name descname"><span class="pre">UPLOAD_ENDPOINT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'https://api.assemblyai.com/v2/upload'</span></em><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.UPLOAD_ENDPOINT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.get_model">
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.get_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.get_transcript_of_file">
+<span class="sig-name descname"><span class="pre">get_transcript_of_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.get_transcript_of_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get transcript of audio file with API call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

@@ -38,13 +38,18 @@ jobs:
       run: |
         conda env update --file environment_build.yml --name base
 
+    - name: Clean documentation
+      run: |
+        cd docs;make clean;cd ..
+
     - name: Build documentation html
       run: |
         cd docs;make html;cd ..
     
-    - name: Build documentation markdown
+    - name: Build documentation
       run: |
-        cd docs;make markdown;cd ..
+        cd docs;make html markdown;cd ..
+
     - name: Commit and push documentation 
       run: |-
         git config user.name "Automated"

@@ -81,9 +81,9 @@ class DeepgramAPIWrapper(ModelWrapper):
 		with open(audio_file_name, 'rb') as audio:
 			source = {'buffer': audio, 'mimetype': 'audio/wav'}
 			response = self.client.transcription.sync_prerecorded(source, 
-                                                         {'punctuate': False, 
-                                                          'language':self.LANGUAGE_CODE, 
-                                                          'model': self.model_version.value})
+														 {'punctuate': False, 
+														  'language':self.LANGUAGE_CODE, 
+														  'model': self.model_version.value})
 			
 			transcript = response.get("results").get("channels")[0].get("alternatives")[0].get("transcript")
 			return transcript

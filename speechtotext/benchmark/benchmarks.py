@@ -78,7 +78,7 @@ class Benchmark(ABC):
 		Returns:
 				pd.core.frame.DataFrame: pandas dataframe.
 		"""
-		column_names = ["model_name", "audio_ID","dataset",
+		column_names = ["model_name", "audio_ID","dataset", "duration",
 						"reference", "wer", "mer",  "wil", "wip", "cer"]
 		df = pd.DataFrame(columns=column_names)
 
@@ -86,8 +86,8 @@ class Benchmark(ABC):
 			model_name = f"{self.MODEL_BASE}_{model.model_version.value}"
 			for metric in metrics:
 
-				new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name, metric.reference, metric.wer,
-									 metric.mer,  metric.wil, metric.wip, metric.cer], index=column_names)
+				new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name,metric.duration,
+                         metric.reference, metric.wer, metric.mer,  metric.wil, metric.wip, metric.cer], index=column_names)
 				df = pd.concat([df, new_row.to_frame().T], ignore_index=True)
 
 		return df

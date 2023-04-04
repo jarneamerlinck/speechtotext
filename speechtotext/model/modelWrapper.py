@@ -52,6 +52,7 @@ import pandas as pd
 
 from speechtotext.datasets import Dataset, SampleDataset
 from speechtotext.metric.metrics import Metrics
+from speechtotext.functions import timing
 
 class ModelVersion(Enum):
 	"""Enum for the availible models.
@@ -92,8 +93,9 @@ class ModelWrapper(ABC):
 		"""     
 		pass
 
-	def benchmark_sample(self, dataset:Dataset, id:str, with_cleaning=True)-> Metrics:
-		"""Benchmark sample with model.
+	@timing
+	def __benchmark_sample_with_time(self, dataset:Dataset, id:str, with_cleaning=True)-> tuple[str, str, float]:
+		"""Benchmark sample for model with timer.
 
 		Args:
 			dataset (Dataset): Dataset of audio.
@@ -106,7 +108,22 @@ class ModelWrapper(ABC):
 		self.get_model()
 		reference = dataset.get_text_of_id(id)
 		hypothesis = self.get_transcript_of_file(dataset.get_path_of_fragment(id))
-		m = Metrics(reference,hypothesis, id, with_cleaning)
+		return reference, hypothesis
+
+
+	def benchmark_sample(self, dataset:Dataset, id:str, with_cleaning=True)-> Metrics:
+		"""Benchmark sample with model.
+
+		Args:
+			dataset (Dataset): Dataset of audio.
+			id (str): Id of audio file.
+			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
+
+		Returns:
+			Metrics: Metrics of the transcript.
+		"""
+		(reference, hypothesis), duration = self.__benchmark_sample_with_time(dataset, id, with_cleaning)
+		m = Metrics(reference,hypothesis, id, duration, with_cleaning)
 		return m
 
 	def benchmark_n_samples(self, dataset:Dataset, number_of_samples:int, with_cleaning=True) -> list:

@@ -17,6 +17,8 @@ Attributes:
 	REGEX_STRING_PARSE (str): Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
 """
 
+from functools import wraps
+from time import time
 import os
 import re
 import torch
@@ -206,3 +208,12 @@ class RequiredEnvVariablesMissing(Exception):
 	def __init__(self, env_name:str):     
 				
 		super().__init__(f"Required env variable {env_name} is missing")
+  
+def timing(f):
+    @wraps(f)
+    def wrap(*args, **kw):
+        ts = time()
+        result = f(*args, **kw)
+        te = time()
+        return result, te-ts
+    return wrap

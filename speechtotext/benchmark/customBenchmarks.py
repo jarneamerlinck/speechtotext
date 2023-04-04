@@ -35,6 +35,7 @@ from speechtotext.model.modelWrapper import ModelWrapper
 from speechtotext.model.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
 from speechtotext.model.amazonWrapper import AmazonAPIVersion, AmazonAPIWrapper
 from speechtotext.model.googleWrapper import GoogleAPIVersion, GoogleAPIWrapper
+from speechtotext.model.deepgramWrapper import DeepgramAPIVersion, DeepgramAPIWrapper
 
 
 class WhisperBenchmark(Benchmark):
@@ -81,3 +82,13 @@ class GoogleAPIBenchmark(Benchmark):
 			models.append(GoogleAPIWrapper(version))
 		return models
 
+class DeepgramAPIBenchmark(Benchmark):
+	"""Benchmark for Deepgram API.
+	"""
+	MODEL_BASE = "DeepgramAPI"
+
+	def create_models(self) -> list[ModelWrapper]:
+		models = []
+		for version in DeepgramAPIVersion:
+			models.append(DeepgramAPIWrapper(version))
+		return models

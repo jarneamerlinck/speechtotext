@@ -48,3 +48,11 @@ This is the file for an service account.  `Link to google cloud docs <https://de
 .. code-block:: shell
 
 	GOOGLE_APPLICATION_CREDENTIALS="/path/to/keyfile.json"
+
+
+Deepgram API
+------------
+
+.. code-block:: shell
+
+	DEEPGRAM_API_KEY=somemorerandomnumberlettersandmorerandomnessform

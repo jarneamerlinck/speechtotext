@@ -32,3 +32,11 @@ speechtotext.model.googleWrapper
     :members:
     :undoc-members:
     :show-inheritance:
+
+speechtotext.model.deepgramWrapper
+----------------------------------
+
+.. automodule:: speechtotext.model.deepgramWrapper
+    :members:
+    :undoc-members:
+    :show-inheritance:

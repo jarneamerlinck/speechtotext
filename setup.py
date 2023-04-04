@@ -25,7 +25,8 @@ REQUIRED = [
     'jiwer', 'pandas', 'numpy', 'torch', 
     'openai-whisper', 'openai', 'python-dotenv',
     'matplotlib', 'ipywidgets', 'seaborn',
-    'dtale', 'boto3', 'google-cloud-speech'
+    'dtale', 'boto3', 'google-cloud-speech',
+    'deepgram-sdk'
 ]
 
 # What packages are optional?

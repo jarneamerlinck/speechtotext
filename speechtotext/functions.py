@@ -210,10 +210,12 @@ class RequiredEnvVariablesMissing(Exception):
 		super().__init__(f"Required env variable {env_name} is missing")
   
 def timing(f):
-    @wraps(f)
-    def wrap(*args, **kw):
-        ts = time()
-        result = f(*args, **kw)
-        te = time()
-        return result, te-ts
-    return wrap
+	"""Functions used to time duration of function.
+	"""    
+	@wraps(f)
+	def wrap(*args, **kw):
+		ts = time()
+		result = f(*args, **kw)
+		te = time()
+		return result, te-ts
+	return wrap

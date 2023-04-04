@@ -44,324 +44,7 @@ import matplotlib
 
 from speechtotext.plot.plotting import BasePlotly, Plotting, BaseMatPlotLib
 
-class MeanOfMerByModelnameByDataset(BasePlotly):
-	"""Class that is used to create plots for an benchmark.
-	"""    
-	def create_plot(self) -> plotly.graph_objs._figure.Figure:
-
-		df = self.df
-		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
-			df = df.to_frame(index=False)
-
-		df = df.reset_index().drop('index', axis=1, errors='ignore')
-		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
-
-		chart_data = pd.concat([
-			df['model_name'],
-			df['mer'],
-			df['dataset'],
-		], axis=1)
-		
-		s = chart_data['model_name']
-		chart_data.loc[:, 'model_name'] = s
-		s = chart_data['dataset']
-		chart_data.loc[:, 'dataset'] = s
-		chart_data = chart_data.sort_values(['dataset', 'model_name'])
-		chart_data = chart_data.rename(columns={'model_name': 'x'})
-		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['mer']].mean()
-		chart_data_mean.columns = ['mer|mean']
-		chart_data = chart_data_mean.reset_index()
-		chart_data = chart_data.dropna()
-
-		charts = []
-		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
-		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
-		charts.append(go.Bar(
-			x=chart_data_20000['x'],
-			y=chart_data_20000['mer|mean'],
-			name='(dataset: 20000_mijlen)'
-		))
-		charts.append(go.Bar(
-			x=chart_data_RDH_VL['x'],
-			y=chart_data_RDH_VL['mer|mean'],
-			name='(dataset: RDH_VL)'
-		))
-		figure = go.Figure(data=charts, layout=go.Layout({
-			'barmode': 'group',
-			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': 'Mean of mer by model_name'},
-			'xaxis': {'title': {'text': 'model_name'}},
-			'yaxis': {'title': {'text': 'Mean of mer'}, 'type': 'linear'}
-		}))
-		return figure
-Plotting.CUSTOM_RESULTS.append(MeanOfMerByModelnameByDataset)
-
-class MeanOfWerByModelnameByDataset(BasePlotly):
-	"""Class that is used to create plots for an benchmark.
-	"""    
-	def create_plot(self) -> plotly.graph_objs._figure.Figure:
-
-		df = self.df
-		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
-			df = df.to_frame(index=False)
-
-		df = df.reset_index().drop('index', axis=1, errors='ignore')
-		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
-
-		chart_data = pd.concat([
-			df['model_name'],
-			df['wer'],
-			df['dataset'],
-		], axis=1)
-		
-		s = chart_data['model_name']
-		chart_data.loc[:, 'model_name'] = s
-		s = chart_data['dataset']
-		chart_data.loc[:, 'dataset'] = s
-		chart_data = chart_data.sort_values(['dataset', 'model_name'])
-		chart_data = chart_data.rename(columns={'model_name': 'x'})
-		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wer']].mean()
-		chart_data_mean.columns = ['wer|mean']
-		chart_data = chart_data_mean.reset_index()
-		chart_data = chart_data.dropna()
-
-		charts = []
-		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
-		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
-		charts.append(go.Bar(
-			x=chart_data_20000['x'],
-			y=chart_data_20000['wer|mean'],
-			name='(dataset: 20000_mijlen)'
-		))
-		charts.append(go.Bar(
-			x=chart_data_RDH_VL['x'],
-			y=chart_data_RDH_VL['wer|mean'],
-			name='(dataset: RDH_VL)'
-		))
-		figure = go.Figure(data=charts, layout=go.Layout({
-			'barmode': 'group',
-			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': 'Mean of wer by model_name'},
-			'xaxis': {'title': {'text': 'model_name'}},
-			'yaxis': {'title': {'text': 'Mean of wer'}, 'type': 'linear'}
-		}))
-		return figure
-# Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(MeanOfWerByModelnameByDataset)
-
-class MeanOfWilByModelnameByDataset(BasePlotly):
-	"""Class that is used to create plots for an benchmark.
-	"""    
-	def create_plot(self) -> plotly.graph_objs._figure.Figure:
-
-		df = self.df
-		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
-			df = df.to_frame(index=False)
-
-		df = df.reset_index().drop('index', axis=1, errors='ignore')
-		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
-
-		chart_data = pd.concat([
-			df['model_name'],
-			df['wil'],
-			df['dataset'],
-		], axis=1)
-		
-		s = chart_data['model_name']
-		chart_data.loc[:, 'model_name'] = s
-		s = chart_data['dataset']
-		chart_data.loc[:, 'dataset'] = s
-		chart_data = chart_data.sort_values(['dataset', 'model_name'])
-		chart_data = chart_data.rename(columns={'model_name': 'x'})
-		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wil']].mean()
-		chart_data_mean.columns = ['wil|mean']
-		chart_data = chart_data_mean.reset_index()
-		chart_data = chart_data.dropna()
-
-		charts = []
-		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
-		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
-		charts.append(go.Bar(
-			x=chart_data_20000['x'],
-			y=chart_data_20000['wil|mean'],
-			name='(dataset: 20000_mijlen)'
-		))
-		charts.append(go.Bar(
-			x=chart_data_RDH_VL['x'],
-			y=chart_data_RDH_VL['wil|mean'],
-			name='(dataset: RDH_VL)'
-		))
-		figure = go.Figure(data=charts, layout=go.Layout({
-			'barmode': 'group',
-			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': 'Mean of wil by model_name'},
-			'xaxis': {'title': {'text': 'model_name'}},
-			'yaxis': {'title': {'text': 'Mean of wil'}, 'type': 'linear'}
-		}))
-		return figure
-# Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(MeanOfWilByModelnameByDataset)
-
-class MeanOfCerByModelnameByDataset(BasePlotly):
-	"""Class that is used to create plots for an benchmark.
-	"""    
-	def create_plot(self) -> plotly.graph_objs._figure.Figure:
-
-		df = self.df
-		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
-			df = df.to_frame(index=False)
-
-		df = df.reset_index().drop('index', axis=1, errors='ignore')
-		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
-
-		chart_data = pd.concat([
-			df['model_name'],
-			df['cer'],
-			df['dataset'],
-		], axis=1)
-		
-		s = chart_data['model_name']
-		chart_data.loc[:, 'model_name'] = s
-		s = chart_data['dataset']
-		chart_data.loc[:, 'dataset'] = s
-		chart_data = chart_data.sort_values(['dataset', 'model_name'])
-		chart_data = chart_data.rename(columns={'model_name': 'x'})
-		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['cer']].mean()
-		chart_data_mean.columns = ['cer|mean']
-		chart_data = chart_data_mean.reset_index()
-		chart_data = chart_data.dropna()
-
-		charts = []
-		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
-		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
-		charts.append(go.Bar(
-			x=chart_data_20000['x'],
-			y=chart_data_20000['cer|mean'],
-			name='(dataset: 20000_mijlen)'
-		))
-		charts.append(go.Bar(
-			x=chart_data_RDH_VL['x'],
-			y=chart_data_RDH_VL['cer|mean'],
-			name='(dataset: RDH_VL)'
-		))
-		figure = go.Figure(data=charts, layout=go.Layout({
-			'barmode': 'group',
-			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': 'Mean of cer by model_name'},
-			'xaxis': {'title': {'text': 'model_name'}},
-			'yaxis': {'title': {'text': 'Mean of cer'}, 'type': 'linear'}
-		}))
-		return figure
-# Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(MeanOfCerByModelnameByDataset)
-
-class MeanOfWipByModelnameByDataset(BasePlotly):
-	"""Class that is used to create plots for an benchmark.
-	"""    
-	def create_plot(self) -> plotly.graph_objs._figure.Figure:
-
-		df = self.df
-		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
-			df = df.to_frame(index=False)
-
-		df = df.reset_index().drop('index', axis=1, errors='ignore')
-		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
-
-		chart_data = pd.concat([
-			df['model_name'],
-			df['wip'],
-			df['dataset'],
-		], axis=1)
-		
-		s = chart_data['model_name']
-		chart_data.loc[:, 'model_name'] = s
-		s = chart_data['dataset']
-		chart_data.loc[:, 'dataset'] = s
-		chart_data = chart_data.sort_values(['dataset', 'model_name'])
-		chart_data = chart_data.rename(columns={'model_name': 'x'})
-		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['wip']].mean()
-		chart_data_mean.columns = ['wip|mean']
-		chart_data = chart_data_mean.reset_index()
-		chart_data = chart_data.dropna()
-
-		charts = []
-		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
-		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
-		charts.append(go.Bar(
-			x=chart_data_20000['x'],
-			y=chart_data_20000['wip|mean'],
-			name='(dataset: 20000_mijlen)'
-		))
-		charts.append(go.Bar(
-			x=chart_data_RDH_VL['x'],
-			y=chart_data_RDH_VL['wip|mean'],
-			name='(dataset: RDH_VL)'
-		))
-		figure = go.Figure(data=charts, layout=go.Layout({
-			'barmode': 'group',
-			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': 'Mean of wip by model_name'},
-			'xaxis': {'title': {'text': 'model_name'}},
-			'yaxis': {'title': {'text': 'Mean of wip'}, 'type': 'linear'}
-		}))
-		return figure
-# Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(MeanOfWipByModelnameByDataset)
-
-class MeanOfMerByModelnameByDataset(BasePlotly):
-	"""Class that is used to create plots for an benchmark.
-	"""    
-	def create_plot(self) -> plotly.graph_objs._figure.Figure:
-
-		df = self.df
-		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
-			df = df.to_frame(index=False)
-
-		df = df.reset_index().drop('index', axis=1, errors='ignore')
-		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
-
-		chart_data = pd.concat([
-			df['model_name'],
-			df['mer'],
-			df['dataset'],
-		], axis=1)
-		
-		s = chart_data['model_name']
-		chart_data.loc[:, 'model_name'] = s
-		s = chart_data['dataset']
-		chart_data.loc[:, 'dataset'] = s
-		chart_data = chart_data.sort_values(['dataset', 'model_name'])
-		chart_data = chart_data.rename(columns={'model_name': 'x'})
-		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['mer']].mean()
-		chart_data_mean.columns = ['mer|mean']
-		chart_data = chart_data_mean.reset_index()
-		chart_data = chart_data.dropna()
-
-		charts = []
-		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
-		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
-		charts.append(go.Bar(
-			x=chart_data_20000['x'],
-			y=chart_data_20000['mer|mean'],
-			name='(dataset: 20000_mijlen)'
-		))
-		charts.append(go.Bar(
-			x=chart_data_RDH_VL['x'],
-			y=chart_data_RDH_VL['mer|mean'],
-			name='(dataset: RDH_VL)'
-		))
-		figure = go.Figure(data=charts, layout=go.Layout({
-			'barmode': 'group',
-			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': 'Mean of mer by model_name'},
-			'xaxis': {'title': {'text': 'model_name'}},
-			'yaxis': {'title': {'text': 'Mean of mer'}, 'type': 'linear'}
-		}))
-		return figure
-# Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(MeanOfMerByModelnameByDataset)
-
-class MeanOfDurationByModelnameByDataset(BasePlotly):
+class CerByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
 	"""    
 	def create_plot(self) -> plotly.graph_objs._figure.Figure:
@@ -370,51 +53,176 @@ class MeanOfDurationByModelnameByDataset(BasePlotly):
 		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
 			df = df.to_frame(index=False)
    
-		df = df.reset_index().drop('index', axis=1, errors='ignore')
-		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+		y_name = "cer"
 
 		chart_data = pd.concat([
 			df['model_name'],
-			df['duration'],
+			df[y_name],
 			df['dataset'],
 		], axis=1)
 
-		s = chart_data['model_name']
-		chart_data.loc[:, 'model_name'] = s
-		s = chart_data['dataset']
-		chart_data.loc[:, 'dataset'] = s
-		chart_data = chart_data.sort_values(['dataset', 'model_name'])
-		chart_data = chart_data.rename(columns={'model_name': 'x'})
-		chart_data_mean = chart_data.groupby(['dataset','x'], dropna=True)[['duration']].mean()
-		chart_data_mean.columns = ['duration|mean']
-		chart_data = chart_data_mean.reset_index()
-		chart_data = chart_data.dropna()
-
-		charts = []
-		chart_data_20000 = chart_data.query("""`dataset` == '20000_mijlen'""")
-		chart_data_RDH_VL = chart_data.query("""`dataset` == 'RDH_VL'""")
-		charts.append(go.Bar(
-			x=chart_data_20000['x'],
-			y=chart_data_20000['duration|mean'],
-			name='(dataset: 20000_mijlen)'
-		))
-		charts.append(go.Bar(
-			x=chart_data_RDH_VL['x'],
-			y=chart_data_RDH_VL['duration|mean'],
-			name='(dataset: RDH_VL)'
-		))
-		figure = go.Figure(data=charts, layout=go.Layout({
-			'barmode': 'group',
-			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': 'Mean of duration by model_name'},
-			'xaxis': {'title': {'text': 'model_name'}},
-			'yaxis': {'title': {'text': 'Mean of duration in seconds'}, 'type': 'linear'}
-		}))
+		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		figure.update_layout(
+			title={
+				'text': self.__class__.__name__,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'},
+			showlegend=True)
 
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(MeanOfDurationByModelnameByDataset)
+Plotting.CUSTOM_RESULTS.append(CerByModelnameByDataset)
 
+class WerByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+   
+		y_name = "wer"
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df[y_name],
+			df['dataset'],
+		], axis=1)
+
+		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		figure.update_layout(
+			title={
+				'text': self.__class__.__name__,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'},
+			showlegend=True)
+
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(WerByModelnameByDataset)
+
+class DurationByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+   
+		y_name = "duration"
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df[y_name],
+			df['dataset'],
+		], axis=1)
+
+		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		figure.update_layout(
+			title={
+				'text': self.__class__.__name__,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'},
+			showlegend=True)
+
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(DurationByModelnameByDataset)
+
+class MerByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+   
+		y_name = "mer"
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df[y_name],
+			df['dataset'],
+		], axis=1)
+
+		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		figure.update_layout(
+			title={
+				'text': self.__class__.__name__,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'},
+			showlegend=True)
+
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(MerByModelnameByDataset)
+
+class WilByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+   
+		y_name = "wil"
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df[y_name],
+			df['dataset'],
+		], axis=1)
+
+		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		figure.update_layout(
+			title={
+				'text': self.__class__.__name__,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'},
+			showlegend=True)
+
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(WilByModelnameByDataset)
+
+class WipByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+   
+		y_name = "wip"
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df[y_name],
+			df['dataset'],
+		], axis=1)
+
+		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		figure.update_layout(
+			title={
+				'text': self.__class__.__name__,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'},
+			showlegend=True)
+
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(WipByModelnameByDataset)
 class MeanOfMetricByModelname(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
 	"""    
@@ -478,53 +286,3 @@ class MeanOfMetricByModelname(BasePlotly):
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_RESULTS.append(MeanOfMetricByModelname)
-
-class BoxPlotOfModelsWer(BaseMatPlotLib):
-	"""Class that is used to create boxplot for wer by models.
-	"""    
-	def create_plot(self) -> matplotlib.figure.Figure:
-		plot = sns.boxplot(data=self.df, x="wer", y="model_name")
-		fig = plot.get_figure()
-		return fig
-# Add models to Plotting
-Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsWer)
-
-class BoxPlotOfModelsMer(BaseMatPlotLib):
-	"""Class that is used to create boxplot for mer by models.
-	"""    
-	def create_plot(self) -> matplotlib.figure.Figure:
-		plot = sns.boxplot(data=self.df, x="mer", y="model_name")
-		fig = plot.get_figure()
-		return fig
-# Add models to Plotting
-Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsMer)
-
-class BoxPlotOfModelsWil(BaseMatPlotLib):
-	"""Class that is used to create boxplot for wil by models.
-	"""    
-	def create_plot(self) -> matplotlib.figure.Figure:
-		plot = sns.boxplot(data=self.df, x="wil", y="model_name")
-		fig = plot.get_figure()
-		return fig
-# Add models to Plotting
-Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsWil)
-
-class BoxPlotOfModelsWip(BaseMatPlotLib):
-	"""Class that is used to create boxplot for wip by models.
-	"""    
-	def create_plot(self) -> matplotlib.figure.Figure:
-		plot = sns.boxplot(data=self.df, x="wip", y="model_name")
-		fig = plot.get_figure()
-		return fig
-# Add models to Plotting
-Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsWip)
-
-class BoxPlotOfModelsCer(BaseMatPlotLib):
-	"""Class that is used to create boxplot for cer by models.
-	"""    
-	def create_plot(self) -> matplotlib.figure.Figure:
-		plot = sns.boxplot(data=self.df, x="cer", y="model_name")
-		fig = plot.get_figure()
-		return fig
-# Add models to Plotting
-Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsCer)

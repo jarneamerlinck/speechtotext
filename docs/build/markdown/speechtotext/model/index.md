@@ -368,6 +368,8 @@ Bases: `ModelWrapper`
 Wrapper for AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET need to be in the ‘.env’ file in current directory.
 
 
+#### BUCKET_EXIST(_ = Fals_ )
+
 #### LANGUAGE_CODE(_: st_ _ = 'nl-NL_ )
 
 #### get_model()

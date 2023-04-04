@@ -49,9 +49,9 @@ Benchmark is used to test/validate an model.
 Parent class for all benchmark classes.
 
 
-#### BENCHMARK_SAMPLES(_: [Dataset](../datasets.md#speechtotext.datasets.Dataset_ _ = Non_ )
+#### BENCHMARK_SAMPLES(_: [Dataset](../index.md#speechtotext.datasets.Dataset_ _ = Non_ )
 
-#### DATASET(_: [Dataset](../datasets.md#speechtotext.datasets.Dataset_ _ = Non_ )
+#### DATASET(_: [Dataset](../index.md#speechtotext.datasets.Dataset_ _ = Non_ )
 
 #### convert_to_pandas()
 convert metrics to dataframe.
@@ -95,13 +95,13 @@ save outputs of benchmark to csv.
 
 
 
-#### _classmethod_ set_dataset(dataset: [Dataset](../datasets.md#speechtotext.datasets.Dataset))
+#### _classmethod_ set_dataset(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset))
 Set dataset for Benchmark class.
 
 
 * **Parameters**
 
-    **dataset** ([*Dataset*](../datasets.md#speechtotext.datasets.Dataset)) – Dataset to use with benchmark.
+    **dataset** ([*Dataset*](../index.md#speechtotext.datasets.Dataset)) – Dataset to use with benchmark.
 
 
 
@@ -115,7 +115,7 @@ Update the sample dataset.
 
 
 
-### speechtotext.benchmark.benchmarks.run_benchmarks(benchmark_list: list[speechtotext.benchmark.benchmarks.Benchmark], benchmark_dataset: [Dataset](../datasets.md#speechtotext.datasets.Dataset), number_of_samples: int)
+### speechtotext.benchmark.benchmarks.run_benchmarks(benchmark_list: list[speechtotext.benchmark.benchmarks.Benchmark], benchmark_dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), number_of_samples: int)
 Run al benchmarks out of list.
 
 
@@ -125,7 +125,7 @@ Run al benchmarks out of list.
     * **benchmark_list** (*list**[**Benchmark**]*) – List of benchmarks to run.
 
 
-    * **dataset** ([*Dataset*](../datasets.md#speechtotext.datasets.Dataset)) – Dataset to use for benchmark.
+    * **dataset** ([*Dataset*](../index.md#speechtotext.datasets.Dataset)) – Dataset to use for benchmark.
 
 
     * **number_of_samples** (*int*) – Number of samples used in benchmark.
@@ -169,6 +169,30 @@ Benchmark for Amazon API transcribe.
 
 
 #### MODEL_BASE(_ = 'AmazonAPI_ )
+
+#### create_models()
+Creates an list of ModelWrappers.
+
+
+* **Returns**
+
+    list of model wrappers.
+
+
+
+* **Return type**
+
+    list[[ModelWrapper](../model/index.md#speechtotext.model.modelWrapper.ModelWrapper)]
+
+
+
+### _class_ speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark(with_cleaning=True)
+Bases: `Benchmark`
+
+Benchmark for Deepgram API.
+
+
+#### MODEL_BASE(_ = 'DeepgramAPI_ )
 
 #### create_models()
 Creates an list of ModelWrappers.

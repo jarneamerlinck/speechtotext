@@ -21,7 +21,7 @@
     
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Functions" href="functions.html" />
+  <link rel="next" title="Speechtotext model package" href="model/index.html" />
   <link rel="prev" title="Code Examples for speechtotext" href="../examples.html" /> 
   </head>
 
@@ -140,7 +140,9 @@
             
               <ul>
                 
-                  <li class="toctree-l2"><a href="#speechtotext-package" class="reference internal">Speechtotext package</a></li>
+                  <li class="toctree-l2"><a href="#module-speechtotext.functions" class="reference internal">speechtotext.functions</a></li>
+                
+                  <li class="toctree-l2"><a href="#module-speechtotext.datasets" class="reference internal">speechtotext.datasets</a></li>
                 
               </ul>
             
@@ -205,8 +207,8 @@
        title="previous chapter">← Code Examples for speechtotext</a>
   </li>
   <li class="next">
-    <a href="functions.html"
-       title="next chapter">Functions →</a>
+    <a href="model/index.html"
+       title="next chapter">Speechtotext model package →</a>
   </li>
 </ul>
   
@@ -217,19 +219,342 @@
   <section id="speechtotext-package">
 <h1>Speechtotext package<a class="headerlink" href="#speechtotext-package" title="Permalink to this heading">¶</a></h1>
 <p>This package is used to test and validate Speech2text models.</p>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Submodules:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="functions.html">Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="functions.html#module-speechtotext.functions">speechtotext.functions module</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="datasets.html">Datasets</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="datasets.html#module-speechtotext.datasets">speechtotext.datasets module</a></li>
-</ul>
-</li>
-</ul>
+<section id="module-speechtotext.functions">
+<span id="speechtotext-functions"></span><h2>speechtotext.functions<a class="headerlink" href="#module-speechtotext.functions" title="Permalink to this heading">¶</a></h2>
+<p>Module with functions for the speechtotext package.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Force torch use for cuda</span>
+<span class="n">force_cudnn_initialization</span><span class="p">()</span>
+
+<span class="c1"># Clean string</span>
+<span class="n">string_cleaning</span><span class="p">(</span><span class="s2">&quot;this has.//./8 to be cleaned::@&quot;</span><span class="p">)</span>
+</pre></div>
 </div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.functions.REGEX_STRING_PARSE">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">REGEX_STRING_PARSE</span></span><a class="headerlink" href="#speechtotext.functions.REGEX_STRING_PARSE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regex string parce used to clean up transcripts that are used to validate the speechtotext models.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.functions.BaseResult">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">BaseResult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.BaseResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.functions.BaseResult.save">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.BaseResult.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves Result to report folder.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="speechtotext.functions.RequiredEnvVariablesMissing">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">RequiredEnvVariablesMissing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.RequiredEnvVariablesMissing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception when an required env variable is missing.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.benchmark_results_to_csv">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">benchmark_results_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'reports/Benchmark_results_2023_04_04_13_36_13.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.benchmark_results_to_csv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates csv from benchmark results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>results</strong> (<em>list</em><em>[</em><em>pd.core.frame.DataFrame</em><em>]</em>) – List of results from benchmarks.</p></li>
+<li><p><strong>save_name</strong> (<em>str</em><em>, </em><em>optional</em>) – filename of output. Defaults to DEFAULT_CSV_NAME.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.force_cudnn_initialization">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">force_cudnn_initialization</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.force_cudnn_initialization" title="Permalink to this definition">¶</a></dt>
+<dd><p>Force torch use for cuda.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.get_extention_of_file_name">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">get_extention_of_file_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.functions.get_extention_of_file_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get extention ofo file name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – File name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extention of tile name</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.get_file_name_without_extention">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">get_file_name_without_extention</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.functions.get_file_name_without_extention" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get extention ofo file name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_name</strong> (<em>str</em>) – File name</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Extention of tile name</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.join_benchmark_results">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">join_benchmark_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">set_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#speechtotext.functions.join_benchmark_results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join Benchmark results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>results</strong> (<em>list</em><em>[</em><em>pd.core.frame.DataFrame</em><em>]</em>) – results of benchmarks.</p></li>
+<li><p><strong>set_index</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set True if [“model_name”, “audio_ID”] can be set as index. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe with results of all benchmarks.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.load_env_variable">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">load_env_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.functions.load_env_variable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads and returns env variable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env_name</strong> (<em>str</em>) – .env key</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#speechtotext.functions.RequiredEnvVariablesMissing" title="speechtotext.functions.RequiredEnvVariablesMissing"><strong>RequiredEnvVariablesMissing</strong></a> – Prints the variable name if its missing.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>value of the .env key.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.multidispatch">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">multidispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">types</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.multidispatch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow for Method overloading for classes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.save_folder_name">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">save_folder_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">report_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'reports'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.functions.save_folder_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Makes folder path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>report_name</strong> (<em>str</em>) – name of report.</p></li>
+<li><p><strong>folder_name</strong> (<em>str</em><em>, </em><em>optional</em>) – Name of folder. Defaults to DEFAULT_REPORT_FOLDER.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>path to save folder</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.separate_benchmark_results_by_model">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">separate_benchmark_results_by_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#speechtotext.functions.separate_benchmark_results_by_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Seperate benchmark results for each model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pd.core.frame.DataFrame</strong> (<em>dataframe</em>) – Dataframe with results of all benchmarks.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>results of benchmarks.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>(list[pd.core.frame.DataFrame])</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.string_cleaning">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">string_cleaning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.functions.string_cleaning" title="Permalink to this definition">¶</a></dt>
+<dd><p>Cleaning of string for STT.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – uncleaned string.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>cleaned string.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="speechtotext.functions.timing">
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">timing</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.timing" title="Permalink to this definition">¶</a></dt>
+<dd><p>Functions used to time duration of function.</p>
+</dd></dl>
+
+</section>
+<section id="module-speechtotext.datasets">
+<span id="speechtotext-datasets"></span><h2>speechtotext.datasets<a class="headerlink" href="#module-speechtotext.datasets" title="Permalink to this heading">¶</a></h2>
+<p>Module to create the datasets for the speechtotext package.</p>
+<p>The dataset requires an <code class="docutils literal notranslate"><span class="pre">transcripts.txt</span></code> in the dataset folder. In there are relative links to the audiofiles followed by <code class="docutils literal notranslate"><span class="pre">|</span></code> and the transcript of that file.</p>
+<p>Example of entry:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">20000</span><span class="n">_mijlen</span><span class="o">/</span><span class="mi">20000</span><span class="n">_mijlen_0001</span><span class="o">.</span><span class="n">wav</span><span class="o">|</span><span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">trancsript</span> <span class="n">of</span> <span class="n">the</span> <span class="n">audio</span>
+</pre></div>
+</div>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">speechtotext.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Settings</span>
+<span class="n">path_to_dir</span> <span class="o">=</span> <span class="s2">&quot;path/to/dir&quot;</span>
+<span class="n">dataset_name</span> <span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;existing_id&quot;</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Create dataset</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="n">path_to_dir</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="n">dataset_name</span><span class="p">)</span>
+
+<span class="c1"># Print number of samples</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">number_of_samples</span><span class="p">())</span>
+
+<span class="c1"># Get audio file from id</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">get_path_of_fragment</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+
+<span class="c1"># Get transcript from id</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">get_text_of_id</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+
+<span class="c1"># Get n trandom samples</span>
+<span class="n">dataset_n_random</span><span class="p">:</span> <span class="n">SampleDataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_n_samples</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.datasets.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ext</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'.wav'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.datasets.Dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.datasets.DatasetBare" title="speechtotext.datasets.DatasetBare"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatasetBare</span></code></a></p>
+<p>Class to extract data from the dataset folder.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset.get_n_samples">
+<span class="sig-name descname"><span class="pre">get_n_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#speechtotext.datasets.SampleDataset" title="speechtotext.datasets.SampleDataset"><span class="pre">SampleDataset</span></a></span></span><a class="headerlink" href="#speechtotext.datasets.Dataset.get_n_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get n random samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>number_of_samples</strong> (<em>int</em>) – Number of random samples.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dataset with the samples.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#speechtotext.datasets.SampleDataset" title="speechtotext.datasets.SampleDataset">SampleDataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset.load_transcript">
+<span class="sig-name descname"><span class="pre">load_transcript</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.datasets.Dataset.load_transcript" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads transcript.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.datasets.DatasetBare">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.datasets.</span></span><span class="sig-name descname"><span class="pre">DatasetBare</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ext</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'.wav'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.datasets.DatasetBare" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Bare dataset class.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.DatasetBare.get_path_of_fragment">
+<span class="sig-name descname"><span class="pre">get_path_of_fragment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.datasets.DatasetBare.get_path_of_fragment" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets path of fragment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – id of file.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>FileNotFoundError</strong> – if id doesn’t exist.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path to fragment.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.DatasetBare.get_text_of_id">
+<span class="sig-name descname"><span class="pre">get_text_of_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.datasets.DatasetBare.get_text_of_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get text of fragment id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – id of fragment.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>string of spoken text.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.DatasetBare.number_of_samples">
+<span class="sig-name descname"><span class="pre">number_of_samples</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#speechtotext.datasets.DatasetBare.number_of_samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get number of samples in dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of samples in dataset.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.datasets.SampleDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.datasets.</span></span><span class="sig-name descname"><span class="pre">SampleDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ext</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'.wav'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.datasets.SampleDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.datasets.DatasetBare" title="speechtotext.datasets.DatasetBare"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatasetBare</span></code></a></p>
+<p>Sample of dataset.</p>
+</dd></dl>
+
+</section>
 </section>
 
 
@@ -241,8 +566,8 @@
        title="previous chapter">← Code Examples for speechtotext</a>
   </li>
   <li class="next">
-    <a href="functions.html"
-       title="next chapter">Functions →</a>
+    <a href="model/index.html"
+       title="next chapter">Speechtotext model package →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2023 Jarne Amerlinck.

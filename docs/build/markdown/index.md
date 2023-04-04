@@ -15,10 +15,10 @@
 * [Speechtotext package](speechtotext/index.md)
 
 
-    * [Functions](speechtotext/functions.md)
+    * [speechtotext.functions](speechtotext/index.md#module-speechtotext.functions)
 
 
-    * [Datasets](speechtotext/datasets.md)
+    * [speechtotext.datasets](speechtotext/index.md#module-speechtotext.datasets)
 
 
 * [Speechtotext model package](speechtotext/model/index.md)
@@ -34,6 +34,9 @@
 
 
     * [speechtotext.model.googleWrapper](speechtotext/model/index.md#module-speechtotext.model.googleWrapper)
+
+
+    * [speechtotext.model.deepgramWrapper](speechtotext/model/index.md#module-speechtotext.model.deepgramWrapper)
 
 
 * [speechtotext benchmark package](speechtotext/benchmark/index.md)

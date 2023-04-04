@@ -240,7 +240,13 @@
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>access-id
 <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>acces-key
 <span class="nv">AMAZON_REGION</span><span class="o">=</span>eu-west-3
-<span class="nv">AMAZON_BUCKET</span><span class="o">=</span>bucketName
+<span class="nv">AMAZON_BUCKET</span><span class="o">=</span>bucket-name
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>For bucket with name <code class="docutils literal notranslate"><span class="pre">foo</span></code> following command returns the region.</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl<span class="w"> </span>-sI<span class="w"> </span>foo.s3.amazonaws.com<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;/^x-amz-bucket-region:/ { print $2 }&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -248,6 +254,12 @@
 <h3>Google API<a class="headerlink" href="#google-api" title="Permalink to this heading">¶</a></h3>
 <p>This is the file for an service account.  <a class="reference external" href="https://developers.google.com/workspace/guides/create-credentials">Link to google cloud docs</a>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;/path/to/keyfile.json&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="deepgram-api">
+<h3>Deepgram API<a class="headerlink" href="#deepgram-api" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">DEEPGRAM_API_KEY</span><span class="o">=</span>somemorerandomnumberlettersandmorerandomnessform
 </pre></div>
 </div>
 </section>

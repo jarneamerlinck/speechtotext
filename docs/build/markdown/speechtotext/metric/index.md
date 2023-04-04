@@ -16,7 +16,7 @@ print(m)
 ```
 
 
-### _class_ speechtotext.metric.metrics.Metrics(reference: str, hypothesis: str, audio_id: str, with_cleaning=True)
+### _class_ speechtotext.metric.metrics.Metrics(reference: str, hypothesis: str, audio_id: str, duration: float, with_cleaning=True)
 Bases: `object`
 
 Class to calulate the metrics.
@@ -81,14 +81,14 @@ Class to calulate the metrics.
 
 
 
-### speechtotext.metric.metrics.notebook_metrics_print(dataset: [Dataset](../datasets.md#speechtotext.datasets.Dataset), id: str, hypothesis: str)
+### speechtotext.metric.metrics.notebook_metrics_print(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), id: str, hypothesis: str)
 Print metrics from transcript and hypothesis.
 
 
 * **Parameters**
 
     
-    * **dataset** ([*Dataset*](../datasets.md#speechtotext.datasets.Dataset)) – dataset of audio.
+    * **dataset** ([*Dataset*](../index.md#speechtotext.datasets.Dataset)) – dataset of audio.
 
 
     * **id** (*str*) – id of the audio file.
@@ -119,7 +119,7 @@ Plotting.CUSTOM_RESULTS.append(BenchmarkResults)
 
 
 ### _class_ speechtotext.metric.customMetrics.BaseMetrics(df: DataFrame, report_folder: str, file_name: str)
-Bases: [`BaseResult`](../functions.md#speechtotext.functions.BaseResult)
+Bases: [`BaseResult`](../index.md#speechtotext.functions.BaseResult)
 
 Base class used to create metrics for result dataframe.
 

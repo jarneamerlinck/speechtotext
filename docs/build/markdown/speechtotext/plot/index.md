@@ -19,7 +19,7 @@ plotting.save_all()
 
 
 ### _class_ speechtotext.plot.plotting.BaseMatPlotLib(df: DataFrame, report_folder: str, file_name: str)
-Bases: [`BaseResult`](../functions.md#speechtotext.functions.BaseResult)
+Bases: [`BaseResult`](../index.md#speechtotext.functions.BaseResult)
 
 Parent class for custom plots with matplotlib. Child class should be made and added to Plotting.CUSTOM_RESULTS.
 
@@ -45,7 +45,7 @@ Saves plot to folder.
 
 
 ### _class_ speechtotext.plot.plotting.BasePlotly(df: DataFrame, report_folder: str, file_name: str)
-Bases: [`BaseResult`](../functions.md#speechtotext.functions.BaseResult)
+Bases: [`BaseResult`](../index.md#speechtotext.functions.BaseResult)
 
 Parent class for custom plots with Plotly. Code can be generated from d-tale. Child class should be made and added to Plotting.CUSTOM_RESULTS.
 
@@ -76,7 +76,7 @@ Bases: `object`
 Class that is used to create plots for an benchmark.
 
 
-#### CUSTOM_RESULTS(_: list[[speechtotext.functions.BaseResult](../functions.md#speechtotext.functions.BaseResult)_ _ = [<class 'speechtotext.metric.customMetrics.BenchmarkResults'>, <class 'speechtotext.metric.customMetrics.DefaultMetrics'>_ )
+#### CUSTOM_RESULTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [<class 'speechtotext.metric.customMetrics.BenchmarkResults'>, <class 'speechtotext.metric.customMetrics.DefaultMetrics'>_ )
 
 #### launch_dtale()
 Launch webui to explore the data.
@@ -124,117 +124,7 @@ Plotting.CUSTOM_RESULTS.append(DemoPlotlyExample)
 ```
 
 
-### _class_ speechtotext.plot.customPlots.BoxPlotOfModelsCer(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BaseMatPlotLib`
-
-Class that is used to create boxplot for cer by models.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.BoxPlotOfModelsMer(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BaseMatPlotLib`
-
-Class that is used to create boxplot for mer by models.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.BoxPlotOfModelsWer(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BaseMatPlotLib`
-
-Class that is used to create boxplot for wer by models.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.BoxPlotOfModelsWil(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BaseMatPlotLib`
-
-Class that is used to create boxplot for wil by models.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.BoxPlotOfModelsWip(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BaseMatPlotLib`
-
-Class that is used to create boxplot for wip by models.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.MeanOfCerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+### _class_ speechtotext.plot.customPlots.CerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
 Bases: `BasePlotly`
 
 Class that is used to create plots for an benchmark.
@@ -256,7 +146,7 @@ Creates plot to be saved.
 
 
 
-### _class_ speechtotext.plot.customPlots.MeanOfMerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+### _class_ speechtotext.plot.customPlots.DurationByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
 Bases: `BasePlotly`
 
 Class that is used to create plots for an benchmark.
@@ -300,7 +190,7 @@ Creates plot to be saved.
 
 
 
-### _class_ speechtotext.plot.customPlots.MeanOfWerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+### _class_ speechtotext.plot.customPlots.MerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
 Bases: `BasePlotly`
 
 Class that is used to create plots for an benchmark.
@@ -322,7 +212,7 @@ Creates plot to be saved.
 
 
 
-### _class_ speechtotext.plot.customPlots.MeanOfWilByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+### _class_ speechtotext.plot.customPlots.WerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
 Bases: `BasePlotly`
 
 Class that is used to create plots for an benchmark.
@@ -344,7 +234,29 @@ Creates plot to be saved.
 
 
 
-### _class_ speechtotext.plot.customPlots.MeanOfWipByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+### _class_ speechtotext.plot.customPlots.WilByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+
+### _class_ speechtotext.plot.customPlots.WipByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
 Bases: `BasePlotly`
 
 Class that is used to create plots for an benchmark.

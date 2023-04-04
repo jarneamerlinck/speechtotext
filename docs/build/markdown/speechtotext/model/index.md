@@ -69,14 +69,14 @@ Bases: `ABC`
 Abstract Wrapper for model.
 
 
-#### benchmark_n_samples(dataset: [Dataset](../datasets.md#speechtotext.datasets.Dataset), number_of_samples: int, with_cleaning=True)
+#### benchmark_n_samples(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), number_of_samples: int, with_cleaning=True)
 Benchmark n samples with model.
 
 
 * **Parameters**
 
     
-    * **dataset** ([*Dataset*](../datasets.md#speechtotext.datasets.Dataset)) – Dataset of audio.
+    * **dataset** ([*Dataset*](../index.md#speechtotext.datasets.Dataset)) – Dataset of audio.
 
 
     * **number_of_samples** (*int*) – Number of random samples to benchmerk.
@@ -98,14 +98,14 @@ Benchmark n samples with model.
 
 
 
-#### benchmark_sample(dataset: [Dataset](../datasets.md#speechtotext.datasets.Dataset), id: str, with_cleaning=True)
+#### benchmark_sample(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), id: str, with_cleaning=True)
 Benchmark sample with model.
 
 
 * **Parameters**
 
     
-    * **dataset** ([*Dataset*](../datasets.md#speechtotext.datasets.Dataset)) – Dataset of audio.
+    * **dataset** ([*Dataset*](../index.md#speechtotext.datasets.Dataset)) – Dataset of audio.
 
 
     * **id** (*str*) – Id of audio file.
@@ -127,14 +127,14 @@ Benchmark sample with model.
 
 
 
-#### benchmark_samples(samples: [SampleDataset](../datasets.md#speechtotext.datasets.SampleDataset), with_cleaning=True)
+#### benchmark_samples(samples: [SampleDataset](../index.md#speechtotext.datasets.SampleDataset), with_cleaning=True)
 Benchmark samples with model.
 
 
 * **Parameters**
 
     
-    * **dataset** ([*Dataset*](../datasets.md#speechtotext.datasets.Dataset)) – Dataset of audio.
+    * **dataset** ([*Dataset*](../index.md#speechtotext.datasets.Dataset)) – Dataset of audio.
 
 
     * **number_of_samples** (*int*) – Number of random samples to benchmerk.
@@ -368,7 +368,7 @@ Bases: `ModelWrapper`
 Wrapper for AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET need to be in the ‘.env’ file in current directory.
 
 
-#### BUCKET_EXIST(_ = Fals_ )
+#### BUCKET_EXIST(_ = Tru_ )
 
 #### LANGUAGE_CODE(_: st_ _ = 'nl-NL_ )
 
@@ -452,6 +452,89 @@ Wrapper for google API. GOOGLE_APPLICATION_CREDENTIALS needs to be in the ‘.en
 
 
 #### LANGUAGE_CODE(_: st_ _ = 'nl-BE_ )
+
+#### get_model()
+Get model.
+
+
+#### get_transcript_of_file(audio_file_name: str)
+Get transcript of audio file with API call.
+
+
+* **Parameters**
+
+    **audio_file_name** (*str*) – Path to audio file.
+
+
+
+* **Returns**
+
+    Transcript of audio file.
+
+
+
+* **Return type**
+
+    str
+
+
+## speechtotext.model.deepgramWrapper
+
+Modelwrapper implemented for deepgram API.
+
+DEEPGRAM_API_KEY needs to be in the ‘.env’.
+
+Use this module like this:
+
+```python
+# Imports
+from speechtotext.model.deepgramWrapper import *
+from speechtotext.benchmark.benchmarks import *
+from speechtotext.datasets import Dataset
+
+# Create dataset
+number_of_samples = 10
+dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
+id = "existing_audio_id"
+number_of_samples = 10
+
+# Create wrapper
+deepgramWrapper = deepgramAPIVersion(deepgramAPIVersion.deepgram_DEFAULT)
+
+# Get model
+deepgramWrapper.get_model()
+
+# Benchmark choisen sample
+deepgramWrapper.benchmark_sample(dataset, id)
+
+# Benchmark n random samples
+array = deepgramWrapper.benchmark_n_samples(dataset, number_of_samples)
+```
+
+
+### _class_ speechtotext.model.deepgramWrapper.DeepgramAPIVersion(value)
+Bases: `ModelVersion`
+
+Enum for the available deepgram API models.
+
+
+* **Parameters**
+
+    **Enum** (*deepgramAPIVersion*) – Available whisper API models.
+
+
+
+#### DEEPGRAM_DEFAULT(_ = 'general_ )
+
+#### DEEPGRAM_ENHANCED(_ = 'general-enhanced_ )
+
+### _class_ speechtotext.model.deepgramWrapper.DeepgramAPIWrapper(model_version: DeepgramAPIVersion)
+Bases: `ModelWrapper`
+
+Wrapper for deepgram API. DEEPGRAM_API_KEY needs to be in the ‘.env’ file in current directory.
+
+
+#### LANGUAGE_CODE(_: st_ _ = 'nl_ )
 
 #### get_model()
 Get model.

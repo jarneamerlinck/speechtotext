@@ -40,3 +40,11 @@ speechtotext.model.deepgramWrapper
     :members:
     :undoc-members:
     :show-inheritance:
+
+speechtotext.model.assemblyAIWrapper
+------------------------------------
+
+.. automodule:: speechtotext.model.assemblyAIWrapper
+    :members:
+    :undoc-members:
+    :show-inheritance:

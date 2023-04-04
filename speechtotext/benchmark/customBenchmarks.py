@@ -36,6 +36,7 @@ from speechtotext.model.whisperWrapper import WhisperVersion, WhisperWrapper, Wh
 from speechtotext.model.amazonWrapper import AmazonAPIVersion, AmazonAPIWrapper
 from speechtotext.model.googleWrapper import GoogleAPIVersion, GoogleAPIWrapper
 from speechtotext.model.deepgramWrapper import DeepgramAPIVersion, DeepgramAPIWrapper
+from speechtotext.model.assemblyAIWrapper import AssemblyAIAPIVersion, AssemblyAIAPIWrapper
 
 
 class WhisperBenchmark(Benchmark):
@@ -91,4 +92,15 @@ class DeepgramAPIBenchmark(Benchmark):
 		models = []
 		for version in DeepgramAPIVersion:
 			models.append(DeepgramAPIWrapper(version))
+		return models
+
+class AssemblyAIAPIBenchmark(Benchmark):
+	"""Benchmark for AssemblyAI API.
+	"""
+	MODEL_BASE = "AssemblyAIAPI"
+
+	def create_models(self) -> list[ModelWrapper]:
+		models = []
+		for version in AssemblyAIAPIVersion:
+			models.append(AssemblyAIAPIWrapper(version))
 		return models

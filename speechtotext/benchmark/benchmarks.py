@@ -44,7 +44,7 @@ import pandas as pd
 from speechtotext.model.modelWrapper import ModelWrapper
 from speechtotext.model.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
 from speechtotext.datasets import Dataset
-from speechtotext.functions import multidispatch, join_benchmark_results, separate_benchmark_results_by_model, DEFAULT_HTML_TITLE, DEFAULT_CSV_NAME, DEFAULT_CSV_NAME, DEFAULT_REPORTS_FOLDER
+from speechtotext.functions import multidispatch, join_benchmark_results, save_folder_name, DEFAULT_HTML_TITLE, DEFAULT_CSV_NAME, DEFAULT_CSV_NAME, DEFAULT_REPORTS_FOLDER
 
 
 class Benchmark(ABC):
@@ -87,30 +87,38 @@ class Benchmark(ABC):
 			for metric in metrics:
 
 				new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name,metric.duration,
-                         metric.reference, metric.wer, metric.mer,  metric.wil, metric.wip, metric.cer], index=column_names)
+						 metric.reference, metric.wer, metric.mer,  metric.wil, metric.wip, metric.cer], index=column_names)
 				df = pd.concat([df, new_row.to_frame().T], ignore_index=True)
 
 		return df
 
 	def __call__(self, number_of_samples: int, with_cleaning=True):
-		"""Benchmark n samples.
-
-		Args:
-				number_of_samples (int): number of random samples.
+		"""Benchmark n samples.benchmark_results_to_csv
 				with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 		"""
 		self.metrics = []
+		column_names_errors = ["model_name", "audio_ID","dataset","reference", "message"]
+		df_errors = pd.DataFrame(columns=column_names_errors)
+
 		Benchmark.update_samples(number_of_samples)
 
 		for model in self.models:
 			print(
 				f"benchmark for model {model.model_version} with dataset {self.BENCHMARK_SAMPLES.name}")
+			model_name = f"{self.MODEL_BASE}_{model.model_version.value}"
 			try:
 				self.metrics.append(model.benchmark_samples(
 					self.BENCHMARK_SAMPLES, with_cleaning))
 			except Exception as e:
 				print(e)
+			
+			if model.model_errors.shape[0] != 0:
+				model.model_errors["model_name"] = model_name
+				model.model_errors = model.model_errors[column_names_errors]
+				df_errors = pd.concat([df_errors, model.model_errors])
 
+		self.df_errors = df_errors
+  
 	@abstractmethod
 	def create_models(self) -> list[ModelWrapper]:
 		"""Creates an list of ModelWrappers.
@@ -155,18 +163,26 @@ class Benchmark(ABC):
 			cls.DATASET = new_dataset
 		cls.update_samples(number_of_samples)
 
-def run_benchmarks(benchmark_list: list[Benchmark], benchmark_dataset:Dataset, number_of_samples:int) -> list[pd.core.frame.DataFrame]:
+def run_benchmarks(benchmark_list: list[Benchmark], benchmark_dataset:Dataset, number_of_samples:int, report_name:str) -> list[pd.core.frame.DataFrame]:
 	"""Run al benchmarks out of list.
 
 	Args:
 		benchmark_list (list[Benchmark]): List of benchmarks to run.
 		dataset (Dataset): Dataset to use for benchmark.
 		number_of_samples (int): Number of samples used in benchmark.
+		report_name (str): Name of report. To save the errors to.
 	""" 
 	results: list[pd.core.frame.DataFrame] = []
+	errors: list[pd.core.frame.DataFrame] = []
 	Benchmark.DATASET =  benchmark_dataset
 	
 	for index, benchmark in enumerate(benchmark_list):
 		benchmark(number_of_samples)
-		results.append( benchmark.convert_to_pandas())
+		results.append(benchmark.convert_to_pandas())
+		errors.append(benchmark.df_errors)
+
+	df = join_benchmark_results(errors, set_index=False)
+	folder = save_folder_name(report_name)
+	df.to_csv(f"{folder}/errors_{benchmark_dataset.name}.csv", index=False)
+	print(f"Number of errors logged to .csv file: {df.shape[0]}")
 	return results

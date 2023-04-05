@@ -66,7 +66,6 @@ class ModelWrapper(ABC):
 	"""Abstract Wrapper for model.
 	"""    
 
-
 	def __init__(self, model_version:ModelVersion):
 		"""Wrapper for models.
 
@@ -74,6 +73,8 @@ class ModelWrapper(ABC):
 			model_version (WhisperModel): Model version of whisper to use.
 		"""     
 		self.model_version = model_version
+		self.column_names_errors = ["audio_ID","dataset", "reference", "message"]
+		self.model_errors = pd.DataFrame(columns=self.column_names_errors)	
 	
 	@abstractmethod
 	def get_transcript_of_file(self, audio_file_name:str) -> str:
@@ -153,13 +154,16 @@ class ModelWrapper(ABC):
 			list: list of metrics for each sample.
 		"""     
 		metrics_array = []
-  
+
 		for _, row in samples.dataset.iterrows():
+			id = row["id"]
 			try:
-				id = row["id"]
 				metrics_array.append(self.benchmark_sample(samples, id, with_cleaning))
 			except Exception as e:
-				print(e)
+				# new_row = pd.Series([id, samples.name,str(e)], index=self.column_names_errors)
+				error = f'"{e}"'
+				new_row = pd.Series([id, samples.name, samples.get_text_of_id(id), error], index=self.column_names_errors)
+				self.model_errors = pd.concat([self.model_errors, new_row.to_frame().T], ignore_index=True)
 
 		return metrics_array
 		

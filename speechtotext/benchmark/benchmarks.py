@@ -10,6 +10,7 @@ Use this module like this:
  
 	# Settings
 	number_of_samples = 10
+	report_name = "report name"
 	dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
 	Benchmark.set_dataset(dataset)
 
@@ -35,7 +36,7 @@ Use this module like this:
 	benchmark_list: list[Benchmark] = [wb, wAPIb]
  
 	# Run benchmarks
-	results = run_benchmarks(benchmark_list, benchmark_dataset, number_of_samples)
+	results = run_benchmarks(benchmark_list, benchmark_dataset, number_of_samples, report_name)
 """
 
 from abc import ABC, abstractmethod

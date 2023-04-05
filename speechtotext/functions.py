@@ -138,7 +138,7 @@ class BaseResult(ABC):
 		pass
 
 def get_extention_of_file_name(file_name:str)-> str:
-	"""Get extention ofo file name.
+	"""Get extention of file name.
 
 	Args:
 		file_name (str): File name
@@ -150,7 +150,7 @@ def get_extention_of_file_name(file_name:str)-> str:
 	return file_extension
 
 def get_file_name_without_extention(file_name:str)-> str:
-	"""Get extention ofo file name.
+	"""Get extention of file name.
 
 	Args:
 		file_name (str): File name

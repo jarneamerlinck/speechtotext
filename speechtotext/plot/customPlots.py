@@ -62,6 +62,13 @@ class CerByModelnameByDataset(BasePlotly):
 		], axis=1)
 
 		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		for s in df["model_name"].unique():
+			figure.add_annotation(x=s,
+							y = df[df['model_name']==s][y_name].max(),
+							text = f"{len(df[df['model_name']==s]['model_name'])}",
+							yshift = 10,
+							showarrow = False
+							)
 		figure.update_layout(
 			title={
 				'text': self.__class__.__name__,
@@ -92,6 +99,13 @@ class WerByModelnameByDataset(BasePlotly):
 		], axis=1)
 
 		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		for s in df["model_name"].unique():
+			figure.add_annotation(x=s,
+							y = df[df['model_name']==s][y_name].max(),
+							text = f"{len(df[df['model_name']==s]['model_name'])}",
+							yshift = 10,
+							showarrow = False
+							)
 		figure.update_layout(
 			title={
 				'text': self.__class__.__name__,
@@ -122,6 +136,14 @@ class DurationByModelnameByDataset(BasePlotly):
 		], axis=1)
 
 		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		for s in df["model_name"].unique():
+			figure.add_annotation(x=s,
+							y = df[df['model_name']==s][y_name].max(),
+							text = f"{len(df[df['model_name']==s]['model_name'])}",
+							yshift = 10,
+							showarrow = False
+							)
+
 		figure.update_layout(
 			title={
 				'text': self.__class__.__name__,
@@ -133,6 +155,45 @@ class DurationByModelnameByDataset(BasePlotly):
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_RESULTS.append(DurationByModelnameByDataset)
+
+class DurationLogByModelnameByDataset(BasePlotly):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+   
+		y_name = "duration"
+
+		chart_data = pd.concat([
+			df['model_name'],
+			df[y_name],
+			df['dataset'],
+		], axis=1)
+
+		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset", log_y=True)
+		for s in df["model_name"].unique():
+			figure.add_annotation(x=s,
+							y = df[df['model_name']==s][y_name].max(),
+							text = f"{len(df[df['model_name']==s]['model_name'])}",
+							yshift = 10,
+							showarrow = False
+							)
+   
+		figure.update_layout(
+			title={
+				'text': self.__class__.__name__,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'},
+			yaxis_title = "duration (log)",
+			showlegend=True)
+
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_RESULTS.append(DurationLogByModelnameByDataset)
 
 class MerByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -152,6 +213,13 @@ class MerByModelnameByDataset(BasePlotly):
 		], axis=1)
 
 		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		for s in df["model_name"].unique():
+			figure.add_annotation(x=s,
+							y = df[df['model_name']==s][y_name].max(),
+							text = f"{len(df[df['model_name']==s]['model_name'])}",
+							yshift = 10,
+							showarrow = False
+							)
 		figure.update_layout(
 			title={
 				'text': self.__class__.__name__,
@@ -182,6 +250,13 @@ class WilByModelnameByDataset(BasePlotly):
 		], axis=1)
 
 		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		for s in df["model_name"].unique():
+			figure.add_annotation(x=s,
+							y = df[df['model_name']==s][y_name].max(),
+							text = f"{len(df[df['model_name']==s]['model_name'])}",
+							yshift = 10,
+							showarrow = False
+							)
 		figure.update_layout(
 			title={
 				'text': self.__class__.__name__,
@@ -212,6 +287,13 @@ class WipByModelnameByDataset(BasePlotly):
 		], axis=1)
 
 		figure = px.box(chart_data, x="model_name", y=y_name, color="dataset")
+		for s in df["model_name"].unique():
+			figure.add_annotation(x=s,
+							y = df[df['model_name']==s][y_name].max(),
+							text = f"{len(df[df['model_name']==s]['model_name'])}",
+							yshift = 10,
+							showarrow = False
+							)
 		figure.update_layout(
 			title={
 				'text': self.__class__.__name__,

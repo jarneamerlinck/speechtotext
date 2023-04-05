@@ -64,7 +64,7 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 		Args:
 			model_version (assemblyAiAPIVersion): Model version of assemblyAi STT API to use.
 		"""     
-		self.model_version = model_version
+		super().__init__(model_version)
 
 	def get_model(self):
 		"""Get model.

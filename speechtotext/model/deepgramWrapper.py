@@ -60,7 +60,7 @@ class DeepgramAPIWrapper(ModelWrapper):
 		Args:
 			model_version (deepgramAPIVersion): Model version of deepgram STT API to use.
 		"""     
-		self.model_version = model_version
+		super().__init__(model_version)
 
 	def get_model(self):
 		"""Get model.

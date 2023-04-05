@@ -58,7 +58,7 @@ class WhisperWrapper(ModelWrapper):
 		Args:
 			model_version (WhisperVersion): Model version of whisper to use.
 		"""     
-		self.model_version = model_version
+		super().__init__(model_version)
 
 	def get_model(self):
 		"""Get model.
@@ -96,7 +96,7 @@ class WhisperAPIWrapper(ModelWrapper):
 		Args:
 			model_version (WhisperAPIWrapper): Model version of whisper to use.
 		"""     
-		self.model_version = model_version
+		super().__init__(model_version)
 
 	def get_model(self):
 		"""Get model.

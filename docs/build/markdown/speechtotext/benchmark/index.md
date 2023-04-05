@@ -13,6 +13,7 @@ from speechtotext.benchmark.benchmarks import *
 
 # Settings
 number_of_samples = 10
+report_name = "report name"
 dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
 Benchmark.set_dataset(dataset)
 
@@ -38,7 +39,7 @@ benchmark_dataset = dataset_RDH
 benchmark_list: list[Benchmark] = [wb, wAPIb]
 
 # Run benchmarks
-results = run_benchmarks(benchmark_list, benchmark_dataset, number_of_samples)
+results = run_benchmarks(benchmark_list, benchmark_dataset, number_of_samples, report_name)
 ```
 
 
@@ -115,7 +116,7 @@ Update the sample dataset.
 
 
 
-### speechtotext.benchmark.benchmarks.run_benchmarks(benchmark_list: list[speechtotext.benchmark.benchmarks.Benchmark], benchmark_dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), number_of_samples: int)
+### speechtotext.benchmark.benchmarks.run_benchmarks(benchmark_list: list[speechtotext.benchmark.benchmarks.Benchmark], benchmark_dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), number_of_samples: int, report_name: str)
 Run al benchmarks out of list.
 
 
@@ -129,6 +130,9 @@ Run al benchmarks out of list.
 
 
     * **number_of_samples** (*int*) – Number of samples used in benchmark.
+
+
+    * **report_name** (*str*) – Name of report. To save the errors to.
 
 
 ## customBenchmarks

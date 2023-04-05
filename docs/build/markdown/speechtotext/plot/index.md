@@ -168,6 +168,28 @@ Creates plot to be saved.
 
 
 
+### _class_ speechtotext.plot.customPlots.DurationLogByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+
 ### _class_ speechtotext.plot.customPlots.MeanOfMetricByModelname(df: DataFrame, report_folder: str, file_name: str)
 Bases: `BasePlotly`
 

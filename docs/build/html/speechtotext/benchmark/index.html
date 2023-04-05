@@ -228,6 +228,7 @@
 
 <span class="c1"># Settings</span>
 <span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">report_name</span> <span class="o">=</span> <span class="s2">&quot;report name&quot;</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
 <span class="n">Benchmark</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
 
@@ -253,7 +254,7 @@
 <span class="n">benchmark_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Benchmark</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">wb</span><span class="p">,</span> <span class="n">wAPIb</span><span class="p">]</span>
 
 <span class="c1"># Run benchmarks</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">run_benchmarks</span><span class="p">(</span><span class="n">benchmark_list</span><span class="p">,</span> <span class="n">benchmark_dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">run_benchmarks</span><span class="p">(</span><span class="n">benchmark_list</span><span class="p">,</span> <span class="n">benchmark_dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">,</span> <span class="n">report_name</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="py class">
@@ -337,7 +338,7 @@ Parent class for all benchmark classes.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="speechtotext.benchmark.benchmarks.run_benchmarks">
-<span class="sig-prename descclassname"><span class="pre">speechtotext.benchmark.benchmarks.</span></span><span class="sig-name descname"><span class="pre">run_benchmarks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">benchmark_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#speechtotext.benchmark.benchmarks.Benchmark" title="speechtotext.benchmark.benchmarks.Benchmark"><span class="pre">speechtotext.benchmark.benchmarks.Benchmark</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#speechtotext.benchmark.benchmarks.run_benchmarks" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">speechtotext.benchmark.benchmarks.</span></span><span class="sig-name descname"><span class="pre">run_benchmarks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">benchmark_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#speechtotext.benchmark.benchmarks.Benchmark" title="speechtotext.benchmark.benchmarks.Benchmark"><span class="pre">speechtotext.benchmark.benchmarks.Benchmark</span></a><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark_dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#speechtotext.benchmark.benchmarks.run_benchmarks" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run al benchmarks out of list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -345,6 +346,7 @@ Parent class for all benchmark classes.</p>
 <li><p><strong>benchmark_list</strong> (<em>list</em><em>[</em><a class="reference internal" href="#speechtotext.benchmark.benchmarks.Benchmark" title="speechtotext.benchmark.benchmarks.Benchmark"><em>Benchmark</em></a><em>]</em>) – List of benchmarks to run.</p></li>
 <li><p><strong>dataset</strong> (<a class="reference internal" href="../index.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – Dataset to use for benchmark.</p></li>
 <li><p><strong>number_of_samples</strong> (<em>int</em>) – Number of samples used in benchmark.</p></li>
+<li><p><strong>report_name</strong> (<em>str</em>) – Name of report. To save the errors to.</p></li>
 </ul>
 </dd>
 </dl>

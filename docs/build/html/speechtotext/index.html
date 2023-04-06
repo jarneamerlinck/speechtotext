@@ -140,9 +140,9 @@
             
               <ul>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.functions" class="reference internal">speechtotext.functions</a></li>
+                  <li class="toctree-l2"><a href="#module-speechtotext.functions" class="reference internal">functions</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.datasets" class="reference internal">speechtotext.datasets</a></li>
+                  <li class="toctree-l2"><a href="#module-speechtotext.datasets" class="reference internal">datasets</a></li>
                 
               </ul>
             
@@ -220,7 +220,7 @@
 <h1>Speechtotext package<a class="headerlink" href="#speechtotext-package" title="Permalink to this heading">¶</a></h1>
 <p>This package is used to test and validate Speech2text models.</p>
 <section id="module-speechtotext.functions">
-<span id="speechtotext-functions"></span><h2>speechtotext.functions<a class="headerlink" href="#module-speechtotext.functions" title="Permalink to this heading">¶</a></h2>
+<span id="functions"></span><h2>functions<a class="headerlink" href="#module-speechtotext.functions" title="Permalink to this heading">¶</a></h2>
 <p>Module with functions for the speechtotext package.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -265,7 +265,7 @@
 
 <dl class="py function">
 <dt class="sig sig-object py" id="speechtotext.functions.benchmark_results_to_csv">
-<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">benchmark_results_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'reports/Benchmark_results_2023_04_06_12_52_54.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.benchmark_results_to_csv" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">speechtotext.functions.</span></span><span class="sig-name descname"><span class="pre">benchmark_results_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'reports/Benchmark_results_2023_04_06_15_40_05.csv'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.functions.benchmark_results_to_csv" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates csv from benchmark results.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -425,7 +425,7 @@
 
 </section>
 <section id="module-speechtotext.datasets">
-<span id="speechtotext-datasets"></span><h2>speechtotext.datasets<a class="headerlink" href="#module-speechtotext.datasets" title="Permalink to this heading">¶</a></h2>
+<span id="datasets"></span><h2>datasets<a class="headerlink" href="#module-speechtotext.datasets" title="Permalink to this heading">¶</a></h2>
 <p>Module to create the datasets for the speechtotext package.</p>
 <p>The dataset requires an <code class="docutils literal notranslate"><span class="pre">transcripts.txt</span></code> in the dataset folder. In there are relative links to the audiofiles followed by <code class="docutils literal notranslate"><span class="pre">|</span></code> and the transcript of that file.</p>
 <p>Example of entry:</p>

@@ -1,6 +1,6 @@
 # Speechtotext model package
 
-## speechtotext.model.modelWrapper
+## modelWrapper
 
 Module with the parent classes for the model wrapper. Needs to be implemented to use the benchmarks.
 
@@ -181,7 +181,7 @@ Get transcript of audio file.
     str
 
 
-## speechtotext.model.whisperWrapper
+## whisperWrapper
 
 Modelwrapper implemented for whisper. Local and API.
 
@@ -314,7 +314,7 @@ Get transcript of audio file.
     str
 
 
-## speechtotext.model.amazonWrapper
+## amazonWrapper
 
 Modelwrapper implemented for Amazon STT API.
 
@@ -397,7 +397,7 @@ Get transcript of audio file with API call.
     str
 
 
-## speechtotext.model.googleWrapper
+## googleWrapper
 
 Modelwrapper implemented for google STT API.
 
@@ -478,7 +478,7 @@ Get transcript of audio file with API call.
     str
 
 
-## speechtotext.model.deepgramWrapper
+## deepgramWrapper
 
 Modelwrapper implemented for deepgram API.
 
@@ -561,7 +561,7 @@ Get transcript of audio file with API call.
     str
 
 
-## speechtotext.model.assemblyAIWrapper
+## assemblyAIWrapper
 
 Modelwrapper implemented for assemblyAi API.
 
@@ -652,7 +652,7 @@ Get transcript of audio file with API call.
     str
 
 
-## speechtotext.model.azureWrapper
+## azureWrapper
 
 Modelwrapper implemented for Azure STT API.
 
@@ -729,7 +729,7 @@ Get transcript of audio file with API call.
     str
 
 
-## speechtotext.model.speechmaticsAIWrapper
+## speechmaticsWrapper
 
 Modelwrapper implemented for Speechmatics STT API.
 

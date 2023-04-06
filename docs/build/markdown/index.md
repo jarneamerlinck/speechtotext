@@ -15,37 +15,37 @@
 * [Speechtotext package](speechtotext/index.md)
 
 
-    * [speechtotext.functions](speechtotext/index.md#module-speechtotext.functions)
+    * [functions](speechtotext/index.md#module-speechtotext.functions)
 
 
-    * [speechtotext.datasets](speechtotext/index.md#module-speechtotext.datasets)
+    * [datasets](speechtotext/index.md#module-speechtotext.datasets)
 
 
 * [Speechtotext model package](speechtotext/model/index.md)
 
 
-    * [speechtotext.model.modelWrapper](speechtotext/model/index.md#module-speechtotext.model.modelWrapper)
+    * [modelWrapper](speechtotext/model/index.md#module-speechtotext.model.modelWrapper)
 
 
-    * [speechtotext.model.whisperWrapper](speechtotext/model/index.md#module-speechtotext.model.whisperWrapper)
+    * [whisperWrapper](speechtotext/model/index.md#module-speechtotext.model.whisperWrapper)
 
 
-    * [speechtotext.model.amazonWrapper](speechtotext/model/index.md#module-speechtotext.model.amazonWrapper)
+    * [amazonWrapper](speechtotext/model/index.md#module-speechtotext.model.amazonWrapper)
 
 
-    * [speechtotext.model.googleWrapper](speechtotext/model/index.md#module-speechtotext.model.googleWrapper)
+    * [googleWrapper](speechtotext/model/index.md#module-speechtotext.model.googleWrapper)
 
 
-    * [speechtotext.model.deepgramWrapper](speechtotext/model/index.md#module-speechtotext.model.deepgramWrapper)
+    * [deepgramWrapper](speechtotext/model/index.md#module-speechtotext.model.deepgramWrapper)
 
 
-    * [speechtotext.model.assemblyAIWrapper](speechtotext/model/index.md#module-speechtotext.model.assemblyAIWrapper)
+    * [assemblyAIWrapper](speechtotext/model/index.md#module-speechtotext.model.assemblyAIWrapper)
 
 
-    * [speechtotext.model.azureWrapper](speechtotext/model/index.md#module-speechtotext.model.azureWrapper)
+    * [azureWrapper](speechtotext/model/index.md#module-speechtotext.model.azureWrapper)
 
 
-    * [speechtotext.model.speechmaticsAIWrapper](speechtotext/model/index.md#module-speechtotext.model.speechmaticsWrapper)
+    * [speechmaticsWrapper](speechtotext/model/index.md#module-speechtotext.model.speechmaticsWrapper)
 
 
 * [speechtotext benchmark package](speechtotext/benchmark/index.md)

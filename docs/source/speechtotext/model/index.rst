@@ -1,64 +1,64 @@
 Speechtotext model package
 ==========================
 
-speechtotext.model.modelWrapper
--------------------------------
+modelWrapper
+------------
 
 .. automodule:: speechtotext.model.modelWrapper
     :members:
     :undoc-members:
     :show-inheritance:
 
-speechtotext.model.whisperWrapper
----------------------------------
+whisperWrapper
+--------------
 
 .. automodule:: speechtotext.model.whisperWrapper
     :members:
     :undoc-members:
     :show-inheritance:
 
-speechtotext.model.amazonWrapper
---------------------------------
+amazonWrapper
+-------------
 
 .. automodule:: speechtotext.model.amazonWrapper
     :members:
     :undoc-members:
     :show-inheritance:
 
-speechtotext.model.googleWrapper
---------------------------------
+googleWrapper
+-------------
 
 .. automodule:: speechtotext.model.googleWrapper
     :members:
     :undoc-members:
     :show-inheritance:
 
-speechtotext.model.deepgramWrapper
-----------------------------------
+deepgramWrapper
+---------------
 
 .. automodule:: speechtotext.model.deepgramWrapper
     :members:
     :undoc-members:
     :show-inheritance:
 
-speechtotext.model.assemblyAIWrapper
-------------------------------------
+assemblyAIWrapper
+-----------------
 
 .. automodule:: speechtotext.model.assemblyAIWrapper
     :members:
     :undoc-members:
     :show-inheritance:
 
-speechtotext.model.azureWrapper
--------------------------------
+azureWrapper
+------------
 
 .. automodule:: speechtotext.model.azureWrapper
     :members:
     :undoc-members:
     :show-inheritance:
 
-speechtotext.model.speechmaticsAIWrapper
-----------------------------------------
+speechmaticsWrapper
+-------------------
 
 .. automodule:: speechtotext.model.speechmaticsWrapper
     :members:

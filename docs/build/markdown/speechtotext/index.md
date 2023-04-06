@@ -2,7 +2,7 @@
 
 This package is used to test and validate Speech2text models.
 
-## speechtotext.functions
+## functions
 
 Module with functions for the speechtotext package.
 
@@ -44,7 +44,7 @@ Bases: `Exception`
 Exception when an required env variable is missing.
 
 
-### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_06_14_45_57.csv')
+### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_06_15_40_05.csv')
 Creates csv from benchmark results.
 
 
@@ -237,7 +237,7 @@ Cleaning of string for STT.
 ### speechtotext.functions.timing(f)
 Functions used to time duration of function.
 
-## speechtotext.datasets
+## datasets
 
 Module to create the datasets for the speechtotext package.
 

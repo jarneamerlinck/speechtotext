@@ -71,3 +71,10 @@ Azure API
 
 	AZURE_SPEECH_KEY=somemorerandomnumberlettersandmorerandomnessform
 	AZURE_SPEECH_REGION=somemorerandomnumberlettersandmorerandomnessform
+
+Speechmatics API
+----------------
+
+.. code-block:: shell
+
+	SPEECHMATICS_API_KEY=somemorerandomnumberlettersandmorerandomnessform

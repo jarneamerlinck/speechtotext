@@ -160,7 +160,6 @@ class ModelWrapper(ABC):
 			try:
 				metrics_array.append(self.benchmark_sample(samples, id, with_cleaning))
 			except Exception as e:
-				# new_row = pd.Series([id, samples.name,str(e)], index=self.column_names_errors)
 				error = f'"{e}"'
 				new_row = pd.Series([id, samples.name, samples.get_text_of_id(id), error], index=self.column_names_errors)
 				self.model_errors = pd.concat([self.model_errors, new_row.to_frame().T], ignore_index=True)

@@ -27,7 +27,7 @@ Use this module like this:
 	benchmark_results_to_csv([wb])
 """
 
-from abc import ABC, abstractmethod
+from abc import ABC
 import pandas as pd
 
 from speechtotext.benchmark.benchmarks import *
@@ -38,6 +38,7 @@ from speechtotext.model.googleWrapper import GoogleAPIVersion, GoogleAPIWrapper
 from speechtotext.model.deepgramWrapper import DeepgramAPIVersion, DeepgramAPIWrapper
 from speechtotext.model.assemblyAIWrapper import AssemblyAIAPIVersion, AssemblyAIAPIWrapper
 from speechtotext.model.azureWrapper import AzureAPIVersion, AzureAPIWrapper
+from speechtotext.model.speechmaticsWrapper import SpeechmaticsAPIVersion, SpeechmaticsAPIWrapper
 
 
 class WhisperBenchmark(Benchmark):
@@ -115,4 +116,15 @@ class AzureAPIBenchmark(Benchmark):
 		models = []
 		for version in AzureAPIVersion:
 			models.append(AzureAPIWrapper(version))
+		return models
+
+class SpeechmaticsAPIBenchmark(Benchmark):
+	"""Benchmark for Speechmatics API.
+	"""
+	MODEL_BASE = "SpeechmaticsAPI"
+
+	def create_models(self) -> list[ModelWrapper]:
+		models = []
+		for version in SpeechmaticsAPIVersion:
+			models.append(SpeechmaticsAPIWrapper(version))
 		return models

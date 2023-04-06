@@ -161,6 +161,10 @@
                 
                   <li class="toctree-l2"><a href="#module-speechtotext.model.assemblyAIWrapper" class="reference internal">speechtotext.model.assemblyAIWrapper</a></li>
                 
+                  <li class="toctree-l2"><a href="#module-speechtotext.model.azureWrapper" class="reference internal">speechtotext.model.azureWrapper</a></li>
+                
+                  <li class="toctree-l2"><a href="#module-speechtotext.model.speechmaticsWrapper" class="reference internal">speechtotext.model.speechmaticsAIWrapper</a></li>
+                
               </ul>
             
           </li>
@@ -277,10 +281,10 @@
 <dt class="sig sig-object py" id="speechtotext.model.modelWrapper.ModelVersion">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.modelWrapper.</span></span><span class="sig-name descname"><span class="pre">ModelVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.modelWrapper.ModelVersion" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
-<p>Enum for the availible models.</p>
+<p>Enum for the Available models.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>Enum</strong> (<a class="reference internal" href="#speechtotext.model.modelWrapper.ModelVersion" title="speechtotext.model.modelWrapper.ModelVersion"><em>ModelVersion</em></a>) – Availible models.</p>
+<dd class="field-odd"><p><strong>Enum</strong> (<a class="reference internal" href="#speechtotext.model.modelWrapper.ModelVersion" title="speechtotext.model.modelWrapper.ModelVersion"><em>ModelVersion</em></a>) – Available models.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -869,6 +873,173 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.get_transcript_of_file">
 <span class="sig-name descname"><span class="pre">get_transcript_of_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.get_transcript_of_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get transcript of audio file with API call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>audio_file_name</strong> (<em>str</em>) – Path to audio file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transcript of audio file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-speechtotext.model.azureWrapper">
+<span id="speechtotext-model-azurewrapper"></span><h2>speechtotext.model.azureWrapper<a class="headerlink" href="#module-speechtotext.model.azureWrapper" title="Permalink to this heading">¶</a></h2>
+<p>Modelwrapper implemented for Azure STT API.</p>
+<p>AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the ‘.env’.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.azureWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.benchmark.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># Create dataset</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;existing_audio_id&quot;</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Create wrapper</span>
+<span class="n">azureWrapper</span> <span class="o">=</span> <span class="n">AzureAPIVersion</span><span class="p">(</span><span class="n">AzureAPIVersion</span><span class="o">.</span><span class="n">AZURE_DEFAULT</span><span class="p">)</span>
+
+<span class="c1"># Get model</span>
+<span class="n">azureWrapper</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span>
+
+<span class="c1"># Benchmark choisen sample</span>
+<span class="n">azureWrapper</span><span class="o">.</span><span class="n">benchmark_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+
+<span class="c1"># Benchmark n random samples</span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">azureWrapper</span><span class="o">.</span><span class="n">benchmark_n_samples</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.azureWrapper.AzureAPIVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.azureWrapper.</span></span><span class="sig-name descname"><span class="pre">AzureAPIVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.azureWrapper.AzureAPIVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelVersion" title="speechtotext.model.modelWrapper.ModelVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelVersion</span></code></a></p>
+<p>Enum for the available AZURE API models.
+:param Enum: Available whisper API models.
+:type Enum: AzureAPIVersion</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.azureWrapper.AzureAPIVersion.AZURE_DEFAULT">
+<span class="sig-name descname"><span class="pre">AZURE_DEFAULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AzureApi'</span></em><a class="headerlink" href="#speechtotext.model.azureWrapper.AzureAPIVersion.AZURE_DEFAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.azureWrapper.AzureAPIWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.azureWrapper.</span></span><span class="sig-name descname"><span class="pre">AzureAPIWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#speechtotext.model.azureWrapper.AzureAPIVersion" title="speechtotext.model.azureWrapper.AzureAPIVersion"><span class="pre">AzureAPIVersion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.azureWrapper.AzureAPIWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a></p>
+<p>Wrapper for AZURE API. AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the ‘.env’ file in current directory.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.azureWrapper.AzureAPIWrapper.LANGUAGE_CODE">
+<span class="sig-name descname"><span class="pre">LANGUAGE_CODE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nl-BE'</span></em><a class="headerlink" href="#speechtotext.model.azureWrapper.AzureAPIWrapper.LANGUAGE_CODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.azureWrapper.AzureAPIWrapper.get_model">
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.azureWrapper.AzureAPIWrapper.get_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.azureWrapper.AzureAPIWrapper.get_transcript_of_file">
+<span class="sig-name descname"><span class="pre">get_transcript_of_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.model.azureWrapper.AzureAPIWrapper.get_transcript_of_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get transcript of audio file with API call.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>audio_file_name</strong> (<em>str</em>) – Path to audio file.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transcript of audio file.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-speechtotext.model.speechmaticsWrapper">
+<span id="speechtotext-model-speechmaticsaiwrapper"></span><h2>speechtotext.model.speechmaticsAIWrapper<a class="headerlink" href="#module-speechtotext.model.speechmaticsWrapper" title="Permalink to this heading">¶</a></h2>
+<p>Modelwrapper implemented for Speechmatics STT API.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Package version speechmatics-python==1.6.4 is needed to run the script. Errors on 1.7.0</p>
+</div>
+<p>SPEECHMATICS_API_KEY needs to be in the ‘.env’ file in current directory.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.speechmaticsWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.benchmark.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># Create dataset</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="s2">&quot;existing_audio_id&quot;</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="c1"># Create wrapper</span>
+<span class="n">speechmaticsWrapper</span> <span class="o">=</span> <span class="n">SpeechmaticsAPIVersion</span><span class="p">(</span><span class="n">SpeechmaticsAPIVersion</span><span class="o">.</span><span class="n">SPEECHMATICS_DEFAULT</span><span class="p">)</span>
+
+<span class="c1"># Get model</span>
+<span class="n">speechmaticsWrapper</span><span class="o">.</span><span class="n">get_model</span><span class="p">()</span>
+
+<span class="c1"># Benchmark choisen sample</span>
+<span class="n">speechmaticsWrapper</span><span class="o">.</span><span class="n">benchmark_sample</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+
+<span class="c1"># Benchmark n random samples</span>
+<span class="n">array</span> <span class="o">=</span> <span class="n">speechmaticsWrapper</span><span class="o">.</span><span class="n">benchmark_n_samples</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.speechmaticsWrapper.</span></span><span class="sig-name descname"><span class="pre">SpeechmaticsAPIVersion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelVersion" title="speechtotext.model.modelWrapper.ModelVersion"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelVersion</span></code></a></p>
+<p>Enum for the available SPEECHMATICS API models.
+:param Enum: Available whisper API models.
+:type Enum: SpeechmaticsAPIVersion</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion.SPEECHMATICS_DEFAULT">
+<span class="sig-name descname"><span class="pre">SPEECHMATICS_DEFAULT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SpeechmaticsApi'</span></em><a class="headerlink" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion.SPEECHMATICS_DEFAULT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.model.speechmaticsWrapper.</span></span><span class="sig-name descname"><span class="pre">SpeechmaticsAPIWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_version</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion" title="speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion"><span class="pre">SpeechmaticsAPIVersion</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a></p>
+<p>Wrapper for SPEECHMATICS API. SPEECHMATICS_API_KEY needs to be in the ‘.env’ file in current directory.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.CONNECTION_URL">
+<span class="sig-name descname"><span class="pre">CONNECTION_URL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'wss://eu2.rt.speechmatics.com/v2/'</span></em><a class="headerlink" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.CONNECTION_URL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.LANGUAGE_CODE">
+<span class="sig-name descname"><span class="pre">LANGUAGE_CODE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nl'</span></em><a class="headerlink" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.LANGUAGE_CODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.get_model">
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.get_model" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get model.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.get_transcript_of_file">
+<span class="sig-name descname"><span class="pre">get_transcript_of_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.get_transcript_of_file" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get transcript of audio file with API call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

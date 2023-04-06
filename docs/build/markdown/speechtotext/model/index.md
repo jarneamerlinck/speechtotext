@@ -54,12 +54,12 @@ benchmark(number_of_samples)
 ### _class_ speechtotext.model.modelWrapper.ModelVersion(value)
 Bases: `Enum`
 
-Enum for the availible models.
+Enum for the Available models.
 
 
 * **Parameters**
 
-    **Enum** (*ModelVersion*) – Availible models.
+    **Enum** (*ModelVersion*) – Available models.
 
 
 
@@ -626,6 +626,164 @@ Wrapper for assemblyAi API. ASSEMBLY_AI_API_KEY needs to be in the ‘.env’ fi
 #### TRANSCRIPT_ENDPOINT(_: st_ _ = 'https://api.assemblyai.com/v2/transcript_ )
 
 #### UPLOAD_ENDPOINT(_: st_ _ = 'https://api.assemblyai.com/v2/upload_ )
+
+#### get_model()
+Get model.
+
+
+#### get_transcript_of_file(audio_file_name: str)
+Get transcript of audio file with API call.
+
+
+* **Parameters**
+
+    **audio_file_name** (*str*) – Path to audio file.
+
+
+
+* **Returns**
+
+    Transcript of audio file.
+
+
+
+* **Return type**
+
+    str
+
+
+## speechtotext.model.azureWrapper
+
+Modelwrapper implemented for Azure STT API.
+
+AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the ‘.env’.
+
+Use this module like this:
+
+```python
+# Imports
+from speechtotext.model.azureWrapper import *
+from speechtotext.benchmark.benchmarks import *
+from speechtotext.datasets import Dataset
+
+# Create dataset
+number_of_samples = 10
+dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
+id = "existing_audio_id"
+number_of_samples = 10
+
+# Create wrapper
+azureWrapper = AzureAPIVersion(AzureAPIVersion.AZURE_DEFAULT)
+
+# Get model
+azureWrapper.get_model()
+
+# Benchmark choisen sample
+azureWrapper.benchmark_sample(dataset, id)
+
+# Benchmark n random samples
+array = azureWrapper.benchmark_n_samples(dataset, number_of_samples)
+```
+
+
+### _class_ speechtotext.model.azureWrapper.AzureAPIVersion(value)
+Bases: `ModelVersion`
+
+Enum for the available AZURE API models.
+:param Enum: Available whisper API models.
+:type Enum: AzureAPIVersion
+
+
+#### AZURE_DEFAULT(_ = 'AzureApi_ )
+
+### _class_ speechtotext.model.azureWrapper.AzureAPIWrapper(model_version: AzureAPIVersion)
+Bases: `ModelWrapper`
+
+Wrapper for AZURE API. AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the ‘.env’ file in current directory.
+
+
+#### LANGUAGE_CODE(_: st_ _ = 'nl-BE_ )
+
+#### get_model()
+Get model.
+
+
+#### get_transcript_of_file(audio_file_name: str)
+Get transcript of audio file with API call.
+
+
+* **Parameters**
+
+    **audio_file_name** (*str*) – Path to audio file.
+
+
+
+* **Returns**
+
+    Transcript of audio file.
+
+
+
+* **Return type**
+
+    str
+
+
+## speechtotext.model.speechmaticsAIWrapper
+
+Modelwrapper implemented for Speechmatics STT API.
+
+**WARNING**: Package version speechmatics-python==1.6.4 is needed to run the script. Errors on 1.7.0
+
+SPEECHMATICS_API_KEY needs to be in the ‘.env’ file in current directory.
+
+Use this module like this:
+
+```python
+# Imports
+from speechtotext.model.speechmaticsWrapper import *
+from speechtotext.benchmark.benchmarks import *
+from speechtotext.datasets import Dataset
+
+# Create dataset
+number_of_samples = 10
+dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
+id = "existing_audio_id"
+number_of_samples = 10
+
+# Create wrapper
+speechmaticsWrapper = SpeechmaticsAPIVersion(SpeechmaticsAPIVersion.SPEECHMATICS_DEFAULT)
+
+# Get model
+speechmaticsWrapper.get_model()
+
+# Benchmark choisen sample
+speechmaticsWrapper.benchmark_sample(dataset, id)
+
+# Benchmark n random samples
+array = speechmaticsWrapper.benchmark_n_samples(dataset, number_of_samples)
+```
+
+
+### _class_ speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion(value)
+Bases: `ModelVersion`
+
+Enum for the available SPEECHMATICS API models.
+:param Enum: Available whisper API models.
+:type Enum: SpeechmaticsAPIVersion
+
+
+#### SPEECHMATICS_DEFAULT(_ = 'SpeechmaticsApi_ )
+
+### _class_ speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper(model_version: SpeechmaticsAPIVersion)
+Bases: `ModelWrapper`
+
+Wrapper for SPEECHMATICS API. SPEECHMATICS_API_KEY needs to be in the ‘.env’ file in current directory.
+
+
+#### CONNECTION_URL(_ = 'wss://eu2.rt.speechmatics.com/v2/_ )
+
+#### LANGUAGE_CODE(_: st_ _ = 'nl_ )
 
 #### get_model()
 Get model.

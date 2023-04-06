@@ -42,6 +42,12 @@
     * [speechtotext.model.assemblyAIWrapper](speechtotext/model/index.md#module-speechtotext.model.assemblyAIWrapper)
 
 
+    * [speechtotext.model.azureWrapper](speechtotext/model/index.md#module-speechtotext.model.azureWrapper)
+
+
+    * [speechtotext.model.speechmaticsAIWrapper](speechtotext/model/index.md#module-speechtotext.model.speechmaticsWrapper)
+
+
 * [speechtotext benchmark package](speechtotext/benchmark/index.md)
 
 

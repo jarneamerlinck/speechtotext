@@ -54,3 +54,16 @@ DEEPGRAM_API_KEY=somemorerandomnumberlettersandmorerandomnessform
 ```shell
 ASSEMBLY_AI_API_KEY=somemorerandomnumberlettersandmorerandomnessform
 ```
+
+### Azure API
+
+```shell
+AZURE_SPEECH_KEY=somemorerandomnumberlettersandmorerandomnessform
+AZURE_SPEECH_REGION=somemorerandomnumberlettersandmorerandomnessform
+```
+
+### Speechmatics API
+
+```shell
+SPEECHMATICS_API_KEY=somemorerandomnumberlettersandmorerandomnessform
+```

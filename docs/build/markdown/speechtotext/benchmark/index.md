@@ -214,6 +214,30 @@ Creates an list of ModelWrappers.
 
 
 
+### _class_ speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark(with_cleaning=True)
+Bases: `Benchmark`
+
+Benchmark for Azure API.
+
+
+#### MODEL_BASE(_ = 'AzureAPI_ )
+
+#### create_models()
+Creates an list of ModelWrappers.
+
+
+* **Returns**
+
+    list of model wrappers.
+
+
+
+* **Return type**
+
+    list[[ModelWrapper](../model/index.md#speechtotext.model.modelWrapper.ModelWrapper)]
+
+
+
 ### _class_ speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark(with_cleaning=True)
 Bases: `Benchmark`
 
@@ -245,6 +269,30 @@ Benchmark for Google API transcribe.
 
 
 #### MODEL_BASE(_ = 'GoogleAPI_ )
+
+#### create_models()
+Creates an list of ModelWrappers.
+
+
+* **Returns**
+
+    list of model wrappers.
+
+
+
+* **Return type**
+
+    list[[ModelWrapper](../model/index.md#speechtotext.model.modelWrapper.ModelWrapper)]
+
+
+
+### _class_ speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark(with_cleaning=True)
+Bases: `Benchmark`
+
+Benchmark for Speechmatics API.
+
+
+#### MODEL_BASE(_ = 'SpeechmaticsAPI_ )
 
 #### create_models()
 Creates an list of ModelWrappers.

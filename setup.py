@@ -26,7 +26,7 @@ REQUIRED = [
     'openai-whisper', 'openai', 'python-dotenv',
     'matplotlib', 'ipywidgets', 'seaborn',
     'dtale', 'boto3', 'google-cloud-speech',
-    'deepgram-sdk'
+    'deepgram-sdk', 'azure-cognitiveservices-speech',
 ]
 
 # What packages are optional?

@@ -64,3 +64,10 @@ AssemblyAI API
 
 	ASSEMBLY_AI_API_KEY=somemorerandomnumberlettersandmorerandomnessform
 
+Azure API
+---------
+
+.. code-block:: shell
+
+	AZURE_SPEECH_KEY=somemorerandomnumberlettersandmorerandomnessform
+	AZURE_SPEECH_REGION=somemorerandomnumberlettersandmorerandomnessform

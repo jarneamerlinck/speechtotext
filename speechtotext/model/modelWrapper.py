@@ -55,10 +55,10 @@ from speechtotext.metric.metrics import Metrics
 from speechtotext.functions import timing
 
 class ModelVersion(Enum):
-	"""Enum for the availible models.
+	"""Enum for the Available models.
 
 	Args:
-		Enum (ModelVersion): Availible models.
+		Enum (ModelVersion): Available models.
 	"""
 	pass
 

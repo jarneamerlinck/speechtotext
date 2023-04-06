@@ -4,6 +4,13 @@ This page is an collection of examples of how to use the package.
 
 ## Full usage example
 
+**NOTE**: The `.env` file might have to be loaded before running the benchmarks.
+
+```python
+from dotenv import load_dotenv
+load_dotenv()
+```
+
 Use this module like this:
 
 ```python

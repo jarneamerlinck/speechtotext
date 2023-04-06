@@ -6,8 +6,17 @@ This page is an collection of examples of how to use the package.
 Full usage example
 ++++++++++++++++++
 
+.. note::
+	The ``.env`` file might have to be loaded before running the benchmarks.
+
+	.. code-block:: python
+
+		from dotenv import load_dotenv
+		load_dotenv()
+
+
 Use this module like this:
-	
+
 .. code-block:: python
 
 	# Imports
@@ -38,7 +47,6 @@ Use this module like this:
 	# Create plots
 	plotting = Plotting(results=results, report_name = report_name)
 	plotting.save_all()
-
 
 Add new model wrapper and benchmark
 +++++++++++++++++++++++++++++++++++

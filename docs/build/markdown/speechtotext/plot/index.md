@@ -82,7 +82,7 @@ Class that is used to create plots for an benchmark.
 
 #### CUSTOM_PLOTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
 
-#### CUSTOM_RESULTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [<class 'speechtotext.metric.customMetrics.BenchmarkResults'>, <class 'speechtotext.metric.customMetrics.ResultMetrics'>_ )
+#### CUSTOM_RESULTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
 
 #### launch_dtale()
 Launch webui to explore the data.

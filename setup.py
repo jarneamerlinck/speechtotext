@@ -18,7 +18,7 @@ URL = 'https://github.com/jarneamerlinck/speechtotext'
 EMAIL = 'jarneamerlinck@gmail.com'
 AUTHOR = 'Jarne Amerlinck'
 REQUIRES_PYTHON = '>=3.9.2,<3.11'
-VERSION = '0.2.0'
+VERSION = '' # Version is defined in __version__.py in the package
 
 # What packages are required for this module to be executed?
 REQUIRED = [

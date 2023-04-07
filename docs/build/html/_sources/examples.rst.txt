@@ -37,12 +37,10 @@ Use this module like this:
 	number_of_samples = 100
 	report_name = "benchmark_name"
 
-	whisperBenchmark = WhisperBenchmark()
-	whisperAPIBenchmark = WhisperAPIBenchmark()
-	benchmark_list: list[Benchmark] = [whisperBenchmark, whisperAPIBenchmark]
+	benchmark_class_list: list[Benchmark] = [WhisperBenchmark, WhisperAPIBenchmark]
 
 	# Run benchmarks
-	results = run_benchmarks(benchmark_list, dataset, number_of_samples, report_name)
+	results = run_benchmarks(benchmark_class_list, dataset, number_of_samples, report_name)
 
 	# Create plots
 	plotting = Plotting(results=results, report_name = report_name)
@@ -133,13 +131,10 @@ Use custom benchmarks
 	number_of_samples = 100
 	report_name = "benchmark_name"
 
-	whisperBenchmark = WhisperBenchmark()
-	whisperAPIBenchmark = WhisperAPIBenchmark()
-	customModelBenchmark = CustomModelBenchmark()
-	benchmark_list: list[Benchmark] = [whisperBenchmark, whisperAPIBenchmark, customModelBenchmark]
+	benchmark_class_list: list[Benchmark] = [WhisperBenchmark, WhisperAPIBenchmark, CustomModelBenchmark]
 
 	# Run benchmarks
-	results = run_benchmarks(benchmark_list, dataset, number_of_samples, report_name)
+	results = run_benchmarks(benchmark_class_list, dataset, number_of_samples, report_name)
 
 	# Create plots
 	plotting = Plotting(results=results, report_name = report_name)

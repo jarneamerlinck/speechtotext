@@ -166,7 +166,29 @@ Creates df that needs to be saved.
 
 
 
-### _class_ speechtotext.metric.customMetrics.DefaultMetrics(df: DataFrame, report_folder: str, file_name: str)
+### _class_ speechtotext.metric.customMetrics.ErrorMetrics(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BaseMetrics`
+
+This class calulates the error statistic on the benchmark results.
+
+
+#### create_df()
+Creates df that needs to be saved.
+
+
+* **Returns**
+
+    Dataframe that needs to be saved.
+
+
+
+* **Return type**
+
+    pd.core.frame.DataFrame
+
+
+
+### _class_ speechtotext.metric.customMetrics.ResultMetrics(df: DataFrame, report_folder: str, file_name: str)
 Bases: `BaseMetrics`
 
 This class calulates the default statistic metrics on the benchmark results.

@@ -17,6 +17,10 @@ customPlots
     :undoc-members:
     :show-inheritance:
 
+customErrorPlots
+----------------
 
-
-
+.. automodule:: speechtotext.plot.customErrorPlots
+    :members:
+    :undoc-members:
+    :show-inheritance:

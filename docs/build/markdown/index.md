@@ -66,6 +66,9 @@
     * [customPlots](speechtotext/plot/index.md#module-speechtotext.plot.customPlots)
 
 
+    * [customErrorPlots](speechtotext/plot/index.md#module-speechtotext.plot.customErrorPlots)
+
+
 * [speechtotext metric package](speechtotext/metric/index.md)
 
 

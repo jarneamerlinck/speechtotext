@@ -94,3 +94,9 @@ class ResultMetrics(BaseMetrics):
 Plotting.CUSTOM_RESULTS.append(ResultMetrics)
 
 class ErrorMetrics(BaseMetrics):
+	"""This class calulates the error statistic on the benchmark results.
+	"""    
+	def create_df(self) -> pd.core.frame.DataFrame:
+		pass
+# Add metrics to Plotting
+# Plotting.CUSTOM_ERRORS.append(ErrorMetrics)

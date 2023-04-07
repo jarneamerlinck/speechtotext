@@ -102,6 +102,21 @@ def benchmark_results_to_csv(results: list[pd.core.frame.DataFrame], save_name:s
 	df = pd.concat(results)
 	df.to_csv(save_name, index=False)
  
+def save_sub_folder_name(folder_path:str, subfolder_name:str) -> str:
+	"""Creates subfolder path.
+
+	Args:
+		folder_path (str): path of parent folder.
+		subfolder_name (str): subfolder name.
+
+	Returns:
+		str: path to save folder.
+	"""    
+	folder_name =  f"{folder_path}/{subfolder_name}"
+	if not os.path.isdir(folder_name):
+		os.makedirs(folder_name)
+	return folder_name
+
 def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) -> str:
 	"""Makes folder path.
 
@@ -110,7 +125,7 @@ def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) 
 		folder_name (str, optional): Name of folder. Defaults to DEFAULT_REPORT_FOLDER.
 
 	Returns:
-		str: path to save folder
+		str: path to save folder.
 	"""    
 	folder_name =  f"{folder_name}/{report_name}_{DEFAULT_DATATIME_FORMAT}"
 	if not os.path.isdir(folder_name):
@@ -141,10 +156,10 @@ def get_extention_of_file_name(file_name:str)-> str:
 	"""Get extention of file name.
 
 	Args:
-		file_name (str): File name
+		file_name (str): File name.
 
 	Returns:
-		str: Extention of tile name
+		str: Extention of tile name.
 	"""    
 	_ , file_extension = os.path.splitext(file_name)
 	return file_extension
@@ -153,10 +168,10 @@ def get_file_name_without_extention(file_name:str)-> str:
 	"""Get extention of file name.
 
 	Args:
-		file_name (str): File name
+		file_name (str): File name.
 
 	Returns:
-		str: Extention of tile name
+		str: Extention of tile name.
 	"""    
 	file_name, _ = os.path.splitext(file_name)
 	return file_name
@@ -188,7 +203,7 @@ def load_env_variable(env_name:str)-> str:
 	"""Loads and returns env variable.
 
 	Args:
-		env_name (str): .env key
+		env_name (str): .env key.
 
 	Raises:
 		RequiredEnvVariablesMissing: Prints the variable name if its missing.

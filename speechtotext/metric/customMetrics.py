@@ -53,7 +53,7 @@ class BenchmarkResults(BaseMetrics):
 # Add metrics to Plotting
 Plotting.CUSTOM_RESULTS.append(BenchmarkResults)
 
-class DefaultMetrics(BaseMetrics):
+class ResultMetrics(BaseMetrics):
 	"""This class calulates the default statistic metrics on the benchmark results.
 	"""    
 	def create_df(self) -> pd.core.frame.DataFrame:
@@ -65,7 +65,6 @@ class DefaultMetrics(BaseMetrics):
 		df = df.reset_index().drop('index', axis=1, errors='ignore')
 		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
 
-		metric_name = "wer"
 		list_of_df = []
 		for metric_name in ["wer", "mer", "wil", "wip", "cer"]:
 			df = df[[c for c in df.columns if c not in ['reference']]]
@@ -92,4 +91,6 @@ class DefaultMetrics(BaseMetrics):
 		
 		return pd.concat(list_of_df)
 # Add metrics to Plotting
-Plotting.CUSTOM_RESULTS.append(DefaultMetrics)
+Plotting.CUSTOM_RESULTS.append(ResultMetrics)
+
+class ErrorMetrics(BaseMetrics):

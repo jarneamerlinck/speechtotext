@@ -20,7 +20,7 @@ Use this module like this:
 			fig = self.create_plot()
 			fig.savefig(self.save_file_name)
 	# Add model to Plotting
-	Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsWer)
+	Plotting.CUSTOM_PLOTS.append(BoxPlotOfModelsWer)
 
 	# Create class with plotly picture
 	from speechtotext.plot.plotting import BasePlot, Plotting
@@ -32,7 +32,7 @@ Use this module like this:
 			return fig
 
 	# Add model to Plotting
-	Plotting.CUSTOM_RESULTS.append(DemoPlotlyExample)
+	Plotting.CUSTOM_PLOTS.append(DemoPlotlyExample)
 """
 import plotly
 import plotly.express as px
@@ -79,7 +79,7 @@ class CerByModelnameByDataset(BasePlotly):
 
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(CerByModelnameByDataset)
+Plotting.CUSTOM_PLOTS.append(CerByModelnameByDataset)
 
 class WerByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -116,7 +116,7 @@ class WerByModelnameByDataset(BasePlotly):
 
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(WerByModelnameByDataset)
+Plotting.CUSTOM_PLOTS.append(WerByModelnameByDataset)
 
 class DurationByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -154,7 +154,7 @@ class DurationByModelnameByDataset(BasePlotly):
 
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(DurationByModelnameByDataset)
+Plotting.CUSTOM_PLOTS.append(DurationByModelnameByDataset)
 
 class DurationLogByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -193,7 +193,7 @@ class DurationLogByModelnameByDataset(BasePlotly):
 
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(DurationLogByModelnameByDataset)
+Plotting.CUSTOM_PLOTS.append(DurationLogByModelnameByDataset)
 
 class MerByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -230,7 +230,7 @@ class MerByModelnameByDataset(BasePlotly):
 
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(MerByModelnameByDataset)
+Plotting.CUSTOM_PLOTS.append(MerByModelnameByDataset)
 
 class WilByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -267,7 +267,7 @@ class WilByModelnameByDataset(BasePlotly):
 
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(WilByModelnameByDataset)
+Plotting.CUSTOM_PLOTS.append(WilByModelnameByDataset)
 
 class WipByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -304,7 +304,7 @@ class WipByModelnameByDataset(BasePlotly):
 
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(WipByModelnameByDataset)
+Plotting.CUSTOM_PLOTS.append(WipByModelnameByDataset)
 class MeanOfMetricByModelname(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
 	"""    
@@ -367,4 +367,4 @@ class MeanOfMetricByModelname(BasePlotly):
 		}))
 		return figure
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(MeanOfMetricByModelname)
+Plotting.CUSTOM_PLOTS.append(MeanOfMetricByModelname)

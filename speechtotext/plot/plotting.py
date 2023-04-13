@@ -20,7 +20,7 @@ import plotly
 import matplotlib
 import dtale
 
-from speechtotext.functions import join_benchmark_results, save_folder_name, BaseResult
+from speechtotext.functions import join_benchmark_results, save_folder_name, save_sub_folder_name, BaseResult, benchmark_results_to_csv
 from speechtotext.functions import DEFAULT_REPORTS_FOLDER
 
 class BasePlotly(BaseResult):
@@ -88,12 +88,21 @@ class Plotting():
 	"""Class that is used to create plots for an benchmark.
 	"""    
 	CUSTOM_RESULTS: list[BaseResult] = []
+	CUSTOM_ERRORS: list[BaseResult] = []
+	CUSTOM_PLOTS: list[BaseResult] = []
+	CUSTOM_ERROR_PLOTS: list[BaseResult] = []
 
-	def __init__(self, results:list[pd.core.frame.DataFrame], report_name:str):
+	def __init__(self, results:list[pd.core.frame.DataFrame], errors:list[pd.core.frame.DataFrame],report_name:str):
 		self.report_name = report_name
-		self.save_folder = save_folder_name(report_name)
+
+		self.save_folder = save_folder_name(f"{report_name}")
+		self.save_plot_folder = save_sub_folder_name(self.save_folder, "plots")
+		self.save_error_folder = save_sub_folder_name(self.save_folder, "error_plots")
+
 		self.df = join_benchmark_results(results)
 		self.df_with_all_cols = join_benchmark_results(results, set_index=False)
+		self.error_df = join_benchmark_results(errors, set_index=False)
+		benchmark_results_to_csv(errors, save_name= f"{self.save_folder}/errors.csv")
 	
 	def launch_dtale(self):
 		"""Launch webui to explore the data.
@@ -105,4 +114,12 @@ class Plotting():
 		"""Loops over all customPlot classes in CUSTOM_PLOTS to creates and saves the plots.
 		"""     
 		import speechtotext.plot.customPlots
-		[custom_plot_class(self.df_with_all_cols, self.save_folder, custom_plot_class.__name__).save() for custom_plot_class in self.CUSTOM_RESULTS]
+		import speechtotext.plot.customErrorPlots
+		import speechtotext.metric.customMetrics
+  		# Results
+		[custom_results_class(self.df_with_all_cols, self.save_folder, custom_results_class.__name__).save() for custom_results_class in self.CUSTOM_RESULTS]
+		[custom_plot_class(self.df_with_all_cols, self.save_plot_folder, custom_plot_class.__name__).save() for custom_plot_class in self.CUSTOM_PLOTS]
+
+		# Errors
+		[custom_plot_class(self.error_df, self.save_error_folder, custom_plot_class.__name__).save() for custom_plot_class in self.CUSTOM_ERROR_PLOTS]
+		[custom_results_class(self.error_df, self.save_folder, custom_results_class.__name__).save() for custom_results_class in self.CUSTOM_ERRORS]

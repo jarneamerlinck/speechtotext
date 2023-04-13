@@ -134,7 +134,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../index.html" class="reference internal ">Speechtotext package</a>
+              <a href="../index.html" class="reference internal ">speechtotext package</a>
             
 
             
@@ -143,7 +143,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="../model/index.html" class="reference internal ">Speechtotext model package</a>
+              <a href="../model/index.html" class="reference internal ">speechtotext model package</a>
             
 
             
@@ -170,6 +170,8 @@
                   <li class="toctree-l2"><a href="#module-speechtotext.plot.plotting" class="reference internal">plotting</a></li>
                 
                   <li class="toctree-l2"><a href="#module-speechtotext.plot.customPlots" class="reference internal">customPlots</a></li>
+                
+                  <li class="toctree-l2"><a href="#module-speechtotext.plot.customErrorPlots" class="reference internal">customErrorPlots</a></li>
                 
               </ul>
             
@@ -288,12 +290,27 @@
 
 <dl class="py class">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.plotting.</span></span><span class="sig-name descname"><span class="pre">Plotting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.Plotting" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.plotting.</span></span><span class="sig-name descname"><span class="pre">Plotting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.Plotting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Class that is used to create plots for an benchmark.</p>
 <dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_ERRORS">
+<span class="sig-name descname"><span class="pre">CUSTOM_ERRORS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><span class="pre">speechtotext.functions.BaseResult</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_ERRORS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_ERROR_PLOTS">
+<span class="sig-name descname"><span class="pre">CUSTOM_ERROR_PLOTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><span class="pre">speechtotext.functions.BaseResult</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_ERROR_PLOTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS">
+<span class="sig-name descname"><span class="pre">CUSTOM_PLOTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><span class="pre">speechtotext.functions.BaseResult</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_RESULTS">
-<span class="sig-name descname"><span class="pre">CUSTOM_RESULTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><span class="pre">speechtotext.functions.BaseResult</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'speechtotext.metric.customMetrics.BenchmarkResults'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'speechtotext.metric.customMetrics.DefaultMetrics'&gt;]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_RESULTS" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">CUSTOM_RESULTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><span class="pre">speechtotext.functions.BaseResult</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'speechtotext.metric.customMetrics.BenchmarkResults'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'speechtotext.metric.customMetrics.ResultMetrics'&gt;]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_RESULTS" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
@@ -331,7 +348,7 @@
                 <span class="n">fig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_plot</span><span class="p">()</span>
                 <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_file_name</span><span class="p">)</span>
 <span class="c1"># Add model to Plotting</span>
-<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_RESULTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BoxPlotOfModelsWer</span><span class="p">)</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_PLOTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BoxPlotOfModelsWer</span><span class="p">)</span>
 
 <span class="c1"># Create class with plotly picture</span>
 <span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span> <span class="n">BasePlot</span><span class="p">,</span> <span class="n">Plotting</span>
@@ -343,7 +360,7 @@
                 <span class="k">return</span> <span class="n">fig</span>
 
 <span class="c1"># Add model to Plotting</span>
-<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_RESULTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DemoPlotlyExample</span><span class="p">)</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_PLOTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DemoPlotlyExample</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="py class">
@@ -501,6 +518,105 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.plot.customPlots.WipByModelnameByDataset.create_plot">
 <span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.WipByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-speechtotext.plot.customErrorPlots">
+<span id="customerrorplots"></span><h2>customErrorPlots<a class="headerlink" href="#module-speechtotext.plot.customErrorPlots" title="Permalink to this heading">¶</a></h2>
+<p>Module to create custom error plots for the plotting module</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">BaseResult</span>
+<span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span> <span class="n">Plotting</span>
+
+<span class="c1"># Create class with matplotlib picture</span>
+<span class="k">class</span> <span class="nc">BoxPlotOfModelsWer</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">create_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+                <span class="n">plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;wer&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;model_name&quot;</span><span class="p">)</span>
+                <span class="n">fig</span> <span class="o">=</span> <span class="n">plot</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">fig</span>
+
+        <span class="k">def</span> <span class="nf">save_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="n">fig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_plot</span><span class="p">()</span>
+                <span class="n">fig</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_file_name</span><span class="p">)</span>
+<span class="c1"># Add model to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_ERRORS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BoxPlotOfModelsWer</span><span class="p">)</span>
+
+<span class="c1"># Create class with plotly picture</span>
+<span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span> <span class="n">BasePlot</span><span class="p">,</span> <span class="n">Plotting</span>
+<span class="k">class</span> <span class="nc">DemoPlotlyExample</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
+
+        <span class="k">def</span> <span class="nf">create_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plotly</span><span class="o">.</span><span class="n">graph_objs</span><span class="o">.</span><span class="n">_figure</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">gapminder</span><span class="p">()</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;country==&#39;Canada&#39;&quot;</span><span class="p">)</span>
+                <span class="n">fig</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;lifeExp&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Life expectancy in Canada&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">fig</span>
+
+<span class="c1"># Add model to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_ERRORS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DemoPlotlyExample</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customErrorPlots.ErrorCountByModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customErrorPlots.</span></span><span class="sig-name descname"><span class="pre">ErrorCountByModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customErrorPlots.ErrorCountByModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<p>Class that is used to create error plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customErrorPlots.ErrorCountByModel.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customErrorPlots.ErrorCountByModel.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customErrorPlots.</span></span><span class="sig-name descname"><span class="pre">ErrorCountByModelByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<p>Class that is used to create error plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customErrorPlots.ErrorCountHeatmap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customErrorPlots.</span></span><span class="sig-name descname"><span class="pre">ErrorCountHeatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customErrorPlots.ErrorCountHeatmap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<p>Class that is used to create error plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customErrorPlots.ErrorCountHeatmap.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customErrorPlots.ErrorCountHeatmap.create_plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates plot to be saved.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>

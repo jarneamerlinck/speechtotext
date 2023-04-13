@@ -30,22 +30,19 @@ Use this module like this:
 	# Run benchmarks
  	## Settings
 	number_of_samples = 5
-	wb = WhisperBenchmark()
-	wAPIb = WhisperAPIBenchmark()
 	benchmark_dataset = dataset_RDH
-	benchmark_list: list[Benchmark] = [wb, wAPIb]
+	benchmark_class_list: list[Benchmark] = [WhisperBenchmark, WhisperAPIBenchmark]
  
 	# Run benchmarks
-	results = run_benchmarks(benchmark_list, benchmark_dataset, number_of_samples, report_name)
+	results = run_benchmarks(benchmark_class_list, benchmark_dataset, number_of_samples, report_name)
 """
 
 from abc import ABC, abstractmethod
 import pandas as pd
 
 from speechtotext.model.modelWrapper import ModelWrapper
-from speechtotext.model.whisperWrapper import WhisperVersion, WhisperWrapper, WhisperAPIWrapper, WhisperAPIVersion
 from speechtotext.datasets import Dataset
-from speechtotext.functions import multidispatch, join_benchmark_results, save_folder_name, DEFAULT_HTML_TITLE, DEFAULT_CSV_NAME, DEFAULT_CSV_NAME, DEFAULT_REPORTS_FOLDER
+from speechtotext.functions import multidispatch, join_benchmark_results, save_folder_name
 
 
 class Benchmark(ABC):
@@ -54,6 +51,7 @@ class Benchmark(ABC):
 	"""
 	BENCHMARK_SAMPLES: Dataset = None
 	DATASET: Dataset = None
+	ERROR_LIST: list[pd.core.frame.DataFrame] = []
 
 	def __init__(self, with_cleaning=True):
 		"""Create benchmark object.
@@ -164,11 +162,11 @@ class Benchmark(ABC):
 			cls.DATASET = new_dataset
 		cls.update_samples(number_of_samples)
 
-def run_benchmarks(benchmark_list: list[Benchmark], benchmark_dataset:Dataset, number_of_samples:int, report_name:str) -> list[pd.core.frame.DataFrame]:
+def run_benchmarks(benchmark_class_list: list[Benchmark], benchmark_dataset:Dataset, number_of_samples:int, report_name:str) -> list[pd.core.frame.DataFrame]:
 	"""Run al benchmarks out of list.
 
 	Args:
-		benchmark_list (list[Benchmark]): List of benchmarks to run.
+		benchmark_list (list[Benchmark]): List of benchmark classes to run.
 		dataset (Dataset): Dataset to use for benchmark.
 		number_of_samples (int): Number of samples used in benchmark.
 		report_name (str): Name of report. To save the errors to.
@@ -177,13 +175,16 @@ def run_benchmarks(benchmark_list: list[Benchmark], benchmark_dataset:Dataset, n
 	errors: list[pd.core.frame.DataFrame] = []
 	Benchmark.DATASET =  benchmark_dataset
 	
-	for index, benchmark in enumerate(benchmark_list):
+	for index, benchmark_class in enumerate(benchmark_class_list):
+		benchmark = benchmark_class()
+
 		benchmark(number_of_samples)
 		results.append(benchmark.convert_to_pandas())
 		errors.append(benchmark.df_errors)
 
-	df = join_benchmark_results(errors, set_index=False)
+	Benchmark.ERROR_LIST = Benchmark.ERROR_LIST + errors
 	folder = save_folder_name(report_name)
-	df.to_csv(f"{folder}/errors_{benchmark_dataset.name}.csv", index=False)
-	print(f"Number of errors logged to .csv file: {df.shape[0]}")
+	df_error = join_benchmark_results(errors, set_index=False)
+	df_error.to_csv(f"{folder}/errors_{benchmark_dataset.name}.csv", index=False)
+	print(f"Number of errors logged to .csv file: {df_error.shape[0]}")
 	return results

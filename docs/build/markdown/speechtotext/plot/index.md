@@ -70,13 +70,19 @@ Creates plot to be saved.
 Saves plot to folder.
 
 
-### _class_ speechtotext.plot.plotting.Plotting(results: list[pandas.core.frame.DataFrame], report_name: str)
+### _class_ speechtotext.plot.plotting.Plotting(results: list[pandas.core.frame.DataFrame], errors: list[pandas.core.frame.DataFrame], report_name: str)
 Bases: `object`
 
 Class that is used to create plots for an benchmark.
 
 
-#### CUSTOM_RESULTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [<class 'speechtotext.metric.customMetrics.BenchmarkResults'>, <class 'speechtotext.metric.customMetrics.DefaultMetrics'>_ )
+#### CUSTOM_ERRORS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
+
+#### CUSTOM_ERROR_PLOTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
+
+#### CUSTOM_PLOTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
+
+#### CUSTOM_RESULTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [<class 'speechtotext.metric.customMetrics.BenchmarkResults'>, <class 'speechtotext.metric.customMetrics.ResultMetrics'>_ )
 
 #### launch_dtale()
 Launch webui to explore the data.
@@ -108,7 +114,7 @@ class BoxPlotOfModelsWer(BasePlot):
                 fig = self.create_plot()
                 fig.savefig(self.save_file_name)
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(BoxPlotOfModelsWer)
+Plotting.CUSTOM_PLOTS.append(BoxPlotOfModelsWer)
 
 # Create class with plotly picture
 from speechtotext.plot.plotting import BasePlot, Plotting
@@ -120,7 +126,7 @@ class DemoPlotlyExample(BasePlot):
                 return fig
 
 # Add model to Plotting
-Plotting.CUSTOM_RESULTS.append(DemoPlotlyExample)
+Plotting.CUSTOM_PLOTS.append(DemoPlotlyExample)
 ```
 
 
@@ -282,6 +288,110 @@ Creates plot to be saved.
 Bases: `BasePlotly`
 
 Class that is used to create plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+## customErrorPlots
+
+Module to create custom error plots for the plotting module
+
+Use this module like this:
+
+```python
+# Imports
+from speechtotext.functions import BaseResult
+from speechtotext.plot.plotting import Plotting
+
+# Create class with matplotlib picture
+class BoxPlotOfModelsWer(BasePlot):
+
+        def create_plot(self) -> matplotlib.figure.Figure:
+                plot = sns.boxplot(data=self.df, x="wer", y="model_name")
+                fig = plot.get_figure()
+                return fig
+
+        def save_plot(self):
+                fig = self.create_plot()
+                fig.savefig(self.save_file_name)
+# Add model to Plotting
+Plotting.CUSTOM_ERRORS.append(BoxPlotOfModelsWer)
+
+# Create class with plotly picture
+from speechtotext.plot.plotting import BasePlot, Plotting
+class DemoPlotlyExample(BasePlot):
+
+        def create_plot(self) -> plotly.graph_objs._figure.Figure:
+                self.df = px.data.gapminder().query("country=='Canada'")
+                fig = px.line(df, x="year", y="lifeExp", title='Life expectancy in Canada')
+                return fig
+
+# Add model to Plotting
+Plotting.CUSTOM_ERRORS.append(DemoPlotlyExample)
+```
+
+
+### _class_ speechtotext.plot.customErrorPlots.ErrorCountByModel(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create error plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+
+### _class_ speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create error plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
+
+### _class_ speechtotext.plot.customErrorPlots.ErrorCountHeatmap(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create error plots for an benchmark.
 
 
 #### create_plot()

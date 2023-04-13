@@ -33,13 +33,11 @@ benchmark_results_to_csv([wb])
 # Run benchmarks
 ## Settings
 number_of_samples = 5
-wb = WhisperBenchmark()
-wAPIb = WhisperAPIBenchmark()
 benchmark_dataset = dataset_RDH
-benchmark_list: list[Benchmark] = [wb, wAPIb]
+benchmark_class_list: list[Benchmark] = [WhisperBenchmark, WhisperAPIBenchmark]
 
 # Run benchmarks
-results = run_benchmarks(benchmark_list, benchmark_dataset, number_of_samples, report_name)
+results = run_benchmarks(benchmark_class_list, benchmark_dataset, number_of_samples, report_name)
 ```
 
 
@@ -53,6 +51,8 @@ Parent class for all benchmark classes.
 #### BENCHMARK_SAMPLES(_: [Dataset](../index.md#speechtotext.datasets.Dataset_ _ = Non_ )
 
 #### DATASET(_: [Dataset](../index.md#speechtotext.datasets.Dataset_ _ = Non_ )
+
+#### ERROR_LIST(_: list[pandas.core.frame.DataFrame_ _ = [_ )
 
 #### convert_to_pandas()
 convert metrics to dataframe.
@@ -116,14 +116,14 @@ Update the sample dataset.
 
 
 
-### speechtotext.benchmark.benchmarks.run_benchmarks(benchmark_list: list[speechtotext.benchmark.benchmarks.Benchmark], benchmark_dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), number_of_samples: int, report_name: str)
+### speechtotext.benchmark.benchmarks.run_benchmarks(benchmark_class_list: list[speechtotext.benchmark.benchmarks.Benchmark], benchmark_dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), number_of_samples: int, report_name: str)
 Run al benchmarks out of list.
 
 
 * **Parameters**
 
     
-    * **benchmark_list** (*list**[**Benchmark**]*) – List of benchmarks to run.
+    * **benchmark_list** (*list**[**Benchmark**]*) – List of benchmark classes to run.
 
 
     * **dataset** ([*Dataset*](../index.md#speechtotext.datasets.Dataset)) – Dataset to use for benchmark.

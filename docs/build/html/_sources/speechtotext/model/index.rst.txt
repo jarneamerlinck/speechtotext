@@ -1,4 +1,4 @@
-Speechtotext model package
+speechtotext model package
 ==========================
 
 modelWrapper

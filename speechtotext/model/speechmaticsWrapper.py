@@ -42,6 +42,7 @@ from speechtotext.functions import get_extention_of_file_name, string_cleaning, 
 
 class SpeechmaticsAPIVersion(ModelVersion):
 	"""Enum for the available SPEECHMATICS API models. 
+
 	Args:
 		Enum (SpeechmaticsAPIVersion): Available whisper API models.
 	"""

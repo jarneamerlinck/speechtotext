@@ -1,4 +1,4 @@
-Speechtotext package
+speechtotext package
 ====================
 
 This package is used to test and validate Speech2text models.

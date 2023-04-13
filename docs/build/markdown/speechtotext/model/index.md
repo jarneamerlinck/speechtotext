@@ -1,4 +1,4 @@
-# Speechtotext model package
+# speechtotext model package
 
 ## modelWrapper
 
@@ -769,8 +769,12 @@ array = speechmaticsWrapper.benchmark_n_samples(dataset, number_of_samples)
 Bases: `ModelVersion`
 
 Enum for the available SPEECHMATICS API models.
-:param Enum: Available whisper API models.
-:type Enum: SpeechmaticsAPIVersion
+
+
+* **Parameters**
+
+    **Enum** (*SpeechmaticsAPIVersion*) – Available whisper API models.
+
 
 
 #### SPEECHMATICS_DEFAULT(_ = 'SpeechmaticsApi_ )

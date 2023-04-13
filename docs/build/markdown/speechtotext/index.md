@@ -1,4 +1,4 @@
-# Speechtotext package
+# speechtotext package
 
 This package is used to test and validate Speech2text models.
 
@@ -44,7 +44,7 @@ Bases: `Exception`
 Exception when an required env variable is missing.
 
 
-### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_07_07_46_09.csv')
+### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_13_12_56_59.csv')
 Creates csv from benchmark results.
 
 
@@ -68,13 +68,13 @@ Get extention of file name.
 
 * **Parameters**
 
-    **file_name** (*str*) – File name
+    **file_name** (*str*) – File name.
 
 
 
 * **Returns**
 
-    Extention of tile name
+    Extention of tile name.
 
 
 
@@ -90,13 +90,13 @@ Get extention of file name.
 
 * **Parameters**
 
-    **file_name** (*str*) – File name
+    **file_name** (*str*) – File name.
 
 
 
 * **Returns**
 
-    Extention of tile name
+    Extention of tile name.
 
 
 
@@ -138,7 +138,7 @@ Loads and returns env variable.
 
 * **Parameters**
 
-    **env_name** (*str*) – .env key
+    **env_name** (*str*) – .env key.
 
 
 
@@ -180,7 +180,33 @@ Makes folder path.
 
 * **Returns**
 
-    path to save folder
+    path to save folder.
+
+
+
+* **Return type**
+
+    str
+
+
+
+### speechtotext.functions.save_sub_folder_name(folder_path: str, subfolder_name: str)
+Creates subfolder path.
+
+
+* **Parameters**
+
+    
+    * **folder_path** (*str*) – path of parent folder.
+
+
+    * **subfolder_name** (*str*) – subfolder name.
+
+
+
+* **Returns**
+
+    path to save folder.
 
 
 

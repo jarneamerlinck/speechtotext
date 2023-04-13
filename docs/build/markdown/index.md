@@ -12,7 +12,7 @@
 # Package Contents
 
 
-* [Speechtotext package](speechtotext/index.md)
+* [speechtotext package](speechtotext/index.md)
 
 
     * [functions](speechtotext/index.md#module-speechtotext.functions)
@@ -21,7 +21,7 @@
     * [datasets](speechtotext/index.md#module-speechtotext.datasets)
 
 
-* [Speechtotext model package](speechtotext/model/index.md)
+* [speechtotext model package](speechtotext/model/index.md)
 
 
     * [modelWrapper](speechtotext/model/index.md#module-speechtotext.model.modelWrapper)
@@ -64,6 +64,9 @@
 
 
     * [customPlots](speechtotext/plot/index.md#module-speechtotext.plot.customPlots)
+
+
+    * [customErrorPlots](speechtotext/plot/index.md#module-speechtotext.plot.customErrorPlots)
 
 
 * [speechtotext metric package](speechtotext/metric/index.md)

@@ -21,7 +21,7 @@
     
   <link rel="index" title="Index" href="genindex.html" />
   <link rel="search" title="Search" href="search.html" />
-  <link rel="next" title="Speechtotext package" href="speechtotext/index.html" />
+  <link rel="next" title="speechtotext package" href="speechtotext/index.html" />
   <link rel="prev" title="Requirements for speechtotext" href="requirements.html" /> 
   </head>
 
@@ -142,7 +142,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="speechtotext/index.html" class="reference internal ">Speechtotext package</a>
+              <a href="speechtotext/index.html" class="reference internal ">speechtotext package</a>
             
 
             
@@ -151,7 +151,7 @@
         
           <li class="toctree-l1 ">
             
-              <a href="speechtotext/model/index.html" class="reference internal ">Speechtotext model package</a>
+              <a href="speechtotext/model/index.html" class="reference internal ">speechtotext model package</a>
             
 
             
@@ -208,7 +208,7 @@
   </li>
   <li class="next">
     <a href="speechtotext/index.html"
-       title="next chapter">Speechtotext package →</a>
+       title="next chapter">speechtotext package →</a>
   </li>
 </ul>
   
@@ -244,16 +244,14 @@
 <span class="c1"># Load dataset</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dataset&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
 
-<span class="c1"># Settings and to run benchmarks</span>
+<span class="c1"># Settings to run benchmarks</span>
 <span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">report_name</span> <span class="o">=</span> <span class="s2">&quot;benchmark_name&quot;</span>
 
-<span class="n">whisperBenchmark</span> <span class="o">=</span> <span class="n">WhisperBenchmark</span><span class="p">()</span>
-<span class="n">whisperAPIBenchmark</span> <span class="o">=</span> <span class="n">WhisperAPIBenchmark</span><span class="p">()</span>
-<span class="n">benchmark_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Benchmark</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">whisperBenchmark</span><span class="p">,</span> <span class="n">whisperAPIBenchmark</span><span class="p">]</span>
+<span class="n">benchmark_class_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Benchmark</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">WhisperBenchmark</span><span class="p">,</span> <span class="n">WhisperAPIBenchmark</span><span class="p">]</span>
 
 <span class="c1"># Run benchmarks</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">run_benchmarks</span><span class="p">(</span><span class="n">benchmark_list</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">,</span> <span class="n">report_name</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">run_benchmarks</span><span class="p">(</span><span class="n">benchmark_class_list</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">,</span> <span class="n">report_name</span><span class="p">)</span>
 
 <span class="c1"># Create plots</span>
 <span class="n">plotting</span> <span class="o">=</span> <span class="n">Plotting</span><span class="p">(</span><span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">report_name</span> <span class="o">=</span> <span class="n">report_name</span><span class="p">)</span>
@@ -335,17 +333,14 @@
 <span class="c1"># Load dataset</span>
 <span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dataset&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
 
-<span class="c1"># Settings and to run benchmarks</span>
+<span class="c1"># Settings to run benchmarks</span>
 <span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">report_name</span> <span class="o">=</span> <span class="s2">&quot;benchmark_name&quot;</span>
 
-<span class="n">whisperBenchmark</span> <span class="o">=</span> <span class="n">WhisperBenchmark</span><span class="p">()</span>
-<span class="n">whisperAPIBenchmark</span> <span class="o">=</span> <span class="n">WhisperAPIBenchmark</span><span class="p">()</span>
-<span class="n">customModelBenchmark</span> <span class="o">=</span> <span class="n">CustomModelBenchmark</span><span class="p">()</span>
-<span class="n">benchmark_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Benchmark</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">whisperBenchmark</span><span class="p">,</span> <span class="n">whisperAPIBenchmark</span><span class="p">,</span> <span class="n">customModelBenchmark</span><span class="p">]</span>
+<span class="n">benchmark_class_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Benchmark</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">WhisperBenchmark</span><span class="p">,</span> <span class="n">WhisperAPIBenchmark</span><span class="p">,</span> <span class="n">CustomModelBenchmark</span><span class="p">]</span>
 
 <span class="c1"># Run benchmarks</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">run_benchmarks</span><span class="p">(</span><span class="n">benchmark_list</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">,</span> <span class="n">report_name</span><span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">run_benchmarks</span><span class="p">(</span><span class="n">benchmark_class_list</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">,</span> <span class="n">report_name</span><span class="p">)</span>
 
 <span class="c1"># Create plots</span>
 <span class="n">plotting</span> <span class="o">=</span> <span class="n">Plotting</span><span class="p">(</span><span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">report_name</span> <span class="o">=</span> <span class="n">report_name</span><span class="p">)</span>
@@ -366,7 +361,7 @@
   </li>
   <li class="next">
     <a href="speechtotext/index.html"
-       title="next chapter">Speechtotext package →</a>
+       title="next chapter">speechtotext package →</a>
   </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2023 Jarne Amerlinck.

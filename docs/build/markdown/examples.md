@@ -28,7 +28,7 @@ force_cudnn_initialization()
 # Load dataset
 dataset = Dataset(path_to_dir="path/to/dataset", name= "dataset_name")
 
-# Settings and to run benchmarks
+# Settings to run benchmarks
 number_of_samples = 100
 report_name = "benchmark_name"
 
@@ -122,7 +122,7 @@ force_cudnn_initialization()
 # Load dataset
 dataset = Dataset(path_to_dir="path/to/dataset", name= "dataset_name")
 
-# Settings and to run benchmarks
+# Settings to run benchmarks
 number_of_samples = 100
 report_name = "benchmark_name"
 

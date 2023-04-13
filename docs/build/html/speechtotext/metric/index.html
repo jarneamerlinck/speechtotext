@@ -177,7 +177,7 @@
                 
                   <li class="toctree-l2"><a href="#module-speechtotext.metric.metrics" class="reference internal">metrics</a></li>
                 
-                  <li class="toctree-l2"><a href="#custommetrics" class="reference internal">customMetrics</a></li>
+                  <li class="toctree-l2"><a href="#module-speechtotext.metric.customMetrics" class="reference internal">customMetrics</a></li>
                 
               </ul>
             
@@ -312,8 +312,113 @@
 </dd></dl>
 
 </section>
-<section id="custommetrics">
-<h2>customMetrics<a class="headerlink" href="#custommetrics" title="Permalink to this heading">¶</a></h2>
+<section id="module-speechtotext.metric.customMetrics">
+<span id="custommetrics"></span><h2>customMetrics<a class="headerlink" href="#module-speechtotext.metric.customMetrics" title="Permalink to this heading">¶</a></h2>
+<p>Module to create custom metrics to save with the plots from the plotting module.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">BaseResult</span>
+<span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span> <span class="n">Plotting</span>
+
+<span class="c1"># Create class with matplotlib picture</span>
+<span class="k">class</span> <span class="nc">BenchmarkResults</span><span class="p">(</span><span class="n">BaseMetrics</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">create_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span>
+
+<span class="c1"># Add model to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_RESULTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BenchmarkResults</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.BaseMetrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.metric.customMetrics.</span></span><span class="sig-name descname"><span class="pre">BaseMetrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metric.customMetrics.BaseMetrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a></p>
+<p>Base class used to create metrics for result dataframe.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.BaseMetrics.create_df">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#speechtotext.metric.customMetrics.BaseMetrics.create_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates df that needs to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.BaseMetrics.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metric.customMetrics.BaseMetrics.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves Result to report folder.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.BenchmarkResults">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.metric.customMetrics.</span></span><span class="sig-name descname"><span class="pre">BenchmarkResults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metric.customMetrics.BenchmarkResults" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.metric.customMetrics.BaseMetrics" title="speechtotext.metric.customMetrics.BaseMetrics"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMetrics</span></code></a></p>
+<p>This class saves the results of the benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.BenchmarkResults.create_df">
+<span class="sig-name descname"><span class="pre">create_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#speechtotext.metric.customMetrics.BenchmarkResults.create_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates df that needs to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.ErrorMetrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.metric.customMetrics.</span></span><span class="sig-name descname"><span class="pre">ErrorMetrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metric.customMetrics.ErrorMetrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.metric.customMetrics.BaseMetrics" title="speechtotext.metric.customMetrics.BaseMetrics"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMetrics</span></code></a></p>
+<p>This class calulates the error statistic on the benchmark results.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.ErrorMetrics.create_df">
+<span class="sig-name descname"><span class="pre">create_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#speechtotext.metric.customMetrics.ErrorMetrics.create_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates df that needs to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.ResultMetrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.metric.customMetrics.</span></span><span class="sig-name descname"><span class="pre">ResultMetrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metric.customMetrics.ResultMetrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.metric.customMetrics.BaseMetrics" title="speechtotext.metric.customMetrics.BaseMetrics"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMetrics</span></code></a></p>
+<p>This class calulates the default statistic metrics on the benchmark results.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.ResultMetrics.create_df">
+<span class="sig-name descname"><span class="pre">create_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#speechtotext.metric.customMetrics.ResultMetrics.create_df" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates df that needs to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 </section>
 

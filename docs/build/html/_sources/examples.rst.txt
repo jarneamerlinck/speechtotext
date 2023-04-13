@@ -33,7 +33,7 @@ Use this module like this:
 	# Load dataset
 	dataset = Dataset(path_to_dir="path/to/dataset", name= "dataset_name")
 
-	# Settings and to run benchmarks
+	# Settings to run benchmarks
 	number_of_samples = 100
 	report_name = "benchmark_name"
 
@@ -127,7 +127,7 @@ Use custom benchmarks
 	# Load dataset
 	dataset = Dataset(path_to_dir="path/to/dataset", name= "dataset_name")
 
-	# Settings and to run benchmarks
+	# Settings to run benchmarks
 	number_of_samples = 100
 	report_name = "benchmark_name"
 

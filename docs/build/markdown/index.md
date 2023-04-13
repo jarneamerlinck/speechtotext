@@ -75,7 +75,7 @@
     * [metrics](speechtotext/metric/index.md#module-speechtotext.metric.metrics)
 
 
-    * [customMetrics](speechtotext/metric/index.md#custommetrics)
+    * [customMetrics](speechtotext/metric/index.md#module-speechtotext.metric.customMetrics)
 
 
 # Indices and tables

@@ -82,7 +82,7 @@ Class that is used to create plots for an benchmark.
 
 #### CUSTOM_PLOTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
 
-#### CUSTOM_RESULTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
+#### CUSTOM_RESULTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [<class 'speechtotext.metric.customMetrics.BenchmarkResults'>, <class 'speechtotext.metric.customMetrics.ResultMetrics'>_ )
 
 #### launch_dtale()
 Launch webui to explore the data.
@@ -342,6 +342,28 @@ class DemoPlotlyExample(BasePlot):
 # Add model to Plotting
 Plotting.CUSTOM_ERRORS.append(DemoPlotlyExample)
 ```
+
+
+### _class_ speechtotext.plot.customErrorPlots.ErrorCountByModel(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BasePlotly`
+
+Class that is used to create error plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
 
 
 ### _class_ speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset(df: DataFrame, report_folder: str, file_name: str)

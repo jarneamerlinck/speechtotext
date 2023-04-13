@@ -99,4 +99,6 @@ class ErrorMetrics(BaseMetrics):
 	def create_df(self) -> pd.core.frame.DataFrame:
 		pass
 # Add metrics to Plotting
+
 # Plotting.CUSTOM_ERRORS.append(ErrorMetrics)
+

@@ -2,6 +2,8 @@ name: Python Package using Conda
 
 on:
   push:
+    branches:
+    - main
     paths:
     - 'speechtotext/**'
     - '*.py'
@@ -10,6 +12,8 @@ on:
     - '.github/**'
 
   pull_request:
+    branches:
+    - main
     paths: 
     - 'speechtotext/**'
     - '*.py'

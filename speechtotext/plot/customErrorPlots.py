@@ -44,7 +44,7 @@ import matplotlib
 
 from speechtotext.plot.plotting import BasePlotly, Plotting, BaseMatPlotLib
 
-class ErrorCountByModelByDataset(BasePlotly):
+class ErrorCountByModel(BasePlotly):
 	"""Class that is used to create error plots for an benchmark.
 	"""    
 	def create_plot(self) -> plotly.graph_objs._figure.Figure:
@@ -53,9 +53,8 @@ class ErrorCountByModelByDataset(BasePlotly):
 		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
 			df = df.to_frame(index=False)
 
-		# remove any pre-existing indices for ease of use in the D-Tale code, but this is not required
 		df = df.reset_index().drop('index', axis=1, errors='ignore')
-		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
+		df.columns = [str(c) for c in df.columns]
 
 		chart_data = pd.concat([
 			df['model_name'],
@@ -88,6 +87,38 @@ class ErrorCountByModelByDataset(BasePlotly):
 											showarrow = False
 											)
 		figure.update_layout(barmode='stack', xaxis={'categoryorder':'total descending'})
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_ERROR_PLOTS.append(ErrorCountByModel)
+
+class ErrorCountByModelByDataset(BasePlotly):
+	"""Class that is used to create error plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+		df = self.df
+		y_name = 'audio_ID'
+		group_name = 'dataset'
+		x_name = 'model_name'
+
+		chart_data = pd.concat([
+					df['model_name'],
+					df[y_name],
+					df['dataset'],
+				], axis=1)
+
+		chart_data_count = chart_data.groupby(['dataset',x_name], dropna=True)[['audio_ID']].count()
+		chart_data_count.columns = ['audio_ID|count']
+		chart_data = chart_data_count.reset_index()
+		chart_data = chart_data.dropna()
+		figure = px.bar(chart_data, x=x_name, y=f"{y_name}|count", color="dataset", barmode="group")
+
+		figure.update_layout(
+			barmode= 'group',
+			legend= {'orientation': 'h', 'y': -0.3},
+			title= {'text': 'Count of errors by model_name', 'x':0.5, 'xanchor': 'center', 'yanchor': 'top'},
+			xaxis= {'title': {'text': 'model_name'}},
+			yaxis= {'tickformat': '0:g', 'title': {'text': 'Count of errors'}, 'type': 'linear'},
+			showlegend=True)
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_ERROR_PLOTS.append(ErrorCountByModelByDataset)

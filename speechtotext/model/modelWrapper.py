@@ -49,7 +49,8 @@ Use this module like this:
 from enum import Enum
 from abc import ABC, abstractmethod
 import pandas as pd
-
+from  torch.cuda import OutOfMemoryError
+from urllib.error import HTTPError
 from speechtotext.datasets import Dataset, SampleDataset
 from speechtotext.metric.metrics import Metrics
 from speechtotext.functions import timing
@@ -141,8 +142,18 @@ class ModelWrapper(ABC):
 		samples = dataset.get_n_samples(number_of_samples)
 		return self.benchmark_samples(samples, with_cleaning)
 
+	def __append_error(self, samples:SampleDataset, id:str, error:str):
+		"""Append error to model_errors.
 
-	def benchmark_samples(self, samples: SampleDataset, with_cleaning=True) -> list:
+		Args:
+			samples (SampleDataset): Dataset of audio.
+			id (str): id of failed sample.
+			error (str): Error message.
+		"""     
+		new_row = pd.Series([id, samples.name, samples.get_text_of_id(id), error], index=self.column_names_errors)
+		self.model_errors = pd.concat([self.model_errors, new_row.to_frame().T], ignore_index=True)
+
+	def benchmark_samples(self, samples:SampleDataset, with_cleaning=True) -> list:
 		"""Benchmark samples with model.
 
 		Args:
@@ -159,10 +170,17 @@ class ModelWrapper(ABC):
 			id = row["id"]
 			try:
 				metrics_array.append(self.benchmark_sample(samples, id, with_cleaning))
+			except OutOfMemoryError as e:
+				error = "CUDA out of memory"
+				self.__append_error(samples, id, error)
+
+			except HTTPError as e:
+				error = f'"{e}"'
+				self.__append_error(samples, id, error)
+
 			except Exception as e:
 				error = f'"{e}"'
-				new_row = pd.Series([id, samples.name, samples.get_text_of_id(id), error], index=self.column_names_errors)
-				self.model_errors = pd.concat([self.model_errors, new_row.to_frame().T], ignore_index=True)
+				self.__append_error(samples, id, error)
 
 		return metrics_array
 		

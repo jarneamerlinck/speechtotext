@@ -199,6 +199,13 @@ def multidispatch(*types):
 	return register
 multidispatch.registry = {}
 
+class RequiredEnvVariablesMissing(Exception):
+	"""Exception when an required env variable is missing.
+	"""    
+	def __init__(self, env_name:str):     
+				
+		super().__init__(f"Required env variable {env_name} is missing.")
+
 def load_env_variable(env_name:str)-> str:
 	"""Loads and returns env variable.
 
@@ -216,12 +223,6 @@ def load_env_variable(env_name:str)-> str:
 		raise RequiredEnvVariablesMissing(env_name)
 	return os.getenv(env_name)
 
-class RequiredEnvVariablesMissing(Exception):
-	"""Exception when an required env variable is missing.
-	"""    
-	def __init__(self, env_name:str):     
-				
-		super().__init__(f"Required env variable {env_name} is missing.")
   
 def timing(f):
 	"""Functions used to time duration of function.

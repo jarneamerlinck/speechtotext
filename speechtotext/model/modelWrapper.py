@@ -48,6 +48,9 @@ Use this module like this:
 """
 from enum import Enum
 from abc import ABC, abstractmethod
+import os
+from pydub import AudioSegment
+from pydub.utils import mediainfo
 import pandas as pd
 from  torch.cuda import OutOfMemoryError
 from urllib.error import HTTPError
@@ -65,6 +68,8 @@ class ModelVersion(Enum):
 
 class ModelWrapper(ABC):
 	"""Abstract Wrapper for model.
+
+	If audio needs to be converted use convert_sample in get_transcript_of_file.
 	"""    
 
 	def __init__(self, model_version:ModelVersion):
@@ -109,7 +114,8 @@ class ModelWrapper(ABC):
 		"""     
 		self.get_model()
 		reference = dataset.get_text_of_id(id)
-		hypothesis = self.get_transcript_of_file(dataset.get_path_of_fragment(id))
+		path_to_sample = dataset.get_path_of_fragment(id)
+		hypothesis = self.get_transcript_of_file(path_to_sample)
 		return reference, hypothesis
 
 
@@ -153,6 +159,27 @@ class ModelWrapper(ABC):
 		new_row = pd.Series([id, samples.name, samples.get_text_of_id(id), error], index=self.column_names_errors)
 		self.model_errors = pd.concat([self.model_errors, new_row.to_frame().T], ignore_index=True)
 
+	def convert_sample(self, path_to_sample:str, override:bool=False) -> str:
+		"""Convert sample to correct format.
+
+		Args:
+			path_to_sample (str): path to sample.
+			override (bool, optional): override original file. Defaults to False.
+
+		Returns:
+			str: path to converted sample.
+		"""
+		name, ext = os.path.splitext(path_to_sample)
+		sound = AudioSegment.from_file(path_to_sample, ext[1:])
+		sound = sound.set_channels(1)
+		if override:
+			sound.export("converted.wav", format="wav", codec="pcm_s16le")
+			path_to_sample = f"_conv_{name}{'.wav'}"
+		else:
+			sound.export("{0}.wav".format(name), format="wav", codec="pcm_s16le")
+		return path_to_sample
+
+
 	def benchmark_samples(self, samples:SampleDataset, with_cleaning=True) -> list:
 		"""Benchmark samples with model.
 
@@ -163,7 +190,7 @@ class ModelWrapper(ABC):
 
 		Returns:
 			list: list of metrics for each sample.
-		"""     
+		"""   
 		metrics_array = []
 
 		for _, row in samples.dataset.iterrows():

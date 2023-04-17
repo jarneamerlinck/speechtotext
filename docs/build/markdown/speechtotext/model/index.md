@@ -68,6 +68,8 @@ Bases: `ABC`
 
 Abstract Wrapper for model.
 
+If audio needs to be converted use convert_sample in get_transcript_of_file.
+
 
 #### benchmark_n_samples(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), number_of_samples: int, with_cleaning=True)
 Benchmark n samples with model.
@@ -153,6 +155,32 @@ Benchmark samples with model.
 * **Return type**
 
     list
+
+
+
+#### convert_sample(path_to_sample: str, override: bool = False)
+Convert sample to correct format.
+
+
+* **Parameters**
+
+    
+    * **path_to_sample** (*str*) – path to sample.
+
+
+    * **override** (*bool**, **optional*) – override original file. Defaults to False.
+
+
+
+* **Returns**
+
+    path to converted sample.
+
+
+
+* **Return type**
+
+    str
 
 
 

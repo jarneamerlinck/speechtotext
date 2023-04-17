@@ -74,7 +74,7 @@ class DatasetBare():
 		Returns:
 			str: Path to fragment.
 		"""     
-		path = f"{self.path_to_dir}{id}{self.file_ext}"
+		path = f"{self.path_to_dir}/{id}{self.file_ext}"
 
 		if exists(path):
 			return path
@@ -113,7 +113,7 @@ class Dataset(DatasetBare):
 	def load_transcript(self):
 		"""Loads transcript.
 		"""     
-		file_path = f"{self.path_to_dir}transcripts.txt"
+		file_path = f"{self.path_to_dir}/transcripts.txt"
 
 		df= pd.read_csv(file_path, sep="|", header=None)
 		df = df.iloc[:, 0:2] 

@@ -30,6 +30,7 @@ Use this module like this:
 	array = googleWrapper.benchmark_n_samples(dataset, number_of_samples)
 """
 
+from pydub.utils import mediainfo
 from google.cloud import speech_v2
 from google.cloud import speech
 from google.oauth2 import service_account
@@ -55,7 +56,7 @@ class GoogleAPIWrapper(ModelWrapper):
  	"""
 
 	LANGUAGE_CODE:str = 'nl-BE'
-
+	
 	def __init__(self, model_version:GoogleAPIVersion):
 		"""Wrapper for google model.
 
@@ -84,13 +85,16 @@ class GoogleAPIWrapper(ModelWrapper):
 		Returns:
 			str: Transcript of audio file.
 		"""
+		audio_file_name = self.convert_sample(audio_file_name)
+
 		with io.open(audio_file_name, "rb") as audio_file:
 			content = audio_file.read()
+		sample_rate = int(mediainfo(audio_file_name)['sample_rate'])
 
 		audio = speech.RecognitionAudio(content=content)
 		config = speech.RecognitionConfig(
 			encoding=speech.RecognitionConfig.AudioEncoding.LINEAR16,
-			# sample_rate_hertz=8000,
+			sample_rate_hertz=sample_rate,
 			language_code=self.LANGUAGE_CODE,
 			# use_enhanced=True,
 			# # A model must be specified to use enhanced model.
@@ -98,7 +102,6 @@ class GoogleAPIWrapper(ModelWrapper):
 		)
 
 		response = self.client.recognize(config=config, audio=audio)
-
 		for i, result in enumerate(response.results):
 			
 			alternative = result.alternatives[0].transcript

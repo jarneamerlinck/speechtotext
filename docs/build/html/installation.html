@@ -2,12 +2,12 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-      <title>Search</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+      <title>Installation for speechtotext</title>
     
           <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="_static/theme.css " type="text/css" />
-  
       
       <!-- sphinx script_files -->
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -18,16 +18,11 @@
       <!-- bundled in js (rollup iife) -->
       <!-- <script src="_static/theme-vendors.js"></script> -->
       <script src="_static/theme.js" defer></script>
-  <script type="text/javascript" src="_static/searchtools.js"></script>
-  <script src="_static/language_data.js"></script>
     
   <link rel="index" title="Index" href="genindex.html" />
-  <link rel="search" title="Search" href="#" />
-  <script type="text/javascript" src="searchindex.js" defer></script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
-   
-
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Requirements for speechtotext" href="requirements.html" />
+  <link rel="prev" title="Welcome to speechtotext’s documentation!" href="index.html" /> 
   </head>
 
   <body>
@@ -45,7 +40,7 @@
   
     <div class="nav-item">
       <a href="index.html#welcome-to-speechtotext-s-documentation"
-         class="nav-link ">
+         class="nav-link  router-link-active">
          Get started
       </a>
     </div>
@@ -75,7 +70,7 @@
   
     <div class="nav-item">
       <a href="index.html#welcome-to-speechtotext-s-documentation"
-         class="nav-link ">
+         class="nav-link  router-link-active">
          Get started
       </a>
     </div>
@@ -94,7 +89,7 @@
           </navlinks><div id="searchbox" class="searchbox" role="search">
   <div class="caption"><span class="caption-text">Quick search</span>
     <div class="searchformwrapper">
-      <form class="search" action="#" method="get">
+      <form class="search" action="search.html" method="get">
         <input type="text" name="q" />
         <input type="submit" value="Search" />
         <input type="hidden" name="check_keywords" value="yes" />
@@ -108,13 +103,21 @@
       <p class="caption">
         <span class="caption-text"><a href="index.html#welcome-to-speechtotext-s-documentation">Get started</a></span>
       </p>
-      <ul class="">
+      <ul class="current">
         
-          <li class="toctree-l1 ">
+          <li class="toctree-l1 current">
             
-              <a href="installation.html" class="reference internal ">Installation for speechtotext</a>
+              <a href="#" class="reference internal current">Installation for speechtotext</a>
             
 
+            
+              <ul>
+                
+                  <li class="toctree-l2"><a href="#conda" class="reference internal">conda</a></li>
+                
+                  <li class="toctree-l2"><a href="#pip" class="reference internal">pip</a></li>
+                
+              </ul>
             
           </li>
 
@@ -203,43 +206,59 @@
   <ul class="breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
     
-    <li>Search</li>
+    <li>Installation for speechtotext</li>
   </ul>
   
 
   <ul class="page-nav">
+  <li class="prev">
+    <a href="index.html"
+       title="previous chapter">← Welcome to speechtotext’s documentation!</a>
+  </li>
+  <li class="next">
+    <a href="requirements.html"
+       title="next chapter">Requirements for speechtotext →</a>
+  </li>
 </ul>
   
 </div>
 <hr>
           <div class="content" role="main" v-pre>
             
-  <h1 id="search-documentation">Search</h1>
-  <div id="fallback" class="admonition warning">
-  <p>
-    Please activate JavaScript to enable the search
-    functionality.
-  </p>
-  </div>
-  <p>
-    From here you can search these documents. Enter your search
-    words into the box below and click "search". Note that the search
-    function will automatically search for all of the words. Pages
-    containing fewer words won't appear in the result list.
-  </p>
-  <form action="" method="get">
-    <input type="text" name="q" value="" />
-    <input type="submit" value="search" />
-    <span id="search-progress" style="padding-left: 10px"></span>
-  </form>
-  
-  <div id="search-results">
-  
-  </div>
+  <section id="installation-for-speechtotext">
+<h1>Installation for speechtotext<a class="headerlink" href="#installation-for-speechtotext" title="Permalink to this heading">¶</a></h1>
+<p>Install with conda or pip</p>
+<section id="conda">
+<h2>conda<a class="headerlink" href="#conda" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sample_env</span>
+<span class="nt">channels</span><span class="p">:</span>
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python&lt;3.11,&gt;=3.9.2</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">speechtotext-python</span>
+</pre></div>
+</div>
+</section>
+<section id="pip">
+<h2>pip<a class="headerlink" href="#pip" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">speechtotext</span><span class="o">-</span><span class="n">python</span>
+</pre></div>
+</div>
+</section>
+</section>
+
 
           </div>
           <div class="page-nav">
             <div class="inner"><ul class="page-nav">
+  <li class="prev">
+    <a href="index.html"
+       title="previous chapter">← Welcome to speechtotext’s documentation!</a>
+  </li>
+  <li class="next">
+    <a href="requirements.html"
+       title="next chapter">Requirements for speechtotext →</a>
+  </li>
 </ul><div class="footer" role="contentinfo">
       &#169; Copyright 2023 Jarne Amerlinck.
 </div>
@@ -248,9 +267,6 @@
       </page>
     </div></div>
     
-  <script type="text/javascript">
-    $('#fallback').hide();
-  </script>
-
+    
   </body>
 </html>

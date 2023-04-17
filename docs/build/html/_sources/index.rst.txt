@@ -5,6 +5,7 @@ Welcome to speechtotext's documentation!
    	:maxdepth: 1
 	:caption: Get started
 	
+	installation.rst
 	requirements.rst
 	examples.rst
 

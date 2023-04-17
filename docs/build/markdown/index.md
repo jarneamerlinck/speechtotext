@@ -3,6 +3,9 @@
 # Get started
 
 
+* [Installation for speechtotext](installation.md)
+
+
 * [Requirements for speechtotext](requirements.md)
 
 

@@ -74,7 +74,7 @@ class DatasetBare():
 		Returns:
 			str: Path to fragment.
 		"""     
-		path = f"{self.path_to_dir}{id}{self.file_ext}"
+		path = f"{self.path_to_dir}/{id}{self.file_ext}"
 
 		if exists(path):
 			return path

@@ -59,6 +59,7 @@ jobs:
       run: |-
         python3 setup.py upload
     - name: Commit and push documentation 
+      if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
       run: |-
         git config user.name "Automated"
         git config user.email "actions@users.noreply.github.com"

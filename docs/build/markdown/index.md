@@ -24,37 +24,37 @@
 * [speechtotext model package](speechtotext/model/index.md)
 
 
-    * [modelWrapper](speechtotext/model/index.md#modelwrapper)
+    * [modelWrapper](speechtotext/model/index.md#module-speechtotext.model.modelWrapper)
 
 
-    * [whisperWrapper](speechtotext/model/index.md#whisperwrapper)
+    * [whisperWrapper](speechtotext/model/index.md#module-speechtotext.model.whisperWrapper)
 
 
-    * [amazonWrapper](speechtotext/model/index.md#amazonwrapper)
+    * [amazonWrapper](speechtotext/model/index.md#module-speechtotext.model.amazonWrapper)
 
 
-    * [googleWrapper](speechtotext/model/index.md#googlewrapper)
+    * [googleWrapper](speechtotext/model/index.md#module-speechtotext.model.googleWrapper)
 
 
-    * [deepgramWrapper](speechtotext/model/index.md#deepgramwrapper)
+    * [deepgramWrapper](speechtotext/model/index.md#module-speechtotext.model.deepgramWrapper)
 
 
-    * [assemblyAIWrapper](speechtotext/model/index.md#assemblyaiwrapper)
+    * [assemblyAIWrapper](speechtotext/model/index.md#module-speechtotext.model.assemblyAIWrapper)
 
 
-    * [azureWrapper](speechtotext/model/index.md#azurewrapper)
+    * [azureWrapper](speechtotext/model/index.md#module-speechtotext.model.azureWrapper)
 
 
-    * [speechmaticsWrapper](speechtotext/model/index.md#speechmaticswrapper)
+    * [speechmaticsWrapper](speechtotext/model/index.md#module-speechtotext.model.speechmaticsWrapper)
 
 
 * [speechtotext benchmark package](speechtotext/benchmark/index.md)
 
 
-    * [benchmarks](speechtotext/benchmark/index.md#benchmarks)
+    * [benchmarks](speechtotext/benchmark/index.md#module-speechtotext.benchmark.benchmarks)
 
 
-    * [customBenchmarks](speechtotext/benchmark/index.md#custombenchmarks)
+    * [customBenchmarks](speechtotext/benchmark/index.md#module-speechtotext.benchmark.customBenchmarks)
 
 
 * [speechtotext plot package](speechtotext/plot/index.md)

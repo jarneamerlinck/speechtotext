@@ -44,11 +44,7 @@ Bases: `Exception`
 Exception when an required env variable is missing.
 
 
-<<<<<<< HEAD
-### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_17_13_03_37.csv')
-=======
-### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_17_12_43_31.csv')
->>>>>>> main
+### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_17_13_42_08.csv')
 Creates csv from benchmark results.
 
 

@@ -25,7 +25,9 @@ jobs:
 
   build-linux:
     runs-on: ubuntu-latest
-    
+    env:
+      TWINE_USERNAME: __token__
+      TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
     steps:
     - uses: actions/checkout@v3
       with:
@@ -52,7 +54,10 @@ jobs:
     - name: Build documentation
       run: |
         cd docs;make html markdown;cd ..
-
+    - name: Upload to pypi
+      if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+      run: |-
+        python3 setup.py upload
     - name: Commit and push documentation 
       run: |-
         git config user.name "Automated"

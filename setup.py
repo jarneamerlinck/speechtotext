@@ -33,7 +33,7 @@ REQUIRED = [
 # What packages are optional?
 EXTRAS = {
     'docs': ['Sphinx>=6.1.3', 'sphinx-markdown-builder>=0.5.5', 'sphinx_autodoc_typehints>=1.22', 
-             'sphinx-press-theme>=0.8.0', 'sphinx_favicon']
+             'sphinx-press-theme>=0.8.0', 'sphinx_favicon', 'twine']
 }
 
 # The rest you shouldn't have to touch too much :)

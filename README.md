@@ -8,7 +8,7 @@ Python package for speech to text
 ### Python
 
 ```bash
-pip install git+https://github.com/jarneamerlinck/speechtotext
+pip install speechtotext-python
 ```
 
 ### Conda 

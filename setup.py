@@ -13,6 +13,7 @@ from setuptools import find_packages, setup, Command
 
 # Package meta-data.
 NAME = 'speechtotext'
+INSTALL_NAME = 'speechtotext-python'
 DESCRIPTION = 'Project that is used for my thesis'
 URL = 'https://github.com/jarneamerlinck/speechtotext'
 EMAIL = 'jarneamerlinck@gmail.com'
@@ -102,7 +103,7 @@ class UploadCommand(Command):
 
 
 setup(
-    name=NAME,
+    name=INSTALL_NAME,
     version=about['__version__'],
     description=DESCRIPTION,
     long_description=long_description,

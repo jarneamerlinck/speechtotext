@@ -1,6 +1,6 @@
 # Speechtotext
 
-Python package for speech to text
+Python package to benchmark speech2text models. 
 
 ## [Documentation](https://jarneamerlinck.github.io/speechtotext/)
 
@@ -19,6 +19,5 @@ channels:
 dependencies:
   - python<3.11,>=3.9.2
   - pip
-  - pip:
-    - git+https://github.com/jarneamerlinck/speechtotext
+  - speechtotext-python
 ```

@@ -20,45 +20,92 @@ on:
     - '*.yml'
     - 'docs/source/**'
 
-
 jobs:
 
-  build-linux:
+  build:
+    strategy:
+      matrix:
+          include:
+            - os: ubuntu-latest
+              label: linux-64
+              prefix: /usr/share/miniconda3/envs/my-env
+
+            # - os: macos-latest
+            #   label: osx-64
+            #   prefix: /Users/runner/miniconda3/envs/my-env
+
+            # - os: windows-latest
+            #   label: win-64
+            #   prefix: C:\Miniconda3\envs\my-env
+
+    name: ${{ matrix.label }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Mambaforge
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+            miniforge-variant: Mambaforge
+            miniforge-version: latest
+            activate-environment: my-env
+            use-mamba: true
+
+      - name: Set cache date
+        run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+
+      - uses: actions/cache@v3
+        with:
+          path: ${{ matrix.prefix }}
+          key: ${{ matrix.label }}-conda-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+        id: cache
+
+      - name: Update environment
+        run: mamba env update -n my-env -f environment_build.yml
+        if: steps.cache.outputs.cache-hit != 'true'
+
+      - name: Run tests
+        shell: bash -l {0}
+        run: pytest ./tests
+  
+  publish-pypi:
+    needs: build
     runs-on: ubuntu-latest
     env:
       TWINE_USERNAME: __token__
       TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
     steps:
     - uses: actions/checkout@v3
+
+    - name: Setup Mambaforge
+      uses: conda-incubator/setup-miniconda@v2
       with:
-        fetch-depth: 0
-        ref: ${{ github.event.pull_request.head.ref }}
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v4
+          miniforge-variant: Mambaforge
+          miniforge-version: latest
+          activate-environment: my-env
+          use-mamba: true
+    - name: Set cache date
+      run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+
+    - uses: actions/cache@v3
       with:
-        python-version: '3.9'
+        path: /usr/share/miniconda3/envs/my-env
+        key: linux-64-conda-${{ hashFiles('environment.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
+      id: cache
 
-    - name: Add conda to system path
-      run: |
-        # $CONDA is an environment variable pointing to the root of the miniconda directory
-        echo $CONDA/bin >> $GITHUB_PATH
-
-    - name: Install dependencies
-      run: |
-        conda env update --file environment_build.yml --name base
-
-    - name: Build documentation html
-      run: |
-        cd docs;make html;cd ..
-    
     - name: Build documentation
+      shell: bash -l {0}
       run: |
         cd docs;make html markdown;cd ..
+
     - name: Upload to pypi
+      shell: bash -l {0}
       if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
       run: |-
         python3 setup.py upload
+
     - name: Commit and push documentation 
+      shell: bash -l {0}
       if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
       run: |-
         git config user.name "Automated"
@@ -74,7 +121,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build-linux
+    needs: publish-pypi
     permissions:
       pages: write      # to deploy to Pages
       id-token: write

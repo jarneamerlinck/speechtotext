@@ -38,11 +38,12 @@ DEFAULT_HTML_TITLE = f"{DEFAULT_REPORTS_FOLDER}/Benchmark results of {DEFAULT_DA
 
 
 def force_cudnn_initialization():
-	"""Force torch use for cuda.
+	"""Force torch use for cuda if available.
 	"""    
-	s = 32
-	dev = torch.device('cuda')
-	torch.nn.functional.conv2d(torch.zeros(s, s, s, s, device=dev), torch.zeros(s, s, s, s, device=dev))
+	if torch.cuda.is_available():
+		s = 32
+		dev = torch.device('cuda')
+		torch.nn.functional.conv2d(torch.zeros(s, s, s, s, device=dev), torch.zeros(s, s, s, s, device=dev))
 
 def string_cleaning(text:str)-> str:
 	"""Cleaning of string for STT.

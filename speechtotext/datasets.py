@@ -39,6 +39,8 @@ Use this module like this:
 from os.path import exists
 import pandas as pd
 
+from speechtotext.functions import get_file_name_without_extention
+
 class DatasetBare():
 	"""Bare dataset class.
 	"""    
@@ -118,6 +120,7 @@ class Dataset(DatasetBare):
 		df= pd.read_csv(file_path, sep="|", header=None)
 		df = df.iloc[:, 0:2] 
 		df.columns = ["id", "text"]
+		df['id'] = df['id'].apply(lambda id :get_file_name_without_extention(id) )
 		self.dataset = df
 
 	def get_n_samples(self, number_of_samples:int) -> SampleDataset:

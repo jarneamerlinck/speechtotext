@@ -14,6 +14,7 @@ Use this module like this:
 from typing_extensions import override
 from jiwer import wer, mer, wil, wip, cer 
 import pandas as pd
+from docstring_parser import parse
 
 from speechtotext.datasets import Dataset
 from speechtotext.functions import string_cleaning 
@@ -73,7 +74,41 @@ class Metrics():
 		self.wip = wip(self.reference, self.hypothesis)
 		self.cer = cer(self.reference, self.hypothesis)
 
+	def get_all_metric_names() -> list[str]:
+		"""Return all possible metric names in a list. 
+
+		Returns:
+			list[str]: list of all metric names.
+		"""     
+		m  = Metrics(reference= "reference", hypothesis= "hypothesis", audio_id= "audio_id", duration=2, with_cleaning=False)
+		list_of_metrics = list(vars(m).keys())
+		# Only keep metrics
+		list_of_metrics.remove("reference")
+		list_of_metrics.remove("hypothesis")
+		list_of_metrics.remove("audio_id")
+
+		return list_of_metrics
+
+	def get_all_metric_docs() -> list[str]:
+		m  = Metrics(reference= "reference", hypothesis= "hypothesis", audio_id= "audio_id", duration=2, with_cleaning=False)
+		docstring = parse(m.__doc__)
+		list_of_metrics_docs = []
+		for param in docstring.params:
+			list_of_metrics_docs.append(str(param.description)[:-1])
+   
+
+
+		def prepare_for_sorting(s):
+			start = '('
+			end = ')'
+			return ((s.split(start))[1].split(end)[0]).lower()
+
+		order = {v:i for i,v in enumerate(Metrics.get_all_metric_names())}
+		return sorted(list_of_metrics_docs, key=lambda x: order[prepare_for_sorting(x)])
+
+
 	@override
 	def __str__(self) -> str:
 		return f"wer: {self.wer}, mer: {self.mer}, wil: {self.wil}, wip: {self.wip}, cer: {self.cer}"
+	
 

@@ -177,6 +177,17 @@ def get_file_name_without_extention(file_name:str)-> str:
 	file_name, _ = os.path.splitext(file_name)
 	return file_name
 
+def uppercase_for_first_character_in_string(string:str) -> str:
+	"""Return string where first character is uppercase.
+
+	Args:
+		string (str): String to process.
+
+	Returns:
+		str: String where first character is uppercase.
+	"""    
+	return  string[0].upper() + string[1:]
+
 def multidispatch(*types):
 	"""Allow for Method overloading for classes.
 	"""    

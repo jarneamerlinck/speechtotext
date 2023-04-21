@@ -42,7 +42,9 @@ import pandas as pd
 import seaborn as sns
 import matplotlib
 
-from speechtotext.plot.plotting import BasePlotly, Plotting, BaseMatPlotLib
+
+from speechtotext.plot.plotting import BasePlotly, Plotting, BaseMatPlotLib, DynamicallyCreatePlotClassesByMetricByDatabase
+from speechtotext.functions import  BaseResult
 
 class CerByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -368,3 +370,44 @@ class MeanOfMetricByModelname(BasePlotly):
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(MeanOfMetricByModelname)
+
+class PlotGenDynamically(DynamicallyCreatePlotClassesByMetricByDatabase):
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+		# dataset_name = self.get_dataset_name()
+		y_name = self.metric_name
+		y_title = self.metric_description
+  
+		x_name = "model_name"
+		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
+			df = df.to_frame(index=False)
+		df = df.query(f'dataset=="{self.dataset_name}"')
+		
+		chart_data = pd.concat([
+			df[x_name],
+			df[y_name],
+			# df['dataset'],
+		], axis=1)
+
+		# figure = px.box(chart_data, x=x_name, y=y_name, color="dataset")
+		figure = px.box(chart_data, x=x_name, y=y_name)
+		for s in df[x_name].unique():
+			figure.add_annotation(x=s,
+							y = df[df[x_name]==s][y_name].max(),
+							text = f"{len(df[df[x_name]==s][x_name])}",
+							yshift = 10,
+							showarrow = False
+							)
+		figure.update_layout(
+			title={
+				'text': self.__class__.__name__,
+				'x':0.5,
+				'xanchor': 'center',
+				'yanchor': 'top'},
+			showlegend=True)
+
+		figure.update_yaxes(
+      		title=y_title)
+		return figure
+Plotting.CUSTOM_PLOTS.append(PlotGenDynamically)

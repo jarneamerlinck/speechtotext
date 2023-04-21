@@ -322,69 +322,6 @@ class WipByModelnameByDataset(BasePlotly):
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(WipByModelnameByDataset)
-class MeanOfMetricByModelname(BasePlotly):
-	"""Class that is used to create plots for an benchmark.
-	"""    
-	def create_plot(self) -> plotly.graph_objs._figure.Figure:
-
-		df = self.df
-		if isinstance(df, (pd.DatetimeIndex, pd.MultiIndex)):
-			df = df.to_frame(index=False)
-
-		df = df.reset_index().drop('index', axis=1, errors='ignore')
-		df.columns = [str(c) for c in df.columns]  # update columns to strings in case they are numbers
-
-		chart_data = pd.concat([
-			df['model_name'],
-			df['wer'],
-			df['mer'],
-			df['wil'],
-			df['wip'],
-			df['cer'],
-		], axis=1)
-		chart_data = chart_data.sort_values(['model_name'])
-		chart_data = chart_data.rename(columns={'model_name': 'x'})
-		chart_data_mean = chart_data.groupby(['x'], dropna=True)[['wer', 'mer', 'wil', 'wip', 'cer']].mean()
-		chart_data_mean.columns = ['wer|mean','mer|mean','wil|mean','wip|mean','cer|mean']
-		chart_data = chart_data_mean.reset_index()
-		chart_data = chart_data.dropna()
-
-		charts = []
-		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['wer|mean'],
-			name='Mean of wer'
-		))
-		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['mer|mean'],
-			name='Mean of mer'
-		))
-		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['wil|mean'],
-			name='Mean of wil'
-		))
-		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['wip|mean'],
-			name='Mean of wip'
-		))
-		charts.append(go.Bar(
-			x=chart_data['x'],
-			y=chart_data['cer|mean'],
-			name='Mean of cer'
-		))
-		figure = go.Figure(data=charts, layout=go.Layout({
-			'barmode': 'group',
-			'legend': {'orientation': 'h', 'y': -0.3},
-			'title': {'text': 'Mean of wer, Mean of mer, Mean of wil, Mean of wip, Mean of cer by model_name'},
-			'xaxis': {'title': {'text': 'model_name'}},
-			'yaxis': {'title': {'text': 'Mean of wer, Mean of mer, Mean of wil, Mean of wip, Mean of cer'}, 'type': 'linear'}
-		}))
-		return figure
-# Add model to Plotting
-Plotting.CUSTOM_PLOTS.append(MeanOfMetricByModelname)
 
 class PlotGenDynamically(DynamicallyCreatePlotClassesByMetricByDatabase):
 	"""Class that is used to create plots for an benchmark.

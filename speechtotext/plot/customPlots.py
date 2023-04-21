@@ -45,6 +45,7 @@ import matplotlib
 
 from speechtotext.plot.plotting import BasePlotly, Plotting, BaseMatPlotLib, DynamicallyCreatePlotClassesByMetricByDatabase
 from speechtotext.functions import  BaseResult
+from speechtotext.metric.metrics import Metrics
 
 class CerByModelnameByDataset(BasePlotly):
 	"""Class that is used to create plots for an benchmark.
@@ -78,7 +79,9 @@ class CerByModelnameByDataset(BasePlotly):
 				'xanchor': 'center',
 				'yanchor': 'top'},
 			showlegend=True)
-
+		y_title = [string for string in Metrics.get_all_metric_docs() if y_name.upper() in string][0]
+		figure.update_yaxes(
+      		title=y_title)
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(CerByModelnameByDataset)
@@ -115,7 +118,9 @@ class WerByModelnameByDataset(BasePlotly):
 				'xanchor': 'center',
 				'yanchor': 'top'},
 			showlegend=True)
-
+		y_title = [string for string in Metrics.get_all_metric_docs() if y_name.upper() in string][0]
+		figure.update_yaxes(
+      		title=y_title)
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(WerByModelnameByDataset)
@@ -153,7 +158,9 @@ class DurationByModelnameByDataset(BasePlotly):
 				'xanchor': 'center',
 				'yanchor': 'top'},
 			showlegend=True)
-
+		y_title = [string for string in Metrics.get_all_metric_docs() if y_name in string][0]
+		figure.update_yaxes(
+      		title=y_title)
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(DurationByModelnameByDataset)
@@ -192,7 +199,9 @@ class DurationLogByModelnameByDataset(BasePlotly):
 				'yanchor': 'top'},
 			yaxis_title = "duration (log)",
 			showlegend=True)
-
+		y_title = [string for string in Metrics.get_all_metric_docs() if y_name in string][0]
+		figure.update_yaxes(
+      		title=y_title)
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(DurationLogByModelnameByDataset)
@@ -229,7 +238,9 @@ class MerByModelnameByDataset(BasePlotly):
 				'xanchor': 'center',
 				'yanchor': 'top'},
 			showlegend=True)
-
+		y_title = [string for string in Metrics.get_all_metric_docs() if y_name.upper() in string][0]
+		figure.update_yaxes(
+      		title=y_title)
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(MerByModelnameByDataset)
@@ -266,7 +277,9 @@ class WilByModelnameByDataset(BasePlotly):
 				'xanchor': 'center',
 				'yanchor': 'top'},
 			showlegend=True)
-
+		y_title = [string for string in Metrics.get_all_metric_docs() if y_name.upper() in string][0]
+		figure.update_yaxes(
+      		title=y_title)
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(WilByModelnameByDataset)
@@ -303,7 +316,9 @@ class WipByModelnameByDataset(BasePlotly):
 				'xanchor': 'center',
 				'yanchor': 'top'},
 			showlegend=True)
-
+		y_title = [string for string in Metrics.get_all_metric_docs() if y_name.upper() in string][0]
+		figure.update_yaxes(
+      		title=y_title)
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(WipByModelnameByDataset)

@@ -8,7 +8,7 @@ Use this module like this:
 	from speechtotext.metric.metrics import Metrics
 	
 	# Create metrics
-	m = Metrics("De stoel heeft krassen gemaakt op de vloer!", "De stoel heeft krassen gemaakt op de vloer", "id_from_dataset")
+	m = Metrics("De stoel heeft krassen gemaakt op de vloer!", "De stoel heeft krassen gemaakt op de vloer", "id_from_dataset", duration=0.5)
 	print(m)
 """
 from typing_extensions import override
@@ -23,9 +23,9 @@ def notebook_metrics_print(dataset:Dataset, id:str, hypothesis:str):
 	"""Print metrics from transcript and hypothesis.
 
 	Args:
-		dataset (Dataset): dataset of audio.
-		id (str): id of the audio file.
-		hypothesis (str): hypothesis transcript.
+		dataset (Dataset): Dataset of audio.
+		id (str): Id of the audio file.
+		hypothesis (str): Hypothesis transcript.
 	"""    
 	reference = dataset.get_text_of_id(id)
 	m = Metrics(reference,hypothesis, id, duration=0)
@@ -35,13 +35,14 @@ def notebook_metrics_print(dataset:Dataset, id:str, hypothesis:str):
 
 class Metrics():
 	"""Class to calulate the metrics.
+	
 	Attributes:
-		class_attribute (str): (class attribute) The class attribute.
-		wer (float): (class attribute) word error rate (WER).
-		mer (float): (class attribute) match error rate (MER).
-		wil (float): (class attribute) word information lost (WIL).
-		wip (float): (class attribute) word information preserved (WIP).
-		cer (float): (class attribute) character error rate (CER).
+		wer (float): Word error rate (WER).
+		mer (float): Match error rate (MER).
+		wil (float): Word information lost (WIL).
+		wip (float): Word information preserved (WIP).
+		cer (float): Character error rate (CER).
+		duration (float): Duration of the transcribing (duration).
 		
 	"""    
 
@@ -50,9 +51,9 @@ class Metrics():
 		"""Class to calulate the metrics.
 
 		Args:
-			reference (str): reference transcript.
-			hypothesis (str): hypothesis transcript.
-   			audio_id (str): id of the audio file.
+			reference (str): Reference transcript.
+			hypothesis (str): Hypothesis transcript.
+   			audio_id (str): Id of the audio file.
 			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 		"""     
 		if with_cleaning:

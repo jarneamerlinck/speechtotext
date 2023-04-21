@@ -12,37 +12,41 @@ Use this module like this:
 	print(m)
 """
 from typing_extensions import override
-from jiwer import wer, mer, wil, wip, cer 
+from jiwer import wer, mer, wil, wip, cer, process_words
 import pandas as pd
 from docstring_parser import parse
 
 from speechtotext.datasets import Dataset
 from speechtotext.functions import string_cleaning 
 
-def notebook_metrics_print(dataset:Dataset, id:str, hypothesis:str):
-	"""Print metrics from transcript and hypothesis.
-
-	Args:
-		dataset (Dataset): Dataset of audio.
-		id (str): Id of the audio file.
-		hypothesis (str): Hypothesis transcript.
-	"""    
-	reference = dataset.get_text_of_id(id)
-	m = Metrics(reference,hypothesis, id, duration=0)
-	print(f"reference: {m.reference}")
-	print(f"hypothesis: {m.hypothesis}")
-	print(m)
-
 class Metrics():
 	"""Class to calulate the metrics.
 	
 	Attributes:
 		wer (float): Word error rate (WER).
+
+			The WER is how many words there were made errors on.
 		mer (float): Match error rate (MER).
 		wil (float): Word information lost (WIL).
 		wip (float): Word information preserved (WIP).
+  
+			The WIP represents the information that is preserved.
 		cer (float): Character error rate (CER).
+  
+			The WER is how many characters there were made errors on.
+		substitutions (int): Number of words substituted (substitutions).
+  
+			The substitutions is the number of words that were replaced.
+		insertions (int): Number of words inserted (insertions).
+  
+			The insertions is the number of words that were added.
+		deletions (int): Number of words deleted (deletions).
+  
+			The deletions is the number of words that were removed.
+   
 		duration (float): Duration of the transcribing (duration).
+  
+			The duration is how long it took to transcribe the audiofile.
 		
 	"""    
 
@@ -68,12 +72,21 @@ class Metrics():
 
 	def __call__(self, *args, **kwds):
 		"""Calculate the metrics.
-		"""     
-		self.wer = wer(self.reference, self.hypothesis)
-		self.mer = mer(self.reference, self.hypothesis)
-		self.wil = wil(self.reference, self.hypothesis)
-		self.wip = wip(self.reference, self.hypothesis)
+		"""    
+		# Order here is used in the outputs
+		result = process_words(self.reference, self.hypothesis)
+		self.wer = result.wer
+		self.mer = result.mer
+		self.wil = result.wil
+		self.wip = result.wip
 		self.cer = cer(self.reference, self.hypothesis)
+		self.insertions = result.insertions
+		self.deletions = result.deletions
+		self.substitutions = result.substitutions
+		# self.wer = wer(self.reference, self.hypothesis)
+		# self.mer = mer(self.reference, self.hypothesis)
+		# self.wil = wil(self.reference, self.hypothesis)
+		# self.wip = wip(self.reference, self.hypothesis)
 
 	def get_all_metric_names() -> list[str]:
 		"""Returns all possible metric names in a list. 
@@ -112,6 +125,8 @@ class Metrics():
 		order = {v:i for i,v in enumerate(Metrics.get_all_metric_names())}
 		return sorted(list_of_metrics_docs, key=lambda x: order[prepare_for_sorting(x)])
 
+	def get_all_metrics(self) -> list:
+		pass
 
 	@override
 	def __str__(self) -> str:

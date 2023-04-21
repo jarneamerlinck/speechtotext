@@ -143,7 +143,7 @@ class ModelWrapper(ABC):
 			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 
 		Returns:
-			list: list of metrics for each sample.
+			list: List of metrics for each sample.
 		"""     
 		samples = dataset.get_n_samples(number_of_samples)
 		return self.benchmark_samples(samples, with_cleaning)
@@ -153,7 +153,7 @@ class ModelWrapper(ABC):
 
 		Args:
 			samples (SampleDataset): Dataset of audio.
-			id (str): id of failed sample.
+			id (str): Id of failed sample.
 			error (str): Error message.
 		"""     
 		new_row = pd.Series([id, samples.name, samples.get_text_of_id(id), error], index=self.column_names_errors)
@@ -163,11 +163,11 @@ class ModelWrapper(ABC):
 		"""Convert sample to correct format.
 
 		Args:
-			path_to_sample (str): path to sample.
-			override (bool, optional): override original file. Defaults to False.
+			path_to_sample (str): Path to sample.
+			override (bool, optional): Override original file. Defaults to False.
 
 		Returns:
-			str: path to converted sample.
+			str: Path to converted sample.
 		"""
 		name, ext = os.path.splitext(path_to_sample)
 		sound = AudioSegment.from_file(path_to_sample, ext[1:])
@@ -189,7 +189,7 @@ class ModelWrapper(ABC):
 			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 
 		Returns:
-			list: list of metrics for each sample.
+			list: List of metrics for each sample.
 		"""   
 		metrics_array = []
 

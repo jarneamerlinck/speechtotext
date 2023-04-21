@@ -387,6 +387,8 @@ class MeanOfMetricByModelname(BasePlotly):
 Plotting.CUSTOM_PLOTS.append(MeanOfMetricByModelname)
 
 class PlotGenDynamically(DynamicallyCreatePlotClassesByMetricByDatabase):
+	"""Class that is used to create plots for an benchmark.
+	"""    
 	def create_plot(self) -> plotly.graph_objs._figure.Figure:
 
 		df = self.df
@@ -425,4 +427,5 @@ class PlotGenDynamically(DynamicallyCreatePlotClassesByMetricByDatabase):
 		figure.update_yaxes(
       		title=y_title)
 		return figure
+# Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(PlotGenDynamically)

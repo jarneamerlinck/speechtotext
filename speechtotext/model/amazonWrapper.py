@@ -119,9 +119,9 @@ class AmazonAPIWrapper(ModelWrapper):
 		"""Transcribe and return result location. 
 
 		Args:
-			file_uri (str): s3 path to audio file.
-			transcribe_client (_type_): boto3 transcribe client.
-			file_ext (str): file extention of audio file.
+			file_uri (str): S3 path to audio file.
+			transcribe_client (_type_): Boto3 transcribe client.
+			file_ext (str): File extention of audio file.
 			job_name (str, optional): Name of amazon AWS job. Defaults to "Transcribe".
 		"""	
 		try:

@@ -19,7 +19,7 @@ Use this module like this:
 	
 	# Create wrapper
 	whisperWrapper = WhisperWrapper(WhisperVersion.TINY)
-
+	# Add model to Plotting
 	# Get model
 	whisperWrapper.get_model()
 

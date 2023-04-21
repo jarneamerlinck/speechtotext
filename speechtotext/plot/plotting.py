@@ -64,8 +64,8 @@ class BaseMatPlotLib(BaseResult):
 		"""Creates object of BasePlot.
 
 		Args:
-			df (pd.core.frame.DataFrame): dataframe that needs to be plotted.
-			report_folder (str): path to report folder.
+			df (pd.core.frame.DataFrame): Dataframe that needs to be plotted.
+			report_folder (str): Path to report folder.
 			plot_name (str): Name of plot.
 		"""     	
 		self.ext = ".png"

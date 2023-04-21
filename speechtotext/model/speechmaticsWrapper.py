@@ -68,7 +68,7 @@ class SpeechmaticsAPIWrapper(ModelWrapper):
 		"""Event handler for API.
 
 		Args:
-			msg (dict): api result.
+			msg (dict): Api result.
 		"""     
 		self.partial_transcripts.append(msg.get("metadata").get("transcript"))
 

@@ -76,10 +76,10 @@ class Metrics():
 		self.cer = cer(self.reference, self.hypothesis)
 
 	def get_all_metric_names() -> list[str]:
-		"""Return all possible metric names in a list. 
+		"""Returns all possible metric names in a list. 
 
 		Returns:
-			list[str]: list of all metric names.
+			list[str]: List of all metric names.
 		"""     
 		m  = Metrics(reference= "reference", hypothesis= "hypothesis", audio_id= "audio_id", duration=2, with_cleaning=False)
 		list_of_metrics = list(vars(m).keys())
@@ -91,6 +91,11 @@ class Metrics():
 		return list_of_metrics
 
 	def get_all_metric_docs() -> list[str]:
+		"""Returns all descriptions of metrics returned by get_all_metric_names in the correct order.
+
+		Returns:
+			list[str]: List of all metric descriptions.
+		"""     
 		m  = Metrics(reference= "reference", hypothesis= "hypothesis", audio_id= "audio_id", duration=2, with_cleaning=False)
 		docstring = parse(m.__doc__)
 		list_of_metrics_docs = []

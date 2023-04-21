@@ -49,10 +49,10 @@ def string_cleaning(text:str)-> str:
 	"""Cleaning of string for STT.
 
 	Args:
-		text (str): uncleaned string.
+		text (str): Uncleaned string.
 
 	Returns:
-		str: cleaned string.
+		str: Cleaned string.
 	"""    
 	return re.sub(REGEX_STRING_PARSE, '', text)
 
@@ -60,7 +60,7 @@ def join_benchmark_results(results: list[pd.core.frame.DataFrame], set_index=Tru
 	"""Join Benchmark results.
 
 	Args:
-			results (list[pd.core.frame.DataFrame]): results of benchmarks.
+			results (list[pd.core.frame.DataFrame]): Results of benchmarks.
 			set_index (bool, optional): Set True if ["model_name", "audio_ID"] can be set as index. Defaults to True.
 
 	Returns:
@@ -78,7 +78,7 @@ def separate_benchmark_results_by_model(dataframe: pd.core.frame.DataFrame) -> d
 			dataframe pd.core.frame.DataFrame: Dataframe with results of all benchmarks.
 
 	Returns:
-			(list[pd.core.frame.DataFrame]): results of benchmarks. 
+			(list[pd.core.frame.DataFrame]): Results of benchmarks. 
 	"""
 	
 	model_names = dataframe["model_name"].unique()
@@ -98,7 +98,7 @@ def benchmark_results_to_csv(results: list[pd.core.frame.DataFrame], save_name:s
 	
 	Args:
 		results (list[pd.core.frame.DataFrame]): List of results from benchmarks.
-		save_name (str, optional): filename of output. Defaults to DEFAULT_CSV_NAME.
+		save_name (str, optional): Filename of output. Defaults to DEFAULT_CSV_NAME.
 	"""  
 	df = pd.concat(results)
 	df.to_csv(save_name, index=False)
@@ -107,11 +107,11 @@ def save_sub_folder_name(folder_path:str, subfolder_name:str) -> str:
 	"""Creates subfolder path.
 
 	Args:
-		folder_path (str): path of parent folder.
-		subfolder_name (str): subfolder name.
+		folder_path (str): Path of parent folder.
+		subfolder_name (str): Subfolder name.
 
 	Returns:
-		str: path to save folder.
+		str: Path to save folder.
 	"""    
 	folder_name =  f"{folder_path}/{subfolder_name}"
 	if not os.path.isdir(folder_name):
@@ -122,7 +122,7 @@ def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) 
 	"""Makes folder path.
 
 	Args:
-		report_name (str): name of report.
+		report_name (str): Name of report.
 		folder_name (str, optional): Name of folder. Defaults to DEFAULT_REPORT_FOLDER.
 
 	Returns:
@@ -138,8 +138,8 @@ class BaseResult(ABC):
 		"""Creates object of BaseResult. Child class should be added to Plotting.CUSTOM_RESULTS.
 
 		Args:
-			df (pd.core.frame.DataFrame): dataframe that needs to be plotted.
-			report_folder (str): path to report folder.
+			df (pd.core.frame.DataFrame): Dataframe that needs to be plotted.
+			report_folder (str): Path to report folder.
 			file_name (str): Name of saved File.
 		"""     
 		self.report_folder = report_folder
@@ -228,7 +228,7 @@ def load_env_variable(env_name:str)-> str:
 		RequiredEnvVariablesMissing: Prints the variable name if its missing.
 
 	Returns:
-		str: value of the .env key.
+		str: Value of the .env key.
 	"""    
 	load_dotenv()
 	if env_name not in os.environ:

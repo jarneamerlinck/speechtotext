@@ -94,6 +94,7 @@ id003|Alles van de testen slagen zonder problemen!"""
 		id = "id003"
 		correct_text= "Alles van de testen slagen zonder problemen!"
 		self.assertEqual(correct_text, d.get_text_of_id(id))
+
 	def test_get_text_of_id_with_sample(self):
 		"""Test get_text_of_id.
 		"""  

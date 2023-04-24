@@ -55,7 +55,7 @@ def string_cleaning(text:str)-> str:
 	Returns:
 		str: Cleaned string.
 	"""    
-	return re.sub(REGEX_STRING_PARSE, '', text)
+	return re.sub(REGEX_STRING_PARSE, '', text).rstrip()
 
 def join_benchmark_results(results: list[pd.core.frame.DataFrame], set_index=True) -> pd.core.frame.DataFrame:
 	"""Join Benchmark results.

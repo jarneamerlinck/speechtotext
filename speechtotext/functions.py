@@ -134,6 +134,9 @@ def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) 
 	return folder_name
 
 class BaseResult(ABC):
+	"""Parent class for results. 
+ 	Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS
+	"""   
 	def __init__(self, df:pd.core.frame.DataFrame, report_folder:str, file_name:str):
 		"""Creates object of BaseResult. Child class should be added to Plotting.CUSTOM_RESULTS.
 

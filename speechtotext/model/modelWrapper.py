@@ -101,7 +101,7 @@ class ModelWrapper(ABC):
 		pass
 
 	@timing
-	def __benchmark_sample_with_time(self, dataset:Dataset, id:str, with_cleaning=True)-> tuple[str, str, float]:
+	def _benchmark_sample_with_time(self, dataset:Dataset, id:str, with_cleaning=True)-> tuple[str, str, float]:
 		"""Benchmark sample for model with timer.
 
 		Args:
@@ -130,7 +130,7 @@ class ModelWrapper(ABC):
 		Returns:
 			Metrics: Metrics of the transcript.
 		"""
-		(reference, hypothesis), duration = self.__benchmark_sample_with_time(dataset, id, with_cleaning)
+		(reference, hypothesis), duration = self._benchmark_sample_with_time(dataset, id, with_cleaning)
 		m = Metrics(reference,hypothesis, id, duration, with_cleaning)
 		return m
 
@@ -148,7 +148,7 @@ class ModelWrapper(ABC):
 		samples = dataset.get_n_samples(number_of_samples)
 		return self.benchmark_samples(samples, with_cleaning)
 
-	def __append_error(self, samples:SampleDataset, id:str, error:str):
+	def _append_error(self, samples:SampleDataset, id:str, error:str):
 		"""Append error to model_errors.
 
 		Args:
@@ -199,15 +199,15 @@ class ModelWrapper(ABC):
 				metrics_array.append(self.benchmark_sample(samples, id, with_cleaning))
 			except OutOfMemoryError as e:
 				error = "CUDA out of memory"
-				self.__append_error(samples, id, error)
+				self._append_error(samples, id, error)
 
 			except HTTPError as e:
 				error = f'"{e}"'
-				self.__append_error(samples, id, error)
+				self._append_error(samples, id, error)
 
 			except Exception as e:
 				error = f'"{e}"'
-				self.__append_error(samples, id, error)
+				self._append_error(samples, id, error)
 
 		return metrics_array
 		

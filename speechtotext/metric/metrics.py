@@ -12,7 +12,7 @@ Use this module like this:
 	print(m)
 """
 from typing_extensions import override
-from jiwer import wer, mer, wil, wip, cer, process_words
+from jiwer import cer, process_words
 import pandas as pd
 from docstring_parser import parse
 
@@ -27,10 +27,14 @@ class Metrics():
 
 			The WER is how many words there were made errors on.
 		mer (float): Match error rate (MER).
+  
+			The MER indicates the percentage of words that were incorrectly predicted and inserted. 
 		wil (float): Word information lost (WIL).
+  
+			The WIL represents the word information that is lost.
 		wip (float): Word information preserved (WIP).
   
-			The WIP represents the information that is preserved.
+			The WIP represents the word information that is preserved.
 		cer (float): Character error rate (CER).
   
 			The WER is how many characters there were made errors on.
@@ -124,9 +128,6 @@ class Metrics():
 
 		order = {v:i for i,v in enumerate(Metrics.get_all_metric_names())}
 		return sorted(list_of_metrics_docs, key=lambda x: order[prepare_for_sorting(x)])
-
-	def get_all_metrics(self) -> list:
-		pass
 
 	@override
 	def __str__(self) -> str:

@@ -71,7 +71,7 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 		"""
 		self.ASSEMBLY_AI_API_KEY = load_env_variable("ASSEMBLY_AI_API_KEY")
 
-	def __read_file_with_chunck_size(self, audio_file_name:str, chunk_size:int=5242880):
+	def _read_file_with_chunck_size(self, audio_file_name:str, chunk_size:int=5242880):
 		"""Read data from file.
 
 		Args:
@@ -88,7 +88,7 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 					break
 				yield data
     
-	def __upload_file(self, audio_file_name:str, header:dict) -> dict:
+	def _upload_file(self, audio_file_name:str, header:dict) -> dict:
 		"""Upload file.
 
 		Args:
@@ -100,11 +100,11 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 		"""     
 		upload_response = requests.post(
 			self.UPLOAD_ENDPOINT,
-			headers=header, data=self.__read_file_with_chunck_size(audio_file_name)
+			headers=header, data=self._read_file_with_chunck_size(audio_file_name)
 		)
 		return upload_response.json()
 
-	def __request_transcript(self, upload_url:dict, header:dict) -> dict:
+	def _request_transcript(self, upload_url:dict, header:dict) -> dict:
 		"""Request transcript.
 
 		Args:
@@ -125,7 +125,7 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 		)
 		return transcript_response.json()
 
-	def __make_polling_endpoint(self, transcript_response:dict) -> str:
+	def _make_polling_endpoint(self, transcript_response:dict) -> str:
 		"""Make polling endoint.
 
 		Args:
@@ -138,7 +138,7 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 		polling_endpoint += transcript_response['id']
 		return polling_endpoint
 
-	def __wait_for_completion(self, polling_endpoint:str, header:dict):
+	def _wait_for_completion(self, polling_endpoint:str, header:dict):
 		"""Wait for the translation to be done.
 
 		Args:
@@ -154,7 +154,7 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 
 			time.sleep(self.TIME_SLEEP)
 
-	def __get_paragraphs(self, polling_endpoint:str, header:dict) -> list:
+	def _get_paragraphs(self, polling_endpoint:str, header:dict) -> list:
 		"""Get results from polling endpoint.
 
 		Args:
@@ -173,7 +173,7 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 
 		return paragraphs
 
-	def __clean_output(self, paragraphs:list)-> str:
+	def _clean_output(self, paragraphs:list)-> str:
 		"""Transcript list to 1 string.
 
 		Args:
@@ -204,13 +204,13 @@ class AssemblyAIAPIWrapper(ModelWrapper):
         'content-type': 'application/json'
         
 		}
-		upload_url = self.__upload_file(audio_file_name, header)
-		transcript_response = self.__request_transcript(upload_url, header)
+		upload_url = self._upload_file(audio_file_name, header)
+		transcript_response = self._request_transcript(upload_url, header)
 
-		polling_endpoint = self.__make_polling_endpoint(transcript_response)
+		polling_endpoint = self._make_polling_endpoint(transcript_response)
 
 		# Wait until the transcription is complete
-		self.__wait_for_completion(polling_endpoint, header)
+		self._wait_for_completion(polling_endpoint, header)
 
-		paragraphs = self.__get_paragraphs(polling_endpoint, header)
-		return self.__clean_output(paragraphs)
+		paragraphs = self._get_paragraphs(polling_endpoint, header)
+		return self._clean_output(paragraphs)

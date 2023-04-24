@@ -98,11 +98,11 @@ class AmazonAPIWrapper(ModelWrapper):
 		# Transcribe
 		transcribe_client = boto3.client('transcribe', region_name = self.AMAZON_REGION)
 		file_uri = f's3://{self.BUCKET}/{audio_file_name}'
-		transcriptFileUri = self.__get_transcribe_file_location(file_uri, transcribe_client, f"Transcribe-{string_cleaning(audio_file_name)}")
+		transcriptFileUri = self._get_transcribe_file_location(file_uri, transcribe_client, f"Transcribe-{string_cleaning(audio_file_name)}")
 
-		return self.__get_transcript_from_json_uri(transcriptFileUri)
+		return self._get_transcript_from_json_uri(transcriptFileUri)
 
-	def __get_transcript_from_json_uri(self, json_uri:str)-> str:
+	def _get_transcript_from_json_uri(self, json_uri:str)-> str:
 		"""Get transcript from amazon transcribe json result.
 
 		Args:
@@ -115,7 +115,7 @@ class AmazonAPIWrapper(ModelWrapper):
 			data = json.load(response)
 			return data.get("results").get("transcripts")[0].get("transcript")
 
-	def __get_transcribe_file_location(self, file_uri:str, transcribe_client, job_name:str="Transcribe") ->str:
+	def _get_transcribe_file_location(self, file_uri:str, transcribe_client, job_name:str="Transcribe") ->str:
 		"""Transcribe and return result location. 
 
 		Args:

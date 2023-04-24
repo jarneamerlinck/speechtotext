@@ -250,3 +250,38 @@ class TestStrings(unittest.TestCase):
 		
 		t.update_number(4, -2)
 		self.assertEqual(t.number, 2)
+
+class TestEnv(unittest.TestCase):
+	def test_load_env_variable(self):
+		"""Test load_env_variable.
+		"""
+		from speechtotext.functions import load_env_variable 
+		import os
+		os_env = "5"
+		os.environ["os_env"] = "5"
+		self.assertEqual(os_env, load_env_variable("os_env"))
+
+	def test_load_env_variable_exception(self):
+		"""Test load_env_variable.
+		"""
+		from speechtotext.functions import load_env_variable, RequiredEnvVariablesMissing
+		import os
+		os.environ.pop("os_env")
+		def func():
+			load_env_variable("os_env")
+		self.assertRaises(RequiredEnvVariablesMissing, func)
+  
+class TestTiming(unittest.TestCase):
+	def test_load_env_variable_exception(self):
+		"""Test load_env_variable.
+		"""
+		from speechtotext.functions import timing
+		import os
+		@timing
+		def func_slow():
+			[i for i in range(2000)]
+		@timing
+		def func_fast():
+			[i for i in range(200)]
+		self.assertTrue(func_slow() > func_fast())
+  

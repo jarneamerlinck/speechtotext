@@ -43,10 +43,20 @@ class WhisperVersion(ModelVersion):
 		Enum (WhisperVersion): Available whisper models.
 	"""
 	TINY 	= "tiny"
+	"""Smallest whisper version.
+	"""
 	SMALL 	= "small"
-	MEDIUM 	= "medium"
-	LARGE 	= "large"
+	"""Second smallest whisper version.
+	"""
 	BASE 	= "base"
+	"""Base whisper version.
+	"""
+	MEDIUM 	= "medium"
+	"""Larger then Base whisper version.
+	"""
+	LARGE 	= "large"
+	"""Biggest whisper version.
+	"""
 
 class WhisperWrapper(ModelWrapper): 
 	"""Wrapper for whisper model.
@@ -84,6 +94,8 @@ class WhisperAPIVersion(ModelVersion):
 		Enum (WhisperAPIVersion): Available whisper API models.
 	"""
 	WHISPER_1 	= "whisper-1"
+	"""Online whisper version.
+	"""
 
   
 class WhisperAPIWrapper(ModelWrapper): 

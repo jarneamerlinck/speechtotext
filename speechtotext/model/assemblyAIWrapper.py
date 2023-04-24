@@ -43,7 +43,8 @@ class AssemblyAIAPIVersion(ModelVersion):
 		Enum (assemblyAiAPIVersion): Available whisper API models.
 	"""
 	ASSEMBLYAI_DEFAULT 	= "default"
-
+	"""Default model version.
+	"""
 
 
 
@@ -52,11 +53,25 @@ class AssemblyAIAPIWrapper(ModelWrapper):
  	"""
 
 	LANGUAGE_CODE:str = 'nl'
+	"""str: Code for the language to transcribe.
+	
+	See  `supported languages for assemblyAi <https://www.assemblyai.com/docs/#supported-languages>`_
+	"""
 	API_URL:str = "https://api.assemblyai.com/v2/upload"
+	"""str: Connection url for the API.
+	"""
 	UPLOAD_ENDPOINT:str = "https://api.assemblyai.com/v2/upload"
+	"""str: Upload endpoint url.
+	"""
 	TRANSCRIPT_ENDPOINT:str = "https://api.assemblyai.com/v2/transcript"
+	"""str: Transcribe endpoint url.
+	"""
 	POLLING_ENDPOINT:str = "https://api.assemblyai.com/v2/transcript/"
+	"""str: Polling endpoint url.
+	"""
 	TIME_SLEEP:int = 3
+	"""int: Time to sleep after each polling.
+	"""
 
 	def __init__(self, model_version:AssemblyAIAPIVersion):
 		"""Wrapper for assemblyAi model.
@@ -87,7 +102,7 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 				if not data:
 					break
 				yield data
-    
+	
 	def _upload_file(self, audio_file_name:str, header:dict) -> dict:
 		"""Upload file.
 
@@ -200,9 +215,9 @@ class AssemblyAIAPIWrapper(ModelWrapper):
 			str: Transcript of audio file.
 		"""
 		header = {
-        'authorization': self.ASSEMBLY_AI_API_KEY,
-        'content-type': 'application/json'
-        
+		'authorization': self.ASSEMBLY_AI_API_KEY,
+		'content-type': 'application/json'
+		
 		}
 		upload_url = self._upload_file(audio_file_name, header)
 		transcript_response = self._request_transcript(upload_url, header)

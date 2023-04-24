@@ -44,15 +44,24 @@ class SpeechmaticsAPIVersion(ModelVersion):
 	"""Enum for the available SPEECHMATICS API models. 
 
 	Args:
-		Enum (SpeechmaticsAPIVersion): Available whisper API models.
+		Enum (SpeechmaticsAPIVersion): Available Speechmatic API models.
 	"""
 	SPEECHMATICS_DEFAULT 	= "SpeechmaticsApi"
+	"""Default model version.
+	"""
 
 class SpeechmaticsAPIWrapper(ModelWrapper): 
 	"""Wrapper for SPEECHMATICS API. SPEECHMATICS_API_KEY needs to be in the '.env' file in current directory.
  	"""
 	LANGUAGE_CODE:str = 'nl'
-	CONNECTION_URL = f"wss://eu2.rt.speechmatics.com/v2/"	
+	"""str: Code for the language to transcribe.
+	
+	See  `supported languages for speechmatics <https://docs.speechmatics.com/introduction/supported-languages>`_.
+	"""
+	CONNECTION_URL:str = f"wss://eu2.rt.speechmatics.com/v2/"
+	"""str: Connection url for the API.
+	"""
+	
  
 	def __init__(self, model_version:SpeechmaticsAPIVersion):
 		"""Wrapper for SPEECHMATICS model.

@@ -12,9 +12,6 @@ Use this module like this:
 	
 	# Clean string
 	string_cleaning("this has.//./8 to be cleaned::@")
-
-Attributes:
-	REGEX_STRING_PARSE (str): Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
 """
 
 from functools import wraps
@@ -28,14 +25,18 @@ from datetime import datetime
 from abc import ABC, abstractmethod
 from dotenv import load_dotenv
 
-REGEX_STRING_PARSE = '[^A-Za-z0-9 ]+'
-
-DEFAULT_DATATIME_FORMAT = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
-DEFAULT_REPORTS_FOLDER = "reports"
-DEFAULT_CSV_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{DEFAULT_DATATIME_FORMAT}.csv"
-DEFAULT_HTML_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{DEFAULT_DATATIME_FORMAT}.html"
-DEFAULT_HTML_TITLE = f"{DEFAULT_REPORTS_FOLDER}/Benchmark results of {DEFAULT_DATATIME_FORMAT}"
-
+REGEX_STRING_PARSE:str = '[^A-Za-z0-9 ]+'
+"""str: Regex used to clean the transcripts.
+"""
+DEFAULT_DATETIME_FORMAT:str = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
+"""str: Default datetime format. (Uses string format for datetime)
+"""
+DEFAULT_REPORTS_FOLDER:str = "reports"
+"""str: Default folder to save the reports.
+"""
+DEFAULT_CSV_NAME:str = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{DEFAULT_DATETIME_FORMAT}.csv"
+"""str: Default path to save Benchmark results.
+"""
 
 def force_cudnn_initialization():
 	"""Force torch use for cuda if available.
@@ -128,7 +129,7 @@ def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) 
 	Returns:
 		str: path to save folder.
 	"""    
-	folder_name =  f"{folder_name}/{report_name}_{DEFAULT_DATATIME_FORMAT}"
+	folder_name =  f"{folder_name}/{report_name}_{DEFAULT_DATETIME_FORMAT}"
 	if not os.path.isdir(folder_name):
 		os.makedirs(folder_name)
 	return folder_name

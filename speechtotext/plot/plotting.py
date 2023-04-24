@@ -191,10 +191,28 @@ class Plotting():
 	"""Class that is used to create plots for an benchmark.
 	"""    
 	CUSTOM_RESULTS: list[BaseResult] = []
+	"""list[BaseResult]: List of result classes that need to be saved.
+	
+	This could be an pandas df, report text file, ...
+	"""
 	CUSTOM_ERRORS: list[BaseResult] = []
+	"""list[BaseResult]: List of error classes that need to be saved.
+	
+	This could be an pandas df, report text file, ...
+	"""
 	CUSTOM_PLOTS: list[BaseResult] = []
+	"""list[BaseResult]: List of plot classes that need to be saved.
+	
+	This could be an plotly, matplotlib or another plot.
+	"""
 	CUSTOM_ERROR_PLOTS: list[BaseResult] = []
+	"""list[BaseResult]: List of error plot classes that need to be saved.
+	
+	This could be an plotly, matplotlib or another plot.
+	"""
 	DATASET_NAMES: list[str] = []
+	"""list[str]: List of dataset names that were used for the benchmarks.
+	"""
 
 	def __init__(self, results:list[pd.core.frame.DataFrame], errors:list[pd.core.frame.DataFrame],report_name:str):
 		"""Creates plotting object

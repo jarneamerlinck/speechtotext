@@ -51,8 +51,14 @@ class Benchmark(ABC):
 	Parent class for all benchmark classes. 
 	"""
 	BENCHMARK_SAMPLES: Dataset = None
+	"""Dataset: Dataset samples.
+	"""
 	DATASET: Dataset = None
+	"""Dataset: Original dataset.
+	"""
 	ERROR_LIST: list[pd.core.frame.DataFrame] = []
+	"""list[pd.core.frame.DataFrame]: List of errors.
+	"""
 
 	def __init__(self, with_cleaning=True):
 		"""Create benchmark object.

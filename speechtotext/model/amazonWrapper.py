@@ -45,7 +45,8 @@ class AmazonAPIVersion(ModelVersion):
 		Enum (AmazonAPIVersion): Available whisper API models.
 	"""
 	AMAZON_DEFAULT 	= "AmazonApi"
-
+	"""Default model version.
+	"""
 
 
 class AmazonAPIWrapper(ModelWrapper): 
@@ -53,7 +54,14 @@ class AmazonAPIWrapper(ModelWrapper):
  	"""
 
 	LANGUAGE_CODE:str = 'nl-NL'
-	BUCKET_EXIST = True
+	"""str: Code for the language to transcribe.
+	
+	See  `supported languages for amazon <https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html>`_
+	"""
+	BUCKET_EXIST:bool = True
+	"""bool: Boolean that represents if the bucket exists.
+	"""	
+	
 
 	def __init__(self, model_version:AmazonAPIVersion):
 		"""Wrapper for AMAZON model.

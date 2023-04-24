@@ -23,7 +23,7 @@ on:
 
 env:
   CACHE_NUMBER: 0  # increase to reset cache manually
-
+  
 jobs:
 
   build:
@@ -56,7 +56,7 @@ jobs:
             use-mamba: true
 
       - name: Set cache date
-        run: echo "DATE=$(date +'%Y%m%d')" >> $GITHUB_ENV
+        run: echo "DATE=$(date +'%Y%m')" >> $GITHUB_ENV
 
       - uses: actions/cache@v3
         with:

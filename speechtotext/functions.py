@@ -70,7 +70,8 @@ def join_benchmark_results(results: list[pd.core.frame.DataFrame], set_index=Tru
 	df = pd.concat(results)
 	if set_index:
 		df = df.set_index(["model_name", "audio_ID"])
-	return df
+		return df
+	return df.reset_index(drop=True)
 
 def separate_benchmark_results_by_model(dataframe: pd.core.frame.DataFrame) -> dict[str, pd.core.frame.DataFrame]:
 	"""Seperate benchmark results for each model.

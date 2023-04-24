@@ -103,7 +103,7 @@ class SampleDataset(DatasetBare):
 	"""    
 	def __init__(self, df: pd.core.frame.DataFrame, path_to_dir: str, name: str, file_ext: str = ".wav"):
 		super().__init__(path_to_dir, name, file_ext)
-		self.dataset = df
+		self.dataset: pd.core.frame.DataFrame = df
 
 class Dataset(DatasetBare):
 	"""Class to extract data from the dataset folder.
@@ -121,7 +121,7 @@ class Dataset(DatasetBare):
 		df = df.iloc[:, 0:2] 
 		df.columns = ["id", "text"]
 		df['id'] = df['id'].apply(lambda id :get_file_name_without_extention(id) )
-		self.dataset = df
+		self.dataset: pd.core.frame.DataFrame = df
 
 	def get_n_samples(self, number_of_samples:int) -> SampleDataset:
 		"""Get n random samples.
@@ -134,7 +134,7 @@ class Dataset(DatasetBare):
 		"""     
 		if number_of_samples > self.number_of_samples():
 			print("number larger then samples in dataset. Using full dataset")
-			number_of_samples = self.dataset.number_of_samples()
+			number_of_samples = self.number_of_samples()
 		df = self.dataset.sample(n=number_of_samples)
 
 		return SampleDataset(df, self.path_to_dir, self.name, self.file_ext)

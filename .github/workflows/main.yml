@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - main
+    - 16-add-more-tests
     paths:
     - 'speechtotext/**'
     - '*.py'

@@ -47,6 +47,8 @@ class GoogleAPIVersion(ModelVersion):
 		Enum (googleAPIVersion): Available whisper API models.
 	"""
 	GOOGLE_DEFAULT 	= "googleApi"
+	"""Default model version.
+	"""
 	# GOOGLE_V2 	= "googleApi"
 
 
@@ -56,6 +58,10 @@ class GoogleAPIWrapper(ModelWrapper):
  	"""
 
 	LANGUAGE_CODE:str = 'nl-BE'
+	"""str: Code for the language to transcribe.
+	
+	See  `supported languages for google <https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages>`_.
+	"""
 	
 	def __init__(self, model_version:GoogleAPIVersion):
 		"""Wrapper for google model.

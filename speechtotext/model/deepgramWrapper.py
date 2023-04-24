@@ -44,7 +44,11 @@ class DeepgramAPIVersion(ModelVersion):
 		Enum (deepgramAPIVersion): Available whisper API models.
 	"""
 	DEEPGRAM_DEFAULT 	= "general"
+	"""Default model version.
+	"""
 	DEEPGRAM_ENHANCED	= "general-enhanced"
+	"""Enhanced model version.
+	"""
 
 
 
@@ -53,6 +57,10 @@ class DeepgramAPIWrapper(ModelWrapper):
  	"""
 
 	LANGUAGE_CODE:str = 'nl'
+	"""str: Code for the language to transcribe.
+	
+	See  `supported languages for deepgram <https://deepgram.com/product/languages/>`_
+	"""
 
 	def __init__(self, model_version:DeepgramAPIVersion):
 		"""Wrapper for deepgram model.

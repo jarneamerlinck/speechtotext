@@ -45,7 +45,8 @@ class AmazonAPIVersion(ModelVersion):
 		Enum (AmazonAPIVersion): Available whisper API models.
 	"""
 	AMAZON_DEFAULT 	= "AmazonApi"
-
+	"""Default model version.
+	"""
 
 
 class AmazonAPIWrapper(ModelWrapper): 
@@ -53,7 +54,14 @@ class AmazonAPIWrapper(ModelWrapper):
  	"""
 
 	LANGUAGE_CODE:str = 'nl-NL'
-	BUCKET_EXIST = True
+	"""str: Code for the language to transcribe.
+	
+	See  `supported languages for amazon <https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html>`_
+	"""
+	BUCKET_EXIST:bool = True
+	"""bool: Boolean that represents if the bucket exists.
+	"""	
+	
 
 	def __init__(self, model_version:AmazonAPIVersion):
 		"""Wrapper for AMAZON model.
@@ -98,11 +106,11 @@ class AmazonAPIWrapper(ModelWrapper):
 		# Transcribe
 		transcribe_client = boto3.client('transcribe', region_name = self.AMAZON_REGION)
 		file_uri = f's3://{self.BUCKET}/{audio_file_name}'
-		transcriptFileUri = self.__get_transcribe_file_location(file_uri, transcribe_client, f"Transcribe-{string_cleaning(audio_file_name)}")
+		transcriptFileUri = self._get_transcribe_file_location(file_uri, transcribe_client, f"Transcribe-{string_cleaning(audio_file_name)}")
 
-		return self.__get_transcript_from_json_uri(transcriptFileUri)
+		return self._get_transcript_from_json_uri(transcriptFileUri)
 
-	def __get_transcript_from_json_uri(self, json_uri:str)-> str:
+	def _get_transcript_from_json_uri(self, json_uri:str)-> str:
 		"""Get transcript from amazon transcribe json result.
 
 		Args:
@@ -115,13 +123,13 @@ class AmazonAPIWrapper(ModelWrapper):
 			data = json.load(response)
 			return data.get("results").get("transcripts")[0].get("transcript")
 
-	def __get_transcribe_file_location(self, file_uri:str, transcribe_client, job_name:str="Transcribe") ->str:
+	def _get_transcribe_file_location(self, file_uri:str, transcribe_client, job_name:str="Transcribe") ->str:
 		"""Transcribe and return result location. 
 
 		Args:
-			file_uri (str): s3 path to audio file.
-			transcribe_client (_type_): boto3 transcribe client.
-			file_ext (str): file extention of audio file.
+			file_uri (str): S3 path to audio file.
+			transcribe_client (_type_): Boto3 transcribe client.
+			file_ext (str): File extention of audio file.
 			job_name (str, optional): Name of amazon AWS job. Defaults to "Transcribe".
 		"""	
 		try:

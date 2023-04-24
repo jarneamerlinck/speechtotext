@@ -100,6 +100,9 @@ html_theme = 'press'
 # html_theme_options = {}
 html_show_sphinx = False
 
+# What to show
+napoleon_include_special_with_doc = True
+napoleon_include_private_with_doc = True
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

@@ -48,7 +48,7 @@ class DatasetBare():
 		"""Creates dataset object.
 		There needs to be an transcripts.txt directly in the dir.
 		Args:
-			path_to_dir (str): path to dir ending with "/".
+			path_to_dir (str): Path to dir ending with "/".
 			name (str): Name of dataset.
 			file_ext (str): Extention of files.
 		"""     
@@ -68,10 +68,10 @@ class DatasetBare():
 		"""Gets path of fragment.
 
 		Args:
-			id (str): id of file.
+			id (str): Id of file.
 
 		Raises:
-			FileNotFoundError: if id doesn't exist.
+			FileNotFoundError: If id doesn't exist.
 
 		Returns:
 			str: Path to fragment.
@@ -87,10 +87,10 @@ class DatasetBare():
 		"""Get text of fragment id.
 
 		Args:
-			id (str): id of fragment.
+			id (str): Id of fragment.
 
 		Returns:
-			str: string of spoken text.
+			str: String of spoken text.
 		"""     
 		row = self.dataset[self.dataset["id"] == id]
 		try:
@@ -130,7 +130,7 @@ class Dataset(DatasetBare):
 			number_of_samples (int): Number of random samples.
 
 		Returns:
-			SampleDataset: dataset with the samples.
+			SampleDataset: Dataset with the samples.
 		"""     
 		if number_of_samples > self.number_of_samples():
 			print("number larger then samples in dataset. Using full dataset")

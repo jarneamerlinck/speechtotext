@@ -12,9 +12,6 @@ Use this module like this:
 	
 	# Clean string
 	string_cleaning("this has.//./8 to be cleaned::@")
-
-Attributes:
-	REGEX_STRING_PARSE (str): Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
 """
 
 from functools import wraps
@@ -28,14 +25,18 @@ from datetime import datetime
 from abc import ABC, abstractmethod
 from dotenv import load_dotenv
 
-REGEX_STRING_PARSE = '[^A-Za-z0-9 ]+'
-
-DEFAULT_DATATIME_FORMAT = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
-DEFAULT_REPORTS_FOLDER = "reports"
-DEFAULT_CSV_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{DEFAULT_DATATIME_FORMAT}.csv"
-DEFAULT_HTML_NAME = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{DEFAULT_DATATIME_FORMAT}.html"
-DEFAULT_HTML_TITLE = f"{DEFAULT_REPORTS_FOLDER}/Benchmark results of {DEFAULT_DATATIME_FORMAT}"
-
+REGEX_STRING_PARSE:str = '[^A-Za-z0-9 ]+'
+"""str: Regex used to clean the transcripts.
+"""
+DEFAULT_DATETIME_FORMAT:str = datetime.now().strftime('%Y_%m_%d_%H_%M_%S')
+"""str: Default datetime format. (Uses string format for datetime)
+"""
+DEFAULT_REPORTS_FOLDER:str = "reports"
+"""str: Default folder to save the reports.
+"""
+DEFAULT_CSV_NAME:str = f"{DEFAULT_REPORTS_FOLDER}/Benchmark_results_{DEFAULT_DATETIME_FORMAT}.csv"
+"""str: Default path to save Benchmark results.
+"""
 
 def force_cudnn_initialization():
 	"""Force torch use for cuda if available.
@@ -49,10 +50,10 @@ def string_cleaning(text:str)-> str:
 	"""Cleaning of string for STT.
 
 	Args:
-		text (str): uncleaned string.
+		text (str): Uncleaned string.
 
 	Returns:
-		str: cleaned string.
+		str: Cleaned string.
 	"""    
 	return re.sub(REGEX_STRING_PARSE, '', text)
 
@@ -60,7 +61,7 @@ def join_benchmark_results(results: list[pd.core.frame.DataFrame], set_index=Tru
 	"""Join Benchmark results.
 
 	Args:
-			results (list[pd.core.frame.DataFrame]): results of benchmarks.
+			results (list[pd.core.frame.DataFrame]): Results of benchmarks.
 			set_index (bool, optional): Set True if ["model_name", "audio_ID"] can be set as index. Defaults to True.
 
 	Returns:
@@ -78,7 +79,7 @@ def separate_benchmark_results_by_model(dataframe: pd.core.frame.DataFrame) -> d
 			dataframe pd.core.frame.DataFrame: Dataframe with results of all benchmarks.
 
 	Returns:
-			(list[pd.core.frame.DataFrame]): results of benchmarks. 
+			(list[pd.core.frame.DataFrame]): Results of benchmarks. 
 	"""
 	
 	model_names = dataframe["model_name"].unique()
@@ -98,7 +99,7 @@ def benchmark_results_to_csv(results: list[pd.core.frame.DataFrame], save_name:s
 	
 	Args:
 		results (list[pd.core.frame.DataFrame]): List of results from benchmarks.
-		save_name (str, optional): filename of output. Defaults to DEFAULT_CSV_NAME.
+		save_name (str, optional): Filename of output. Defaults to DEFAULT_CSV_NAME.
 	"""  
 	df = pd.concat(results)
 	df.to_csv(save_name, index=False)
@@ -107,11 +108,11 @@ def save_sub_folder_name(folder_path:str, subfolder_name:str) -> str:
 	"""Creates subfolder path.
 
 	Args:
-		folder_path (str): path of parent folder.
-		subfolder_name (str): subfolder name.
+		folder_path (str): Path of parent folder.
+		subfolder_name (str): Subfolder name.
 
 	Returns:
-		str: path to save folder.
+		str: Path to save folder.
 	"""    
 	folder_name =  f"{folder_path}/{subfolder_name}"
 	if not os.path.isdir(folder_name):
@@ -122,24 +123,27 @@ def save_folder_name(report_name:str, folder_name:str = DEFAULT_REPORTS_FOLDER) 
 	"""Makes folder path.
 
 	Args:
-		report_name (str): name of report.
+		report_name (str): Name of report.
 		folder_name (str, optional): Name of folder. Defaults to DEFAULT_REPORT_FOLDER.
 
 	Returns:
 		str: path to save folder.
 	"""    
-	folder_name =  f"{folder_name}/{report_name}_{DEFAULT_DATATIME_FORMAT}"
+	folder_name =  f"{folder_name}/{report_name}_{DEFAULT_DATETIME_FORMAT}"
 	if not os.path.isdir(folder_name):
 		os.makedirs(folder_name)
 	return folder_name
 
 class BaseResult(ABC):
+	"""Parent class for results. 
+ 	Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS
+	"""   
 	def __init__(self, df:pd.core.frame.DataFrame, report_folder:str, file_name:str):
 		"""Creates object of BaseResult. Child class should be added to Plotting.CUSTOM_RESULTS.
 
 		Args:
-			df (pd.core.frame.DataFrame): dataframe that needs to be plotted.
-			report_folder (str): path to report folder.
+			df (pd.core.frame.DataFrame): Dataframe that needs to be plotted.
+			report_folder (str): Path to report folder.
 			file_name (str): Name of saved File.
 		"""     
 		self.report_folder = report_folder
@@ -176,6 +180,17 @@ def get_file_name_without_extention(file_name:str)-> str:
 	"""    
 	file_name, _ = os.path.splitext(file_name)
 	return file_name
+
+def uppercase_for_first_character_in_string(string:str) -> str:
+	"""Return string where first character is uppercase.
+
+	Args:
+		string (str): String to process.
+
+	Returns:
+		str: String where first character is uppercase.
+	"""    
+	return  string[0].upper() + string[1:]
 
 def multidispatch(*types):
 	"""Allow for Method overloading for classes.
@@ -217,7 +232,7 @@ def load_env_variable(env_name:str)-> str:
 		RequiredEnvVariablesMissing: Prints the variable name if its missing.
 
 	Returns:
-		str: value of the .env key.
+		str: Value of the .env key.
 	"""    
 	load_dotenv()
 	if env_name not in os.environ:

@@ -8,32 +8,35 @@ Use this module like this:
 	from speechtotext.plot.plotting import BasePlot, Plotting	
  
 	# Create plotting object
-	plotting = Plotting(results=results, report_name = "report_name")
+	plotting = Plotting(results=results, errors=errors, report_name="report_name")
  
-	# Create all custom plots that are added to Plotting.CUSTOM_PLOTS
+	# Create all custom plots that are added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS, Plotting.CUSTOM_ERROR_PLOTS
+	# The Plotting.CUSTOM_ERROR_PLOTS and Plotting.CUSTOM_ERRORS will be saved in the `error_plots` directory.
 	plotting.save_all()
- 
+
 """
 import pandas as pd
 from abc import ABC, abstractmethod
 import plotly
 import matplotlib
 import dtale
+import itertools
 
-from speechtotext.functions import join_benchmark_results, save_folder_name, save_sub_folder_name, BaseResult, benchmark_results_to_csv
+from speechtotext.metric.metrics import Metrics
+from speechtotext.functions import join_benchmark_results, save_folder_name, save_sub_folder_name, BaseResult, benchmark_results_to_csv, uppercase_for_first_character_in_string
 from speechtotext.functions import DEFAULT_REPORTS_FOLDER
 
 class BasePlotly(BaseResult):
-	"""Parent class for custom plots with Plotly. Code can be generated from d-tale. Child class should be made and added to Plotting.CUSTOM_RESULTS.
-
+	"""Parent class for custom plots with Plotly. Code can be generated from d-tale. 
+ 	Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS
 	"""    
 	def __init__(self, df:pd.core.frame.DataFrame, report_folder:str, file_name:str):
 		"""Creates object of BasePlot.
 
 		Args:
-			df (pd.core.frame.DataFrame): dataframe that needs to be plotted.
-			report_folder (str): path to report folder.
-			plot_name (str): Name of plot.
+			df (pd.core.frame.DataFrame): Dataframe that needs to be plotted.
+			report_folder (str): Path to report folder.
+			file_name (str): Name of plot.
 		"""     	
 		self.ext = ".png"
 		self.engine = "auto"
@@ -55,15 +58,15 @@ class BasePlotly(BaseResult):
 		pass
 
 class BaseMatPlotLib(BaseResult):
-	"""Parent class for custom plots with matplotlib. Child class should be made and added to Plotting.CUSTOM_RESULTS.
-
-	"""    
+	"""Parent class for custom plots with matplotlib. Code can be generated from d-tale. 
+ 	Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS
+	""" 
 	def __init__(self, df:pd.core.frame.DataFrame, report_folder:str, file_name:str):
 		"""Creates object of BasePlot.
 
 		Args:
-			df (pd.core.frame.DataFrame): dataframe that needs to be plotted.
-			report_folder (str): path to report folder.
+			df (pd.core.frame.DataFrame): Dataframe that needs to be plotted.
+			report_folder (str): Path to report folder.
 			plot_name (str): Name of plot.
 		"""     	
 		self.ext = ".png"
@@ -84,15 +87,141 @@ class BaseMatPlotLib(BaseResult):
 		"""     
 		pass
 
+class DynamicPlotClassesByMetricForEachDataset(BaseResult):
+	"""Dynamically create plot classes for each metric for each dataset in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.
+
+	"""    
+	def __init__(self, df: pd.core.frame.DataFrame, report_folder: str, file_name: str):
+		"""Creates object of class.
+
+		Args:
+			df (pd.core.frame.DataFrame): Dataframe that needs to be plotted.
+			report_folder (str): Path to report folder.
+			file_name (str): Name of plot.
+		"""     
+		self.ext = ".png"
+		self.PLOT_CLASS_NAME_LIST = []
+		super().__init__(df, report_folder, file_name)
+	
+	def create_plot_classes(self):
+		"""Creates plot classes.
+		"""     
+		list_of_metric_names:list[str] = Metrics.get_all_metric_names()
+
+		list_of_metric_description:list[str] = Metrics.get_all_metric_docs()
+		list_of_dataset_names:list[str] = Plotting.DATASET_NAMES
+		
+		for (metric_name, metric_description), dataset_name in itertools.product(zip(list_of_metric_names, list_of_metric_description), list_of_dataset_names):
+	 
+			class_name = f"{uppercase_for_first_character_in_string(metric_name)}ByModelnameFor{uppercase_for_first_character_in_string(dataset_name)}"
+
+			class_type = type(class_name, (BasePlotly, ), dict(	
+					# data members
+					metric_name= metric_name,
+					metric_description= metric_description,
+					dataset_name= dataset_name,
+					ext= self.ext,
+					# Methodes to override
+					create_plot= self.__class__.create_plot,
+			))
+			# Add to to plot list 
+			self.PLOT_CLASS_NAME_LIST.append(class_type)
+
+
+	def save(self):
+		"""Saves plot to folder.
+		"""  
+		self.create_plot_classes()
+		[custom_results_class(self.df, self.report_folder, custom_results_class.__name__).save() for custom_results_class in self.PLOT_CLASS_NAME_LIST]
+	
+	@abstractmethod
+	def create_plot(self):
+		pass
+
+class DynamicPlotClassesByMetricByDataset(BaseResult):
+	"""Dynamically create plot classes for each metric for each database in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.
+
+	"""    
+	def __init__(self, df: pd.core.frame.DataFrame, report_folder: str, file_name: str):
+		"""Creates object of class.
+
+		Args:
+			df (pd.core.frame.DataFrame): Dataframe that needs to be plotted.
+			report_folder (str): Path to report folder.
+			file_name (str): Name of plot.
+		"""     
+		self.ext = ".png"
+		self.PLOT_CLASS_NAME_LIST = []
+		super().__init__(df, report_folder, file_name)
+	
+	def create_plot_classes(self):
+		"""Creates plot classes.
+		"""     
+		list_of_metric_names:list[str] = Metrics.get_all_metric_names()
+
+		list_of_metric_description:list[str] = Metrics.get_all_metric_docs()
+		
+		for metric_name, metric_description in zip(list_of_metric_names, list_of_metric_description):
+	 
+			class_name = f"{uppercase_for_first_character_in_string(metric_name)}ByModelnameByDataset"
+
+			class_type = type(class_name, (BasePlotly, ), dict(	
+					# data members
+					metric_name= metric_name,
+					metric_description= metric_description,
+					ext= self.ext,
+					# Methodes to override
+					create_plot= self.__class__.create_plot,
+			))
+			# Add to to plot list 
+			self.PLOT_CLASS_NAME_LIST.append(class_type)
+
+
+	def save(self):
+		"""Saves plot to folder.
+		"""  
+		self.create_plot_classes()
+		[custom_results_class(self.df, self.report_folder, custom_results_class.__name__).save() for custom_results_class in self.PLOT_CLASS_NAME_LIST]
+	
+	@abstractmethod
+	def create_plot(self):
+		pass
+
 class Plotting():
 	"""Class that is used to create plots for an benchmark.
 	"""    
 	CUSTOM_RESULTS: list[BaseResult] = []
+	"""list[BaseResult]: List of result classes that need to be saved.
+	
+	This could be an pandas df, report text file, ...
+	"""
 	CUSTOM_ERRORS: list[BaseResult] = []
+	"""list[BaseResult]: List of error classes that need to be saved.
+	
+	This could be an pandas df, report text file, ...
+	"""
 	CUSTOM_PLOTS: list[BaseResult] = []
+	"""list[BaseResult]: List of plot classes that need to be saved.
+	
+	This could be an plotly, matplotlib or another plot.
+	"""
 	CUSTOM_ERROR_PLOTS: list[BaseResult] = []
+	"""list[BaseResult]: List of error plot classes that need to be saved.
+	
+	This could be an plotly, matplotlib or another plot.
+	"""
+	DATASET_NAMES: list[str] = []
+	"""list[str]: List of dataset names that were used for the benchmarks.
+	"""
 
 	def __init__(self, results:list[pd.core.frame.DataFrame], errors:list[pd.core.frame.DataFrame],report_name:str):
+		"""Creates plotting object
+
+		Args:
+			results (list[pd.core.frame.DataFrame]): List of result dataframes.
+			errors (list[pd.core.frame.DataFrame]): List of error dataframes.
+			report_name (str): Name of report.
+		"""     
 		self.report_name = report_name
 
 		self.save_folder = save_folder_name(f"{report_name}")
@@ -103,6 +232,8 @@ class Plotting():
 		self.df_with_all_cols = join_benchmark_results(results, set_index=False)
 		self.error_df = join_benchmark_results(errors, set_index=False)
 		benchmark_results_to_csv(errors, save_name= f"{self.save_folder}/errors.csv")
+		
+		Plotting.DATASET_NAMES = pd.concat([self.df, self.error_df])["dataset"].unique().tolist()		
 	
 	def launch_dtale(self):
 		"""Launch webui to explore the data.
@@ -123,3 +254,4 @@ class Plotting():
 		# Errors
 		[custom_plot_class(self.error_df, self.save_error_folder, custom_plot_class.__name__).save() for custom_plot_class in self.CUSTOM_ERROR_PLOTS]
 		[custom_results_class(self.error_df, self.save_folder, custom_results_class.__name__).save() for custom_results_class in self.CUSTOM_ERRORS]
+	

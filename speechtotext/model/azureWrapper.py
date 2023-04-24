@@ -40,6 +40,8 @@ class AzureAPIVersion(ModelVersion):
 		Enum (AzureAPIVersion): Available whisper API models.
 	"""
 	AZURE_DEFAULT 	= "AzureApi"
+	"""Default model version.
+	"""
 
 
 
@@ -47,6 +49,10 @@ class AzureAPIWrapper(ModelWrapper):
 	"""Wrapper for AZURE API. AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the '.env' file in current directory.
  	"""
 	LANGUAGE_CODE:str = 'nl-BE'
+	"""str: Code for the language to transcribe.
+	
+	See  `supported languages for azure <https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=stt>`_
+	"""
  
 	def __init__(self, model_version:AzureAPIVersion):
 		"""Wrapper for AZURE model.

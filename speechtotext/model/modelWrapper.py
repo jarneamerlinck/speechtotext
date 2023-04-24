@@ -101,7 +101,7 @@ class ModelWrapper(ABC):
 		pass
 
 	@timing
-	def __benchmark_sample_with_time(self, dataset:Dataset, id:str, with_cleaning=True)-> tuple[str, str, float]:
+	def _benchmark_sample_with_time(self, dataset:Dataset, id:str, with_cleaning=True)-> tuple[str, str, float]:
 		"""Benchmark sample for model with timer.
 
 		Args:
@@ -130,7 +130,7 @@ class ModelWrapper(ABC):
 		Returns:
 			Metrics: Metrics of the transcript.
 		"""
-		(reference, hypothesis), duration = self.__benchmark_sample_with_time(dataset, id, with_cleaning)
+		(reference, hypothesis), duration = self._benchmark_sample_with_time(dataset, id, with_cleaning)
 		m = Metrics(reference,hypothesis, id, duration, with_cleaning)
 		return m
 
@@ -143,17 +143,17 @@ class ModelWrapper(ABC):
 			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 
 		Returns:
-			list: list of metrics for each sample.
+			list: List of metrics for each sample.
 		"""     
 		samples = dataset.get_n_samples(number_of_samples)
 		return self.benchmark_samples(samples, with_cleaning)
 
-	def __append_error(self, samples:SampleDataset, id:str, error:str):
+	def _append_error(self, samples:SampleDataset, id:str, error:str):
 		"""Append error to model_errors.
 
 		Args:
 			samples (SampleDataset): Dataset of audio.
-			id (str): id of failed sample.
+			id (str): Id of failed sample.
 			error (str): Error message.
 		"""     
 		new_row = pd.Series([id, samples.name, samples.get_text_of_id(id), error], index=self.column_names_errors)
@@ -163,11 +163,11 @@ class ModelWrapper(ABC):
 		"""Convert sample to correct format.
 
 		Args:
-			path_to_sample (str): path to sample.
-			override (bool, optional): override original file. Defaults to False.
+			path_to_sample (str): Path to sample.
+			override (bool, optional): Override original file. Defaults to False.
 
 		Returns:
-			str: path to converted sample.
+			str: Path to converted sample.
 		"""
 		name, ext = os.path.splitext(path_to_sample)
 		sound = AudioSegment.from_file(path_to_sample, ext[1:])
@@ -189,7 +189,7 @@ class ModelWrapper(ABC):
 			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
 
 		Returns:
-			list: list of metrics for each sample.
+			list: List of metrics for each sample.
 		"""   
 		metrics_array = []
 
@@ -199,15 +199,15 @@ class ModelWrapper(ABC):
 				metrics_array.append(self.benchmark_sample(samples, id, with_cleaning))
 			except OutOfMemoryError as e:
 				error = "CUDA out of memory"
-				self.__append_error(samples, id, error)
+				self._append_error(samples, id, error)
 
 			except HTTPError as e:
 				error = f'"{e}"'
-				self.__append_error(samples, id, error)
+				self._append_error(samples, id, error)
 
 			except Exception as e:
 				error = f'"{e}"'
-				self.__append_error(samples, id, error)
+				self._append_error(samples, id, error)
 
 		return metrics_array
 		

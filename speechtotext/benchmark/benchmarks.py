@@ -43,6 +43,7 @@ import pandas as pd
 from speechtotext.model.modelWrapper import ModelWrapper
 from speechtotext.datasets import Dataset
 from speechtotext.functions import multidispatch, join_benchmark_results, save_folder_name
+from speechtotext.metric.metrics import Metrics
 
 
 class Benchmark(ABC):
@@ -50,51 +51,69 @@ class Benchmark(ABC):
 	Parent class for all benchmark classes. 
 	"""
 	BENCHMARK_SAMPLES: Dataset = None
+	"""Dataset: Dataset samples.
+	"""
 	DATASET: Dataset = None
+	"""Dataset: Original dataset.
+	"""
 	ERROR_LIST: list[pd.core.frame.DataFrame] = []
+	"""list[pd.core.frame.DataFrame]: List of errors.
+	"""
 
 	def __init__(self, with_cleaning=True):
 		"""Create benchmark object.
 
 		Args:
-				with_cleaning (bool, optional): Clean . Defaults to True.
+				with_cleaning (bool, optional): Clean. Defaults to True.
 		"""
 		self.__with_cleaning = with_cleaning
 		self.models = self.create_models()
 
 	def save_to_csv(self, save_name: str):
-		"""save outputs of benchmark to csv.
+		"""Save outputs of benchmark to csv.
 
 		Args:
-				save_name (str): filename of output.
+				save_name (str): Filename of output.
 		"""
 		df = self.convert_to_pandas()
 		df.to_csv(save_name, index=False)
 
 	def convert_to_pandas(self) -> pd.core.frame.DataFrame:
-		"""convert metrics to dataframe.
+		"""Convert metrics to dataframe.
 
 		Returns:
-				pd.core.frame.DataFrame: pandas dataframe.
+				pd.core.frame.DataFrame: Pandas dataframe.
 		"""
-		column_names = ["model_name", "audio_ID","dataset", "duration",
-						"reference", "wer", "mer",  "wil", "wip", "cer"]
+		
+		# column_names = ["model_name", "audio_ID","dataset", "duration",
+		# 				"reference", "wer", "mer",  "wil", "wip", "cer"]
+		first_column_names = ["model_name", "audio_ID","dataset", "reference"]
+		metric_column_names = Metrics.get_all_metric_names()
+		column_names = first_column_names + metric_column_names
+		
 		df = pd.DataFrame(columns=column_names)
 
 		for model, metrics in zip(self.models, self.metrics):
 			model_name = f"{self.MODEL_BASE}_{model.model_version.value}"
 			for metric in metrics:
-
-				new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name,metric.duration,
-						 metric.reference, metric.wer, metric.mer,  metric.wil, metric.wip, metric.cer], index=column_names)
+				
+				# new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name,metric.duration,
+				# 		 metric.reference, metric.wer, metric.mer,  metric.wil, metric.wip, metric.cer], index=column_names)
+	
+				new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name, metric.reference] + 
+                    [vars(metric)[x] for x in metric_column_names]
+                    	, index=column_names)
 				df = pd.concat([df, new_row.to_frame().T], ignore_index=True)
 
 		return df
 
 	def __call__(self, number_of_samples: int, with_cleaning=True):
 		"""Benchmark n samples.benchmark_results_to_csv
-				with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
-		"""
+
+		Args:
+			number_of_samples (int): Number of samples to benchmark.
+			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.
+		"""     
 		self.metrics = []
 		column_names_errors = ["model_name", "audio_ID","dataset","reference", "message"]
 		df_errors = pd.DataFrame(columns=column_names_errors)
@@ -123,7 +142,7 @@ class Benchmark(ABC):
 		"""Creates an list of ModelWrappers.
 
 		Returns:
-				list[ModelWrapper]: list of model wrappers.
+				list[ModelWrapper]: List of model wrappers.
 		"""
 		pass
 
@@ -186,5 +205,6 @@ def run_benchmarks(benchmark_class_list: list[Benchmark], benchmark_dataset:Data
 	folder = save_folder_name(report_name)
 	df_error = join_benchmark_results(errors, set_index=False)
 	df_error.to_csv(f"{folder}/errors_{benchmark_dataset.name}.csv", index=False)
+	
 	print(f"Number of errors logged to .csv file: {df_error.shape[0]}")
 	return results

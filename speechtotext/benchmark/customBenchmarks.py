@@ -44,8 +44,9 @@ from speechtotext.model.speechmaticsWrapper import SpeechmaticsAPIVersion, Speec
 class WhisperBenchmark(Benchmark):
 	"""Benchmark for local whisper models.
 	"""
-	MODEL_BASE = "Whisper"
-
+	MODEL_BASE:str = "Whisper"
+	"""str: Name of base model.
+	"""
 	def create_models(self) -> list[ModelWrapper]:
 		models = []
 		for version in WhisperVersion:
@@ -55,8 +56,9 @@ class WhisperBenchmark(Benchmark):
 class WhisperAPIBenchmark(Benchmark):
 	"""Benchmark for API whisper models.
 	"""
-	MODEL_BASE = "WhisperAPI"
-
+	MODEL_BASE:str = "WhisperAPI"
+	"""str: Name of base model.
+	"""
 	def create_models(self) -> list[ModelWrapper]:
 		models = []
 		for version in WhisperAPIVersion:
@@ -66,8 +68,9 @@ class WhisperAPIBenchmark(Benchmark):
 class AmazonAPIBenchmark(Benchmark):
 	"""Benchmark for Amazon API transcribe.
 	"""
-	MODEL_BASE = "AmazonAPI"
-
+	MODEL_BASE:str = "AmazonAPI"
+	"""str: Name of base model.
+	"""
 	def create_models(self) -> list[ModelWrapper]:
 		models = []
 		for version in AmazonAPIVersion:
@@ -77,8 +80,9 @@ class AmazonAPIBenchmark(Benchmark):
 class GoogleAPIBenchmark(Benchmark):
 	"""Benchmark for Google API transcribe.
 	"""
-	MODEL_BASE = "GoogleAPI"
-
+	MODEL_BASE:str = "GoogleAPI"
+	"""str: Name of base model.
+	"""
 	def create_models(self) -> list[ModelWrapper]:
 		models = []
 		for version in GoogleAPIVersion:
@@ -88,8 +92,9 @@ class GoogleAPIBenchmark(Benchmark):
 class DeepgramAPIBenchmark(Benchmark):
 	"""Benchmark for Deepgram API.
 	"""
-	MODEL_BASE = "DeepgramAPI"
-
+	MODEL_BASE:str = "DeepgramAPI"
+	"""str: Name of base model.
+	"""
 	def create_models(self) -> list[ModelWrapper]:
 		models = []
 		for version in DeepgramAPIVersion:
@@ -99,8 +104,9 @@ class DeepgramAPIBenchmark(Benchmark):
 class AssemblyAIAPIBenchmark(Benchmark):
 	"""Benchmark for AssemblyAI API.
 	"""
-	MODEL_BASE = "AssemblyAIAPI"
-
+	MODEL_BASE:str = "AssemblyAIAPI"
+	"""str: Name of base model.
+	"""
 	def create_models(self) -> list[ModelWrapper]:
 		models = []
 		for version in AssemblyAIAPIVersion:
@@ -110,8 +116,9 @@ class AssemblyAIAPIBenchmark(Benchmark):
 class AzureAPIBenchmark(Benchmark):
 	"""Benchmark for Azure API.
 	"""
-	MODEL_BASE = "AzureAPI"
-
+	MODEL_BASE:str = "AzureAPI"
+	"""str: Name of base model.
+	"""
 	def create_models(self) -> list[ModelWrapper]:
 		models = []
 		for version in AzureAPIVersion:
@@ -121,8 +128,9 @@ class AzureAPIBenchmark(Benchmark):
 class SpeechmaticsAPIBenchmark(Benchmark):
 	"""Benchmark for Speechmatics API.
 	"""
-	MODEL_BASE = "SpeechmaticsAPI"
-
+	MODEL_BASE:str = "SpeechmaticsAPI"
+	"""str: Name of base model.
+	"""
 	def create_models(self) -> list[ModelWrapper]:
 		models = []
 		for version in SpeechmaticsAPIVersion:

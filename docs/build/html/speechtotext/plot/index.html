@@ -237,9 +237,10 @@
 <span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span> <span class="n">BasePlot</span><span class="p">,</span> <span class="n">Plotting</span>
 
 <span class="c1"># Create plotting object</span>
-<span class="n">plotting</span> <span class="o">=</span> <span class="n">Plotting</span><span class="p">(</span><span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">report_name</span> <span class="o">=</span> <span class="s2">&quot;report_name&quot;</span><span class="p">)</span>
+<span class="n">plotting</span> <span class="o">=</span> <span class="n">Plotting</span><span class="p">(</span><span class="n">results</span><span class="o">=</span><span class="n">results</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span> <span class="n">report_name</span><span class="o">=</span><span class="s2">&quot;report_name&quot;</span><span class="p">)</span>
 
-<span class="c1"># Create all custom plots that are added to Plotting.CUSTOM_PLOTS</span>
+<span class="c1"># Create all custom plots that are added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS, Plotting.CUSTOM_ERROR_PLOTS</span>
+<span class="c1"># The Plotting.CUSTOM_ERROR_PLOTS and Plotting.CUSTOM_ERRORS will be saved in the `error_plots` directory.</span>
 <span class="n">plotting</span><span class="o">.</span><span class="n">save_all</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -247,7 +248,8 @@
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.BaseMatPlotLib">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.plotting.</span></span><span class="sig-name descname"><span class="pre">BaseMatPlotLib</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.BaseMatPlotLib" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a></p>
-<p>Parent class for custom plots with matplotlib. Child class should be made and added to Plotting.CUSTOM_RESULTS.</p>
+<p>Parent class for custom plots with matplotlib. Code can be generated from d-tale.
+Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.BaseMatPlotLib.create_plot">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.plotting.BaseMatPlotLib.create_plot" title="Permalink to this definition">¶</a></dt>
@@ -274,7 +276,8 @@
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.BasePlotly">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.plotting.</span></span><span class="sig-name descname"><span class="pre">BasePlotly</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.BasePlotly" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a></p>
-<p>Parent class for custom plots with Plotly. Code can be generated from d-tale. Child class should be made and added to Plotting.CUSTOM_RESULTS.</p>
+<p>Parent class for custom plots with Plotly. Code can be generated from d-tale.
+Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.BasePlotly.create_plot">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.plotting.BasePlotly.create_plot" title="Permalink to this definition">¶</a></dt>
@@ -298,6 +301,54 @@
 </dd></dl>
 
 <dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.plotting.</span></span><span class="sig-name descname"><span class="pre">DynamicPlotClassesByMetricByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a></p>
+<p>Dynamically create plot classes for each metric for each database in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset.create_plot">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset.create_plot_classes">
+<span class="sig-name descname"><span class="pre">create_plot_classes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset.create_plot_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves plot to folder.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.plotting.</span></span><span class="sig-name descname"><span class="pre">DynamicPlotClassesByMetricForEachDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a></p>
+<p>Dynamically create plot classes for each metric for each dataset in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset.create_plot">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset.create_plot_classes">
+<span class="sig-name descname"><span class="pre">create_plot_classes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset.create_plot_classes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot classes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves plot to folder.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.plotting.</span></span><span class="sig-name descname"><span class="pre">Plotting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.plotting.Plotting" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -305,22 +356,61 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_ERRORS">
 <span class="sig-name descname"><span class="pre">CUSTOM_ERRORS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><span class="pre">speechtotext.functions.BaseResult</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_ERRORS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>List of error classes that need to be saved.</p>
+<p>This could be an pandas df, report text file, …</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult">BaseResult</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_ERROR_PLOTS">
 <span class="sig-name descname"><span class="pre">CUSTOM_ERROR_PLOTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><span class="pre">speechtotext.functions.BaseResult</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_ERROR_PLOTS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>List of error plot classes that need to be saved.</p>
+<p>This could be an plotly, matplotlib or another plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult">BaseResult</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS">
 <span class="sig-name descname"><span class="pre">CUSTOM_PLOTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><span class="pre">speechtotext.functions.BaseResult</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>List of plot classes that need to be saved.</p>
+<p>This could be an plotly, matplotlib or another plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult">BaseResult</a>]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_RESULTS">
 <span class="sig-name descname"><span class="pre">CUSTOM_RESULTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><span class="pre">speechtotext.functions.BaseResult</span></a><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'speechtotext.metric.customMetrics.BenchmarkResults'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'speechtotext.metric.customMetrics.ResultMetrics'&gt;]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_RESULTS" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>List of result classes that need to be saved.</p>
+<p>This could be an pandas df, report text file, …</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[<a class="reference internal" href="../index.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult">BaseResult</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.DATASET_NAMES">
+<span class="sig-name descname"><span class="pre">DATASET_NAMES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.DATASET_NAMES" title="Permalink to this definition">¶</a></dt>
+<dd><p>List of dataset names that were used for the benchmarks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.launch_dtale">
@@ -373,170 +463,26 @@
 </pre></div>
 </div>
 <dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.CerByModelnameByDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">CerByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.CerByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.DynamicallyByModelNameByDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">DynamicallyByModelNameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.DynamicallyByModelNameByDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset" title="speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicPlotClassesByMetricByDataset</span></code></a></p>
 <p>Class that is used to create plots for an benchmark.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.CerByModelnameByDataset.create_plot">
-<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.CerByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates plot to be saved.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Plot that needs to be saved.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.DynamicallyByModelNameByDataset.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.DynamicallyByModelNameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.DurationByModelnameByDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">DurationByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.DurationByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">DynamicallyByModelNameForEachDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset" title="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">DynamicPlotClassesByMetricForEachDataset</span></code></a></p>
 <p>Class that is used to create plots for an benchmark.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.DurationByModelnameByDataset.create_plot">
-<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.DurationByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates plot to be saved.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Plot that needs to be saved.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.DurationLogByModelnameByDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">DurationLogByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.DurationLogByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
-<p>Class that is used to create plots for an benchmark.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.DurationLogByModelnameByDataset.create_plot">
-<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.DurationLogByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates plot to be saved.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Plot that needs to be saved.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfMetricByModelname">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MeanOfMetricByModelname</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfMetricByModelname" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
-<p>Class that is used to create plots for an benchmark.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MeanOfMetricByModelname.create_plot">
-<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MeanOfMetricByModelname.create_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates plot to be saved.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Plot that needs to be saved.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MerByModelnameByDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MerByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MerByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
-<p>Class that is used to create plots for an benchmark.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MerByModelnameByDataset.create_plot">
-<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MerByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates plot to be saved.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Plot that needs to be saved.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.WerByModelnameByDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">WerByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.WerByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
-<p>Class that is used to create plots for an benchmark.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.WerByModelnameByDataset.create_plot">
-<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.WerByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates plot to be saved.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Plot that needs to be saved.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.WilByModelnameByDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">WilByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.WilByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
-<p>Class that is used to create plots for an benchmark.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.WilByModelnameByDataset.create_plot">
-<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.WilByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates plot to be saved.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Plot that needs to be saved.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.WipByModelnameByDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">WipByModelnameByDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.WipByModelnameByDataset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BasePlotly" title="speechtotext.plot.plotting.BasePlotly"><code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlotly</span></code></a></p>
-<p>Class that is used to create plots for an benchmark.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="speechtotext.plot.customPlots.WipByModelnameByDataset.create_plot">
-<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.WipByModelnameByDataset.create_plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates plot to be saved.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Plot that needs to be saved.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
-</dd>
-</dl>
-</dd></dl>
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

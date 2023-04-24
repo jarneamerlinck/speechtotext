@@ -230,7 +230,7 @@
 <span class="kn">from</span> <span class="nn">speechtotext.metric.metrics</span> <span class="kn">import</span> <span class="n">Metrics</span>
 
 <span class="c1"># Create metrics</span>
-<span class="n">m</span> <span class="o">=</span> <span class="n">Metrics</span><span class="p">(</span><span class="s2">&quot;De stoel heeft krassen gemaakt op de vloer!&quot;</span><span class="p">,</span> <span class="s2">&quot;De stoel heeft krassen gemaakt op de vloer&quot;</span><span class="p">,</span> <span class="s2">&quot;id_from_dataset&quot;</span><span class="p">)</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">Metrics</span><span class="p">(</span><span class="s2">&quot;De stoel heeft krassen gemaakt op de vloer!&quot;</span><span class="p">,</span> <span class="s2">&quot;De stoel heeft krassen gemaakt op de vloer&quot;</span><span class="p">,</span> <span class="s2">&quot;id_from_dataset&quot;</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -238,20 +238,12 @@
 <dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.metric.metrics.</span></span><span class="sig-name descname"><span class="pre">Metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hypothesis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Class to calulate the metrics.
-.. attribute:: class_attribute</p>
-<blockquote>
-<div><p>(class attribute) The class attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
-</div></blockquote>
+<p>Class to calulate the metrics.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.wer">
 <span class="sig-name descname"><span class="pre">wer</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.wer" title="Permalink to this definition">¶</a></dt>
-<dd><p>(class attribute) word error rate (WER).</p>
+<dd><p>Word error rate (WER).</p>
+<p>The WER is how many words there were made errors on.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
@@ -262,7 +254,8 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.mer">
 <span class="sig-name descname"><span class="pre">mer</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.mer" title="Permalink to this definition">¶</a></dt>
-<dd><p>(class attribute) match error rate (MER).</p>
+<dd><p>Match error rate (MER).</p>
+<p>The MER indicates the percentage of words that were incorrectly predicted and inserted.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
@@ -273,7 +266,8 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.wil">
 <span class="sig-name descname"><span class="pre">wil</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.wil" title="Permalink to this definition">¶</a></dt>
-<dd><p>(class attribute) word information lost (WIL).</p>
+<dd><p>Word information lost (WIL).</p>
+<p>The WIL represents the word information that is lost.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
@@ -284,7 +278,8 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.wip">
 <span class="sig-name descname"><span class="pre">wip</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.wip" title="Permalink to this definition">¶</a></dt>
-<dd><p>(class attribute) word information preserved (WIP).</p>
+<dd><p>Word information preserved (WIP).</p>
+<p>The WIP represents the word information that is preserved.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
@@ -295,7 +290,8 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.cer">
 <span class="sig-name descname"><span class="pre">cer</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.cer" title="Permalink to this definition">¶</a></dt>
-<dd><p>(class attribute) character error rate (CER).</p>
+<dd><p>Character error rate (CER).</p>
+<p>The WER is how many characters there were made errors on.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
@@ -303,21 +299,88 @@
 </dl>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="speechtotext.metric.metrics.notebook_metrics_print">
-<span class="sig-prename descclassname"><span class="pre">speechtotext.metric.metrics.</span></span><span class="sig-name descname"><span class="pre">notebook_metrics_print</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="../index.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hypothesis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metric.metrics.notebook_metrics_print" title="Permalink to this definition">¶</a></dt>
-<dd><p>Print metrics from transcript and hypothesis.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.substitutions">
+<span class="sig-name descname"><span class="pre">substitutions</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.substitutions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of words substituted (substitutions).</p>
+<p>The substitutions is the number of words that were replaced.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>dataset</strong> (<a class="reference internal" href="../index.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – dataset of audio.</p></li>
-<li><p><strong>id</strong> (<em>str</em>) – id of the audio file.</p></li>
-<li><p><strong>hypothesis</strong> (<em>str</em>) – hypothesis transcript.</p></li>
-</ul>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.insertions">
+<span class="sig-name descname"><span class="pre">insertions</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.insertions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of words inserted (insertions).</p>
+<p>The insertions is the number of words that were added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.deletions">
+<span class="sig-name descname"><span class="pre">deletions</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.deletions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of words deleted (deletions).</p>
+<p>The deletions is the number of words that were removed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.duration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Duration of the transcribing (duration).</p>
+<p>The duration is how long it took to transcribe the audiofile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the metrics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.get_all_metric_docs">
+<span class="sig-name descname"><span class="pre">get_all_metric_docs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.get_all_metric_docs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all descriptions of metrics returned by get_all_metric_names in the correct order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of all metric descriptions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.get_all_metric_names">
+<span class="sig-name descname"><span class="pre">get_all_metric_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.get_all_metric_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all possible metric names in a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of all metric names.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 </section>

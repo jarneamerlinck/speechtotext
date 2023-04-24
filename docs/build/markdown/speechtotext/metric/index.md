@@ -11,7 +11,7 @@ Use this module like this:
 from speechtotext.metric.metrics import Metrics
 
 # Create metrics
-m = Metrics("De stoel heeft krassen gemaakt op de vloer!", "De stoel heeft krassen gemaakt op de vloer", "id_from_dataset")
+m = Metrics("De stoel heeft krassen gemaakt op de vloer!", "De stoel heeft krassen gemaakt op de vloer", "id_from_dataset", duration=0.5)
 print(m)
 ```
 
@@ -20,19 +20,12 @@ print(m)
 Bases: `object`
 
 Class to calulate the metrics.
-.. attribute:: class_attribute
-
-> (class attribute) The class attribute.
-
-
-> * **type**
-
->     str
-
 
 
 #### wer()
-(class attribute) word error rate (WER).
+Word error rate (WER).
+
+The WER is how many words there were made errors on.
 
 
 * **Type**
@@ -42,7 +35,9 @@ Class to calulate the metrics.
 
 
 #### mer()
-(class attribute) match error rate (MER).
+Match error rate (MER).
+
+The MER indicates the percentage of words that were incorrectly predicted and inserted.
 
 
 * **Type**
@@ -52,7 +47,9 @@ Class to calulate the metrics.
 
 
 #### wil()
-(class attribute) word information lost (WIL).
+Word information lost (WIL).
+
+The WIL represents the word information that is lost.
 
 
 * **Type**
@@ -62,7 +59,9 @@ Class to calulate the metrics.
 
 
 #### wip()
-(class attribute) word information preserved (WIP).
+Word information preserved (WIP).
+
+The WIP represents the word information that is preserved.
 
 
 * **Type**
@@ -72,7 +71,9 @@ Class to calulate the metrics.
 
 
 #### cer()
-(class attribute) character error rate (CER).
+Character error rate (CER).
+
+The WER is how many characters there were made errors on.
 
 
 * **Type**
@@ -81,20 +82,87 @@ Class to calulate the metrics.
 
 
 
-### speechtotext.metric.metrics.notebook_metrics_print(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), id: str, hypothesis: str)
-Print metrics from transcript and hypothesis.
+#### substitutions()
+Number of words substituted (substitutions).
+
+The substitutions is the number of words that were replaced.
 
 
-* **Parameters**
+* **Type**
 
-    
-    * **dataset** ([*Dataset*](../index.md#speechtotext.datasets.Dataset)) – dataset of audio.
-
-
-    * **id** (*str*) – id of the audio file.
+    int
 
 
-    * **hypothesis** (*str*) – hypothesis transcript.
+
+#### insertions()
+Number of words inserted (insertions).
+
+The insertions is the number of words that were added.
+
+
+* **Type**
+
+    int
+
+
+
+#### deletions()
+Number of words deleted (deletions).
+
+The deletions is the number of words that were removed.
+
+
+* **Type**
+
+    int
+
+
+
+#### duration()
+Duration of the transcribing (duration).
+
+The duration is how long it took to transcribe the audiofile.
+
+
+* **Type**
+
+    float
+
+
+
+#### \__call__(\*args, \*\*kwds)
+Calculate the metrics.
+
+
+#### get_all_metric_docs()
+Returns all descriptions of metrics returned by get_all_metric_names in the correct order.
+
+
+* **Returns**
+
+    List of all metric descriptions.
+
+
+
+* **Return type**
+
+    list[str]
+
+
+
+#### get_all_metric_names()
+Returns all possible metric names in a list.
+
+
+* **Returns**
+
+    List of all metric names.
+
+
+
+* **Return type**
+
+    list[str]
 
 
 ## customMetrics

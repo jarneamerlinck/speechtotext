@@ -11,9 +11,10 @@ Use this module like this:
 from speechtotext.plot.plotting import BasePlot, Plotting
 
 # Create plotting object
-plotting = Plotting(results=results, report_name = "report_name")
+plotting = Plotting(results=results, errors=errors, report_name="report_name")
 
-# Create all custom plots that are added to Plotting.CUSTOM_PLOTS
+# Create all custom plots that are added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS, Plotting.CUSTOM_ERROR_PLOTS
+# The Plotting.CUSTOM_ERROR_PLOTS and Plotting.CUSTOM_ERRORS will be saved in the `error_plots` directory.
 plotting.save_all()
 ```
 
@@ -21,7 +22,8 @@ plotting.save_all()
 ### _class_ speechtotext.plot.plotting.BaseMatPlotLib(df: DataFrame, report_folder: str, file_name: str)
 Bases: [`BaseResult`](../index.md#speechtotext.functions.BaseResult)
 
-Parent class for custom plots with matplotlib. Child class should be made and added to Plotting.CUSTOM_RESULTS.
+Parent class for custom plots with matplotlib. Code can be generated from d-tale.
+Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS
 
 
 #### _abstract_ create_plot()
@@ -47,7 +49,8 @@ Saves plot to folder.
 ### _class_ speechtotext.plot.plotting.BasePlotly(df: DataFrame, report_folder: str, file_name: str)
 Bases: [`BaseResult`](../index.md#speechtotext.functions.BaseResult)
 
-Parent class for custom plots with Plotly. Code can be generated from d-tale. Child class should be made and added to Plotting.CUSTOM_RESULTS.
+Parent class for custom plots with Plotly. Code can be generated from d-tale.
+Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS
 
 
 #### _abstract_ create_plot()
@@ -70,6 +73,38 @@ Creates plot to be saved.
 Saves plot to folder.
 
 
+### _class_ speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: [`BaseResult`](../index.md#speechtotext.functions.BaseResult)
+
+Dynamically create plot classes for each metric for each database in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.
+
+
+#### _abstract_ create_plot()
+
+#### create_plot_classes()
+Creates plot classes.
+
+
+#### save()
+Saves plot to folder.
+
+
+### _class_ speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: [`BaseResult`](../index.md#speechtotext.functions.BaseResult)
+
+Dynamically create plot classes for each metric for each dataset in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.
+
+
+#### _abstract_ create_plot()
+
+#### create_plot_classes()
+Creates plot classes.
+
+
+#### save()
+Saves plot to folder.
+
+
 ### _class_ speechtotext.plot.plotting.Plotting(results: list[pandas.core.frame.DataFrame], errors: list[pandas.core.frame.DataFrame], report_name: str)
 Bases: `object`
 
@@ -77,12 +112,62 @@ Class that is used to create plots for an benchmark.
 
 
 #### CUSTOM_ERRORS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
+List of error classes that need to be saved.
+
+This could be an pandas df, report text file, …
+
+
+* **Type**
+
+    list[[BaseResult](../index.md#speechtotext.functions.BaseResult)]
+
+
 
 #### CUSTOM_ERROR_PLOTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
+List of error plot classes that need to be saved.
+
+This could be an plotly, matplotlib or another plot.
+
+
+* **Type**
+
+    list[[BaseResult](../index.md#speechtotext.functions.BaseResult)]
+
+
 
 #### CUSTOM_PLOTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [_ )
+List of plot classes that need to be saved.
+
+This could be an plotly, matplotlib or another plot.
+
+
+* **Type**
+
+    list[[BaseResult](../index.md#speechtotext.functions.BaseResult)]
+
+
 
 #### CUSTOM_RESULTS(_: list[[speechtotext.functions.BaseResult](../index.md#speechtotext.functions.BaseResult)_ _ = [<class 'speechtotext.metric.customMetrics.BenchmarkResults'>, <class 'speechtotext.metric.customMetrics.ResultMetrics'>_ )
+List of result classes that need to be saved.
+
+This could be an pandas df, report text file, …
+
+
+* **Type**
+
+    list[[BaseResult](../index.md#speechtotext.functions.BaseResult)]
+
+
+
+#### DATASET_NAMES(_: list[str_ _ = [_ )
+List of dataset names that were used for the benchmarks.
+
+
+* **Type**
+
+    list[str]
+
+
 
 #### launch_dtale()
 Launch webui to explore the data.
@@ -130,181 +215,21 @@ Plotting.CUSTOM_PLOTS.append(DemoPlotlyExample)
 ```
 
 
-### _class_ speechtotext.plot.customPlots.CerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BasePlotly`
+### _class_ speechtotext.plot.customPlots.DynamicallyByModelNameByDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: `DynamicPlotClassesByMetricByDataset`
 
 Class that is used to create plots for an benchmark.
 
 
 #### create_plot()
-Creates plot to be saved.
 
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.DurationByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BasePlotly`
+### _class_ speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset(df: DataFrame, report_folder: str, file_name: str)
+Bases: `DynamicPlotClassesByMetricForEachDataset`
 
 Class that is used to create plots for an benchmark.
 
 
 #### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.DurationLogByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BasePlotly`
-
-Class that is used to create plots for an benchmark.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.MeanOfMetricByModelname(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BasePlotly`
-
-Class that is used to create plots for an benchmark.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.MerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BasePlotly`
-
-Class that is used to create plots for an benchmark.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.WerByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BasePlotly`
-
-Class that is used to create plots for an benchmark.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.WilByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BasePlotly`
-
-Class that is used to create plots for an benchmark.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
-
-### _class_ speechtotext.plot.customPlots.WipByModelnameByDataset(df: DataFrame, report_folder: str, file_name: str)
-Bases: `BasePlotly`
-
-Class that is used to create plots for an benchmark.
-
-
-#### create_plot()
-Creates plot to be saved.
-
-
-* **Returns**
-
-    Plot that needs to be saved.
-
-
-
-* **Return type**
-
-    plotly.graph_objs._figure.Figure
-
-
 ## customErrorPlots
 
 Module to create custom error plots for the plotting module

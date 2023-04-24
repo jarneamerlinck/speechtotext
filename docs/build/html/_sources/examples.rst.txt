@@ -43,7 +43,7 @@ Use this module like this:
 	results = run_benchmarks(benchmark_class_list, dataset, number_of_samples, report_name)
 
 	# Create plots
-	plotting = Plotting(results=results, report_name = report_name)
+	plotting = Plotting(results=results, errors=Benchmark.ERROR_LIST, report_name = report_name)
 	plotting.save_all()
 
 Add new model wrapper and benchmark
@@ -137,5 +137,5 @@ Use custom benchmarks
 	results = run_benchmarks(benchmark_class_list, dataset, number_of_samples, report_name)
 
 	# Create plots
-	plotting = Plotting(results=results, report_name = report_name)
+	plotting = Plotting(results=results, errors=Benchmark.ERROR_LIST, report_name = report_name)
 	plotting.save_all()

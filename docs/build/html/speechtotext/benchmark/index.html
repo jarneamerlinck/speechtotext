@@ -273,25 +273,57 @@ Parent class for all benchmark classes.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.benchmarks.Benchmark.BENCHMARK_SAMPLES">
 <span class="sig-name descname"><span class="pre">BENCHMARK_SAMPLES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../index.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#speechtotext.benchmark.benchmarks.Benchmark.BENCHMARK_SAMPLES" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Dataset samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../index.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset">Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.benchmarks.Benchmark.DATASET">
 <span class="sig-name descname"><span class="pre">DATASET</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../index.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><span class="pre">Dataset</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#speechtotext.benchmark.benchmarks.Benchmark.DATASET" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Original dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../index.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset">Dataset</a></p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.benchmarks.Benchmark.ERROR_LIST">
 <span class="sig-name descname"><span class="pre">ERROR_LIST</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">pandas.core.frame.DataFrame</span><span class="p"><span class="pre">]</span></span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.benchmark.benchmarks.Benchmark.ERROR_LIST" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>List of errors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[pd.core.frame.DataFrame]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.benchmark.benchmarks.Benchmark.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmark.benchmarks.Benchmark.__call__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Benchmark n samples.benchmark_results_to_csv</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>number_of_samples</strong> (<em>int</em>) – Number of samples to benchmark.</p></li>
+<li><p><strong>with_cleaning</strong> (<em>bool</em><em>, </em><em>optional</em>) – Set True to clean transcripts. Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.benchmarks.Benchmark.convert_to_pandas">
 <span class="sig-name descname"><span class="pre">convert_to_pandas</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">DataFrame</span></span></span><a class="headerlink" href="#speechtotext.benchmark.benchmarks.Benchmark.convert_to_pandas" title="Permalink to this definition">¶</a></dt>
-<dd><p>convert metrics to dataframe.</p>
+<dd><p>Convert metrics to dataframe.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>pandas dataframe.</p>
+<dd class="field-odd"><p>Pandas dataframe.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>pd.core.frame.DataFrame</p>
@@ -305,7 +337,7 @@ Parent class for all benchmark classes.</p>
 <dd><p>Creates an list of ModelWrappers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of model wrappers.</p>
+<dd class="field-odd"><p>List of model wrappers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[<a class="reference internal" href="../model/index.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper">ModelWrapper</a>]</p>
@@ -316,10 +348,10 @@ Parent class for all benchmark classes.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.benchmarks.Benchmark.save_to_csv">
 <span class="sig-name descname"><span class="pre">save_to_csv</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.benchmark.benchmarks.Benchmark.save_to_csv" title="Permalink to this definition">¶</a></dt>
-<dd><p>save outputs of benchmark to csv.</p>
+<dd><p>Save outputs of benchmark to csv.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>save_name</strong> (<em>str</em>) – filename of output.</p>
+<dd class="field-odd"><p><strong>save_name</strong> (<em>str</em>) – Filename of output.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -399,8 +431,14 @@ Parent class for all benchmark classes.</p>
 <p>Benchmark for Amazon API transcribe.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark.MODEL_BASE">
-<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AmazonAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AmazonAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of base model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark.create_models">
@@ -408,7 +446,7 @@ Parent class for all benchmark classes.</p>
 <dd><p>Creates an list of ModelWrappers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of model wrappers.</p>
+<dd class="field-odd"><p>List of model wrappers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[<a class="reference internal" href="../model/index.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper">ModelWrapper</a>]</p>
@@ -425,8 +463,14 @@ Parent class for all benchmark classes.</p>
 <p>Benchmark for AssemblyAI API.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark.MODEL_BASE">
-<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AssemblyAIAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AssemblyAIAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of base model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark.create_models">
@@ -434,7 +478,7 @@ Parent class for all benchmark classes.</p>
 <dd><p>Creates an list of ModelWrappers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of model wrappers.</p>
+<dd class="field-odd"><p>List of model wrappers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[<a class="reference internal" href="../model/index.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper">ModelWrapper</a>]</p>
@@ -451,8 +495,14 @@ Parent class for all benchmark classes.</p>
 <p>Benchmark for Azure API.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark.MODEL_BASE">
-<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AzureAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'AzureAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of base model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark.create_models">
@@ -460,7 +510,7 @@ Parent class for all benchmark classes.</p>
 <dd><p>Creates an list of ModelWrappers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of model wrappers.</p>
+<dd class="field-odd"><p>List of model wrappers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[<a class="reference internal" href="../model/index.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper">ModelWrapper</a>]</p>
@@ -477,8 +527,14 @@ Parent class for all benchmark classes.</p>
 <p>Benchmark for Deepgram API.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark.MODEL_BASE">
-<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DeepgramAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'DeepgramAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of base model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark.create_models">
@@ -486,7 +542,7 @@ Parent class for all benchmark classes.</p>
 <dd><p>Creates an list of ModelWrappers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of model wrappers.</p>
+<dd class="field-odd"><p>List of model wrappers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[<a class="reference internal" href="../model/index.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper">ModelWrapper</a>]</p>
@@ -503,8 +559,14 @@ Parent class for all benchmark classes.</p>
 <p>Benchmark for Google API transcribe.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark.MODEL_BASE">
-<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'GoogleAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'GoogleAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of base model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark.create_models">
@@ -512,7 +574,7 @@ Parent class for all benchmark classes.</p>
 <dd><p>Creates an list of ModelWrappers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of model wrappers.</p>
+<dd class="field-odd"><p>List of model wrappers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[<a class="reference internal" href="../model/index.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper">ModelWrapper</a>]</p>
@@ -529,8 +591,14 @@ Parent class for all benchmark classes.</p>
 <p>Benchmark for Speechmatics API.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark.MODEL_BASE">
-<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SpeechmaticsAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'SpeechmaticsAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of base model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark.create_models">
@@ -538,7 +606,7 @@ Parent class for all benchmark classes.</p>
 <dd><p>Creates an list of ModelWrappers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of model wrappers.</p>
+<dd class="field-odd"><p>List of model wrappers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[<a class="reference internal" href="../model/index.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper">ModelWrapper</a>]</p>
@@ -555,8 +623,14 @@ Parent class for all benchmark classes.</p>
 <p>Benchmark for API whisper models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark.MODEL_BASE">
-<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'WhisperAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'WhisperAPI'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of base model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark.create_models">
@@ -564,7 +638,7 @@ Parent class for all benchmark classes.</p>
 <dd><p>Creates an list of ModelWrappers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of model wrappers.</p>
+<dd class="field-odd"><p>List of model wrappers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[<a class="reference internal" href="../model/index.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper">ModelWrapper</a>]</p>
@@ -581,8 +655,14 @@ Parent class for all benchmark classes.</p>
 <p>Benchmark for local whisper models.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.WhisperBenchmark.MODEL_BASE">
-<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Whisper'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.WhisperBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">MODEL_BASE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Whisper'</span></em><a class="headerlink" href="#speechtotext.benchmark.customBenchmarks.WhisperBenchmark.MODEL_BASE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Name of base model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="speechtotext.benchmark.customBenchmarks.WhisperBenchmark.create_models">
@@ -590,7 +670,7 @@ Parent class for all benchmark classes.</p>
 <dd><p>Creates an list of ModelWrappers.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list of model wrappers.</p>
+<dd class="field-odd"><p>List of model wrappers.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p>list[<a class="reference internal" href="../model/index.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper">ModelWrapper</a>]</p>

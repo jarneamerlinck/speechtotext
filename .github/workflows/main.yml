@@ -20,6 +20,9 @@ on:
     - '*.yml'
     - 'docs/source/**'
 
+env:
+  CACHE_NUMBER: 0  # increase to reset cache manually
+
 jobs:
 
   build:

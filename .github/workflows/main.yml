@@ -70,7 +70,7 @@ jobs:
 
       - name: Run tests
         shell: bash -l {0}
-        run: cd tests;coverage run -m unittest && cd ..
+        run: cd tests;python3 -m unittest && cd ..
   
   publish-pypi:
     needs: build

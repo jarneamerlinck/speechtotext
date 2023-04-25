@@ -4,6 +4,9 @@ speechtotext model package
 modelWrapper
 ------------
 
+.. inheritance-diagram:: speechtotext.model.modelWrapper
+   :top-classes: speechtotext.model.modelWrapper.ModelWrapper, speechtotext.model.modelWrapper.ModelVersion
+
 .. automodule:: speechtotext.model.modelWrapper
     :members:
     :undoc-members:
@@ -12,6 +15,9 @@ modelWrapper
 whisperWrapper
 --------------
 
+.. inheritance-diagram:: speechtotext.model.whisperWrapper
+   :top-classes: speechtotext.model.modelWrapper.ModelWrapper, speechtotext.model.modelWrapper.ModelVersion
+   
 .. automodule:: speechtotext.model.whisperWrapper
     :members:
     :undoc-members:
@@ -20,6 +26,9 @@ whisperWrapper
 amazonWrapper
 -------------
 
+.. inheritance-diagram:: speechtotext.model.amazonWrapper
+   :top-classes: speechtotext.model.modelWrapper.ModelWrapper, speechtotext.model.modelWrapper.ModelVersion
+   
 .. automodule:: speechtotext.model.amazonWrapper
     :members:
     :undoc-members:
@@ -28,6 +37,9 @@ amazonWrapper
 googleWrapper
 -------------
 
+.. inheritance-diagram:: speechtotext.model.googleWrapper
+   :top-classes: speechtotext.model.modelWrapper.ModelWrapper, speechtotext.model.modelWrapper.ModelVersion
+   
 .. automodule:: speechtotext.model.googleWrapper
     :members:
     :undoc-members:
@@ -36,6 +48,9 @@ googleWrapper
 deepgramWrapper
 ---------------
 
+.. inheritance-diagram:: speechtotext.model.deepgramWrapper
+   :top-classes: speechtotext.model.modelWrapper.ModelWrapper, speechtotext.model.modelWrapper.ModelVersion
+   
 .. automodule:: speechtotext.model.deepgramWrapper
     :members:
     :undoc-members:
@@ -44,6 +59,9 @@ deepgramWrapper
 assemblyAIWrapper
 -----------------
 
+.. inheritance-diagram:: speechtotext.model.assemblyAIWrapper
+   :top-classes: speechtotext.model.modelWrapper.ModelWrapper, speechtotext.model.modelWrapper.ModelVersion
+   
 .. automodule:: speechtotext.model.assemblyAIWrapper
     :members:
     :undoc-members:
@@ -52,6 +70,9 @@ assemblyAIWrapper
 azureWrapper
 ------------
 
+.. inheritance-diagram:: speechtotext.model.azureWrapper
+   :top-classes: speechtotext.model.modelWrapper.ModelWrapper, speechtotext.model.modelWrapper.ModelVersion
+   
 .. automodule:: speechtotext.model.azureWrapper
     :members:
     :undoc-members:
@@ -60,6 +81,9 @@ azureWrapper
 speechmaticsWrapper
 -------------------
 
+.. inheritance-diagram:: speechtotext.model.speechmaticsWrapper
+   :top-classes: speechtotext.model.modelWrapper.ModelWrapper, speechtotext.model.modelWrapper.ModelVersion
+   
 .. automodule:: speechtotext.model.speechmaticsWrapper
     :members:
     :undoc-members:

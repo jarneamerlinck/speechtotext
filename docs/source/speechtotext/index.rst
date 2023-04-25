@@ -14,7 +14,12 @@ functions
 datasets
 --------
 
+.. inheritance-diagram:: speechtotext.datasets
+   :top-classes: speechtotext.datasets.DatasetBare
+   :parts: 3
+
 .. automodule:: speechtotext.datasets
     :members:
     :undoc-members:
-    :show-inheritance:
+
+

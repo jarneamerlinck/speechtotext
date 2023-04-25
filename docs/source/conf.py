@@ -33,7 +33,9 @@ import os
 # ones.
 extensions = ['sphinx.ext.autodoc',
 				'sphinx.ext.napoleon',
-				'sphinx_markdown_builder'
+				'sphinx_markdown_builder',
+    			'sphinx.ext.graphviz',
+       			'sphinx.ext.inheritance_diagram'
 			  ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -103,6 +105,8 @@ html_show_sphinx = False
 # What to show
 napoleon_include_special_with_doc = True
 napoleon_include_private_with_doc = True
+
+inheritance_graph_attrs = dict(rankdir="TB", size='""')
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

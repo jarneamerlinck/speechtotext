@@ -37,7 +37,7 @@ class Metrics():
 			The WIP represents the word information that is preserved.
 		cer (float): Character error rate (CER).
   
-			The WER is how many characters there were made errors on.
+			The CER is how many characters there were made errors on.
 		substitutions (int): Number of words substituted (substitutions).
   
 			The substitutions is the number of words that were replaced.
@@ -87,10 +87,6 @@ class Metrics():
 		self.insertions = result.insertions
 		self.deletions = result.deletions
 		self.substitutions = result.substitutions
-		# self.wer = wer(self.reference, self.hypothesis)
-		# self.mer = mer(self.reference, self.hypothesis)
-		# self.wil = wil(self.reference, self.hypothesis)
-		# self.wip = wip(self.reference, self.hypothesis)
 
 	def get_all_metric_names() -> list[str]:
 		"""Returns all possible metric names in a list. 
@@ -126,11 +122,10 @@ class Metrics():
 			end = ')'
 			return ((s.split(start))[1].split(end)[0]).lower()
 
-		order = {v:i for i,v in enumerate(Metrics.get_all_metric_names())}
+		order = {value:index for index,value in enumerate(Metrics.get_all_metric_names())}
 		return sorted(list_of_metrics_docs, key=lambda x: order[prepare_for_sorting(x)])
 
 	@override
 	def __str__(self) -> str:
 		return f"wer: {self.wer}, mer: {self.mer}, wil: {self.wil}, wip: {self.wip}, cer: {self.cer}"
 	
-

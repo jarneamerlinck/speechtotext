@@ -37,7 +37,7 @@ class Metrics():
 			The WIP represents the word information that is preserved.
 		cer (float): Character error rate (CER).
   
-			The WER is how many characters there were made errors on.
+			The CER is how many characters there were made errors on.
 		substitutions (int): Number of words substituted (substitutions).
   
 			The substitutions is the number of words that were replaced.
@@ -129,4 +129,3 @@ class Metrics():
 	def __str__(self) -> str:
 		return f"wer: {self.wer}, mer: {self.mer}, wil: {self.wil}, wip: {self.wip}, cer: {self.cer}"
 	
-

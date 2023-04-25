@@ -20,8 +20,19 @@ string_cleaning("this has.//./8 to be cleaned::@")
 ```
 
 
-### speechtotext.functions.REGEX_STRING_PARSE()
-Regex string parce used to clean up transcripts that are used to validate the speechtotext models.
+### _class_ speechtotext.functions.BaseResult(df: DataFrame, report_folder: str, file_name: str)
+Bases: `ABC`
+
+Parent class for results.
+Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS
+
+
+#### _abstract_ save()
+Saves Result to report folder.
+
+
+### speechtotext.functions.DEFAULT_CSV_NAME(_: st_ _ = 'reports/Benchmark_results_2023_04_25_07_26_31.csv_ )
+Default path to save Benchmark results.
 
 
 * **Type**
@@ -30,12 +41,34 @@ Regex string parce used to clean up transcripts that are used to validate the sp
 
 
 
-### _class_ speechtotext.functions.BaseResult(df: DataFrame, report_folder: str, file_name: str)
-Bases: `ABC`
+### speechtotext.functions.DEFAULT_DATETIME_FORMAT(_: st_ _ = '2023_04_25_07_26_31_ )
+Default datetime format. (Uses string format for datetime)
 
 
-#### _abstract_ save()
-Saves Result to report folder.
+* **Type**
+
+    str
+
+
+
+### speechtotext.functions.DEFAULT_REPORTS_FOLDER(_: st_ _ = 'reports_ )
+Default folder to save the reports.
+
+
+* **Type**
+
+    str
+
+
+
+### speechtotext.functions.REGEX_STRING_PARSE(_: st_ _ = '[^A-Za-z0-9 ]+_ )
+Regex used to clean the transcripts.
+
+
+* **Type**
+
+    str
+
 
 
 ### _exception_ speechtotext.functions.RequiredEnvVariablesMissing(env_name: str)
@@ -44,7 +77,7 @@ Bases: `Exception`
 Exception when an required env variable is missing.
 
 
-### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_20_11_36_39.csv')
+### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_25_07_26_31.csv')
 Creates csv from benchmark results.
 
 
@@ -54,7 +87,7 @@ Creates csv from benchmark results.
     * **results** (*list**[**pd.core.frame.DataFrame**]*) – List of results from benchmarks.
 
 
-    * **save_name** (*str**, **optional*) – filename of output. Defaults to DEFAULT_CSV_NAME.
+    * **save_name** (*str**, **optional*) – Filename of output. Defaults to DEFAULT_CSV_NAME.
 
 
 
@@ -113,7 +146,7 @@ Join Benchmark results.
 * **Parameters**
 
     
-    * **results** (*list**[**pd.core.frame.DataFrame**]*) – results of benchmarks.
+    * **results** (*list**[**pd.core.frame.DataFrame**]*) – Results of benchmarks.
 
 
     * **set_index** (*bool**, **optional*) – Set True if [“model_name”, “audio_ID”] can be set as index. Defaults to True.
@@ -150,7 +183,7 @@ Loads and returns env variable.
 
 * **Returns**
 
-    value of the .env key.
+    Value of the .env key.
 
 
 
@@ -171,7 +204,7 @@ Makes folder path.
 * **Parameters**
 
     
-    * **report_name** (*str*) – name of report.
+    * **report_name** (*str*) – Name of report.
 
 
     * **folder_name** (*str**, **optional*) – Name of folder. Defaults to DEFAULT_REPORT_FOLDER.
@@ -197,16 +230,16 @@ Creates subfolder path.
 * **Parameters**
 
     
-    * **folder_path** (*str*) – path of parent folder.
+    * **folder_path** (*str*) – Path of parent folder.
 
 
-    * **subfolder_name** (*str*) – subfolder name.
+    * **subfolder_name** (*str*) – Subfolder name.
 
 
 
 * **Returns**
 
-    path to save folder.
+    Path to save folder.
 
 
 
@@ -228,7 +261,7 @@ Seperate benchmark results for each model.
 
 * **Returns**
 
-    results of benchmarks.
+    Results of benchmarks.
 
 
 
@@ -244,13 +277,13 @@ Cleaning of string for STT.
 
 * **Parameters**
 
-    **text** (*str*) – uncleaned string.
+    **text** (*str*) – Uncleaned string.
 
 
 
 * **Returns**
 
-    cleaned string.
+    Cleaned string.
 
 
 
@@ -262,6 +295,28 @@ Cleaning of string for STT.
 
 ### speechtotext.functions.timing(f)
 Functions used to time duration of function.
+
+
+### speechtotext.functions.uppercase_for_first_character_in_string(string: str)
+Return string where first character is uppercase.
+
+
+* **Parameters**
+
+    **string** (*str*) – String to process.
+
+
+
+* **Returns**
+
+    String where first character is uppercase.
+
+
+
+* **Return type**
+
+    str
+
 
 ## datasets
 
@@ -323,7 +378,7 @@ Get n random samples.
 
 * **Returns**
 
-    dataset with the samples.
+    Dataset with the samples.
 
 
 
@@ -349,13 +404,13 @@ Gets path of fragment.
 
 * **Parameters**
 
-    **id** (*str*) – id of file.
+    **id** (*str*) – Id of file.
 
 
 
 * **Raises**
 
-    **FileNotFoundError** – if id doesn’t exist.
+    **FileNotFoundError** – If id doesn’t exist.
 
 
 
@@ -377,13 +432,13 @@ Get text of fragment id.
 
 * **Parameters**
 
-    **id** (*str*) – id of fragment.
+    **id** (*str*) – Id of fragment.
 
 
 
 * **Returns**
 
-    string of spoken text.
+    String of spoken text.
 
 
 

@@ -73,7 +73,7 @@ The WIP represents the word information that is preserved.
 #### cer()
 Character error rate (CER).
 
-The WER is how many characters there were made errors on.
+The CER is how many characters there were made errors on.
 
 
 * **Type**

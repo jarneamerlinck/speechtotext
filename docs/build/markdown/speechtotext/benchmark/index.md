@@ -49,18 +49,56 @@ Parent class for all benchmark classes.
 
 
 #### BENCHMARK_SAMPLES(_: [Dataset](../index.md#speechtotext.datasets.Dataset_ _ = Non_ )
+Dataset samples.
+
+
+* **Type**
+
+    [Dataset](../index.md#speechtotext.datasets.Dataset)
+
+
 
 #### DATASET(_: [Dataset](../index.md#speechtotext.datasets.Dataset_ _ = Non_ )
+Original dataset.
+
+
+* **Type**
+
+    [Dataset](../index.md#speechtotext.datasets.Dataset)
+
+
 
 #### ERROR_LIST(_: list[pandas.core.frame.DataFrame_ _ = [_ )
+List of errors.
+
+
+* **Type**
+
+    list[pd.core.frame.DataFrame]
+
+
+
+#### \__call__(number_of_samples: int, with_cleaning=True)
+Benchmark n samples.benchmark_results_to_csv
+
+
+* **Parameters**
+
+    
+    * **number_of_samples** (*int*) – Number of samples to benchmark.
+
+
+    * **with_cleaning** (*bool**, **optional*) – Set True to clean transcripts. Defaults to True.
+
+
 
 #### convert_to_pandas()
-convert metrics to dataframe.
+Convert metrics to dataframe.
 
 
 * **Returns**
 
-    pandas dataframe.
+    Pandas dataframe.
 
 
 
@@ -76,7 +114,7 @@ Creates an list of ModelWrappers.
 
 * **Returns**
 
-    list of model wrappers.
+    List of model wrappers.
 
 
 
@@ -87,12 +125,12 @@ Creates an list of ModelWrappers.
 
 
 #### save_to_csv(save_name: str)
-save outputs of benchmark to csv.
+Save outputs of benchmark to csv.
 
 
 * **Parameters**
 
-    **save_name** (*str*) – filename of output.
+    **save_name** (*str*) – Filename of output.
 
 
 
@@ -172,7 +210,15 @@ Bases: `Benchmark`
 Benchmark for Amazon API transcribe.
 
 
-#### MODEL_BASE(_ = 'AmazonAPI_ )
+#### MODEL_BASE(_: st_ _ = 'AmazonAPI_ )
+Name of base model.
+
+
+* **Type**
+
+    str
+
+
 
 #### create_models()
 Creates an list of ModelWrappers.
@@ -180,7 +226,7 @@ Creates an list of ModelWrappers.
 
 * **Returns**
 
-    list of model wrappers.
+    List of model wrappers.
 
 
 
@@ -196,7 +242,15 @@ Bases: `Benchmark`
 Benchmark for AssemblyAI API.
 
 
-#### MODEL_BASE(_ = 'AssemblyAIAPI_ )
+#### MODEL_BASE(_: st_ _ = 'AssemblyAIAPI_ )
+Name of base model.
+
+
+* **Type**
+
+    str
+
+
 
 #### create_models()
 Creates an list of ModelWrappers.
@@ -204,7 +258,7 @@ Creates an list of ModelWrappers.
 
 * **Returns**
 
-    list of model wrappers.
+    List of model wrappers.
 
 
 
@@ -220,7 +274,15 @@ Bases: `Benchmark`
 Benchmark for Azure API.
 
 
-#### MODEL_BASE(_ = 'AzureAPI_ )
+#### MODEL_BASE(_: st_ _ = 'AzureAPI_ )
+Name of base model.
+
+
+* **Type**
+
+    str
+
+
 
 #### create_models()
 Creates an list of ModelWrappers.
@@ -228,7 +290,7 @@ Creates an list of ModelWrappers.
 
 * **Returns**
 
-    list of model wrappers.
+    List of model wrappers.
 
 
 
@@ -244,7 +306,15 @@ Bases: `Benchmark`
 Benchmark for Deepgram API.
 
 
-#### MODEL_BASE(_ = 'DeepgramAPI_ )
+#### MODEL_BASE(_: st_ _ = 'DeepgramAPI_ )
+Name of base model.
+
+
+* **Type**
+
+    str
+
+
 
 #### create_models()
 Creates an list of ModelWrappers.
@@ -252,7 +322,7 @@ Creates an list of ModelWrappers.
 
 * **Returns**
 
-    list of model wrappers.
+    List of model wrappers.
 
 
 
@@ -268,7 +338,15 @@ Bases: `Benchmark`
 Benchmark for Google API transcribe.
 
 
-#### MODEL_BASE(_ = 'GoogleAPI_ )
+#### MODEL_BASE(_: st_ _ = 'GoogleAPI_ )
+Name of base model.
+
+
+* **Type**
+
+    str
+
+
 
 #### create_models()
 Creates an list of ModelWrappers.
@@ -276,7 +354,7 @@ Creates an list of ModelWrappers.
 
 * **Returns**
 
-    list of model wrappers.
+    List of model wrappers.
 
 
 
@@ -292,7 +370,15 @@ Bases: `Benchmark`
 Benchmark for Speechmatics API.
 
 
-#### MODEL_BASE(_ = 'SpeechmaticsAPI_ )
+#### MODEL_BASE(_: st_ _ = 'SpeechmaticsAPI_ )
+Name of base model.
+
+
+* **Type**
+
+    str
+
+
 
 #### create_models()
 Creates an list of ModelWrappers.
@@ -300,7 +386,7 @@ Creates an list of ModelWrappers.
 
 * **Returns**
 
-    list of model wrappers.
+    List of model wrappers.
 
 
 
@@ -316,7 +402,15 @@ Bases: `Benchmark`
 Benchmark for API whisper models.
 
 
-#### MODEL_BASE(_ = 'WhisperAPI_ )
+#### MODEL_BASE(_: st_ _ = 'WhisperAPI_ )
+Name of base model.
+
+
+* **Type**
+
+    str
+
+
 
 #### create_models()
 Creates an list of ModelWrappers.
@@ -324,7 +418,7 @@ Creates an list of ModelWrappers.
 
 * **Returns**
 
-    list of model wrappers.
+    List of model wrappers.
 
 
 
@@ -340,7 +434,15 @@ Bases: `Benchmark`
 Benchmark for local whisper models.
 
 
-#### MODEL_BASE(_ = 'Whisper_ )
+#### MODEL_BASE(_: st_ _ = 'Whisper_ )
+Name of base model.
+
+
+* **Type**
+
+    str
+
+
 
 #### create_models()
 Creates an list of ModelWrappers.
@@ -348,7 +450,7 @@ Creates an list of ModelWrappers.
 
 * **Returns**
 
-    list of model wrappers.
+    List of model wrappers.
 
 
 

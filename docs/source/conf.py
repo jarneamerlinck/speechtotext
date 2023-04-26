@@ -107,8 +107,8 @@ napoleon_include_special_with_doc = True
 napoleon_include_private_with_doc = True
 
 # inheritance_graph_attrs = dict(rankdir="TB", size='""')
-inheritance_graph_attrs = dict(rankdir="LR", fontsize=20)
-inheritance_node_attrs = dict(fontsize=20, height=1,
+inheritance_graph_attrs = dict(rankdir="LR", fontsize=16)
+inheritance_node_attrs = dict(fontsize=16, height=1,
                               color='dodgerblue1')
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

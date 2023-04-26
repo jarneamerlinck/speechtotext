@@ -4,13 +4,11 @@ speechtotext model package
 modelWrapper
 ------------
 
-.. inheritance-diagram:: speechtotext.model.modelWrapper
-   :top-classes: speechtotext.model.modelWrapper.ModelWrapper, speechtotext.model.modelWrapper.ModelVersion
-
 .. automodule:: speechtotext.model.modelWrapper
     :members:
     :undoc-members:
     :show-inheritance:
+	:inherited-members:
 
 whisperWrapper
 --------------
@@ -22,6 +20,7 @@ whisperWrapper
     :members:
     :undoc-members:
     :show-inheritance:
+
 
 amazonWrapper
 -------------

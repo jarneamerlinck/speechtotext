@@ -10,6 +10,7 @@ functions
     :members:
     :undoc-members:
     :show-inheritance:
+	:inherited-members:
 
 datasets
 --------
@@ -21,5 +22,7 @@ datasets
 .. automodule:: speechtotext.datasets
     :members:
     :undoc-members:
+	:show-inheritance:
+	:inherited-members:
 
 

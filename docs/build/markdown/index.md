@@ -21,7 +21,7 @@
     * [functions](speechtotext/index.md#module-speechtotext.functions)
 
 
-    * [datasets](speechtotext/index.md#module-speechtotext.datasets)
+    * [datasets](speechtotext/index.md#datasets)
 
 
 * [speechtotext model package](speechtotext/model/index.md)
@@ -30,25 +30,25 @@
     * [modelWrapper](speechtotext/model/index.md#module-speechtotext.model.modelWrapper)
 
 
-    * [whisperWrapper](speechtotext/model/index.md#module-speechtotext.model.whisperWrapper)
+    * [whisperWrapper](speechtotext/model/index.md#whisperwrapper)
 
 
-    * [amazonWrapper](speechtotext/model/index.md#module-speechtotext.model.amazonWrapper)
+    * [amazonWrapper](speechtotext/model/index.md#amazonwrapper)
 
 
-    * [googleWrapper](speechtotext/model/index.md#module-speechtotext.model.googleWrapper)
+    * [googleWrapper](speechtotext/model/index.md#googlewrapper)
 
 
-    * [deepgramWrapper](speechtotext/model/index.md#module-speechtotext.model.deepgramWrapper)
+    * [deepgramWrapper](speechtotext/model/index.md#deepgramwrapper)
 
 
-    * [assemblyAIWrapper](speechtotext/model/index.md#module-speechtotext.model.assemblyAIWrapper)
+    * [assemblyAIWrapper](speechtotext/model/index.md#assemblyaiwrapper)
 
 
-    * [azureWrapper](speechtotext/model/index.md#module-speechtotext.model.azureWrapper)
+    * [azureWrapper](speechtotext/model/index.md#azurewrapper)
 
 
-    * [speechmaticsWrapper](speechtotext/model/index.md#module-speechtotext.model.speechmaticsWrapper)
+    * [speechmaticsWrapper](speechtotext/model/index.md#speechmaticswrapper)
 
 
 * [speechtotext benchmark package](speechtotext/benchmark/index.md)
@@ -63,13 +63,13 @@
 * [speechtotext plot package](speechtotext/plot/index.md)
 
 
-    * [plotting](speechtotext/plot/index.md#module-speechtotext.plot.plotting)
+    * [plotting](speechtotext/plot/index.md#plotting)
 
 
-    * [customPlots](speechtotext/plot/index.md#module-speechtotext.plot.customPlots)
+    * [customPlots](speechtotext/plot/index.md#customplots)
 
 
-    * [customErrorPlots](speechtotext/plot/index.md#module-speechtotext.plot.customErrorPlots)
+    * [customErrorPlots](speechtotext/plot/index.md#customerrorplots)
 
 
 * [speechtotext metric package](speechtotext/metric/index.md)
@@ -78,7 +78,7 @@
     * [metrics](speechtotext/metric/index.md#module-speechtotext.metric.metrics)
 
 
-    * [customMetrics](speechtotext/metric/index.md#module-speechtotext.metric.customMetrics)
+    * [customMetrics](speechtotext/metric/index.md#custommetrics)
 
 
 # Indices and tables

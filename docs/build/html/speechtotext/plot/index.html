@@ -8,6 +8,7 @@
     
           <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       
       <!-- sphinx script_files -->
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -176,11 +177,11 @@
             
               <ul>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.plot.plotting" class="reference internal">plotting</a></li>
+                  <li class="toctree-l2"><a href="#plotting" class="reference internal">plotting</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.plot.customPlots" class="reference internal">customPlots</a></li>
+                  <li class="toctree-l2"><a href="#customplots" class="reference internal">customPlots</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.plot.customErrorPlots" class="reference internal">customErrorPlots</a></li>
+                  <li class="toctree-l2"><a href="#customerrorplots" class="reference internal">customErrorPlots</a></li>
                 
               </ul>
             
@@ -229,9 +230,25 @@
             
   <section id="speechtotext-plot-package">
 <h1>speechtotext plot package<a class="headerlink" href="#speechtotext-plot-package" title="Permalink to this heading">¶</a></h1>
-<section id="module-speechtotext.plot.plotting">
-<span id="plotting"></span><h2>plotting<a class="headerlink" href="#module-speechtotext.plot.plotting" title="Permalink to this heading">¶</a></h2>
-<p>Module that plots the results from the benchmarks.</p>
+<section id="plotting">
+<h2>plotting<a class="headerlink" href="#plotting" title="Permalink to this heading">¶</a></h2>
+digraph inheritancebcd880a278 {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.functions.BaseResult&quot; [URL=&quot;../index.html#speechtotext.functions.BaseResult&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Parent class for results. &quot;];
+  &quot;speechtotext.plot.plotting.BaseMatPlotLib&quot; [URL=&quot;#speechtotext.plot.plotting.BaseMatPlotLib&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Parent class for custom plots with matplotlib. Code can be generated from d-tale. &quot;];
+  &quot;speechtotext.functions.BaseResult&quot; -&gt; &quot;speechtotext.plot.plotting.BaseMatPlotLib&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.plotting.BasePlotly&quot; [URL=&quot;#speechtotext.plot.plotting.BasePlotly&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Parent class for custom plots with Plotly. Code can be generated from d-tale. &quot;];
+  &quot;speechtotext.functions.BaseResult&quot; -&gt; &quot;speechtotext.plot.plotting.BasePlotly&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset&quot; [URL=&quot;#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Dynamically create plot classes for each metric for each database in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.&quot;];
+  &quot;speechtotext.functions.BaseResult&quot; -&gt; &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset&quot; [URL=&quot;#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Dynamically create plot classes for each metric for each dataset in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.&quot;];
+  &quot;speechtotext.functions.BaseResult&quot; -&gt; &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.plotting.Plotting&quot; [URL=&quot;#speechtotext.plot.plotting.Plotting&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Class that is used to create plots for an benchmark.&quot;];
+}
+<span class="target" id="module-speechtotext.plot.plotting"></span><p>Module that plots the results from the benchmarks.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span> <span class="n">BasePlot</span><span class="p">,</span> <span class="n">Plotting</span>
@@ -427,9 +444,24 @@ Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.plot.customPlots">
-<span id="customplots"></span><h2>customPlots<a class="headerlink" href="#module-speechtotext.plot.customPlots" title="Permalink to this heading">¶</a></h2>
-<p>Module to create custom plots for the plotting module</p>
+<section id="customplots">
+<h2>customPlots<a class="headerlink" href="#customplots" title="Permalink to this heading">¶</a></h2>
+digraph inheritance00d72cfe8d {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.functions.BaseResult&quot; [URL=&quot;../index.html#speechtotext.functions.BaseResult&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Parent class for results. &quot;];
+  &quot;speechtotext.plot.customPlots.DynamicallyByModelNameByDataset&quot; [URL=&quot;#speechtotext.plot.customPlots.DynamicallyByModelNameByDataset&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Class that is used to create plots for an benchmark.&quot;];
+  &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset&quot; -&gt; &quot;speechtotext.plot.customPlots.DynamicallyByModelNameByDataset&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset&quot; [URL=&quot;#speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Class that is used to create plots for an benchmark.&quot;];
+  &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset&quot; -&gt; &quot;speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset&quot; [URL=&quot;#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Dynamically create plot classes for each metric for each database in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.&quot;];
+  &quot;speechtotext.functions.BaseResult&quot; -&gt; &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset&quot; [URL=&quot;#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Dynamically create plot classes for each metric for each dataset in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS.&quot;];
+  &quot;speechtotext.functions.BaseResult&quot; -&gt; &quot;speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+<span class="target" id="module-speechtotext.plot.customPlots"></span><p>Module to create custom plots for the plotting module</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">BaseResult</span>
@@ -487,9 +519,24 @@ Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.plot.customErrorPlots">
-<span id="customerrorplots"></span><h2>customErrorPlots<a class="headerlink" href="#module-speechtotext.plot.customErrorPlots" title="Permalink to this heading">¶</a></h2>
-<p>Module to create custom error plots for the plotting module</p>
+<section id="customerrorplots">
+<h2>customErrorPlots<a class="headerlink" href="#customerrorplots" title="Permalink to this heading">¶</a></h2>
+digraph inheritancee6a02321bf {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.functions.BaseResult&quot; [URL=&quot;../index.html#speechtotext.functions.BaseResult&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Parent class for results. &quot;];
+  &quot;speechtotext.plot.customErrorPlots.ErrorCountByModel&quot; [URL=&quot;#speechtotext.plot.customErrorPlots.ErrorCountByModel&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Class that is used to create error plots for an benchmark.&quot;];
+  &quot;speechtotext.plot.plotting.BasePlotly&quot; -&gt; &quot;speechtotext.plot.customErrorPlots.ErrorCountByModel&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset&quot; [URL=&quot;#speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Class that is used to create error plots for an benchmark.&quot;];
+  &quot;speechtotext.plot.plotting.BasePlotly&quot; -&gt; &quot;speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.customErrorPlots.ErrorCountHeatmap&quot; [URL=&quot;#speechtotext.plot.customErrorPlots.ErrorCountHeatmap&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Class that is used to create error plots for an benchmark.&quot;];
+  &quot;speechtotext.plot.plotting.BasePlotly&quot; -&gt; &quot;speechtotext.plot.customErrorPlots.ErrorCountHeatmap&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.plot.plotting.BasePlotly&quot; [URL=&quot;#speechtotext.plot.plotting.BasePlotly&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Parent class for custom plots with Plotly. Code can be generated from d-tale. &quot;];
+  &quot;speechtotext.functions.BaseResult&quot; -&gt; &quot;speechtotext.plot.plotting.BasePlotly&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+<span class="target" id="module-speechtotext.plot.customErrorPlots"></span><p>Module to create custom error plots for the plotting module</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">BaseResult</span>

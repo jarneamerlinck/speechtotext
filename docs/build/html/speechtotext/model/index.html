@@ -8,6 +8,7 @@
     
           <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       
       <!-- sphinx script_files -->
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -160,19 +161,19 @@
                 
                   <li class="toctree-l2"><a href="#module-speechtotext.model.modelWrapper" class="reference internal">modelWrapper</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.model.whisperWrapper" class="reference internal">whisperWrapper</a></li>
+                  <li class="toctree-l2"><a href="#whisperwrapper" class="reference internal">whisperWrapper</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.model.amazonWrapper" class="reference internal">amazonWrapper</a></li>
+                  <li class="toctree-l2"><a href="#amazonwrapper" class="reference internal">amazonWrapper</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.model.googleWrapper" class="reference internal">googleWrapper</a></li>
+                  <li class="toctree-l2"><a href="#googlewrapper" class="reference internal">googleWrapper</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.model.deepgramWrapper" class="reference internal">deepgramWrapper</a></li>
+                  <li class="toctree-l2"><a href="#deepgramwrapper" class="reference internal">deepgramWrapper</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.model.assemblyAIWrapper" class="reference internal">assemblyAIWrapper</a></li>
+                  <li class="toctree-l2"><a href="#assemblyaiwrapper" class="reference internal">assemblyAIWrapper</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.model.azureWrapper" class="reference internal">azureWrapper</a></li>
+                  <li class="toctree-l2"><a href="#azurewrapper" class="reference internal">azureWrapper</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.model.speechmaticsWrapper" class="reference internal">speechmaticsWrapper</a></li>
+                  <li class="toctree-l2"><a href="#speechmaticswrapper" class="reference internal">speechmaticsWrapper</a></li>
                 
               </ul>
             
@@ -449,9 +450,25 @@
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.model.whisperWrapper">
-<span id="whisperwrapper"></span><h2>whisperWrapper<a class="headerlink" href="#module-speechtotext.model.whisperWrapper" title="Permalink to this heading">¶</a></h2>
-<p>Modelwrapper implemented for whisper. Local and API.</p>
+<section id="whisperwrapper">
+<h2>whisperWrapper<a class="headerlink" href="#whisperwrapper" title="Permalink to this heading">¶</a></h2>
+digraph inheritanceef65728cc7 {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the Available models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Abstract Wrapper for model.&quot;];
+  &quot;speechtotext.model.whisperWrapper.WhisperAPIVersion&quot; [URL=&quot;#speechtotext.model.whisperWrapper.WhisperAPIVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the available Whisper API models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; -&gt; &quot;speechtotext.model.whisperWrapper.WhisperAPIVersion&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.whisperWrapper.WhisperAPIWrapper&quot; [URL=&quot;#speechtotext.model.whisperWrapper.WhisperAPIWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Wrapper for whisper API. OPENAI_ORGANIZATION and OPENAI_API_KEY need to be in .env file in current directory.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; -&gt; &quot;speechtotext.model.whisperWrapper.WhisperAPIWrapper&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.whisperWrapper.WhisperVersion&quot; [URL=&quot;#speechtotext.model.whisperWrapper.WhisperVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the available Whisper models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; -&gt; &quot;speechtotext.model.whisperWrapper.WhisperVersion&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.whisperWrapper.WhisperWrapper&quot; [URL=&quot;#speechtotext.model.whisperWrapper.WhisperWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Wrapper for whisper model.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; -&gt; &quot;speechtotext.model.whisperWrapper.WhisperWrapper&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+<span class="target" id="module-speechtotext.model.whisperWrapper"></span><p>Modelwrapper implemented for whisper. Local and API.</p>
 <p>API OPENAI_API_KEY and OPENAI_ORGANIZATION need to be in the ‘.env’.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -599,9 +616,21 @@
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.model.amazonWrapper">
-<span id="amazonwrapper"></span><h2>amazonWrapper<a class="headerlink" href="#module-speechtotext.model.amazonWrapper" title="Permalink to this heading">¶</a></h2>
-<p>Modelwrapper implemented for Amazon STT API.</p>
+<section id="amazonwrapper">
+<h2>amazonWrapper<a class="headerlink" href="#amazonwrapper" title="Permalink to this heading">¶</a></h2>
+digraph inheritance558fca32a2 {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.model.amazonWrapper.AmazonAPIVersion&quot; [URL=&quot;#speechtotext.model.amazonWrapper.AmazonAPIVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the available AMAZON API models. This is for the  `Custom language model &lt;https://docs.aws.amazon.com/transcribe/latest/APIReference/API_CreateLanguageModel.html&gt;`_.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; -&gt; &quot;speechtotext.model.amazonWrapper.AmazonAPIVersion&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.amazonWrapper.AmazonAPIWrapper&quot; [URL=&quot;#speechtotext.model.amazonWrapper.AmazonAPIWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Wrapper for AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET need to be in the '.env' file in current directory.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; -&gt; &quot;speechtotext.model.amazonWrapper.AmazonAPIWrapper&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the Available models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Abstract Wrapper for model.&quot;];
+}
+<span class="target" id="module-speechtotext.model.amazonWrapper"></span><p>Modelwrapper implemented for Amazon STT API.</p>
 <p>AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET  need to be in the ‘.env’.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -733,9 +762,21 @@
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.model.googleWrapper">
-<span id="googlewrapper"></span><h2>googleWrapper<a class="headerlink" href="#module-speechtotext.model.googleWrapper" title="Permalink to this heading">¶</a></h2>
-<p>Modelwrapper implemented for google STT API.</p>
+<section id="googlewrapper">
+<h2>googleWrapper<a class="headerlink" href="#googlewrapper" title="Permalink to this heading">¶</a></h2>
+digraph inheritance1cd4fbb022 {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.model.googleWrapper.GoogleAPIVersion&quot; [URL=&quot;#speechtotext.model.googleWrapper.GoogleAPIVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the available google API models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; -&gt; &quot;speechtotext.model.googleWrapper.GoogleAPIVersion&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.googleWrapper.GoogleAPIWrapper&quot; [URL=&quot;#speechtotext.model.googleWrapper.GoogleAPIWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Wrapper for google API. GOOGLE_APPLICATION_CREDENTIALS needs to be in the '.env' file in current directory.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; -&gt; &quot;speechtotext.model.googleWrapper.GoogleAPIWrapper&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the Available models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Abstract Wrapper for model.&quot;];
+}
+<span class="target" id="module-speechtotext.model.googleWrapper"></span><p>Modelwrapper implemented for google STT API.</p>
 <p>GOOGLE_APPLICATION_CREDENTIALS needs to be in the ‘.env’.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -823,9 +864,21 @@
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.model.deepgramWrapper">
-<span id="deepgramwrapper"></span><h2>deepgramWrapper<a class="headerlink" href="#module-speechtotext.model.deepgramWrapper" title="Permalink to this heading">¶</a></h2>
-<p>Modelwrapper implemented for deepgram API.</p>
+<section id="deepgramwrapper">
+<h2>deepgramWrapper<a class="headerlink" href="#deepgramwrapper" title="Permalink to this heading">¶</a></h2>
+digraph inheritanceff9b94e4ed {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.model.deepgramWrapper.DeepgramAPIVersion&quot; [URL=&quot;#speechtotext.model.deepgramWrapper.DeepgramAPIVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the available deepgram API models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; -&gt; &quot;speechtotext.model.deepgramWrapper.DeepgramAPIVersion&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.deepgramWrapper.DeepgramAPIWrapper&quot; [URL=&quot;#speechtotext.model.deepgramWrapper.DeepgramAPIWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Wrapper for deepgram API. DEEPGRAM_API_KEY needs to be in the '.env' file in current directory.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; -&gt; &quot;speechtotext.model.deepgramWrapper.DeepgramAPIWrapper&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the Available models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Abstract Wrapper for model.&quot;];
+}
+<span class="target" id="module-speechtotext.model.deepgramWrapper"></span><p>Modelwrapper implemented for deepgram API.</p>
 <p>DEEPGRAM_API_KEY needs to be in the ‘.env’.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -919,9 +972,21 @@
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.model.assemblyAIWrapper">
-<span id="assemblyaiwrapper"></span><h2>assemblyAIWrapper<a class="headerlink" href="#module-speechtotext.model.assemblyAIWrapper" title="Permalink to this heading">¶</a></h2>
-<p>Modelwrapper implemented for assemblyAi API.</p>
+<section id="assemblyaiwrapper">
+<h2>assemblyAIWrapper<a class="headerlink" href="#assemblyaiwrapper" title="Permalink to this heading">¶</a></h2>
+digraph inheritance2cff1acd5a {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion&quot; [URL=&quot;#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the available assemblyAi API models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; -&gt; &quot;speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper&quot; [URL=&quot;#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Wrapper for assemblyAi API. ASSEMBLY_AI_API_KEY needs to be in the '.env' file in current directory.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; -&gt; &quot;speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the Available models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Abstract Wrapper for model.&quot;];
+}
+<span class="target" id="module-speechtotext.model.assemblyAIWrapper"></span><p>Modelwrapper implemented for assemblyAi API.</p>
 <p>ASSEMBLY_AI_API_KEY needs to be in the ‘.env’.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -1189,9 +1254,21 @@
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.model.azureWrapper">
-<span id="azurewrapper"></span><h2>azureWrapper<a class="headerlink" href="#module-speechtotext.model.azureWrapper" title="Permalink to this heading">¶</a></h2>
-<p>Modelwrapper implemented for Azure STT API.</p>
+<section id="azurewrapper">
+<h2>azureWrapper<a class="headerlink" href="#azurewrapper" title="Permalink to this heading">¶</a></h2>
+digraph inheritanceccf09b6596 {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.model.azureWrapper.AzureAPIVersion&quot; [URL=&quot;#speechtotext.model.azureWrapper.AzureAPIVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the available AZURE API models. &quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; -&gt; &quot;speechtotext.model.azureWrapper.AzureAPIVersion&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.azureWrapper.AzureAPIWrapper&quot; [URL=&quot;#speechtotext.model.azureWrapper.AzureAPIWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Wrapper for AZURE API. AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the '.env' file in current directory.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; -&gt; &quot;speechtotext.model.azureWrapper.AzureAPIWrapper&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the Available models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Abstract Wrapper for model.&quot;];
+}
+<span class="target" id="module-speechtotext.model.azureWrapper"></span><p>Modelwrapper implemented for Azure STT API.</p>
 <p>AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the ‘.env’.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -1276,9 +1353,21 @@
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.model.speechmaticsWrapper">
-<span id="speechmaticswrapper"></span><h2>speechmaticsWrapper<a class="headerlink" href="#module-speechtotext.model.speechmaticsWrapper" title="Permalink to this heading">¶</a></h2>
-<p>Modelwrapper implemented for Speechmatics STT API.</p>
+<section id="speechmaticswrapper">
+<h2>speechmaticsWrapper<a class="headerlink" href="#speechmaticswrapper" title="Permalink to this heading">¶</a></h2>
+digraph inheritance472469ee35 {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the Available models.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; [URL=&quot;#speechtotext.model.modelWrapper.ModelWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Abstract Wrapper for model.&quot;];
+  &quot;speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion&quot; [URL=&quot;#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Enum for the available SPEECHMATICS API models. &quot;];
+  &quot;speechtotext.model.modelWrapper.ModelVersion&quot; -&gt; &quot;speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper&quot; [URL=&quot;#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Wrapper for SPEECHMATICS API. SPEECHMATICS_API_KEY needs to be in the '.env' file in current directory.&quot;];
+  &quot;speechtotext.model.modelWrapper.ModelWrapper&quot; -&gt; &quot;speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+<span class="target" id="module-speechtotext.model.speechmaticsWrapper"></span><p>Modelwrapper implemented for Speechmatics STT API.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Package version speechmatics-python==1.6.4 is needed to run the script. Errors on 1.7.0</p>

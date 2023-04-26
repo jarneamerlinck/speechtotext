@@ -8,6 +8,7 @@
     
           <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
           <link rel="stylesheet" href="../../_static/theme.css " type="text/css" />
+          <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       
       <!-- sphinx script_files -->
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -186,7 +187,7 @@
                 
                   <li class="toctree-l2"><a href="#module-speechtotext.metric.metrics" class="reference internal">metrics</a></li>
                 
-                  <li class="toctree-l2"><a href="#module-speechtotext.metric.customMetrics" class="reference internal">customMetrics</a></li>
+                  <li class="toctree-l2"><a href="#custommetrics" class="reference internal">customMetrics</a></li>
                 
               </ul>
             
@@ -384,9 +385,24 @@
 </dd></dl>
 
 </section>
-<section id="module-speechtotext.metric.customMetrics">
-<span id="custommetrics"></span><h2>customMetrics<a class="headerlink" href="#module-speechtotext.metric.customMetrics" title="Permalink to this heading">¶</a></h2>
-<p>Module to create custom metrics to save with the plots from the plotting module.</p>
+<section id="custommetrics">
+<h2>customMetrics<a class="headerlink" href="#custommetrics" title="Permalink to this heading">¶</a></h2>
+digraph inheritance874b182061 {
+bgcolor=transparent;
+fontsize=16;
+rankdir=LR;
+size=&quot;8.0, 12.0&quot;;
+  &quot;speechtotext.functions.BaseResult&quot; [URL=&quot;../index.html#speechtotext.functions.BaseResult&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Parent class for results. &quot;];
+  &quot;speechtotext.metric.customMetrics.BaseMetrics&quot; [URL=&quot;#speechtotext.metric.customMetrics.BaseMetrics&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;Base class used to create metrics for result dataframe.&quot;];
+  &quot;speechtotext.functions.BaseResult&quot; -&gt; &quot;speechtotext.metric.customMetrics.BaseMetrics&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.metric.customMetrics.BenchmarkResults&quot; [URL=&quot;#speechtotext.metric.customMetrics.BenchmarkResults&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;This class saves the results of the benchmark.&quot;];
+  &quot;speechtotext.metric.customMetrics.BaseMetrics&quot; -&gt; &quot;speechtotext.metric.customMetrics.BenchmarkResults&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.metric.customMetrics.ErrorMetrics&quot; [URL=&quot;#speechtotext.metric.customMetrics.ErrorMetrics&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;This class calulates the error statistic on the benchmark results.&quot;];
+  &quot;speechtotext.metric.customMetrics.BaseMetrics&quot; -&gt; &quot;speechtotext.metric.customMetrics.ErrorMetrics&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+  &quot;speechtotext.metric.customMetrics.ResultMetrics&quot; [URL=&quot;#speechtotext.metric.customMetrics.ResultMetrics&quot;,color=dodgerblue1,fillcolor=white,fontname=&quot;Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans&quot;,fontsize=16,height=1,shape=box,style=&quot;setlinewidth(0.5),filled&quot;,target=&quot;_top&quot;,tooltip=&quot;This class calulates the default statistic metrics on the benchmark results.&quot;];
+  &quot;speechtotext.metric.customMetrics.BaseMetrics&quot; -&gt; &quot;speechtotext.metric.customMetrics.ResultMetrics&quot; [arrowsize=0.5,style=&quot;setlinewidth(0.5)&quot;];
+}
+<span class="target" id="module-speechtotext.metric.customMetrics"></span><p>Module to create custom metrics to save with the plots from the plotting module.</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
 <span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">BaseResult</span>

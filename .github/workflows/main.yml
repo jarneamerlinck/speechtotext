@@ -19,7 +19,7 @@ on:
     - '*.py'
     - '*.yml'
     - 'docs/source/**'
-
+    - '.github/**'
 env:
   CACHE_NUMBER: 0  # increase to reset cache manually
   
@@ -95,6 +95,9 @@ jobs:
         path: /usr/share/miniconda3/envs/my-env
         key: linux-64-conda-${{ hashFiles('environment_build.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
       id: cache
+
+    - name: Install graphviz
+      run: sudo apt-get install graphviz
 
     - name: Build documentation
       shell: bash -l {0}

@@ -1,3 +1,3 @@
-VERSION = (0, 3, 9)
+VERSION = (0, 3, 10)
 
 __version__ = '.'.join(map(str, VERSION))

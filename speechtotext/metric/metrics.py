@@ -8,7 +8,7 @@ Use this module like this:
 	from speechtotext.metric.metrics import Metrics
 	
 	# Create metrics
-	m = Metrics("De stoel heeft krassen gemaakt op de vloer!", "De stoel heeft krassen gemaakt op de vloer", "id_from_dataset", duration=0.5)
+	m = Metrics("This is the original text, the source.", "This is the hypothesis text..", "id_from_dataset", duration=0.5)
 	print(m)
 """
 from typing_extensions import override

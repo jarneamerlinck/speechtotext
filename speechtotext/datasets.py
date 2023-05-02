@@ -36,9 +36,9 @@ Use this module like this:
 	dataset_n_random: SampleDataset = dataset.get_n_samples(number_of_samples)
 """
 
-from os.path import exists
+from os.path import exists, isfile
 import pandas as pd
-from os.path import isfile
+
 from speechtotext.functions import get_file_name_without_extention
 
 class DatasetBare():

@@ -23,7 +23,7 @@ from nltk.translate.meteor_score import meteor_score
 from rouge import Rouge
 
 from speechtotext.datasets import Dataset
-from speechtotext.functions import string_cleaning 
+from speechtotext.functions import string_cleaning
 
 class Metrics():
 	"""Class to calulate the metrics.

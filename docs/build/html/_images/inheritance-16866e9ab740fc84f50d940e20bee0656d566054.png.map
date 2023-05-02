@@ -1,0 +1,7 @@
+<map id="inheritance874b182061" name="inheritance874b182061">
+<area shape="rect" id="node1" href="../index.html#speechtotext.functions.BaseResult" target="_top" title="Parent class for results. " alt="" coords="2,58,187,103"/>
+<area shape="rect" id="node2" href="#speechtotext.metric.customMetrics.BaseMetrics" target="_top" title="Base class used to create metrics for result dataframe." alt="" coords="209,58,460,103"/>
+<area shape="rect" id="node3" href="#speechtotext.metric.customMetrics.BenchmarkResults" target="_top" title="This class saves the results of the benchmark." alt="" coords="482,2,766,47"/>
+<area shape="rect" id="node4" href="#speechtotext.metric.customMetrics.ErrorMetrics" target="_top" title="This class calulates the error statistic on the benchmark results." alt="" coords="499,58,749,103"/>
+<area shape="rect" id="node5" href="#speechtotext.metric.customMetrics.ResultMetrics" target="_top" title="This class calulates the default statistic metrics on the benchmark results." alt="" coords="495,114,752,159"/>
+</map>

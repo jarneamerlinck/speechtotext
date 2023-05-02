@@ -1,0 +1,6 @@
+<map id="inheritanceff9b94e4ed" name="inheritanceff9b94e4ed">
+<area shape="rect" id="node1" href="#speechtotext.model.deepgramWrapper.DeepgramAPIVersion" target="_top" title="Enum for the available deepgram API models." alt="" coords="364,73,761,130"/>
+<area shape="rect" id="node2" href="#speechtotext.model.modelWrapper.ModelVersion" target="_top" title="Enum for the Available models." alt="" coords="7,73,329,130"/>
+<area shape="rect" id="node3" href="#speechtotext.model.deepgramWrapper.DeepgramAPIWrapper" target="_top" title="Wrapper for deepgram API. DEEPGRAM_API_KEY needs to be in the &#39;.env&#39; file in current directory." alt="" coords="361,3,765,59"/>
+<area shape="rect" id="node4" href="#speechtotext.model.modelWrapper.ModelWrapper" target="_top" title="Abstract Wrapper for model." alt="" coords="3,3,332,59"/>
+</map>

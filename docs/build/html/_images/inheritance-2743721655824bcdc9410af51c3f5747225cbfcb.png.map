@@ -1,0 +1,8 @@
+<map id="inheritancebcd880a278" name="inheritancebcd880a278">
+<area shape="rect" id="node1" href="../index.html#speechtotext.functions.BaseResult" target="_top" title="Parent class for results. " alt="" coords="3,115,248,175"/>
+<area shape="rect" id="node2" href="#speechtotext.plot.plotting.BaseMatPlotLib" target="_top" title="Parent class for custom plots with matplotlib. Code can be generated from d&#45;tale. " alt="" coords="375,3,667,63"/>
+<area shape="rect" id="node3" href="#speechtotext.plot.plotting.BasePlotly" target="_top" title="Parent class for custom plots with Plotly. Code can be generated from d&#45;tale. " alt="" coords="391,78,651,137"/>
+<area shape="rect" id="node4" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset" target="_top" title="Dynamically create plot classes for each metric for each database in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS." alt="" coords="296,152,747,212"/>
+<area shape="rect" id="node5" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset" target="_top" title="Dynamically create plot classes for each metric for each dataset in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS." alt="" coords="278,227,765,286"/>
+<area shape="rect" id="node6" href="#speechtotext.plot.plotting.Plotting" target="_top" title="Class that is used to create plots for an benchmark." alt="" coords="5,41,247,100"/>
+</map>

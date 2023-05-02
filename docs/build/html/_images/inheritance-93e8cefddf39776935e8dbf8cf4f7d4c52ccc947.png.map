@@ -1,0 +1,6 @@
+<map id="inheritance1cd4fbb022" name="inheritance1cd4fbb022">
+<area shape="rect" id="node1" href="#speechtotext.model.googleWrapper.GoogleAPIVersion" target="_top" title="Enum for the available google API models." alt="" coords="386,78,761,138"/>
+<area shape="rect" id="node2" href="#speechtotext.model.modelWrapper.ModelVersion" target="_top" title="Enum for the Available models." alt="" coords="7,78,349,138"/>
+<area shape="rect" id="node3" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper" target="_top" title="Wrapper for google API. GOOGLE_APPLICATION_CREDENTIALS needs to be in the &#39;.env&#39; file in current directory." alt="" coords="383,3,765,63"/>
+<area shape="rect" id="node4" href="#speechtotext.model.modelWrapper.ModelWrapper" target="_top" title="Abstract Wrapper for model." alt="" coords="3,3,353,63"/>
+</map>

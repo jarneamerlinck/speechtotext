@@ -1,0 +1,7 @@
+<map id="inheritancee6a02321bf" name="inheritancee6a02321bf">
+<area shape="rect" id="node1" href="../index.html#speechtotext.functions.BaseResult" target="_top" title="Parent class for results. " alt="" coords="2,59,187,103"/>
+<area shape="rect" id="node3" href="#speechtotext.plot.plotting.BasePlotly" target="_top" title="Parent class for custom plots with Plotly. Code can be generated from d&#45;tale. " alt="" coords="209,59,405,103"/>
+<area shape="rect" id="node2" href="#speechtotext.plot.customErrorPlots.ErrorCountByModel" target="_top" title="Class that is used to create error plots for an benchmark." alt="" coords="454,2,740,47"/>
+<area shape="rect" id="node4" href="#speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset" target="_top" title="Class that is used to create error plots for an benchmark." alt="" coords="428,59,766,103"/>
+<area shape="rect" id="node5" href="#speechtotext.plot.customErrorPlots.ErrorCountHeatmap" target="_top" title="Class that is used to create error plots for an benchmark." alt="" coords="452,115,741,160"/>
+</map>

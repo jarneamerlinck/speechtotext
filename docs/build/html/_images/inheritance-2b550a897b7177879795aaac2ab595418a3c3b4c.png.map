@@ -1,0 +1,7 @@
+<map id="inheritance00d72cfe8d" name="inheritance00d72cfe8d">
+<area shape="rect" id="node1" href="../index.html#speechtotext.functions.BaseResult" target="_top" title="Parent class for results. " alt="" coords="2,24,147,59"/>
+<area shape="rect" id="node3" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset" target="_top" title="Dynamically create plot classes for each metric for each database in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS." alt="" coords="175,2,441,37"/>
+<area shape="rect" id="node5" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset" target="_top" title="Dynamically create plot classes for each metric for each dataset in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS." alt="" coords="164,46,451,81"/>
+<area shape="rect" id="node2" href="#speechtotext.plot.customPlots.DynamicallyByModelNameByDataset" target="_top" title="Class that is used to create plots for an benchmark." alt="" coords="480,2,755,37"/>
+<area shape="rect" id="node4" href="#speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset" target="_top" title="Class that is used to create plots for an benchmark." alt="" coords="469,46,766,81"/>
+</map>

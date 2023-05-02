@@ -1,0 +1,6 @@
+<map id="inheritanceccf09b6596" name="inheritanceccf09b6596">
+<area shape="rect" id="node1" href="#speechtotext.model.azureWrapper.AzureAPIVersion" target="_top" title="Enum for the available AZURE API models. " alt="" coords="396,80,760,141"/>
+<area shape="rect" id="node2" href="#speechtotext.model.modelWrapper.ModelVersion" target="_top" title="Enum for the Available models." alt="" coords="7,80,357,141"/>
+<area shape="rect" id="node3" href="#speechtotext.model.azureWrapper.AzureAPIWrapper" target="_top" title="Wrapper for AZURE API. AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the &#39;.env&#39; file in current directory." alt="" coords="392,3,765,64"/>
+<area shape="rect" id="node4" href="#speechtotext.model.modelWrapper.ModelWrapper" target="_top" title="Abstract Wrapper for model." alt="" coords="3,3,361,64"/>
+</map>

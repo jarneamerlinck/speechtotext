@@ -1,0 +1,6 @@
+<map id="inheritance558fca32a2" name="inheritance558fca32a2">
+<area shape="rect" id="node1" href="#speechtotext.model.amazonWrapper.AmazonAPIVersion" target="_top" title="Enum for the available AMAZON API models. This is for the &#160;`Custom language model &lt;https://docs.aws.amazon.com/transcribe/latest/APIReference/API_CreateLanguageModel.html&gt;`_." alt="" coords="380,76,761,135"/>
+<area shape="rect" id="node2" href="#speechtotext.model.modelWrapper.ModelVersion" target="_top" title="Enum for the Available models." alt="" coords="7,76,343,135"/>
+<area shape="rect" id="node3" href="#speechtotext.model.amazonWrapper.AmazonAPIWrapper" target="_top" title="Wrapper for AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET need to be in the &#39;.env&#39; file in current directory." alt="" coords="375,3,765,62"/>
+<area shape="rect" id="node4" href="#speechtotext.model.modelWrapper.ModelWrapper" target="_top" title="Abstract Wrapper for model." alt="" coords="3,3,346,62"/>
+</map>

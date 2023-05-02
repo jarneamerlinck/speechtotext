@@ -1,0 +1,5 @@
+<map id="inheritance2eff8b1c3d" name="inheritance2eff8b1c3d">
+<area shape="rect" id="node1" href="#speechtotext.datasets.Dataset" target="_top" title="Class to extract data from the dataset folder." alt="" coords="426,5,728,88"/>
+<area shape="rect" id="node2" href="#speechtotext.datasets.DatasetBare" target="_top" title="Bare dataset class." alt="" coords="5,57,349,140"/>
+<area shape="rect" id="node3" href="#speechtotext.datasets.SampleDataset" target="_top" title="Sample of dataset." alt="" coords="391,108,763,191"/>
+</map>

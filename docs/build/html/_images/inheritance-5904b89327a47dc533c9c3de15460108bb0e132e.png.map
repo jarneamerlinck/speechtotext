@@ -1,0 +1,6 @@
+<map id="inheritance472469ee35" name="inheritance472469ee35">
+<area shape="rect" id="node1" href="#speechtotext.model.modelWrapper.ModelVersion" target="_top" title="Enum for the Available models." alt="" coords="6,69,311,123"/>
+<area shape="rect" id="node3" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion" target="_top" title="Enum for the available SPEECHMATICS API models. " alt="" coords="345,69,761,123"/>
+<area shape="rect" id="node2" href="#speechtotext.model.modelWrapper.ModelWrapper" target="_top" title="Abstract Wrapper for model." alt="" coords="3,3,315,56"/>
+<area shape="rect" id="node4" href="#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper" target="_top" title="Wrapper for SPEECHMATICS API. SPEECHMATICS_API_KEY needs to be in the &#39;.env&#39; file in current directory." alt="" coords="341,3,765,56"/>
+</map>

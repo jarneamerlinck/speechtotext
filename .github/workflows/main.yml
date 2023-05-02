@@ -19,7 +19,7 @@ on:
     - '*.py'
     - '*.yml'
     - 'docs/source/**'
-
+    - '.github/**'
 env:
   CACHE_NUMBER: 0  # increase to reset cache manually
   

@@ -31,7 +31,7 @@ Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM
 Saves Result to report folder.
 
 
-### speechtotext.functions.DEFAULT_CSV_NAME(_: st_ _ = 'reports/Benchmark_results_2023_04_25_07_26_31.csv_ )
+### speechtotext.functions.DEFAULT_CSV_NAME(_: st_ _ = 'reports/Benchmark_results_2023_05_02_12_17_58.csv_ )
 Default path to save Benchmark results.
 
 
@@ -41,7 +41,7 @@ Default path to save Benchmark results.
 
 
 
-### speechtotext.functions.DEFAULT_DATETIME_FORMAT(_: st_ _ = '2023_04_25_07_26_31_ )
+### speechtotext.functions.DEFAULT_DATETIME_FORMAT(_: st_ _ = '2023_05_02_12_17_58_ )
 Default datetime format. (Uses string format for datetime)
 
 
@@ -77,7 +77,7 @@ Bases: `Exception`
 Exception when an required env variable is missing.
 
 
-### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_04_25_07_26_31.csv')
+### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_05_02_12_17_58.csv')
 Creates csv from benchmark results.
 
 
@@ -361,8 +361,6 @@ dataset_n_random: SampleDataset = dataset.get_n_samples(number_of_samples)
 
 
 ### _class_ speechtotext.datasets.Dataset(path_to_dir: str, name: str, file_ext: str = '.wav')
-Bases: `DatasetBare`
-
 Class to extract data from the dataset folder.
 
 
@@ -393,8 +391,6 @@ Loads transcript.
 
 
 ### _class_ speechtotext.datasets.DatasetBare(path_to_dir: str, name: str, file_ext: str = '.wav')
-Bases: `object`
-
 Bare dataset class.
 
 
@@ -465,6 +461,4 @@ Get number of samples in dataset.
 
 
 ### _class_ speechtotext.datasets.SampleDataset(df: DataFrame, path_to_dir: str, name: str, file_ext: str = '.wav')
-Bases: `DatasetBare`
-
 Sample of dataset.

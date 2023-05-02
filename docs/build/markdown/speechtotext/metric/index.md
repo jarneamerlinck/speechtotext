@@ -130,6 +130,154 @@ The duration is how long it took to transcribe the audiofile.
 
 
 
+#### meteor()
+Metric for Evaluation of Translation with Explicit ORdering (METEOR).
+
+METEOR is an automatic metric for machine translation evaluation that is based on a generalized concept of
+unigram matching between the machine-produced translation and human-produced reference translations.
+
+
+* **Type**
+
+    float
+
+
+
+#### blue()
+Bilingual Evaluation Understudy (BLUE).
+
+BLUE is used in comparing a candidate translation to one or more reference translations.
+
+
+* **Type**
+
+    float
+
+
+
+#### rouge_1_r()
+Recall-Oriented Understudy for Gisting Evaluation recall of 1-grams (ROUGE-1-r).
+
+ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-1-r is the recall of 1-grams.
+
+
+* **Type**
+
+    float
+
+
+
+#### rouge_1_p()
+Recall-Oriented Understudy for Gisting Evaluation precision of 1-grams (ROUGE-1-p).
+
+ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-1-p is the precision of 1-grams.
+
+
+* **Type**
+
+    float
+
+
+
+#### rouge_1_f()
+Recall-Oriented Understudy for Gisting Evaluation F1-score of 1-grams (ROUGE-1-f).
+
+ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-1-f is the F1-score of 1-grams.
+
+
+* **Type**
+
+    float
+
+
+
+#### rouge_2_r()
+Recall-Oriented Understudy for Gisting Evaluation recall of 2-grams (ROUGE-2-r).
+
+ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-2-r is the recall of 2-grams.
+
+
+* **Type**
+
+    float
+
+
+
+#### rouge_2_p()
+Recall-Oriented Understudy for Gisting Evaluation precision of 2-grams (ROUGE-2-p).
+
+ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-2-p is the precision of 2-grams.
+
+
+* **Type**
+
+    float
+
+
+
+#### rouge_2_f()
+Recall-Oriented Understudy for Gisting Evaluation F1-score of 2-grams (ROUGE-2-f).
+
+ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-2-f is the F1-score of 2-grams.
+
+
+* **Type**
+
+    float
+
+
+
+#### rouge_l_r()
+Recall-Oriented Understudy for Gisting Evaluation recall of LCS (ROUGE-L-r).
+
+ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.
+ROUGE-L-r is the recall of LCS.
+
+
+* **Type**
+
+    float
+
+
+
+#### rouge_l_p()
+Recall-Oriented Understudy for Gisting Evaluation precision of LCS (ROUGE-L-p).
+
+ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.
+ROUGE-l-p is the precision of LCS.
+
+
+* **Type**
+
+    float
+
+
+
+#### rouge_l_f()
+Recall-Oriented Understudy for Gisting Evaluation F1-score of LCS (ROUGE-L-f).
+
+ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.
+ROUGE-L-f is the F1-score of LCS.
+
+
+* **Type**
+
+    float
+
+
+
 #### \__call__(\*args, \*\*kwds)
 Calculate the metrics.
 

@@ -18,7 +18,7 @@ from docstring_parser import parse
 
 import nltk
 from nltk import word_tokenize
-from nltk.translate import bleu_score
+from nltk.translate.bleu_score import sentence_bleu,SmoothingFunction
 from nltk.translate.meteor_score import meteor_score
 from rouge import Rouge
 
@@ -147,8 +147,9 @@ class Metrics():
 
 		rouge_scores = Rouge().get_scores(hyps=self.hypothesis, refs=self.reference, avg=True)
 		[setattr(self, f"{rouge_type}-{metric}".replace("-", "_"), rouge_scores[rouge_type][metric]) for rouge_type in rouge_scores.keys() for metric in rouge_scores[rouge_type].keys()]
-		self.blue = bleu_score.sentence_bleu(references=[word_tokenize(self.reference)],
-                             hypothesis=word_tokenize(self.hypothesis))
+		self.blue = sentence_bleu(references=[word_tokenize(self.reference)],
+                             hypothesis=word_tokenize(self.hypothesis),
+                             smoothing_function=SmoothingFunction().method4)
 
 	def get_all_metric_names() -> list[str]:
 		"""Returns all possible metric names in a list. 

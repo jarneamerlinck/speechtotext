@@ -28,7 +28,8 @@ REQUIRED = [
 	'matplotlib', 'ipywidgets', 'seaborn',
 	'dtale', 'boto3', 'google-cloud-speech',
 	'deepgram-sdk', 'azure-cognitiveservices-speech', 
-	'speechmatics-python==1.6.4', 'pydub', 'docstring_parser'
+	'speechmatics-python==1.6.4', 'pydub', 'docstring_parser',
+	'nltk', 'rouge'
 ]
 
 # What packages are optional?

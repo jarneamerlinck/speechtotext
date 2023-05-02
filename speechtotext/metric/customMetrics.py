@@ -42,7 +42,7 @@ class BaseMetrics(BaseResult):
 
 		Returns:
 			pd.core.frame.DataFrame: Dataframe that needs to be saved.
-		"""		  
+		"""	  
 		pass
 
 class BenchmarkResults(BaseMetrics):

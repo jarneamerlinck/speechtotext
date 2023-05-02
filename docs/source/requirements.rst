@@ -43,12 +43,9 @@ Google API
 
 This is the file for an service account.  `Link to google cloud docs <https://developers.google.com/workspace/guides/create-credentials>`_.
 
-
-
 .. code-block:: shell
 
 	GOOGLE_APPLICATION_CREDENTIALS="/path/to/keyfile.json"
-
 
 Deepgram API
 ------------

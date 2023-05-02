@@ -20,7 +20,8 @@ class TestCleanString(unittest.TestCase):
 		from speechtotext.functions import string_cleaning
 		original_string:str = "This needs to be cleaned"
 		cleaned_string:str = "This needs to be cleaned"
-		self.assertEquals(cleaned_string,string_cleaning(original_string))
+		self.assertEqual(cleaned_string,string_cleaning(original_string))
+
 	def test_string_cleaning_diff(self):
 		"""Test string_cleaning.
 		"""  

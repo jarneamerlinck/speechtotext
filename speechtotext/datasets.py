@@ -36,7 +36,7 @@ Use this module like this:
 	dataset_n_random: SampleDataset = dataset.get_n_samples(number_of_samples)
 """
 
-from os.path import exists
+from os.path import exists, isfile
 import pandas as pd
 
 from speechtotext.functions import get_file_name_without_extention
@@ -97,6 +97,9 @@ class DatasetBare():
 			return row.values[0][1]
 		except:
 			return None
+
+	def validate_samples(self) -> bool:
+		return all(self.dataset["id"].apply(lambda id: isfile(f"{self.path_to_dir}/{id}{self.file_ext}")))
 
 class SampleDataset(DatasetBare):
 	"""Sample of dataset.

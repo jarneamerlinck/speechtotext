@@ -38,7 +38,7 @@ Use this module like this:
 
 from os.path import exists
 import pandas as pd
-
+from os.path import isfile
 from speechtotext.functions import get_file_name_without_extention
 
 class DatasetBare():
@@ -97,6 +97,9 @@ class DatasetBare():
 			return row.values[0][1]
 		except:
 			return None
+
+	def validate_samples(self) -> bool:
+		return all(self.dataset["id"].apply(lambda id: isfile(f"{self.path_to_dir}/{id}{self.file_ext}")))
 
 class SampleDataset(DatasetBare):
 	"""Sample of dataset.

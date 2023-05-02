@@ -16,6 +16,12 @@ from jiwer import cer, process_words
 import pandas as pd
 from docstring_parser import parse
 
+import nltk
+from nltk import word_tokenize
+from nltk.translate import bleu_score
+from nltk.translate.meteor_score import meteor_score
+from rouge import Rouge
+
 from speechtotext.datasets import Dataset
 from speechtotext.functions import string_cleaning 
 
@@ -45,14 +51,62 @@ class Metrics():
   
 			The insertions is the number of words that were added.
 		deletions (int): Number of words deleted (deletions).
-  
+
 			The deletions is the number of words that were removed.
-   
 		duration (float): Duration of the transcribing (duration).
-  
+
 			The duration is how long it took to transcribe the audiofile.
-		
-	"""    
+		meteor (float): Metric for Evaluation of Translation with Explicit ORdering (METEOR).
+
+			METEOR is an automatic metric for machine translation evaluation that is based on a generalized concept of
+			unigram matching between the machine-produced translation and human-produced reference translations.
+		blue (float): Bilingual Evaluation Understudy (BLUE).
+
+			BLUE is used in comparing a candidate translation to one or more reference translations.
+ 		rouge_1_r (float): Recall-Oriented Understudy for Gisting Evaluation recall of 1-grams (ROUGE-1-r).
+
+			ROUGE includes measures to automatically determine the quality of a summary 
+   			by comparing it to other (ideal) summaries created by humans.
+			ROUGE-1-r is the recall of 1-grams.
+		rouge_1_p (float): Recall-Oriented Understudy for Gisting Evaluation precision of 1-grams (ROUGE-1-p).
+
+			ROUGE includes measures to automatically determine the quality of a summary 
+   			by comparing it to other (ideal) summaries created by humans.
+			ROUGE-1-p is the precision of 1-grams.
+		rouge_1_f (float): Recall-Oriented Understudy for Gisting Evaluation F1-score of 1-grams (ROUGE-1-f).
+
+			ROUGE includes measures to automatically determine the quality of a summary 
+   			by comparing it to other (ideal) summaries created by humans.
+			ROUGE-1-f is the F1-score of 1-grams.
+		rouge_2_r (float): Recall-Oriented Understudy for Gisting Evaluation recall of 2-grams (ROUGE-2-r).
+
+			ROUGE includes measures to automatically determine the quality of a summary 
+   			by comparing it to other (ideal) summaries created by humans.
+			ROUGE-2-r is the recall of 2-grams.
+		rouge_2_p (float): Recall-Oriented Understudy for Gisting Evaluation precision of 2-grams (ROUGE-2-p).
+
+			ROUGE includes measures to automatically determine the quality of a summary 
+   			by comparing it to other (ideal) summaries created by humans.
+			ROUGE-2-p is the precision of 2-grams.
+		rouge_2_f (float): Recall-Oriented Understudy for Gisting Evaluation F1-score of 2-grams (ROUGE-2-f).
+
+			ROUGE includes measures to automatically determine the quality of a summary 
+   			by comparing it to other (ideal) summaries created by humans.
+			ROUGE-2-f is the F1-score of 2-grams.  
+		rouge_l_r (float): Recall-Oriented Understudy for Gisting Evaluation recall of LCS (ROUGE-L-r).
+
+			ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.
+			ROUGE-L-r is the recall of LCS.
+		rouge_l_p (float): Recall-Oriented Understudy for Gisting Evaluation precision of LCS (ROUGE-L-p).
+
+			ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.
+			ROUGE-l-p is the precision of LCS.
+		rouge_l_f (float): Recall-Oriented Understudy for Gisting Evaluation F1-score of LCS (ROUGE-L-f).
+
+			ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.
+			ROUGE-L-f is the F1-score of LCS.
+   
+	"""
 
 	def __init__(self, reference:str, hypothesis:str, audio_id:str, duration:float, with_cleaning=True):
 	
@@ -76,7 +130,7 @@ class Metrics():
 
 	def __call__(self, *args, **kwds):
 		"""Calculate the metrics.
-		"""    
+		"""
 		# Order here is used in the outputs
 		result = process_words(self.reference, self.hypothesis)
 		self.wer = result.wer
@@ -87,6 +141,14 @@ class Metrics():
 		self.insertions = result.insertions
 		self.deletions = result.deletions
 		self.substitutions = result.substitutions
+
+		self.meteor = meteor_score(references=[word_tokenize(self.reference)],
+                             hypothesis=word_tokenize(self.hypothesis))
+
+		rouge_scores = Rouge().get_scores(hyps=self.hypothesis, refs=self.reference, avg=True)
+		[setattr(self, f"{rouge_type}-{metric}".replace("-", "_"), rouge_scores[rouge_type][metric]) for rouge_type in rouge_scores.keys() for metric in rouge_scores[rouge_type].keys()]
+		self.blue = bleu_score.sentence_bleu(references=[word_tokenize(self.reference)],
+                             hypothesis=word_tokenize(self.hypothesis))
 
 	def get_all_metric_names() -> list[str]:
 		"""Returns all possible metric names in a list. 
@@ -113,14 +175,16 @@ class Metrics():
 		docstring = parse(m.__doc__)
 		list_of_metrics_docs = []
 		for param in docstring.params:
-			list_of_metrics_docs.append(str(param.description)[:-1])
+			to_add = str(param.description)[:-1]
+			to_add = to_add[:to_add.find(')')+1]
+			list_of_metrics_docs.append(to_add)
    
 
 
-		def prepare_for_sorting(s):
+		def prepare_for_sorting(s:str):
 			start = '('
 			end = ')'
-			return ((s.split(start))[1].split(end)[0]).lower()
+			return ((s.split(start))[1].split(end)[0]).lower().replace("-", "_")
 
 		order = {value:index for index,value in enumerate(Metrics.get_all_metric_names())}
 		return sorted(list_of_metrics_docs, key=lambda x: order[prepare_for_sorting(x)])

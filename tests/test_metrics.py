@@ -82,3 +82,8 @@ class TestMetrics(unittest.TestCase):
 		m = Metrics(reference, hypothesis, self.audio_id, self.duration, with_cleaning=False)
 		to_print = f"wer: {1/7}, mer: {1/7}, wil: {1- 6/7}, wip: {6/7}, cer: {4/27}"
 		self.assertEqual(to_print, str(m))
+
+	def test_lenght_of_metric_names(self):
+		"""Test get_all_metric_docs and get_all_metric_names.
+		"""
+		self.assertEqual(Metrics.get_all_metric_names().__len__(), Metrics.get_all_metric_docs().__len__())

@@ -87,7 +87,7 @@ class Benchmark(ABC):
 		
 		# column_names = ["model_name", "audio_ID","dataset", "duration",
 		# 				"reference", "wer", "mer",  "wil", "wip", "cer"]
-		first_column_names = ["model_name", "audio_ID","dataset", "reference"]
+		first_column_names = ["model_name", "audio_ID","dataset", "reference", "hypothesis"]
 		metric_column_names = Metrics.get_all_metric_names()
 		column_names = first_column_names + metric_column_names
 		
@@ -96,11 +96,8 @@ class Benchmark(ABC):
 		for model, metrics in zip(self.models, self.metrics):
 			model_name = f"{self.MODEL_BASE}_{model.model_version.value}"
 			for metric in metrics:
-				
-				# new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name,metric.duration,
-				# 		 metric.reference, metric.wer, metric.mer,  metric.wil, metric.wip, metric.cer], index=column_names)
 	
-				new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name, metric.reference] + 
+				new_row = pd.Series([model_name, metric.audio_id, self.BENCHMARK_SAMPLES.name, metric.reference, metric.hypothesis] + 
                     [vars(metric)[x] for x in metric_column_names]
                     	, index=column_names)
 				df = pd.concat([df, new_row.to_frame().T], ignore_index=True)

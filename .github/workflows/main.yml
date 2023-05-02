@@ -96,6 +96,9 @@ jobs:
         key: linux-64-conda-${{ hashFiles('environment_build.yml') }}-${{ env.DATE }}-${{ env.CACHE_NUMBER }}
       id: cache
 
+    - name: Install graphviz
+      run: sudo apt-get install graphviz
+
     - name: Build documentation
       shell: bash -l {0}
       run: |

@@ -63,7 +63,8 @@ class DynamicallyByModelNameForEachDataset(DynamicPlotClassesByMetricForEachData
 			df[y_name]
 		], axis=1)
 
-		figure = px.box(chart_data, x=x_name, y=y_name)
+		fig_width= 300+ 75* df[x_name].nunique()
+		figure = px.box(chart_data, x=x_name, y=y_name, width=fig_width)
 		for s in df[x_name].unique():
 			figure.add_annotation(x=s,
 							y = df[df[x_name]==s][y_name].max(),
@@ -106,7 +107,8 @@ class DynamicallyByModelNameByDataset(DynamicPlotClassesByMetricByDataset):
 			df[group_name],
 		], axis=1)
 
-		figure = px.box(chart_data, x=x_name, y=y_name, color=group_name)
+		fig_width= 300+ 75* df[x_name].nunique() +  (df[x_name].nunique()*df[group_name].nunique()* 5)
+		figure = px.box(chart_data, x=x_name, y=y_name, color=group_name, width=fig_width)
 		for s in df[x_name].unique():
 			figure.add_annotation(x=s,
 							y = df[df[x_name]==s][y_name].max(),

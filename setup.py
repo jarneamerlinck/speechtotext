@@ -22,7 +22,7 @@ VERSION = '' # Version is defined in __version__.py in the package
 REQUIRED = [
 	'jiwer', 'pandas<2.0.0', 'numpy', 'torch>=2.0.0', 
 	'openai-whisper', 'openai', 'python-dotenv',
-	'matplotlib', 'ipywidgets', 'seaborn',
+	'matplotlib', 'ipywidgets', 'nbformat','seaborn',
 	'dtale', 'boto3', 'google-cloud-speech',
 	'deepgram-sdk', 'azure-cognitiveservices-speech', 
 	'speechmatics-python==1.6.4', 'pydub', 'docstring_parser',

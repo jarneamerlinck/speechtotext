@@ -113,7 +113,7 @@ jobs:
 
     - name: Commit and push documentation 
       shell: bash -l {0}
-      if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+      if: (github.ref == 'refs/heads/main' github.ref == 'refs/heads/dev' )&& github.event_name != 'pull_request'
       run: |-
         git config user.name "Automated"
         git config user.email "actions@users.noreply.github.com"

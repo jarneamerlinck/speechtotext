@@ -39,10 +39,11 @@ import plotly.express as px
 import plotly.tools as tls
 import plotly.graph_objs as go
 import pandas as pd
+import numpy as np
 import seaborn as sns
-import matplotlib
+import matplotlib.pyplot as plt
 
-from speechtotext.plot.plotting import  Plotting, DynamicPlotClassesByMetricByDataset, DynamicPlotClassesByMetricForEachDataset
+from speechtotext.plot.plotting import  Plotting, DynamicPlotClassesByMetricByDataset, DynamicPlotClassesByMetricForEachDataset, BaseMatPlotLib
 
 class DynamicallyByModelNameForEachDataset(DynamicPlotClassesByMetricForEachDataset):
 	"""Class that is used to create plots for an benchmark.
@@ -129,3 +130,41 @@ class DynamicallyByModelNameByDataset(DynamicPlotClassesByMetricByDataset):
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(DynamicallyByModelNameByDataset)
+
+class MetricHeatMap(BaseMatPlotLib):
+	"""Class that is used to create plots for an benchmark.
+	"""    
+	def create_plot(self) -> plotly.graph_objs._figure.Figure:
+
+		df = self.df
+
+		plt.figure(figsize=(30, 10))
+		corr = df.corr(numeric_only=True)
+		cut_off = 0.6  # only show cells with abs(correlation) at least this value
+		extreme_1 = 0.75  # show with a star
+		extreme_2 = 0.85  # show with a second star
+		extreme_3 = 0.95  # show with a third star
+
+		mask = np.triu(np.ones_like(corr, dtype=bool))
+		mask |= np.abs(corr) < cut_off
+		corr = corr[~mask]  # fill in NaN in the non-desired cells
+
+		remove_empty_rows_and_cols = True
+		if remove_empty_rows_and_cols:
+			wanted_cols = np.flatnonzero(np.count_nonzero(~mask, axis=1))
+			wanted_rows = np.flatnonzero(np.count_nonzero(~mask, axis=0))
+			corr = corr.iloc[wanted_cols, wanted_rows]
+		annot = [[f"{val:.2f}"
+				+ ('' if abs(val) < extreme_1 else '\n★')  # add one star if abs(val) >= extreme_1
+				+ ('' if abs(val) < extreme_2 else '★')  # add an extra star if abs(val) >= extreme_2
+				+ ('' if abs(val) < extreme_3 else '★')  # add yet an extra star if abs(val) >= extreme_3
+				for val in row] for row in corr.to_numpy()]
+
+		heatmap = sns.heatmap(corr, vmin=-1, vmax=1, annot=annot, fmt='', cmap='BrBG')
+		heatmap.set_title('Correlation Heatmap of Metrics', fontdict={'fontsize': 18}, pad=16)
+
+		figure = heatmap.get_figure()
+		plt.close()
+		return figure
+# Add model to Plotting
+Plotting.CUSTOM_PLOTS.append(MetricHeatMap)

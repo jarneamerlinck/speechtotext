@@ -1,10 +1,12 @@
 cff-version: 1.2.0
 title: speechtotext
-message: 'Python package to benchmark speech2text models. '
+message: Please cite this software using these metadata.
 type: software
 authors:
   - given-names: Jarne
     family-names: Amerlinck
+    email: jarneamerlinck@gmail.com
 repository-code: 'https://github.com/jarneamerlinck/speechtotext'
 url: 'https://jarneamerlinck.github.io/speechtotext/'
+abstract: 'Python package to benchmark speech2text models. '
 license: MIT

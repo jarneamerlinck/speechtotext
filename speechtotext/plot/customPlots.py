@@ -42,6 +42,7 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
 
 from speechtotext.plot.plotting import  Plotting, DynamicPlotClassesByMetricByDataset, DynamicPlotClassesByMetricForEachDataset, BaseMatPlotLib
 
@@ -138,7 +139,6 @@ class MetricHeatMap(BaseMatPlotLib):
 
 		df = self.df
 
-		plt.figure(figsize=(30, 10))
 		corr = df.corr(numeric_only=True)
 		cut_off = 0.6  # only show cells with abs(correlation) at least this value
 		extreme_1 = 0.75  # show with a star
@@ -160,10 +160,18 @@ class MetricHeatMap(BaseMatPlotLib):
 				+ ('' if abs(val) < extreme_3 else '★')  # add yet an extra star if abs(val) >= extreme_3
 				for val in row] for row in corr.to_numpy()]
 
-		heatmap = sns.heatmap(corr, vmin=-1, vmax=1, annot=annot, fmt='', cmap='BrBG')
+		cmap_r = sns.color_palette("mako_r", as_cmap=True)
+		cmap_n = sns.color_palette("mako", as_cmap=True)
+
+		colors = np.vstack((cmap_r(np.linspace(0, 1, 256)), cmap_n(np.linspace(0, 1, 256))))
+		cmap = ListedColormap(colors)
+		heatmap = sns.heatmap(corr, vmin=-1, vmax=1, annot=annot, fmt='', cmap=cmap)
 		heatmap.set_title('Correlation Heatmap of Metrics', fontdict={'fontsize': 18}, pad=16)
 
 		figure = heatmap.get_figure()
+		fig_width= 14+ 1* df["model_name"].nunique()
+		fig_hight= 5+ round(df["model_name"].nunique()/2)
+		figure.set_size_inches(fig_width, fig_hight)
 		plt.close()
 		return figure
 # Add model to Plotting

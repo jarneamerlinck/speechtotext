@@ -166,13 +166,14 @@ class MetricHeatMap(BaseMatPlotLib):
 		colors = np.vstack((cmap_r(np.linspace(0, 1, 256)), cmap_n(np.linspace(0, 1, 256))))
 		cmap = ListedColormap(colors)
 		heatmap = sns.heatmap(corr, vmin=-1, vmax=1, annot=annot, fmt='', cmap=cmap)
-		heatmap.set_title('Correlation Heatmap of Metrics', fontdict={'fontsize': 18}, pad=16)
+		heatmap.set_title('Correlation Heatmap of Metrics', fontdict={'fontsize': 22}, pad=16)
 
 		figure = heatmap.get_figure()
 		fig_width= 14+ 1* df["model_name"].nunique()
 		fig_hight= 5+ round(df["model_name"].nunique()/2)
 		figure.set_size_inches(fig_width, fig_hight)
 		plt.close()
+		figure.subplots_adjust(right=1.05, left=0.05)
 		return figure
 # Add model to Plotting
 Plotting.CUSTOM_PLOTS.append(MetricHeatMap)

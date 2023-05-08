@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: speechtotext-python
+title: speechtotext
 message: 'Python package to benchmark speech2text models. '
 type: software
 authors:

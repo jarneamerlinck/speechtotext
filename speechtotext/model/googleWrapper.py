@@ -31,7 +31,7 @@ Use this module like this:
 """
 
 from pydub.utils import mediainfo
-from google.cloud import speech_v2
+# from google.cloud import speech_v2
 from google.cloud import speech
 from google.oauth2 import service_account
 import json
@@ -39,6 +39,13 @@ import io
 
 from speechtotext.model.modelWrapper import *
 from speechtotext.functions import load_env_variable
+
+class GoogleNoTranscriptReturned(Exception):
+	"""Exception when Google API does not return a transcript.
+	"""    
+	def __init__(self):     
+				
+		super().__init__("Results not found")
 
 class GoogleAPIVersion(ModelVersion):
 	"""Enum for the available google API models.
@@ -110,4 +117,6 @@ class GoogleAPIWrapper(ModelWrapper):
 			
 			alternative = result.alternatives[0].transcript
 			break
+		if not str(alternative):
+			raise GoogleNoTranscriptReturned()
 		return str(alternative)

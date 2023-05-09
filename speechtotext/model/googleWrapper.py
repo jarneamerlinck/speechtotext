@@ -91,8 +91,6 @@ class GoogleAPIWrapper(ModelWrapper):
 		Returns:
 			str: Transcript of audio file.
 		"""
-		audio_file_name = self.convert_sample(audio_file_name)
-
 		with io.open(audio_file_name, "rb") as audio_file:
 			content = audio_file.read()
 		sample_rate = int(mediainfo(audio_file_name)['sample_rate'])

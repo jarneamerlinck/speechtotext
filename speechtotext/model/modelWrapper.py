@@ -57,6 +57,30 @@ from speechtotext.datasets import Dataset, SampleDataset
 from speechtotext.metric.metrics import Metrics
 from speechtotext.functions import timing
 
+class MetaModelWrapper(type):
+	"""Meta class for model wrapper.
+
+	Created to automaticly convert a sample before transcribing.
+	"""	
+
+	@staticmethod
+	def wrap(get_transcript_of_file):
+		"""Return a wrapped instance method"""
+		def outer(self, path_to_sample):
+			# print("Create Temp")
+			self.convert_sample(path_to_sample)
+			return_value = get_transcript_of_file(self, self.PATH_OF_TEMP_CONVERTED_AUDIO_FILE)
+			# print( "Remove Temp")
+			os.remove(self.PATH_OF_TEMP_CONVERTED_AUDIO_FILE)
+			return return_value
+		return outer
+
+	def __new__(cls, name, bases, attrs):
+		"""If the class has a 'get_transcript_of_file' method, wrap it"""
+		if 'get_transcript_of_file' in attrs:
+			attrs['get_transcript_of_file'] = cls.wrap(attrs['get_transcript_of_file'])
+		return super(MetaModelWrapper, cls).__new__(cls, name, bases, attrs)
+
 class ModelVersion(Enum):
 	"""Enum for the Available models.
 
@@ -65,11 +89,15 @@ class ModelVersion(Enum):
 	"""
 	pass
 
-class ModelWrapper(ABC):
+class ModelWrapper(metaclass=MetaModelWrapper):
 	"""Abstract Wrapper for model.
 
 	If audio needs to be converted use convert_sample in get_transcript_of_file.
 	"""    
+
+	PATH_OF_TEMP_CONVERTED_AUDIO_FILE:str = "converted_audio_file.wav"
+	"""PATH_OF_TEMP_CONVERTED_AUDIO_FILE: path to temp file that will be created to convert the audio files to an accepted audio format.
+	"""
 
 	def __init__(self, model_version:ModelVersion):
 		"""Wrapper for models.
@@ -159,7 +187,7 @@ class ModelWrapper(ABC):
 		new_row = pd.Series([audio_id, samples.name, samples.get_text_of_id(audio_id), error], index=self.column_names_errors)
 		self.model_errors = pd.concat([self.model_errors, new_row.to_frame().T], ignore_index=True)
 
-	def convert_sample(self, path_to_sample:str, override:bool=False) -> str:
+	def convert_sample(self, path_to_sample:str) -> str:
 		"""Convert sample to correct format.
 
 		Args:
@@ -172,11 +200,8 @@ class ModelWrapper(ABC):
 		name, ext = os.path.splitext(path_to_sample)
 		sound = AudioSegment.from_file(path_to_sample, ext[1:])
 		sound = sound.set_channels(1)
-		if override:
-			sound.export("converted.wav", format="wav", codec="pcm_s16le")
-			path_to_sample = f"_conv_{name}{'.wav'}"
-		else:
-			sound.export("{0}.wav".format(name), format="wav", codec="pcm_s16le")
+  
+		sound.export(self.PATH_OF_TEMP_CONVERTED_AUDIO_FILE, format="wav", codec="pcm_s16le")
 		return path_to_sample
 
 

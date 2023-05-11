@@ -36,7 +36,21 @@ import time
 import boto3
 
 from speechtotext.model.modelWrapper import *
-from speechtotext.functions import get_extention_of_file_name, string_cleaning, load_env_variable, NoTranscriptReturned
+from speechtotext.functions import get_extention_of_file_name, string_cleaning, load_env_variable, NoTranscriptReturned, get_file_name_without_extention
+
+def amazon_delete_job(transcribe_client, job_name: str):
+	"""Deletes a transcription job. This also deletes the transcript associated with
+	the job.
+
+	Args:
+		job_name (str): job name.
+		transcribe_client (boto3.botocore.client.TranscribeService): transcribe client.
+	"""
+	try:
+		transcribe_client.delete_transcription_job(
+			TranscriptionJobName=job_name)
+	except Exception:
+		pass
 
 class AmazonNoTranscriptReturned(NoTranscriptReturned):
 	"""Exception when Amazon API does not return a transcript.
@@ -69,7 +83,6 @@ class AmazonAPIWrapper(ModelWrapper):
 	BUCKET_EXIST:bool = True
 	"""bool: Boolean that represents if the bucket exists.
 	"""	
-	
 
 	def __init__(self, model_version:AmazonAPIVersion):
 		"""Wrapper for AMAZON model.
@@ -106,13 +119,9 @@ class AmazonAPIWrapper(ModelWrapper):
 		Returns:
 			str: Transcript of audio file.
 		"""
-
-		# Upload
-		# object_name = get_file_name_without_extention(audio_file_name)
 		self.s3.Bucket(self.BUCKET).upload_file(audio_file_name, audio_file_name)
-
-		# Transcribe
 		transcribe_client = boto3.client('transcribe', region_name = self.AMAZON_REGION)
+
 		file_uri = f's3://{self.BUCKET}/{audio_file_name}'
 		transcriptFileUri = self._get_transcribe_file_location(file_uri, transcribe_client, f"Transcribe-{string_cleaning(audio_file_name)}")
 
@@ -130,45 +139,35 @@ class AmazonAPIWrapper(ModelWrapper):
 		with urllib.request.urlopen(json_uri) as response:
 			data = json.load(response)
 			return data.get("results").get("transcripts")[0].get("transcript")
-
-	def _get_transcribe_file_location(self, file_uri:str, transcribe_client, job_name:str="Transcribe") ->str:
+	
+	def _get_transcribe_file_location(self, file_uri:str, transcribe_client, job_name:str="Transcribe") -> str:
 		"""Transcribe and return result location. 
-
+		Raises:
+			AmazonNoTranscriptReturned: Exception when API does not return an transcript.
 		Args:
 			file_uri (str): S3 path to audio file.
-			transcribe_client (_type_): Boto3 transcribe client.
+			transcribe_client (): Boto3 transcribe client.
 			file_ext (str): File extention of audio file.
 			job_name (str, optional): Name of amazon AWS job. Defaults to "Transcribe".
 		"""	
-		try:
-			transcribe_client.start_transcription_job(
-				TranscriptionJobName = job_name,
-				Media = {
-					'MediaFileUri': file_uri
-				},
-				MediaFormat = get_extention_of_file_name(file_uri)[1:], #removed the .
-				LanguageCode = self.LANGUAGE_CODE
-			)
-		except:
-			pass
+		amazon_delete_job(transcribe_client, job_name)
+		transcribe_client.start_transcription_job(
+			TranscriptionJobName=job_name,
+			Media={'MediaFileUri': file_uri},
+			MediaFormat='wav',
+			LanguageCode=self.LANGUAGE_CODE,
+		)
 
 		max_tries = 60
 		while max_tries > 0:
 			max_tries -= 1
-			job = transcribe_client.get_transcription_job(TranscriptionJobName = job_name)
+			job = transcribe_client.get_transcription_job(TranscriptionJobName=job_name)
 			job_status = job['TranscriptionJob']['TranscriptionJobStatus']
 			if job_status in ['COMPLETED', 'FAILED']:
-				# print(f"Job {job_name} is {job_status}.")
 				if job_status == 'COMPLETED':
-					download_uri:str = job['TranscriptionJob']['Transcript']['TranscriptFileUri']
-				if job_status == 'FAILED':
-					raise AmazonNoTranscriptReturned()
+					return job['TranscriptionJob']['Transcript']['TranscriptFileUri']
 				break
 			else:
-				# print(f"Waiting for {job_name}. Current status is {job_status}.")
 				pass
 			time.sleep(10)
-		response = transcribe_client.delete_transcription_job(
-			TranscriptionJobName=job_name
-		)
-		return download_uri
+		raise AmazonNoTranscriptReturned()

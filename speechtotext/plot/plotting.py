@@ -70,7 +70,7 @@ class BaseMatPlotLib(BaseResult):
 			plot_name (str): Name of plot.
 		"""     	
 		self.ext = ".png"
-		super().__init__(df, report_folder, file_name) 
+		super().__init__(df, report_folder, file_name)
 	
 	def save(self):
 		"""Saves plot to folder.

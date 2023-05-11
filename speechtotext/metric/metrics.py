@@ -50,6 +50,9 @@ class Metrics():
 		insertions (int): Number of words inserted (insertions).
   
 			The insertions is the number of words that were added.
+		hits (int): Number of words correct (hits).
+  
+			The hits is the number of words correctly predicted.
 		deletions (int): Number of words deleted (deletions).
 
 			The deletions is the number of words that were removed.

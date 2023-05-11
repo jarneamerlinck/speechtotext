@@ -38,9 +38,9 @@ import json
 import io
 
 from speechtotext.model.modelWrapper import *
-from speechtotext.functions import load_env_variable
+from speechtotext.functions import load_env_variable, NoTranscriptReturned
 
-class GoogleNoTranscriptReturned(Exception):
+class GoogleNoTranscriptReturned(NoTranscriptReturned):
 	"""Exception when Google API does not return a transcript.
 	"""    
 	def __init__(self):     

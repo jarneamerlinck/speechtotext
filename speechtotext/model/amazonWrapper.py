@@ -36,7 +36,15 @@ import time
 import boto3
 
 from speechtotext.model.modelWrapper import *
-from speechtotext.functions import get_extention_of_file_name, string_cleaning, load_env_variable
+from speechtotext.functions import get_extention_of_file_name, string_cleaning, load_env_variable, NoTranscriptReturned
+
+class AmazonNoTranscriptReturned(NoTranscriptReturned):
+	"""Exception when Amazon API does not return a transcript.
+	"""    
+	def __init__(self):     
+				
+		super().__init__("Results not found")
+
 
 class AmazonAPIVersion(ModelVersion):
 	"""Enum for the available AMAZON API models. This is for the  `Custom language model <https://docs.aws.amazon.com/transcribe/latest/APIReference/API_CreateLanguageModel.html>`_.
@@ -153,6 +161,8 @@ class AmazonAPIWrapper(ModelWrapper):
 				# print(f"Job {job_name} is {job_status}.")
 				if job_status == 'COMPLETED':
 					download_uri:str = job['TranscriptionJob']['Transcript']['TranscriptFileUri']
+				if job_status == 'FAILED':
+					raise AmazonNoTranscriptReturned()
 				break
 			else:
 				# print(f"Waiting for {job_name}. Current status is {job_status}.")

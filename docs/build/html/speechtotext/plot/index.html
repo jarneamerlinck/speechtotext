@@ -438,13 +438,15 @@ Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM
 </section>
 <section id="customplots">
 <h2>customPlots<a class="headerlink" href="#customplots" title="Permalink to this heading">¶</a></h2>
-<div class="graphviz"><img src="../../_images/inheritance-2b550a897b7177879795aaac2ab595418a3c3b4c.png" alt="Inheritance diagram of speechtotext.plot.customPlots" usemap="#inheritance00d72cfe8d" class="inheritance graphviz" /></div>
+<div class="graphviz"><img src="../../_images/inheritance-b848fd0339fa46a7a226d476d397b0ca1405e053.png" alt="Inheritance diagram of speechtotext.plot.customPlots" usemap="#inheritance00d72cfe8d" class="inheritance graphviz" /></div>
 <map id="inheritance00d72cfe8d" name="inheritance00d72cfe8d">
-<area shape="rect" id="node1" href="../index.html#speechtotext.functions.BaseResult" target="_top" title="Parent class for results. " alt="" coords="2,24,147,59"/>
+<area shape="rect" id="node1" href="../index.html#speechtotext.functions.BaseResult" target="_top" title="Parent class for results. " alt="" coords="2,46,147,81"/>
 <area shape="rect" id="node3" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset" target="_top" title="Dynamically create plot classes for each metric for each database in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS." alt="" coords="175,2,441,37"/>
 <area shape="rect" id="node5" href="#speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset" target="_top" title="Dynamically create plot classes for each metric for each dataset in the given dataframe. This class is a parent class. The child class should be added to Plotting.CUSTOM_PLOTS." alt="" coords="164,46,451,81"/>
+<area shape="rect" id="node7" href="#speechtotext.plot.plotting.BaseMatPlotLib" target="_top" title="Parent class for custom plots with matplotlib. Code can be generated from d&#45;tale. " alt="" coords="222,90,394,125"/>
 <area shape="rect" id="node2" href="#speechtotext.plot.customPlots.DynamicallyByModelNameByDataset" target="_top" title="Class that is used to create plots for an benchmark." alt="" coords="480,2,755,37"/>
 <area shape="rect" id="node4" href="#speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset" target="_top" title="Class that is used to create plots for an benchmark." alt="" coords="469,46,766,81"/>
+<area shape="rect" id="node6" href="#speechtotext.plot.customPlots.MetricHeatMap" target="_top" title="Class that is used to create plots for an benchmark." alt="" coords="523,90,712,125"/>
 </map><span class="target" id="module-speechtotext.plot.customPlots"></span><p>Module to create custom plots for the plotting module</p>
 <p>Use this module like this:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
@@ -499,6 +501,27 @@ Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM
 <dt class="sig sig-object py" id="speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset.create_plot">
 <span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset.create_plot" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MetricHeatMap">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">speechtotext.plot.customPlots.</span></span><span class="sig-name descname"><span class="pre">MetricHeatMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.plot.customPlots.MetricHeatMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#speechtotext.plot.plotting.BaseMatPlotLib" title="speechtotext.plot.plotting.BaseMatPlotLib"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseMatPlotLib</span></code></a></p>
+<p>Class that is used to create plots for an benchmark.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.customPlots.MetricHeatMap.create_plot">
+<span class="sig-name descname"><span class="pre">create_plot</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Figure</span></span></span><a class="headerlink" href="#speechtotext.plot.customPlots.MetricHeatMap.create_plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates plot to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Plot that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>plotly.graph_objs._figure.Figure</p>
+</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

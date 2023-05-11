@@ -106,10 +106,10 @@ The insertions is the number of words that were added.
 
 
 
-#### deletions()
-Number of words deleted (deletions).
+#### hits()
+Number of words correct (hits).
 
-The deletions is the number of words that were removed.
+The hits is the number of words correctly predicted.
 
 
 * **Type**
@@ -118,10 +118,10 @@ The deletions is the number of words that were removed.
 
 
 
-#### hits()
-Number of words correct (hits).
+#### deletions()
+Number of words deleted (deletions).
 
-The hits is the number of words that were correct.
+The deletions is the number of words that were removed.
 
 
 * **Type**

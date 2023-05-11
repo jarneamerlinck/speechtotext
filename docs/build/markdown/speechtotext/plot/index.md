@@ -230,6 +230,28 @@ Class that is used to create plots for an benchmark.
 
 
 #### create_plot()
+
+### _class_ speechtotext.plot.customPlots.MetricHeatMap(df: DataFrame, report_folder: str, file_name: str)
+Bases: `BaseMatPlotLib`
+
+Class that is used to create plots for an benchmark.
+
+
+#### create_plot()
+Creates plot to be saved.
+
+
+* **Returns**
+
+    Plot that needs to be saved.
+
+
+
+* **Return type**
+
+    plotly.graph_objs._figure.Figure
+
+
 ## customErrorPlots
 
 Module to create custom error plots for the plotting module

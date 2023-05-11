@@ -56,9 +56,6 @@ class Metrics():
 		deletions (int): Number of words deleted (deletions).
 
 			The deletions is the number of words that were removed.
-		hits (int): Number of words correct (hits).
-
-			The hits is the number of words that were correct.
 		duration (float): Duration of the transcribing (duration).
 
 			The duration is how long it took to transcribe the audiofile.

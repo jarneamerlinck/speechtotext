@@ -118,6 +118,18 @@ The deletions is the number of words that were removed.
 
 
 
+#### hits()
+Number of words correct (hits).
+
+The hits is the number of words that were correct.
+
+
+* **Type**
+
+    int
+
+
+
 #### duration()
 Duration of the transcribing (duration).
 

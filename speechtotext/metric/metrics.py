@@ -151,7 +151,7 @@ class Metrics():
 
 		rouge_scores = Rouge().get_scores(hyps=self.hypothesis, refs=self.reference, avg=True)
 		[setattr(self, f"{rouge_type}-{metric}".replace("-", "_"), rouge_scores[rouge_type][metric]) for rouge_type in rouge_scores.keys() for metric in rouge_scores[rouge_type].keys()]
-		self.blue = sentence_bleu(references=[word_tokenize(self.reference)],
+		self.bleu = sentence_bleu(references=[word_tokenize(self.reference)],
                              hypothesis=word_tokenize(self.hypothesis),
                              smoothing_function=SmoothingFunction().method4)
 

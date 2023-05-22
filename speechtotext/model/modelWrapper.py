@@ -55,7 +55,7 @@ import pandas as pd
 from  torch.cuda import OutOfMemoryError
 from speechtotext.datasets import Dataset, SampleDataset
 from speechtotext.metric.metrics import Metrics
-from speechtotext.functions import timing
+from speechtotext.functions import timing, NoTranscriptReturned
 
 class MetaModelWrapper(type):
 	"""Meta class for model wrapper.
@@ -67,11 +67,11 @@ class MetaModelWrapper(type):
 	def wrap(get_transcript_of_file):
 		"""Return a wrapped instance method"""
 		def outer(self, path_to_sample):
-			# print("Create Temp")
 			self.convert_sample(path_to_sample)
 			return_value = get_transcript_of_file(self, self.PATH_OF_TEMP_CONVERTED_AUDIO_FILE)
-			# print( "Remove Temp")
 			os.remove(self.PATH_OF_TEMP_CONVERTED_AUDIO_FILE)
+			if not str(return_value):
+				raise NoTranscriptReturned()
 			return return_value
 		return outer
 

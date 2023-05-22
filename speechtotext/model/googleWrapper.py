@@ -38,14 +38,7 @@ import json
 import io
 
 from speechtotext.model.modelWrapper import *
-from speechtotext.functions import load_env_variable, NoTranscriptReturned
-
-class GoogleNoTranscriptReturned(NoTranscriptReturned):
-	"""Exception when Google API does not return a transcript.
-	"""    
-	def __init__(self):     
-				
-		super().__init__("Results not found")
+from speechtotext.functions import load_env_variable
 
 class GoogleAPIVersion(ModelVersion):
 	"""Enum for the available google API models.
@@ -117,6 +110,4 @@ class GoogleAPIWrapper(ModelWrapper):
 			
 			alternative = result.alternatives[0].transcript
 			break
-		if not str(alternative):
-			raise GoogleNoTranscriptReturned()
 		return str(alternative)

@@ -31,7 +31,7 @@ Use this module like this:
 """
 
 from pydub.utils import mediainfo
-from google.cloud import speech_v2
+# from google.cloud import speech_v2
 from google.cloud import speech
 from google.oauth2 import service_account
 import json
@@ -91,8 +91,6 @@ class GoogleAPIWrapper(ModelWrapper):
 		Returns:
 			str: Transcript of audio file.
 		"""
-		audio_file_name = self.convert_sample(audio_file_name)
-
 		with io.open(audio_file_name, "rb") as audio_file:
 			content = audio_file.read()
 		sample_rate = int(mediainfo(audio_file_name)['sample_rate'])

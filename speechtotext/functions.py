@@ -251,3 +251,10 @@ def timing(f):
 		te = time()
 		return result, te-ts
 	return wrap
+
+class NoTranscriptReturned(Exception):
+	"""Exception when API does not return a transcript.
+	"""    
+	def __init__(self):     
+				
+		super().__init__("Results not found")

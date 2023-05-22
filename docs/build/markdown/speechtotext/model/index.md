@@ -51,6 +51,22 @@ benchmark(number_of_samples)
 ```
 
 
+### _class_ speechtotext.model.modelWrapper.MetaModelWrapper(name, bases, attrs)
+Bases: `type`
+
+Meta class for model wrapper.
+
+Created to automaticly convert a sample before transcribing.
+
+
+#### _static_ \__new__(cls, name, bases, attrs)
+If the class has a ‘get_transcript_of_file’ method, wrap it
+
+
+#### _static_ wrap(get_transcript_of_file)
+Return a wrapped instance method
+
+
 ### _class_ speechtotext.model.modelWrapper.ModelVersion(value)
 Bases: `Enum`
 
@@ -64,14 +80,24 @@ Enum for the Available models.
 
 
 ### _class_ speechtotext.model.modelWrapper.ModelWrapper(model_version: ModelVersion)
-Bases: `ABC`
+Bases: `object`
 
 Abstract Wrapper for model.
 
 If audio needs to be converted use convert_sample in get_transcript_of_file.
 
 
-#### _append_error(samples: [SampleDataset](../index.md#speechtotext.datasets.SampleDataset), id: str, error: str)
+#### PATH_OF_TEMP_CONVERTED_AUDIO_FILE(_: st_ _ = 'converted_audio_file.wav_ )
+path to temp file that will be created to convert the audio files to an accepted audio format.
+
+
+* **Type**
+
+    PATH_OF_TEMP_CONVERTED_AUDIO_FILE
+
+
+
+#### _append_error(samples: [SampleDataset](../index.md#speechtotext.datasets.SampleDataset), audio_id: str, error: str)
 Append error to model_errors.
 
 
@@ -88,7 +114,7 @@ Append error to model_errors.
 
 
 
-#### _benchmark_sample_with_time(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), id: str, with_cleaning=True)
+#### _benchmark_sample_with_time(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), audio_id: str, with_cleaning=True)
 Benchmark sample for model with timer.
 
 
@@ -146,7 +172,7 @@ Benchmark n samples with model.
 
 
 
-#### benchmark_sample(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), id: str, with_cleaning=True)
+#### benchmark_sample(dataset: [Dataset](../index.md#speechtotext.datasets.Dataset), audio_id: str, with_cleaning=True)
 Benchmark sample with model.
 
 
@@ -204,7 +230,7 @@ Benchmark samples with model.
 
 
 
-#### convert_sample(path_to_sample: str, override: bool = False)
+#### convert_sample(path_to_sample: str)
 Convert sample to correct format.
 
 
@@ -234,27 +260,7 @@ Convert sample to correct format.
 Get model. Set self.model.
 
 
-#### _abstract_ get_transcript_of_file(audio_file_name: str)
-Get transcript of audio file.
-
-
-* **Parameters**
-
-    **audio_file_name** (*str*) – Path to audio file.
-
-
-
-* **Returns**
-
-    Transcript of audio file.
-
-
-
-* **Return type**
-
-    str
-
-
+#### get_transcript_of_file(path_to_sample)
 ## whisperWrapper
 
 Modelwrapper implemented for whisper. Local and API.
@@ -315,27 +321,7 @@ Wrapper for whisper API. OPENAI_ORGANIZATION and OPENAI_API_KEY need to be in .e
 Get model.
 
 
-#### get_transcript_of_file(audio_file_name: str)
-Get transcript of audio file with API call.
-
-
-* **Parameters**
-
-    **audio_file_name** (*str*) – Path to audio file.
-
-
-
-* **Returns**
-
-    Transcript of audio file.
-
-
-
-* **Return type**
-
-    str
-
-
+#### get_transcript_of_file(path_to_sample)
 
 ### _class_ speechtotext.model.whisperWrapper.WhisperVersion(value)
 Bases: `ModelVersion`
@@ -379,27 +365,7 @@ Wrapper for whisper model.
 Get model.
 
 
-#### get_transcript_of_file(audio_file_name: str)
-Get transcript of audio file.
-
-
-* **Parameters**
-
-    **audio_file_name** (*str*) – Path to audio file.
-
-
-
-* **Returns**
-
-    Transcript of audio file.
-
-
-
-* **Return type**
-
-    str
-
-
+#### get_transcript_of_file(path_to_sample)
 ## amazonWrapper
 
 Modelwrapper implemented for Amazon STT API.
@@ -480,6 +446,7 @@ See  [supported languages for amazon](https://docs.aws.amazon.com/transcribe/lat
 
 #### _get_transcribe_file_location(file_uri: str, transcribe_client, job_name: str = 'Transcribe')
 Transcribe and return result location.
+:raises AmazonNoTranscriptReturned: Exception when API does not return an transcript.
 
 
 * **Parameters**
@@ -488,7 +455,7 @@ Transcribe and return result location.
     * **file_uri** (*str*) – S3 path to audio file.
 
 
-    * **transcribe_client** (*_type_*) – Boto3 transcribe client.
+    * **(****)** (*transcribe_client*) – Boto3 transcribe client.
 
 
     * **file_ext** (*str*) – File extention of audio file.
@@ -524,25 +491,20 @@ Get transcript from amazon transcribe json result.
 Get model.
 
 
-#### get_transcript_of_file(audio_file_name: str)
-Get transcript of audio file with API call.
+#### get_transcript_of_file(path_to_sample)
+
+### speechtotext.model.amazonWrapper.amazon_delete_job(transcribe_client, job_name: str)
+Deletes a transcription job. This also deletes the transcript associated with
+the job.
 
 
 * **Parameters**
 
-    **audio_file_name** (*str*) – Path to audio file.
+    
+    * **job_name** (*str*) – job name.
 
 
-
-* **Returns**
-
-    Transcript of audio file.
-
-
-
-* **Return type**
-
-    str
+    * **transcribe_client** (*boto3.botocore.client.TranscribeService*) – transcribe client.
 
 
 ## googleWrapper
@@ -617,27 +579,7 @@ See  [supported languages for google](https://cloud.google.com/speech-to-text/do
 Get model.
 
 
-#### get_transcript_of_file(audio_file_name: str)
-Get transcript of audio file with API call.
-
-
-* **Parameters**
-
-    **audio_file_name** (*str*) – Path to audio file.
-
-
-
-* **Returns**
-
-    Transcript of audio file.
-
-
-
-* **Return type**
-
-    str
-
-
+#### get_transcript_of_file(path_to_sample)
 ## deepgramWrapper
 
 Modelwrapper implemented for deepgram API.
@@ -714,27 +656,7 @@ See  [supported languages for deepgram](https://deepgram.com/product/languages/)
 Get model.
 
 
-#### get_transcript_of_file(audio_file_name: str)
-Get transcript of audio file with API call.
-
-
-* **Parameters**
-
-    **audio_file_name** (*str*) – Path to audio file.
-
-
-
-* **Returns**
-
-    Transcript of audio file.
-
-
-
-* **Return type**
-
-    str
-
-
+#### get_transcript_of_file(path_to_sample)
 ## assemblyAIWrapper
 
 Modelwrapper implemented for assemblyAi API.
@@ -1013,27 +935,7 @@ Wait for the translation to be done.
 Get model.
 
 
-#### get_transcript_of_file(audio_file_name: str)
-Get transcript of audio file with API call.
-
-
-* **Parameters**
-
-    **audio_file_name** (*str*) – Path to audio file.
-
-
-
-* **Returns**
-
-    Transcript of audio file.
-
-
-
-* **Return type**
-
-    str
-
-
+#### get_transcript_of_file(path_to_sample)
 ## azureWrapper
 
 Modelwrapper implemented for Azure STT API.
@@ -1089,7 +991,7 @@ Wrapper for AZURE API. AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be i
 #### LANGUAGE_CODE(_: st_ _ = 'nl-BE_ )
 Code for the language to transcribe.
 
-See  [supported languages for azure](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=stt)
+See [supported languages for azure](https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=stt)
 
 
 * **Type**
@@ -1102,26 +1004,18 @@ See  [supported languages for azure](https://learn.microsoft.com/en-us/azure/cog
 Get model.
 
 
-#### get_transcript_of_file(audio_file_name: str)
-Get transcript of audio file with API call.
+#### get_transcript_of_file(path_to_sample)
+
+### _exception_ speechtotext.model.azureWrapper.AzureCancellation(message: str)
+Bases: `Exception`
+
+Exception when Azure gives an cancelation message.
 
 
-* **Parameters**
+### _exception_ speechtotext.model.azureWrapper.AzureNoMatch(message: str)
+Bases: `Exception`
 
-    **audio_file_name** (*str*) – Path to audio file.
-
-
-
-* **Returns**
-
-    Transcript of audio file.
-
-
-
-* **Return type**
-
-    str
-
+Exception when Azure finds not match.
 
 ## speechmaticsWrapper
 
@@ -1207,22 +1101,4 @@ See  [supported languages for speechmatics](https://docs.speechmatics.com/introd
 Get model.
 
 
-#### get_transcript_of_file(audio_file_name: str)
-Get transcript of audio file with API call.
-
-
-* **Parameters**
-
-    **audio_file_name** (*str*) – Path to audio file.
-
-
-
-* **Returns**
-
-    Transcript of audio file.
-
-
-
-* **Return type**
-
-    str
+#### get_transcript_of_file(path_to_sample)

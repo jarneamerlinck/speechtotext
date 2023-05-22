@@ -31,7 +31,7 @@ Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM
 Saves Result to report folder.
 
 
-### speechtotext.functions.DEFAULT_CSV_NAME(_: st_ _ = 'reports/Benchmark_results_2023_05_11_12_27_47.csv_ )
+### speechtotext.functions.DEFAULT_CSV_NAME(_: st_ _ = 'reports/Benchmark_results_2023_05_22_13_41_41.csv_ )
 Default path to save Benchmark results.
 
 
@@ -41,7 +41,7 @@ Default path to save Benchmark results.
 
 
 
-### speechtotext.functions.DEFAULT_DATETIME_FORMAT(_: st_ _ = '2023_05_11_12_27_47_ )
+### speechtotext.functions.DEFAULT_DATETIME_FORMAT(_: st_ _ = '2023_05_22_13_41_41_ )
 Default datetime format. (Uses string format for datetime)
 
 
@@ -61,6 +61,12 @@ Default folder to save the reports.
 
 
 
+### _exception_ speechtotext.functions.NoTranscriptReturned()
+Bases: `Exception`
+
+Exception when API does not return a transcript.
+
+
 ### speechtotext.functions.REGEX_STRING_PARSE(_: st_ _ = '[^A-Za-z0-9 ]+_ )
 Regex used to clean the transcripts.
 
@@ -77,7 +83,7 @@ Bases: `Exception`
 Exception when an required env variable is missing.
 
 
-### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_05_11_12_27_47.csv')
+### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_05_22_13_41_41.csv')
 Creates csv from benchmark results.
 
 
@@ -394,7 +400,7 @@ Loads transcript.
 Bare dataset class.
 
 
-#### get_path_of_fragment(id: str)
+#### get_path_of_fragment(audio_id: str)
 Gets path of fragment.
 
 
@@ -422,7 +428,7 @@ Gets path of fragment.
 
 
 
-#### get_text_of_id(id: str)
+#### get_text_of_id(audio_id: str)
 Get text of fragment id.
 
 

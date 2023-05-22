@@ -155,10 +155,10 @@ unigram matching between the machine-produced translation and human-produced ref
 
 
 
-#### blue()
-Bilingual Evaluation Understudy (BLUE).
+#### bleu()
+Bilingual Evaluation Understudy (BLEU).
 
-BLUE is used in comparing a candidate translation to one or more reference translations.
+BLEU is used in comparing a candidate translation to one or more reference translations.
 
 
 * **Type**

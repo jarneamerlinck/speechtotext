@@ -50,6 +50,9 @@ class Metrics():
 		insertions (int): Number of words inserted (insertions).
   
 			The insertions is the number of words that were added.
+		hits (int): Number of words correct (hits).
+  
+			The hits is the number of words correctly predicted.
 		deletions (int): Number of words deleted (deletions).
 
 			The deletions is the number of words that were removed.
@@ -60,9 +63,9 @@ class Metrics():
 
 			METEOR is an automatic metric for machine translation evaluation that is based on a generalized concept of
 			unigram matching between the machine-produced translation and human-produced reference translations.
-		blue (float): Bilingual Evaluation Understudy (BLUE).
+		bleu (float): Bilingual Evaluation Understudy (BLEU).
 
-			BLUE is used in comparing a candidate translation to one or more reference translations.
+			BLEU is used in comparing a candidate translation to one or more reference translations.
  		rouge_1_r (float): Recall-Oriented Understudy for Gisting Evaluation recall of 1-grams (ROUGE-1-r).
 
 			ROUGE includes measures to automatically determine the quality of a summary 
@@ -141,13 +144,14 @@ class Metrics():
 		self.insertions = result.insertions
 		self.deletions = result.deletions
 		self.substitutions = result.substitutions
+		self.hits = result.hits
 
 		self.meteor = meteor_score(references=[word_tokenize(self.reference)],
                              hypothesis=word_tokenize(self.hypothesis))
 
 		rouge_scores = Rouge().get_scores(hyps=self.hypothesis, refs=self.reference, avg=True)
 		[setattr(self, f"{rouge_type}-{metric}".replace("-", "_"), rouge_scores[rouge_type][metric]) for rouge_type in rouge_scores.keys() for metric in rouge_scores[rouge_type].keys()]
-		self.blue = sentence_bleu(references=[word_tokenize(self.reference)],
+		self.bleu = sentence_bleu(references=[word_tokenize(self.reference)],
                              hypothesis=word_tokenize(self.hypothesis),
                              smoothing_function=SmoothingFunction().method4)
 

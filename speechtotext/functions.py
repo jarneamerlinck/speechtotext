@@ -71,7 +71,7 @@ def join_benchmark_results(results: list[pd.core.frame.DataFrame], set_index=Tru
 	if set_index:
 		df = df.set_index(["model_name", "audio_ID"])
 		return df
-	return df.reset_index(drop=True)
+	return df.reset_index(drop=True).convert_dtypes()
 
 def separate_benchmark_results_by_model(dataframe: pd.core.frame.DataFrame) -> dict[str, pd.core.frame.DataFrame]:
 	"""Seperate benchmark results for each model.
@@ -251,3 +251,10 @@ def timing(f):
 		te = time()
 		return result, te-ts
 	return wrap
+
+class NoTranscriptReturned(Exception):
+	"""Exception when API does not return a transcript.
+	"""    
+	def __init__(self):     
+				
+		super().__init__("Results not found")

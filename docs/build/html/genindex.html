@@ -220,6 +220,7 @@
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#J"><strong>J</strong></a>
  | <a href="#L"><strong>L</strong></a>
@@ -243,6 +244,8 @@
         <li><a href="speechtotext/metric/index.html#speechtotext.metric.metrics.Metrics.__call__">(speechtotext.metric.metrics.Metrics method)</a>
 </li>
       </ul></li>
+      <li><a href="speechtotext/model/index.html#speechtotext.model.modelWrapper.MetaModelWrapper.__new__">__new__() (speechtotext.model.modelWrapper.MetaModelWrapper static method)</a>
+</li>
       <li><a href="speechtotext/model/index.html#speechtotext.model.modelWrapper.ModelWrapper._append_error">_append_error() (speechtotext.model.modelWrapper.ModelWrapper method)</a>
 </li>
       <li><a href="speechtotext/model/index.html#speechtotext.model.modelWrapper.ModelWrapper._benchmark_sample_with_time">_benchmark_sample_with_time() (speechtotext.model.modelWrapper.ModelWrapper method)</a>
@@ -275,6 +278,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="speechtotext/model/index.html#speechtotext.model.amazonWrapper.AmazonAPIVersion.AMAZON_DEFAULT">AMAZON_DEFAULT (speechtotext.model.amazonWrapper.AmazonAPIVersion attribute)</a>
 </li>
+      <li><a href="speechtotext/model/index.html#speechtotext.model.amazonWrapper.amazon_delete_job">amazon_delete_job() (in module speechtotext.model.amazonWrapper)</a>
+</li>
       <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark">AmazonAPIBenchmark (class in speechtotext.benchmark.customBenchmarks)</a>
 </li>
       <li><a href="speechtotext/model/index.html#speechtotext.model.amazonWrapper.AmazonAPIVersion">AmazonAPIVersion (class in speechtotext.model.amazonWrapper)</a>
@@ -285,10 +290,10 @@
 </li>
       <li><a href="speechtotext/model/index.html#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion.ASSEMBLYAI_DEFAULT">ASSEMBLYAI_DEFAULT (speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion attribute)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="speechtotext/benchmark/index.html#speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark">AssemblyAIAPIBenchmark (class in speechtotext.benchmark.customBenchmarks)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="speechtotext/model/index.html#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion">AssemblyAIAPIVersion (class in speechtotext.model.assemblyAIWrapper)</a>
 </li>
       <li><a href="speechtotext/model/index.html#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper">AssemblyAIAPIWrapper (class in speechtotext.model.assemblyAIWrapper)</a>
@@ -300,6 +305,10 @@
       <li><a href="speechtotext/model/index.html#speechtotext.model.azureWrapper.AzureAPIVersion">AzureAPIVersion (class in speechtotext.model.azureWrapper)</a>
 </li>
       <li><a href="speechtotext/model/index.html#speechtotext.model.azureWrapper.AzureAPIWrapper">AzureAPIWrapper (class in speechtotext.model.azureWrapper)</a>
+</li>
+      <li><a href="speechtotext/model/index.html#speechtotext.model.azureWrapper.AzureCancellation">AzureCancellation</a>
+</li>
+      <li><a href="speechtotext/model/index.html#speechtotext.model.azureWrapper.AzureNoMatch">AzureNoMatch</a>
 </li>
   </ul></td>
 </tr></table>
@@ -333,7 +342,7 @@
 </li>
       <li><a href="speechtotext/metric/index.html#speechtotext.metric.customMetrics.BenchmarkResults">BenchmarkResults (class in speechtotext.metric.customMetrics)</a>
 </li>
-      <li><a href="speechtotext/metric/index.html#speechtotext.metric.metrics.Metrics.blue">blue (speechtotext.metric.metrics.Metrics attribute)</a>
+      <li><a href="speechtotext/metric/index.html#speechtotext.metric.metrics.Metrics.bleu">bleu (speechtotext.metric.metrics.Metrics attribute)</a>
 </li>
       <li><a href="speechtotext/model/index.html#speechtotext.model.amazonWrapper.AmazonAPIWrapper.BUCKET_EXIST">BUCKET_EXIST (speechtotext.model.amazonWrapper.AmazonAPIWrapper attribute)</a>
 </li>
@@ -393,6 +402,8 @@
         <li><a href="speechtotext/plot/index.html#speechtotext.plot.customPlots.DynamicallyByModelNameByDataset.create_plot">(speechtotext.plot.customPlots.DynamicallyByModelNameByDataset method)</a>
 </li>
         <li><a href="speechtotext/plot/index.html#speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset.create_plot">(speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset method)</a>
+</li>
+        <li><a href="speechtotext/plot/index.html#speechtotext.plot.customPlots.MetricHeatMap.create_plot">(speechtotext.plot.customPlots.MetricHeatMap method)</a>
 </li>
         <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.BaseMatPlotLib.create_plot">(speechtotext.plot.plotting.BaseMatPlotLib method)</a>
 </li>
@@ -560,6 +571,14 @@
   </ul></td>
 </tr></table>
 
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="speechtotext/metric/index.html#speechtotext.metric.metrics.Metrics.hits">hits (speechtotext.metric.metrics.Metrics attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -613,7 +632,11 @@
 </li>
       <li><a href="speechtotext/metric/index.html#speechtotext.metric.metrics.Metrics.mer">mer (speechtotext.metric.metrics.Metrics attribute)</a>
 </li>
+      <li><a href="speechtotext/model/index.html#speechtotext.model.modelWrapper.MetaModelWrapper">MetaModelWrapper (class in speechtotext.model.modelWrapper)</a>
+</li>
       <li><a href="speechtotext/metric/index.html#speechtotext.metric.metrics.Metrics.meteor">meteor (speechtotext.metric.metrics.Metrics attribute)</a>
+</li>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.customPlots.MetricHeatMap">MetricHeatMap (class in speechtotext.plot.customPlots)</a>
 </li>
       <li><a href="speechtotext/metric/index.html#speechtotext.metric.metrics.Metrics">Metrics (class in speechtotext.metric.metrics)</a>
 </li>
@@ -688,6 +711,10 @@
 <h2 id="N">N</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="speechtotext/index.html#speechtotext.functions.NoTranscriptReturned">NoTranscriptReturned</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="speechtotext/index.html#speechtotext.datasets.DatasetBare.number_of_samples">number_of_samples() (speechtotext.datasets.DatasetBare method)</a>
 </li>
   </ul></td>
@@ -696,10 +723,12 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.Plotting">Plotting (class in speechtotext.plot.plotting)</a>
+      <li><a href="speechtotext/model/index.html#speechtotext.model.modelWrapper.ModelWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE">PATH_OF_TEMP_CONVERTED_AUDIO_FILE (speechtotext.model.modelWrapper.ModelWrapper attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="speechtotext/plot/index.html#speechtotext.plot.plotting.Plotting">Plotting (class in speechtotext.plot.plotting)</a>
+</li>
       <li><a href="speechtotext/model/index.html#speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper.POLLING_ENDPOINT">POLLING_ENDPOINT (speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper attribute)</a>
 </li>
   </ul></td>
@@ -970,6 +999,8 @@
       <li><a href="speechtotext/metric/index.html#speechtotext.metric.metrics.Metrics.wil">wil (speechtotext.metric.metrics.Metrics attribute)</a>
 </li>
       <li><a href="speechtotext/metric/index.html#speechtotext.metric.metrics.Metrics.wip">wip (speechtotext.metric.metrics.Metrics attribute)</a>
+</li>
+      <li><a href="speechtotext/model/index.html#speechtotext.model.modelWrapper.MetaModelWrapper.wrap">wrap() (speechtotext.model.modelWrapper.MetaModelWrapper static method)</a>
 </li>
   </ul></td>
 </tr></table>

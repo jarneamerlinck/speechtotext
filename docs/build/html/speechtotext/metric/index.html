@@ -2,7 +2,7 @@
 <html  lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
 
       <title>speechtotext metric package</title>
     
@@ -325,6 +325,18 @@
 </dd></dl>
 
 <dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.hits">
+<span class="sig-name descname"><span class="pre">hits</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.hits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of words correct (hits).</p>
+<p>The hits is the number of words correctly predicted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
 <dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.deletions">
 <span class="sig-name descname"><span class="pre">deletions</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.deletions" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of words deleted (deletions).</p>
@@ -362,10 +374,10 @@ unigram matching between the machine-produced translation and human-produced ref
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.blue">
-<span class="sig-name descname"><span class="pre">blue</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.blue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bilingual Evaluation Understudy (BLUE).</p>
-<p>BLUE is used in comparing a candidate translation to one or more reference translations.</p>
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.bleu">
+<span class="sig-name descname"><span class="pre">bleu</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.bleu" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bilingual Evaluation Understudy (BLEU).</p>
+<p>BLEU is used in comparing a candidate translation to one or more reference translations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>

@@ -124,8 +124,8 @@ class Benchmark(ABC):
 			try:
 				self.metrics.append(model.benchmark_samples(
 					self.BENCHMARK_SAMPLES, with_cleaning))
-			except Exception as e:
-				print(e)
+			except Exception as exception:
+				print(exception)
 			
 			if model.model_errors.shape[0] != 0:
 				model.model_errors["model_name"] = model_name

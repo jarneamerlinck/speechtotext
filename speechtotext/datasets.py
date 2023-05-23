@@ -64,7 +64,7 @@ class DatasetBare():
 		"""     
 		return self.dataset.shape[0]
   
-	def get_path_of_fragment(self, id:str)-> str:
+	def get_path_of_fragment(self, audio_id:str)-> str:
 		"""Gets path of fragment.
 
 		Args:
@@ -76,14 +76,14 @@ class DatasetBare():
 		Returns:
 			str: Path to fragment.
 		"""     
-		path = f"{self.path_to_dir}/{id}{self.file_ext}"
+		path = f"{self.path_to_dir}/{audio_id}{self.file_ext}"
 
 		if exists(path):
 			return path
 		else:
 			raise FileNotFoundError()
 		 
-	def get_text_of_id(self, id:str) -> str:
+	def get_text_of_id(self, audio_id:str) -> str:
 		"""Get text of fragment id.
 
 		Args:
@@ -92,7 +92,7 @@ class DatasetBare():
 		Returns:
 			str: String of spoken text.
 		"""     
-		row = self.dataset[self.dataset["id"] == id]
+		row = self.dataset[self.dataset["id"] == audio_id]
 		try:
 			return row.values[0][1]
 		except:

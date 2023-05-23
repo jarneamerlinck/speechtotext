@@ -1,0 +1,8 @@
+<map id="inheritanceccf09b6596" name="inheritanceccf09b6596">
+<area shape="rect" id="node1" href="#speechtotext.model.azureWrapper.AzureAPIVersion" target="_top" title="Enum for the available AZURE API models. " alt="" coords="405,227,761,286"/>
+<area shape="rect" id="node2" href="#speechtotext.model.modelWrapper.ModelVersion" target="_top" title="Enum for the Available models." alt="" coords="17,227,358,286"/>
+<area shape="rect" id="node3" href="#speechtotext.model.azureWrapper.AzureAPIWrapper" target="_top" title="Wrapper for AZURE API. AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the &#39;.env&#39; file in current directory." alt="" coords="401,152,765,212"/>
+<area shape="rect" id="node4" href="#speechtotext.model.modelWrapper.ModelWrapper" target="_top" title="Abstract Wrapper for model." alt="" coords="13,152,362,212"/>
+<area shape="rect" id="node5" href="#speechtotext.model.azureWrapper.AzureCancellation" target="_top" title="Exception when Azure gives an cancelation message." alt="" coords="3,78,371,137"/>
+<area shape="rect" id="node6" href="#speechtotext.model.azureWrapper.AzureNoMatch" target="_top" title="Exception when Azure finds not match." alt="" coords="15,3,359,63"/>
+</map>

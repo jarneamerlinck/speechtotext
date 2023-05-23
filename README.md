@@ -2,8 +2,9 @@
 
 Python package to benchmark speech2text models. 
 
-## [Documentation](https://jarneamerlinck.github.io/speechtotext/)
+## Documentation
 
+The documentation can be found [here](https://jarneamerlinck.github.io/speechtotext/)
 ## Install package
 ### Python
 

@@ -35,7 +35,7 @@ Use this module like this:
 			for version in ChildModelVersion:
 				models.append(ChildModelWrapper(version))
 			return models
-   
+
 	# Create benchmark
 	number_of_samples = 10
 	dataset = Dataset(path_to_dir="path/to/dir", name= "dataset_name")
@@ -47,7 +47,7 @@ Use this module like this:
 	benchmark(number_of_samples)
 """
 from enum import Enum
-from abc import ABC, abstractmethod
+from abc import ABC, abstractmethod, ABCMeta
 import os
 from urllib.error import HTTPError
 from pydub import AudioSegment
@@ -81,6 +81,15 @@ class MetaModelWrapper(type):
 			attrs['get_transcript_of_file'] = cls.wrap(attrs['get_transcript_of_file'])
 		return super(MetaModelWrapper, cls).__new__(cls, name, bases, attrs)
 
+class _CombinedMeta(MetaModelWrapper, ABCMeta):
+	"""Class combining the metaclasses: MetaModelWrapper and ABCMeta.
+
+	Args:
+		MetaModelWrapper (type): Metaclass for the ModelWrapper.
+		ABCMeta (type): Abstract Base Classes. 
+	"""
+	pass
+
 class ModelVersion(Enum):
 	"""Enum for the Available models.
 
@@ -89,7 +98,7 @@ class ModelVersion(Enum):
 	"""
 	pass
 
-class ModelWrapper(metaclass=MetaModelWrapper):
+class ModelWrapper(ABC, metaclass=_CombinedMeta):
 	"""Abstract Wrapper for model.
 
 	If audio needs to be converted use convert_sample in get_transcript_of_file.

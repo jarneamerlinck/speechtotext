@@ -80,7 +80,7 @@ Enum for the Available models.
 
 
 ### _class_ speechtotext.model.modelWrapper.ModelWrapper(model_version: ModelVersion)
-Bases: `object`
+Bases: `ABC`
 
 Abstract Wrapper for model.
 
@@ -261,6 +261,22 @@ Get model. Set self.model.
 
 
 #### get_transcript_of_file(path_to_sample)
+
+### _class_ speechtotext.model.modelWrapper._CombinedMeta(name, bases, attrs)
+Bases: `MetaModelWrapper`, `ABCMeta`
+
+Class combining the metaclasses: MetaModelWrapper and ABCMeta.
+
+
+* **Parameters**
+
+    
+    * **MetaModelWrapper** (*type*) – Metaclass for the ModelWrapper.
+
+
+    * **ABCMeta** (*type*) – Abstract Base Classes.
+
+
 ## whisperWrapper
 
 Modelwrapper implemented for whisper. Local and API.

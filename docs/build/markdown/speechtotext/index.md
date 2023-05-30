@@ -31,7 +31,7 @@ Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM
 Saves Result to report folder.
 
 
-### speechtotext.functions.DEFAULT_CSV_NAME(_: st_ _ = 'reports/Benchmark_results_2023_05_30_09_15_57.csv_ )
+### speechtotext.functions.DEFAULT_CSV_NAME(_: st_ _ = 'reports/Benchmark_results_2023_05_30_09_31_43.csv_ )
 Default path to save Benchmark results.
 
 
@@ -41,7 +41,7 @@ Default path to save Benchmark results.
 
 
 
-### speechtotext.functions.DEFAULT_DATETIME_FORMAT(_: st_ _ = '2023_05_30_09_15_57_ )
+### speechtotext.functions.DEFAULT_DATETIME_FORMAT(_: st_ _ = '2023_05_30_09_31_43_ )
 Default datetime format. (Uses string format for datetime)
 
 
@@ -83,7 +83,7 @@ Bases: `Exception`
 Exception when an required env variable is missing.
 
 
-### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_05_30_09_15_57.csv')
+### speechtotext.functions.benchmark_results_to_csv(results: list[pandas.core.frame.DataFrame], save_name: str = 'reports/Benchmark_results_2023_05_30_09_31_43.csv')
 Creates csv from benchmark results.
 
 

@@ -1,7 +1,7 @@
 Installation for speechtotext
 =============================
 
-Install with conda or pip
+Install with conda or pip.
 
 
 conda

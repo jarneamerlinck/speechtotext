@@ -1,6 +1,7 @@
 name: Python package processing and pushing
 
 on:
+  workflow_dispatch:
   push:
     branches:
     - main

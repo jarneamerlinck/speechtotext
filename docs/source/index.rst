@@ -11,7 +11,7 @@ Welcome to speechtotext's documentation!
 
 .. toctree::
    	:maxdepth: 1
-	:caption: Package
+	:caption: Package Contents
 	
 	api.rst
 

@@ -1,9 +1,9 @@
 import unittest
 from speechtotext.model.modelWrapper import *
 
-class TestMetrics(unittest.TestCase):
+class TestModels(unittest.TestCase):
   
-	def test_metric_ABC(self):
+	def test_model_ABC_Error(self):
 		"""Test ModelWrapper ABC error on object creation.
 		"""		
 		def raise_error():

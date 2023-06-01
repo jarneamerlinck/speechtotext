@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.metric.metrics.Metrics &mdash; speechtotext 0.3.14 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="speechtotext.benchmark" href="speechtotext.benchmark.html" />
+    <link rel="prev" title="speechtotext.metric.metrics" href="speechtotext.metric.metrics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">speechtotext</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.html">speechtotext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.benchmark.html">speechtotext.benchmark</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.metric.customMetrics.html">speechtotext.metric.customMetrics</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="speechtotext.metric.metrics.html">speechtotext.metric.metrics</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">speechtotext.metric.metrics.Metrics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.model.html">speechtotext.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.plot.html">speechtotext.plot</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.metric.html">speechtotext.metric</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.metric.metrics.html">speechtotext.metric.metrics</a></li>
+      <li class="breadcrumb-item active">speechtotext.metric.metrics.Metrics</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="speechtotext-metric-metrics-metrics">
+<h1>speechtotext.metric.metrics.Metrics<a class="headerlink" href="#speechtotext-metric-metrics-metrics" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Metrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reference</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hypothesis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/metric/metrics.html#Metrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.metric.metrics.Metrics" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class to calulate the metrics.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.wer">
+<span class="sig-name descname"><span class="pre">wer</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.wer" title="Permalink to this definition"></a></dt>
+<dd><p>Word error rate (WER).</p>
+<p>The WER is how many words there were made errors on.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.mer">
+<span class="sig-name descname"><span class="pre">mer</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.mer" title="Permalink to this definition"></a></dt>
+<dd><p>Match error rate (MER).</p>
+<p>The MER indicates the percentage of words that were incorrectly predicted and inserted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.wil">
+<span class="sig-name descname"><span class="pre">wil</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.wil" title="Permalink to this definition"></a></dt>
+<dd><p>Word information lost (WIL).</p>
+<p>The WIL represents the word information that is lost.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.wip">
+<span class="sig-name descname"><span class="pre">wip</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.wip" title="Permalink to this definition"></a></dt>
+<dd><p>Word information preserved (WIP).</p>
+<p>The WIP represents the word information that is preserved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.cer">
+<span class="sig-name descname"><span class="pre">cer</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.cer" title="Permalink to this definition"></a></dt>
+<dd><p>Character error rate (CER).</p>
+<p>The CER is how many characters there were made errors on.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.substitutions">
+<span class="sig-name descname"><span class="pre">substitutions</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.substitutions" title="Permalink to this definition"></a></dt>
+<dd><p>Number of words substituted (substitutions).</p>
+<p>The substitutions is the number of words that were replaced.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.insertions">
+<span class="sig-name descname"><span class="pre">insertions</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.insertions" title="Permalink to this definition"></a></dt>
+<dd><p>Number of words inserted (insertions).</p>
+<p>The insertions is the number of words that were added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.hits">
+<span class="sig-name descname"><span class="pre">hits</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.hits" title="Permalink to this definition"></a></dt>
+<dd><p>Number of words correct (hits).</p>
+<p>The hits is the number of words correctly predicted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.deletions">
+<span class="sig-name descname"><span class="pre">deletions</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.deletions" title="Permalink to this definition"></a></dt>
+<dd><p>Number of words deleted (deletions).</p>
+<p>The deletions is the number of words that were removed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.duration">
+<span class="sig-name descname"><span class="pre">duration</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.duration" title="Permalink to this definition"></a></dt>
+<dd><p>Duration of the transcribing (duration).</p>
+<p>The duration is how long it took to transcribe the audiofile.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.meteor">
+<span class="sig-name descname"><span class="pre">meteor</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.meteor" title="Permalink to this definition"></a></dt>
+<dd><p>Metric for Evaluation of Translation with Explicit ORdering (METEOR).</p>
+<p>METEOR is an automatic metric for machine translation evaluation that is based on a generalized concept of
+unigram matching between the machine-produced translation and human-produced reference translations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.bleu">
+<span class="sig-name descname"><span class="pre">bleu</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.bleu" title="Permalink to this definition"></a></dt>
+<dd><p>Bilingual Evaluation Understudy (BLEU).</p>
+<p>BLEU is used in comparing a candidate translation to one or more reference translations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.rouge_1_r">
+<span class="sig-name descname"><span class="pre">rouge_1_r</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.rouge_1_r" title="Permalink to this definition"></a></dt>
+<dd><p>Recall-Oriented Understudy for Gisting Evaluation recall of 1-grams (ROUGE-1-r).</p>
+<p>ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-1-r is the recall of 1-grams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.rouge_1_p">
+<span class="sig-name descname"><span class="pre">rouge_1_p</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.rouge_1_p" title="Permalink to this definition"></a></dt>
+<dd><p>Recall-Oriented Understudy for Gisting Evaluation precision of 1-grams (ROUGE-1-p).</p>
+<p>ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-1-p is the precision of 1-grams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.rouge_1_f">
+<span class="sig-name descname"><span class="pre">rouge_1_f</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.rouge_1_f" title="Permalink to this definition"></a></dt>
+<dd><p>Recall-Oriented Understudy for Gisting Evaluation F1-score of 1-grams (ROUGE-1-f).</p>
+<p>ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-1-f is the F1-score of 1-grams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.rouge_2_r">
+<span class="sig-name descname"><span class="pre">rouge_2_r</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.rouge_2_r" title="Permalink to this definition"></a></dt>
+<dd><p>Recall-Oriented Understudy for Gisting Evaluation recall of 2-grams (ROUGE-2-r).</p>
+<p>ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-2-r is the recall of 2-grams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.rouge_2_p">
+<span class="sig-name descname"><span class="pre">rouge_2_p</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.rouge_2_p" title="Permalink to this definition"></a></dt>
+<dd><p>Recall-Oriented Understudy for Gisting Evaluation precision of 2-grams (ROUGE-2-p).</p>
+<p>ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-2-p is the precision of 2-grams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.rouge_2_f">
+<span class="sig-name descname"><span class="pre">rouge_2_f</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.rouge_2_f" title="Permalink to this definition"></a></dt>
+<dd><p>Recall-Oriented Understudy for Gisting Evaluation F1-score of 2-grams (ROUGE-2-f).</p>
+<p>ROUGE includes measures to automatically determine the quality of a summary
+by comparing it to other (ideal) summaries created by humans.
+ROUGE-2-f is the F1-score of 2-grams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.rouge_l_r">
+<span class="sig-name descname"><span class="pre">rouge_l_r</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.rouge_l_r" title="Permalink to this definition"></a></dt>
+<dd><p>Recall-Oriented Understudy for Gisting Evaluation recall of LCS (ROUGE-L-r).</p>
+<p>ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.
+ROUGE-L-r is the recall of LCS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.rouge_l_p">
+<span class="sig-name descname"><span class="pre">rouge_l_p</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.rouge_l_p" title="Permalink to this definition"></a></dt>
+<dd><p>Recall-Oriented Understudy for Gisting Evaluation precision of LCS (ROUGE-L-p).</p>
+<p>ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.
+ROUGE-l-p is the precision of LCS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.rouge_l_f">
+<span class="sig-name descname"><span class="pre">rouge_l_f</span></span><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.rouge_l_f" title="Permalink to this definition"></a></dt>
+<dd><p>Recall-Oriented Understudy for Gisting Evaluation F1-score of LCS (ROUGE-L-f).</p>
+<p>ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.
+ROUGE-L-f is the F1-score of LCS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>Class to calulate the metrics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Reference transcript.</p></li>
+<li><p><strong>hypothesis</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Hypothesis transcript.</p></li>
+<li><p><strong>audio_id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Id of the audio file.</p></li>
+<li><p><strong>with_cleaning</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Set True to clean transcripts. Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.metric.metrics.Metrics.get_all_metric_docs" title="speechtotext.metric.metrics.Metrics.get_all_metric_docs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_metric_docs</span></code></a></p></td>
+<td><p>Returns all descriptions of metrics returned by get_all_metric_names in the correct order.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.metric.metrics.Metrics.get_all_metric_names" title="speechtotext.metric.metrics.Metrics.get_all_metric_names"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_all_metric_names</span></code></a></p></td>
+<td><p>Returns all possible metric names in a list.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/metric/metrics.html#Metrics.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.__call__" title="Permalink to this definition"></a></dt>
+<dd><p>Calculate the metrics.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.get_all_metric_docs">
+<span class="sig-name descname"><span class="pre">get_all_metric_docs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/metric/metrics.html#Metrics.get_all_metric_docs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.get_all_metric_docs" title="Permalink to this definition"></a></dt>
+<dd><p>Returns all descriptions of metrics returned by get_all_metric_names in the correct order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of all metric descriptions.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.metrics.Metrics.get_all_metric_names">
+<span class="sig-name descname"><span class="pre">get_all_metric_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/metric/metrics.html#Metrics.get_all_metric_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.metric.metrics.Metrics.get_all_metric_names" title="Permalink to this definition"></a></dt>
+<dd><p>Returns all possible metric names in a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of all metric names.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="speechtotext.metric.metrics.html" class="btn btn-neutral float-left" title="speechtotext.metric.metrics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="speechtotext.benchmark.html" class="btn btn-neutral float-right" title="speechtotext.benchmark" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

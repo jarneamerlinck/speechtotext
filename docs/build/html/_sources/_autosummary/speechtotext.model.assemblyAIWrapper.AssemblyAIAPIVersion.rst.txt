@@ -1,0 +1,24 @@
+speechtotext.model.assemblyAIWrapper.AssemblyAIAPIVersion
+=========================================================
+
+.. currentmodule:: speechtotext.model.assemblyAIWrapper
+
+.. autoclass:: AssemblyAIAPIVersion
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AssemblyAIAPIVersion.ASSEMBLYAI_DEFAULT
+   
+   

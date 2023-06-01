@@ -1,0 +1,34 @@
+speechtotext.datasets
+=====================
+
+.. automodule:: speechtotext.datasets
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      Dataset
+      DatasetBare
+      SampleDataset
+   
+   
+
+   
+   
+   
+
+
+

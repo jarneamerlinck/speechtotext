@@ -1,0 +1,37 @@
+speechtotext.model.deepgramWrapper.DeepgramAPIWrapper
+=====================================================
+
+.. currentmodule:: speechtotext.model.deepgramWrapper
+
+.. autoclass:: DeepgramAPIWrapper
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DeepgramAPIWrapper.benchmark_n_samples
+      ~DeepgramAPIWrapper.benchmark_sample
+      ~DeepgramAPIWrapper.benchmark_samples
+      ~DeepgramAPIWrapper.convert_sample
+      ~DeepgramAPIWrapper.get_model
+      ~DeepgramAPIWrapper.get_transcript_of_file
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DeepgramAPIWrapper.LANGUAGE_CODE
+      ~DeepgramAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE
+   
+   

@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.model.googleWrapper.GoogleAPIWrapper &mdash; speechtotext 0.3.14 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="speechtotext.model.modelWrapper" href="speechtotext.model.modelWrapper.html" />
+    <link rel="prev" title="speechtotext.model.googleWrapper.GoogleAPIVersion" href="speechtotext.model.googleWrapper.GoogleAPIVersion.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">speechtotext</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.html">speechtotext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.benchmark.html">speechtotext.benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechtotext.model.html">speechtotext.model</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.amazonWrapper.html">speechtotext.model.amazonWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.assemblyAIWrapper.html">speechtotext.model.assemblyAIWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.azureWrapper.html">speechtotext.model.azureWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.deepgramWrapper.html">speechtotext.model.deepgramWrapper</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="speechtotext.model.googleWrapper.html">speechtotext.model.googleWrapper</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.model.googleWrapper.GoogleAPIVersion.html">speechtotext.model.googleWrapper.GoogleAPIVersion</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">speechtotext.model.googleWrapper.GoogleAPIWrapper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.modelWrapper.html">speechtotext.model.modelWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.speechmaticsWrapper.html">speechtotext.model.speechmaticsWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.whisperWrapper.html">speechtotext.model.whisperWrapper</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.plot.html">speechtotext.plot</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.model.html">speechtotext.model</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.model.googleWrapper.html">speechtotext.model.googleWrapper</a></li>
+      <li class="breadcrumb-item active">speechtotext.model.googleWrapper.GoogleAPIWrapper</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="speechtotext-model-googlewrapper-googleapiwrapper">
+<h1>speechtotext.model.googleWrapper.GoogleAPIWrapper<a class="headerlink" href="#speechtotext-model-googlewrapper-googleapiwrapper" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GoogleAPIWrapper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_version</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/model/googleWrapper.html#GoogleAPIWrapper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="speechtotext.model.modelWrapper.ModelWrapper.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper"><code class="xref py py-class docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a></p>
+<p>Wrapper for google API. GOOGLE_APPLICATION_CREDENTIALS needs to be in the ‘.env’ file in current directory.</p>
+<p>Wrapper for google model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>model_version</strong> (<em>googleAPIVersion</em>) – Model version of google STT API to use.</p>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_n_samples" title="speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_n_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">benchmark_n_samples</span></code></a></p></td>
+<td><p>Benchmark n samples with model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_sample" title="speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">benchmark_sample</span></code></a></p></td>
+<td><p>Benchmark sample with model.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_samples" title="speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">benchmark_samples</span></code></a></p></td>
+<td><p>Benchmark samples with model.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.convert_sample" title="speechtotext.model.googleWrapper.GoogleAPIWrapper.convert_sample"><code class="xref py py-obj docutils literal notranslate"><span class="pre">convert_sample</span></code></a></p></td>
+<td><p>Convert sample to correct format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.get_model" title="speechtotext.model.googleWrapper.GoogleAPIWrapper.get_model"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_model</span></code></a></p></td>
+<td><p>Get model.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_transcript_of_file</span></code></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.LANGUAGE_CODE" title="speechtotext.model.googleWrapper.GoogleAPIWrapper.LANGUAGE_CODE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LANGUAGE_CODE</span></code></a></p></td>
+<td><p>Code for the language to transcribe.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE" title="speechtotext.model.googleWrapper.GoogleAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PATH_OF_TEMP_CONVERTED_AUDIO_FILE</span></code></a></p></td>
+<td><p>path to temp file that will be created to convert the audio files to an accepted audio format.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.LANGUAGE_CODE">
+<span class="sig-name descname"><span class="pre">LANGUAGE_CODE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nl-BE'</span></em><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.LANGUAGE_CODE" title="Permalink to this definition"></a></dt>
+<dd><p>Code for the language to transcribe.</p>
+<p>See  <a class="reference external" href="https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages">supported languages for google</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE">
+<span class="sig-name descname"><span class="pre">PATH_OF_TEMP_CONVERTED_AUDIO_FILE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'converted_audio_file.wav'</span></em><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE" title="Permalink to this definition"></a></dt>
+<dd><p>path to temp file that will be created to convert the audio files to an accepted audio format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>PATH_OF_TEMP_CONVERTED_AUDIO_FILE</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper._append_error">
+<span class="sig-name descname"><span class="pre">_append_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">error</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper._append_error" title="Permalink to this definition"></a></dt>
+<dd><p>Append error to model_errors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<a class="reference internal" href="speechtotext.datasets.SampleDataset.html#speechtotext.datasets.SampleDataset" title="speechtotext.datasets.SampleDataset"><em>SampleDataset</em></a>) – Dataset of audio.</p></li>
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Id of failed sample.</p></li>
+<li><p><strong>error</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Error message.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper._benchmark_sample_with_time">
+<span class="sig-name descname"><span class="pre">_benchmark_sample_with_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper._benchmark_sample_with_time" title="Permalink to this definition"></a></dt>
+<dd><p>Benchmark sample for model with timer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="speechtotext.datasets.Dataset.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – Dataset of audio.</p></li>
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Id of audio file.</p></li>
+<li><p><strong>with_cleaning</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Set True to clean transcripts. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Metrics of the transcript.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="speechtotext.metric.metrics.Metrics.html#speechtotext.metric.metrics.Metrics" title="speechtotext.metric.metrics.Metrics">Metrics</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_n_samples">
+<span class="sig-name descname"><span class="pre">benchmark_n_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_n_samples" title="Permalink to this definition"></a></dt>
+<dd><p>Benchmark n samples with model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="speechtotext.datasets.Dataset.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – Dataset of audio.</p></li>
+<li><p><strong>number_of_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Number of random samples to benchmerk.</p></li>
+<li><p><strong>with_cleaning</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Set True to clean transcripts. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of metrics for each sample.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_sample">
+<span class="sig-name descname"><span class="pre">benchmark_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">audio_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_sample" title="Permalink to this definition"></a></dt>
+<dd><p>Benchmark sample with model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="speechtotext.datasets.Dataset.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – Dataset of audio.</p></li>
+<li><p><strong>id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Id of audio file.</p></li>
+<li><p><strong>with_cleaning</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Set True to clean transcripts. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Metrics of the transcript.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="speechtotext.metric.metrics.Metrics.html#speechtotext.metric.metrics.Metrics" title="speechtotext.metric.metrics.Metrics">Metrics</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_samples">
+<span class="sig-name descname"><span class="pre">benchmark_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">with_cleaning</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.benchmark_samples" title="Permalink to this definition"></a></dt>
+<dd><p>Benchmark samples with model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset</strong> (<a class="reference internal" href="speechtotext.datasets.Dataset.html#speechtotext.datasets.Dataset" title="speechtotext.datasets.Dataset"><em>Dataset</em></a>) – Dataset of audio.</p></li>
+<li><p><strong>number_of_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Number of random samples to benchmerk.</p></li>
+<li><p><strong>with_cleaning</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Set True to clean transcripts. Defaults to True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of metrics for each sample.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.convert_sample">
+<span class="sig-name descname"><span class="pre">convert_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_sample</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.convert_sample" title="Permalink to this definition"></a></dt>
+<dd><p>Convert sample to correct format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path_to_sample</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Path to sample.</p></li>
+<li><p><strong>override</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a><em>, </em><em>optional</em>) – Override original file. Defaults to False.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Path to converted sample.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.model.googleWrapper.GoogleAPIWrapper.get_model">
+<span class="sig-name descname"><span class="pre">get_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/model/googleWrapper.html#GoogleAPIWrapper.get_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.model.googleWrapper.GoogleAPIWrapper.get_model" title="Permalink to this definition"></a></dt>
+<dd><p>Get model.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="speechtotext.model.googleWrapper.GoogleAPIVersion.html" class="btn btn-neutral float-left" title="speechtotext.model.googleWrapper.GoogleAPIVersion" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="speechtotext.model.modelWrapper.html" class="btn btn-neutral float-right" title="speechtotext.model.modelWrapper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

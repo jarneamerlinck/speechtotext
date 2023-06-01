@@ -1,0 +1,41 @@
+speechtotext.model.amazonWrapper
+================================
+
+.. automodule:: speechtotext.model.amazonWrapper
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      amazon_delete_job
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      AmazonAPIVersion
+      AmazonAPIWrapper
+   
+   
+
+   
+   
+   
+
+
+

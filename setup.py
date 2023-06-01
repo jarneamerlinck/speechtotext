@@ -20,7 +20,7 @@ VERSION = '' # Version is defined in __version__.py in the package
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-	'jiwer', 'pandas<2.0.0', 'numpy', 'torch>=2.0.0', 
+	'jiwer', 'pandas<2.0.0', 'numpy', 'torch', 
 	'openai-whisper', 'openai', 'python-dotenv',
 	'matplotlib', 'ipywidgets', 'nbformat','seaborn',
 	'dtale', 'boto3', 'google-cloud-speech',
@@ -32,7 +32,7 @@ REQUIRED = [
 # What packages are optional?
 EXTRAS = {
 	'docs': ['Sphinx>=6.1.3', 'sphinx-markdown-builder>=0.5.5', 'sphinx_autodoc_typehints>=1.22', 
-			 'sphinx-press-theme>=0.8.0', 'sphinx_favicon', 'twine', 'graphviz']
+			 'sphinx-rtd-theme', 'sphinx_favicon', 'twine', 'graphviz', 'nbsphinx']
 }
 
 # The rest you shouldn't have to touch too much :)

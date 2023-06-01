@@ -1,0 +1,32 @@
+﻿speechtotext
+============
+
+.. automodule:: speechtotext
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   speechtotext.datasets
+   speechtotext.functions
+   speechtotext.metric
+

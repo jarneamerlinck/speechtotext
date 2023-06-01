@@ -1,0 +1,34 @@
+speechtotext.plot.customErrorPlots
+==================================
+
+.. automodule:: speechtotext.plot.customErrorPlots
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      ErrorCountByModel
+      ErrorCountByModelByDataset
+      ErrorCountHeatmap
+   
+   
+
+   
+   
+   
+
+
+

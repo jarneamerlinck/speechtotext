@@ -1,0 +1,41 @@
+speechtotext.model.azureWrapper
+===============================
+
+.. automodule:: speechtotext.model.azureWrapper
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      AzureAPIVersion
+      AzureAPIWrapper
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+      :toctree:
+   
+      AzureCancellation
+      AzureNoMatch
+   
+   
+
+
+

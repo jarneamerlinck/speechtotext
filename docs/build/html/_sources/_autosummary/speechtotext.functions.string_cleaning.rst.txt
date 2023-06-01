@@ -1,0 +1,6 @@
+speechtotext.functions.string\_cleaning
+=======================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: string_cleaning

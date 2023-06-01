@@ -1,0 +1,34 @@
+speechtotext.model.modelWrapper
+===============================
+
+.. automodule:: speechtotext.model.modelWrapper
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      MetaModelWrapper
+      ModelVersion
+      ModelWrapper
+   
+   
+
+   
+   
+   
+
+
+

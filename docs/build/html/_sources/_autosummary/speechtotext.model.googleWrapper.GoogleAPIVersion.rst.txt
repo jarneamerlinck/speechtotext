@@ -1,0 +1,24 @@
+speechtotext.model.googleWrapper.GoogleAPIVersion
+=================================================
+
+.. currentmodule:: speechtotext.model.googleWrapper
+
+.. autoclass:: GoogleAPIVersion
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GoogleAPIVersion.GOOGLE_DEFAULT
+   
+   

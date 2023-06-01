@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.model.modelWrapper &mdash; speechtotext 0.3.14 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="speechtotext.model.modelWrapper.MetaModelWrapper" href="speechtotext.model.modelWrapper.MetaModelWrapper.html" />
+    <link rel="prev" title="speechtotext.model.googleWrapper.GoogleAPIWrapper" href="speechtotext.model.googleWrapper.GoogleAPIWrapper.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">speechtotext</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.html">speechtotext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.benchmark.html">speechtotext.benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechtotext.model.html">speechtotext.model</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.amazonWrapper.html">speechtotext.model.amazonWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.assemblyAIWrapper.html">speechtotext.model.assemblyAIWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.azureWrapper.html">speechtotext.model.azureWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.deepgramWrapper.html">speechtotext.model.deepgramWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.googleWrapper.html">speechtotext.model.googleWrapper</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">speechtotext.model.modelWrapper</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.model.modelWrapper.MetaModelWrapper.html">speechtotext.model.modelWrapper.MetaModelWrapper</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.model.modelWrapper.ModelVersion.html">speechtotext.model.modelWrapper.ModelVersion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.model.modelWrapper.ModelWrapper.html">speechtotext.model.modelWrapper.ModelWrapper</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.speechmaticsWrapper.html">speechtotext.model.speechmaticsWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.whisperWrapper.html">speechtotext.model.whisperWrapper</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.plot.html">speechtotext.plot</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.model.html">speechtotext.model</a></li>
+      <li class="breadcrumb-item active">speechtotext.model.modelWrapper</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-speechtotext.model.modelWrapper">
+<span id="speechtotext-model-modelwrapper"></span><h1>speechtotext.model.modelWrapper<a class="headerlink" href="#module-speechtotext.model.modelWrapper" title="Permalink to this heading"></a></h1>
+<p>Module with the parent classes for the model wrapper. Needs to be implemented to use the benchmarks.</p>
+<p>Use this module like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Imports</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.moduleWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.benchmark.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># Create child class for ModelVersion</span>
+<span class="k">class</span> <span class="nc">ChildModelVersion</span><span class="p">(</span><span class="n">ModelVersion</span><span class="p">):</span>
+        <span class="n">MODEL_VERSION</span>   <span class="o">=</span> <span class="s2">&quot;demo&quot;</span>
+
+<span class="c1"># Create child class for ModelWrapper</span>
+<span class="k">class</span> <span class="nc">ChildModelWrapper</span><span class="p">(</span><span class="n">ModelWrapper</span><span class="p">):</span>
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span><span class="n">ChildModelVersion</span><span class="p">):</span>
+
+                <span class="bp">self</span><span class="o">.</span><span class="n">model_version</span> <span class="o">=</span> <span class="n">model_version</span>
+
+        <span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">:</span><span class="n">modelType</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+        <span class="k">def</span> <span class="nf">get_transcript_of_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">audio_file_name</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span>
+
+<span class="c1"># Create child class of benchmark</span>
+<span class="k">class</span> <span class="nc">ChildBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+        <span class="n">MODEL_BASE</span> <span class="o">=</span> <span class="s2">&quot;model_name&quot;</span>
+
+        <span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+                <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">ChildModelVersion</span><span class="p">:</span>
+                        <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ChildModelWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">models</span>
+
+<span class="c1"># Create benchmark</span>
+<span class="n">number_of_samples</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">(</span><span class="n">path_to_dir</span><span class="o">=</span><span class="s2">&quot;path/to/dir&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">)</span>
+<span class="n">Benchmark</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+
+<span class="n">benchmark</span> <span class="o">=</span> <span class="n">ChildBenchmark</span><span class="p">()</span>
+
+<span class="c1"># Run benchmark</span>
+<span class="n">benchmark</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="rubric">Classes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="speechtotext.model.modelWrapper.MetaModelWrapper.html#speechtotext.model.modelWrapper.MetaModelWrapper" title="speechtotext.model.modelWrapper.MetaModelWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MetaModelWrapper</span></code></a></p></td>
+<td><p>Meta class for model wrapper.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="speechtotext.model.modelWrapper.ModelVersion.html#speechtotext.model.modelWrapper.ModelVersion" title="speechtotext.model.modelWrapper.ModelVersion"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelVersion</span></code></a></p></td>
+<td><p>Enum for the Available models.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="speechtotext.model.modelWrapper.ModelWrapper.html#speechtotext.model.modelWrapper.ModelWrapper" title="speechtotext.model.modelWrapper.ModelWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelWrapper</span></code></a></p></td>
+<td><p>Abstract Wrapper for model.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="speechtotext.model.googleWrapper.GoogleAPIWrapper.html" class="btn btn-neutral float-left" title="speechtotext.model.googleWrapper.GoogleAPIWrapper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="speechtotext.model.modelWrapper.MetaModelWrapper.html" class="btn btn-neutral float-right" title="speechtotext.model.modelWrapper.MetaModelWrapper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

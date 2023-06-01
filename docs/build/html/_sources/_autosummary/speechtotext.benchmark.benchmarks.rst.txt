@@ -1,0 +1,40 @@
+speechtotext.benchmark.benchmarks
+=================================
+
+.. automodule:: speechtotext.benchmark.benchmarks
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      run_benchmarks
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      Benchmark
+   
+   
+
+   
+   
+   
+
+
+

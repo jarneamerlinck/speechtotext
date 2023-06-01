@@ -99,6 +99,11 @@ class DatasetBare():
 			return None
 
 	def validate_samples(self) -> bool:
+		"""Validate if samples have a corresponding file.
+
+		Returns:
+			bool: True if all samples have a file.
+		"""     
 		return all(self.dataset["id"].apply(lambda id: isfile(f"{self.path_to_dir}/{id}{self.file_ext}")))
 
 class SampleDataset(DatasetBare):

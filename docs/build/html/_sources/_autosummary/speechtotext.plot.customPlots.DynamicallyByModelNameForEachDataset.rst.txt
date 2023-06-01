@@ -1,0 +1,27 @@
+speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset
+==================================================================
+
+.. currentmodule:: speechtotext.plot.customPlots
+
+.. autoclass:: DynamicallyByModelNameForEachDataset
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DynamicallyByModelNameForEachDataset.create_plot
+      ~DynamicallyByModelNameForEachDataset.create_plot_classes
+      ~DynamicallyByModelNameForEachDataset.save
+   
+   
+
+   
+   
+   

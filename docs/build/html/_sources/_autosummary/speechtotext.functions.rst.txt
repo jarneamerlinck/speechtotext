@@ -1,0 +1,70 @@
+speechtotext.functions
+======================
+
+.. automodule:: speechtotext.functions
+
+   
+   
+   .. rubric:: Module attributes
+
+   .. autosummary::
+      :toctree:
+   
+      REGEX_STRING_PARSE
+      DEFAULT_DATETIME_FORMAT
+      DEFAULT_REPORTS_FOLDER
+      DEFAULT_CSV_NAME
+   
+   
+
+   
+   
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+      :nosignatures:
+   
+      benchmark_results_to_csv
+      force_cudnn_initialization
+      get_extention_of_file_name
+      get_file_name_without_extention
+      join_benchmark_results
+      load_env_variable
+      multidispatch
+      save_folder_name
+      save_sub_folder_name
+      separate_benchmark_results_by_model
+      string_cleaning
+      timing
+      uppercase_for_first_character_in_string
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      BaseResult
+   
+   
+
+   
+   
+   .. rubric:: Exceptions
+
+   .. autosummary::
+      :toctree:
+   
+      NoTranscriptReturned
+      RequiredEnvVariablesMissing
+   
+   
+
+
+

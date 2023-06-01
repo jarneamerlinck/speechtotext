@@ -10,14 +10,11 @@ Welcome to speechtotext's documentation!
 	examples.rst
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Package Contents
+   	:maxdepth: 1
+	:caption: Package Contents
+	
+	api.rst
 
-   speechtotext/index.rst
-   speechtotext/model/index.rst
-   speechtotext/benchmark/index.rst
-   speechtotext/plot/index.rst
-   speechtotext/metric/index.rst
 
 Indices and tables
 ==================

@@ -1,0 +1,6 @@
+speechtotext.functions.get\_extention\_of\_file\_name
+=====================================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: get_extention_of_file_name

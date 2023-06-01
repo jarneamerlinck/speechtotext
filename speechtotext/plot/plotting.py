@@ -136,6 +136,8 @@ class DynamicPlotClassesByMetricForEachDataset(BaseResult):
 	
 	@abstractmethod
 	def create_plot(self):
+		"""Method that creates the plot.
+		"""		
 		pass
 
 class DynamicPlotClassesByMetricByDataset(BaseResult):

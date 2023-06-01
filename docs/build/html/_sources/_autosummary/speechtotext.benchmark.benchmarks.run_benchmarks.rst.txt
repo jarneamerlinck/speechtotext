@@ -1,0 +1,6 @@
+speechtotext.benchmark.benchmarks.run\_benchmarks
+=================================================
+
+.. currentmodule:: speechtotext.benchmark.benchmarks
+
+.. autofunction:: run_benchmarks

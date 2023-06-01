@@ -1,0 +1,38 @@
+speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark
+==============================================================
+
+.. currentmodule:: speechtotext.benchmark.customBenchmarks
+
+.. autoclass:: AssemblyAIAPIBenchmark
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~AssemblyAIAPIBenchmark.convert_to_pandas
+      ~AssemblyAIAPIBenchmark.create_models
+      ~AssemblyAIAPIBenchmark.save_to_csv
+      ~AssemblyAIAPIBenchmark.set_dataset
+      ~AssemblyAIAPIBenchmark.update_samples
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AssemblyAIAPIBenchmark.BENCHMARK_SAMPLES
+      ~AssemblyAIAPIBenchmark.DATASET
+      ~AssemblyAIAPIBenchmark.ERROR_LIST
+      ~AssemblyAIAPIBenchmark.MODEL_BASE
+   
+   

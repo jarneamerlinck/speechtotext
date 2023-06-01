@@ -1,0 +1,6 @@
+speechtotext.functions.REGEX\_STRING\_PARSE
+===========================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autodata:: REGEX_STRING_PARSE

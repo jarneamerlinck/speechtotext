@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.benchmark.benchmarks &mdash; speechtotext 0.3.14 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.benchmark.benchmarks</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.benchmark.benchmarks</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module for benchmarks of speechtotext.</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd"> 	from speechtotext.datasets import Dataset</span>
+<span class="sd">	from speechtotext.benchmark.benchmarks import *</span>
+<span class="sd"> </span>
+<span class="sd">	# Settings</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	report_name = &quot;report name&quot;</span>
+<span class="sd">	dataset = Dataset(path_to_dir=&quot;path/to/dir&quot;, name= &quot;dataset_name&quot;)</span>
+<span class="sd">	Benchmark.set_dataset(dataset)</span>
+
+<span class="sd">	# Create benchmark</span>
+<span class="sd">	wb = WhisperBenchmark()</span>
+<span class="sd"> </span>
+<span class="sd">	# Run benchmark</span>
+<span class="sd">	wb(number_of_samples)</span>
+<span class="sd">	</span>
+<span class="sd">	# Convert metrics to pandas dataframe</span>
+<span class="sd">	df = wb.convert_to_pandas()</span>
+<span class="sd">	print(df)</span>
+<span class="sd"> </span>
+<span class="sd">	# Save metrics to csv (saves with datetime in name)</span>
+<span class="sd">	benchmark_results_to_csv([wb])</span>
+<span class="sd"> </span>
+<span class="sd">	# Run benchmarks</span>
+<span class="sd"> 	## Settings</span>
+<span class="sd">	number_of_samples = 5</span>
+<span class="sd">	benchmark_dataset = dataset_RDH</span>
+<span class="sd">	benchmark_class_list: list[Benchmark] = [WhisperBenchmark, WhisperAPIBenchmark]</span>
+<span class="sd"> </span>
+<span class="sd">	# Run benchmarks</span>
+<span class="sd">	results = run_benchmarks(benchmark_class_list, benchmark_dataset, number_of_samples, report_name)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.model.modelWrapper</span> <span class="kn">import</span> <span class="n">ModelWrapper</span>
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">multidispatch</span><span class="p">,</span> <span class="n">join_benchmark_results</span><span class="p">,</span> <span class="n">save_folder_name</span>
+<span class="kn">from</span> <span class="nn">speechtotext.metric.metrics</span> <span class="kn">import</span> <span class="n">Metrics</span>
+
+
+<div class="viewcode-block" id="Benchmark"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.benchmarks.Benchmark.html#speechtotext.benchmark.benchmarks.Benchmark">[docs]</a><span class="k">class</span> <span class="nc">Benchmark</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Benchmark is used to test/validate an model.</span>
+<span class="sd">	Parent class for all benchmark classes. </span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">BENCHMARK_SAMPLES</span><span class="p">:</span> <span class="n">Dataset</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Dataset: Dataset samples.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">DATASET</span><span class="p">:</span> <span class="n">Dataset</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Dataset: Original dataset.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">ERROR_LIST</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;list[pd.core.frame.DataFrame]: List of errors.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">with_cleaning</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Create benchmark object.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">				with_cleaning (bool, optional): Clean. Defaults to True.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">__with_cleaning</span> <span class="o">=</span> <span class="n">with_cleaning</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">models</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_models</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Benchmark.save_to_csv"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.benchmarks.Benchmark.html#speechtotext.benchmark.benchmarks.Benchmark.save_to_csv">[docs]</a>	<span class="k">def</span> <span class="nf">save_to_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">save_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Save outputs of benchmark to csv.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">				save_name (str): Filename of output.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">convert_to_pandas</span><span class="p">()</span>
+		<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Benchmark.convert_to_pandas"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.benchmarks.Benchmark.html#speechtotext.benchmark.benchmarks.Benchmark.convert_to_pandas">[docs]</a>	<span class="k">def</span> <span class="nf">convert_to_pandas</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Convert metrics to dataframe.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">				pd.core.frame.DataFrame: Pandas dataframe.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		
+		<span class="c1"># column_names = [&quot;model_name&quot;, &quot;audio_ID&quot;,&quot;dataset&quot;, &quot;duration&quot;,</span>
+		<span class="c1"># 				&quot;reference&quot;, &quot;wer&quot;, &quot;mer&quot;,  &quot;wil&quot;, &quot;wip&quot;, &quot;cer&quot;]</span>
+		<span class="n">first_column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">,</span> <span class="s2">&quot;audio_ID&quot;</span><span class="p">,</span><span class="s2">&quot;dataset&quot;</span><span class="p">,</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="s2">&quot;hypothesis&quot;</span><span class="p">]</span>
+		<span class="n">metric_column_names</span> <span class="o">=</span> <span class="n">Metrics</span><span class="o">.</span><span class="n">get_all_metric_names</span><span class="p">()</span>
+		<span class="n">column_names</span> <span class="o">=</span> <span class="n">first_column_names</span> <span class="o">+</span> <span class="n">metric_column_names</span>
+		
+		<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+
+		<span class="k">for</span> <span class="n">model</span><span class="p">,</span> <span class="n">metrics</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="p">):</span>
+			<span class="n">model_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">MODEL_BASE</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">model_version</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+			<span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">metrics</span><span class="p">:</span>
+	
+				<span class="n">new_row</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="n">model_name</span><span class="p">,</span> <span class="n">metric</span><span class="o">.</span><span class="n">audio_id</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">BENCHMARK_SAMPLES</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">metric</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="n">metric</span><span class="o">.</span><span class="n">hypothesis</span><span class="p">]</span> <span class="o">+</span> 
+                    <span class="p">[</span><span class="nb">vars</span><span class="p">(</span><span class="n">metric</span><span class="p">)[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">metric_column_names</span><span class="p">]</span>
+                    	<span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+				<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">new_row</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">T</span><span class="p">],</span> <span class="n">ignore_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="Benchmark.__call__"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.benchmarks.Benchmark.html#speechtotext.benchmark.benchmarks.Benchmark.__call__">[docs]</a>	<span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">with_cleaning</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Benchmark n samples.benchmark_results_to_csv</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			number_of_samples (int): Number of samples to benchmark.</span>
+<span class="sd">			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="bp">self</span><span class="o">.</span><span class="n">metrics</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="n">column_names_errors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">,</span> <span class="s2">&quot;audio_ID&quot;</span><span class="p">,</span><span class="s2">&quot;dataset&quot;</span><span class="p">,</span><span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="s2">&quot;message&quot;</span><span class="p">]</span>
+		<span class="n">df_errors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">column_names_errors</span><span class="p">)</span>
+
+		<span class="n">Benchmark</span><span class="o">.</span><span class="n">update_samples</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span>
+
+		<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">models</span><span class="p">:</span>
+			<span class="nb">print</span><span class="p">(</span>
+				<span class="sa">f</span><span class="s2">&quot;benchmark for model </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">model_version</span><span class="si">}</span><span class="s2"> with dataset </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BENCHMARK_SAMPLES</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+			<span class="n">model_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">MODEL_BASE</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">model_version</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span>
+			<span class="k">try</span><span class="p">:</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">benchmark_samples</span><span class="p">(</span>
+					<span class="bp">self</span><span class="o">.</span><span class="n">BENCHMARK_SAMPLES</span><span class="p">,</span> <span class="n">with_cleaning</span><span class="p">))</span>
+			<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+				<span class="nb">print</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+			
+			<span class="k">if</span> <span class="n">model</span><span class="o">.</span><span class="n">model_errors</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+				<span class="n">model</span><span class="o">.</span><span class="n">model_errors</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">model_name</span>
+				<span class="n">model</span><span class="o">.</span><span class="n">model_errors</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">model_errors</span><span class="p">[</span><span class="n">column_names_errors</span><span class="p">]</span>
+				<span class="n">df_errors</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df_errors</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">model_errors</span><span class="p">])</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">df_errors</span> <span class="o">=</span> <span class="n">df_errors</span></div>
+  
+<div class="viewcode-block" id="Benchmark.create_models"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.benchmarks.Benchmark.html#speechtotext.benchmark.benchmarks.Benchmark.create_models">[docs]</a>	<span class="nd">@abstractmethod</span>
+	<span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Creates an list of ModelWrappers.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">				list[ModelWrapper]: List of model wrappers.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Benchmark.set_dataset"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.benchmarks.Benchmark.html#speechtotext.benchmark.benchmarks.Benchmark.set_dataset">[docs]</a>	<span class="nd">@classmethod</span>
+	<span class="k">def</span> <span class="nf">set_dataset</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Set dataset for Benchmark class.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">				dataset (Dataset): Dataset to use with benchmark.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">cls</span><span class="o">.</span><span class="n">DATASET</span> <span class="o">=</span> <span class="n">dataset</span></div>
+
+	<span class="nd">@classmethod</span>
+	<span class="nd">@multidispatch</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">update_samples</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Update the sample dataset.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">				number_of_samples (int): Number of samples.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="n">BENCHMARK_SAMPLES</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="k">if</span> <span class="n">number_of_samples</span> <span class="ow">is</span> <span class="bp">cls</span><span class="o">.</span><span class="n">BENCHMARK_SAMPLES</span><span class="o">.</span><span class="n">number_of_samples</span><span class="p">()</span> <span class="ow">and</span> <span class="bp">cls</span><span class="o">.</span><span class="n">BENCHMARK_SAMPLES</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DATASET</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+				<span class="k">return</span> <span class="kc">None</span>
+		<span class="bp">cls</span><span class="o">.</span><span class="n">BENCHMARK_SAMPLES</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DATASET</span><span class="o">.</span><span class="n">get_n_samples</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Benchmark.update_samples"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.benchmarks.Benchmark.html#speechtotext.benchmark.benchmarks.Benchmark.update_samples">[docs]</a>	<span class="nd">@classmethod</span>
+	<span class="nd">@multidispatch</span><span class="p">(</span><span class="n">Dataset</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">update_samples</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">new_dataset</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Update the sample dataset.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">				new_dataset (Dataset): Full dataset.</span>
+<span class="sd">				number_of_samples (int): Number of samples.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">if</span> <span class="n">new_dataset</span><span class="o">.</span><span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DATASET</span><span class="o">.</span><span class="n">name</span><span class="p">:</span>
+			<span class="bp">cls</span><span class="o">.</span><span class="n">DATASET</span> <span class="o">=</span> <span class="n">new_dataset</span>
+		<span class="bp">cls</span><span class="o">.</span><span class="n">update_samples</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span></div></div>
+
+<div class="viewcode-block" id="run_benchmarks"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.benchmarks.run_benchmarks.html#speechtotext.benchmark.benchmarks.run_benchmarks">[docs]</a><span class="k">def</span> <span class="nf">run_benchmarks</span><span class="p">(</span><span class="n">benchmark_class_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Benchmark</span><span class="p">],</span> <span class="n">benchmark_dataset</span><span class="p">:</span><span class="n">Dataset</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="n">report_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Run al benchmarks out of list.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		benchmark_list (list[Benchmark]): List of benchmark classes to run.</span>
+<span class="sd">		dataset (Dataset): Dataset to use for benchmark.</span>
+<span class="sd">		number_of_samples (int): Number of samples used in benchmark.</span>
+<span class="sd">		report_name (str): Name of report. To save the errors to.</span>
+<span class="sd">	&quot;&quot;&quot;</span> 
+	<span class="n">results</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">errors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">Benchmark</span><span class="o">.</span><span class="n">DATASET</span> <span class="o">=</span>  <span class="n">benchmark_dataset</span>
+	
+	<span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">benchmark_class</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">benchmark_class_list</span><span class="p">):</span>
+		<span class="n">benchmark</span> <span class="o">=</span> <span class="n">benchmark_class</span><span class="p">()</span>
+
+		<span class="n">benchmark</span><span class="p">(</span><span class="n">number_of_samples</span><span class="p">)</span>
+		<span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">benchmark</span><span class="o">.</span><span class="n">convert_to_pandas</span><span class="p">())</span>
+		<span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">benchmark</span><span class="o">.</span><span class="n">df_errors</span><span class="p">)</span>
+
+	<span class="n">Benchmark</span><span class="o">.</span><span class="n">ERROR_LIST</span> <span class="o">=</span> <span class="n">Benchmark</span><span class="o">.</span><span class="n">ERROR_LIST</span> <span class="o">+</span> <span class="n">errors</span>
+	<span class="n">folder</span> <span class="o">=</span> <span class="n">save_folder_name</span><span class="p">(</span><span class="n">report_name</span><span class="p">)</span>
+	<span class="n">df_error</span> <span class="o">=</span> <span class="n">join_benchmark_results</span><span class="p">(</span><span class="n">errors</span><span class="p">,</span> <span class="n">set_index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+	<span class="n">df_error</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">folder</span><span class="si">}</span><span class="s2">/errors_</span><span class="si">{</span><span class="n">benchmark_dataset</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">.csv&quot;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+	
+	<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of errors logged to .csv file: </span><span class="si">{</span><span class="n">df_error</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">results</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+speechtotext.model.amazonWrapper.AmazonAPIWrapper
+=================================================
+
+.. currentmodule:: speechtotext.model.amazonWrapper
+
+.. autoclass:: AmazonAPIWrapper
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~AmazonAPIWrapper.benchmark_n_samples
+      ~AmazonAPIWrapper.benchmark_sample
+      ~AmazonAPIWrapper.benchmark_samples
+      ~AmazonAPIWrapper.convert_sample
+      ~AmazonAPIWrapper.get_model
+      ~AmazonAPIWrapper.get_transcript_of_file
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AmazonAPIWrapper.BUCKET_EXIST
+      ~AmazonAPIWrapper.LANGUAGE_CODE
+      ~AmazonAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE
+   
+   

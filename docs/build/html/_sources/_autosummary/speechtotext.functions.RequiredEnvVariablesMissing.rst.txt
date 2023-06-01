@@ -1,0 +1,6 @@
+speechtotext.functions.RequiredEnvVariablesMissing
+==================================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autoexception:: RequiredEnvVariablesMissing

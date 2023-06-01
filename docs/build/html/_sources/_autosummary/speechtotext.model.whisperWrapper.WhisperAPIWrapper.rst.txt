@@ -1,0 +1,36 @@
+speechtotext.model.whisperWrapper.WhisperAPIWrapper
+===================================================
+
+.. currentmodule:: speechtotext.model.whisperWrapper
+
+.. autoclass:: WhisperAPIWrapper
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~WhisperAPIWrapper.benchmark_n_samples
+      ~WhisperAPIWrapper.benchmark_sample
+      ~WhisperAPIWrapper.benchmark_samples
+      ~WhisperAPIWrapper.convert_sample
+      ~WhisperAPIWrapper.get_model
+      ~WhisperAPIWrapper.get_transcript_of_file
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~WhisperAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE
+   
+   

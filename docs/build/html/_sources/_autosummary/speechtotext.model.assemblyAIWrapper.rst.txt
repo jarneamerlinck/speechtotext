@@ -1,0 +1,33 @@
+speechtotext.model.assemblyAIWrapper
+====================================
+
+.. automodule:: speechtotext.model.assemblyAIWrapper
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      AssemblyAIAPIVersion
+      AssemblyAIAPIWrapper
+   
+   
+
+   
+   
+   
+
+
+

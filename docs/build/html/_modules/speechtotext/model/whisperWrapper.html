@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.model.whisperWrapper &mdash; speechtotext 0.3.14 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.model.whisperWrapper</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.model.whisperWrapper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Modelwrapper implemented for whisper. Local and API.</span>
+
+<span class="sd">API OPENAI_API_KEY and OPENAI_ORGANIZATION need to be in the &#39;.env&#39;.</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd"> 	from speechtotext.model.whisperWrapper import *</span>
+<span class="sd">	from speechtotext.benchmark.benchmarks import *</span>
+<span class="sd">	from speechtotext.datasets import Dataset</span>
+<span class="sd">	</span>
+<span class="sd">	# Create dataset</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	dataset = Dataset(path_to_dir=&quot;path/to/dir&quot;, name= &quot;dataset_name&quot;)</span>
+<span class="sd">	id = &quot;existing_audio_id&quot;</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	</span>
+<span class="sd">	# Create wrapper</span>
+<span class="sd">	whisperWrapper = WhisperWrapper(WhisperVersion.TINY)</span>
+<span class="sd">	# Add model to Plotting</span>
+<span class="sd">	# Get model</span>
+<span class="sd">	whisperWrapper.get_model()</span>
+
+<span class="sd">	# Benchmark choisen sample</span>
+<span class="sd">	whisperWrapper.benchmark_sample(dataset, id)</span>
+<span class="sd">	</span>
+<span class="sd">	# Benchmark n random samples</span>
+<span class="sd">	array = whisperWrapper.benchmark_n_samples(dataset, number_of_samples)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">whisper</span>
+<span class="kn">import</span> <span class="nn">openai</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+
+<span class="kn">from</span> <span class="nn">speechtotext.model.modelWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">load_env_variable</span>
+<div class="viewcode-block" id="WhisperVersion"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.whisperWrapper.WhisperVersion.html#speechtotext.model.whisperWrapper.WhisperVersion">[docs]</a><span class="k">class</span> <span class="nc">WhisperVersion</span><span class="p">(</span><span class="n">ModelVersion</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Enum for the available Whisper models.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		Enum (WhisperVersion): Available whisper models.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">TINY</span> 	<span class="o">=</span> <span class="s2">&quot;tiny&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Smallest whisper version.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">SMALL</span> 	<span class="o">=</span> <span class="s2">&quot;small&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Second smallest whisper version.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">BASE</span> 	<span class="o">=</span> <span class="s2">&quot;base&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Base whisper version.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">MEDIUM</span> 	<span class="o">=</span> <span class="s2">&quot;medium&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Larger then Base whisper version.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">LARGE</span> 	<span class="o">=</span> <span class="s2">&quot;large&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Biggest whisper version.</span>
+<span class="sd">	&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="WhisperWrapper"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.whisperWrapper.WhisperWrapper.html#speechtotext.model.whisperWrapper.WhisperWrapper">[docs]</a><span class="k">class</span> <span class="nc">WhisperWrapper</span><span class="p">(</span><span class="n">ModelWrapper</span><span class="p">):</span> 
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Wrapper for whisper model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span><span class="n">WhisperVersion</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Wrapper for whisper model.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			model_version (WhisperVersion): Model version of whisper to use.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model_version</span><span class="p">)</span>
+
+<div class="viewcode-block" id="WhisperWrapper.get_model"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.whisperWrapper.WhisperWrapper.html#speechtotext.model.whisperWrapper.WhisperWrapper.get_model">[docs]</a>	<span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get model.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">whisper</span><span class="o">.</span><span class="n">load_model</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_version</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
+
+	<span class="k">def</span> <span class="nf">get_transcript_of_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get transcript of audio file.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			audio_file_name (str): Path to audio file.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			str: Transcript of audio file.</span>
+<span class="sd">		&quot;&quot;&quot;</span>		
+		<span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="n">audio_file_name</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span></div>
+		
+<div class="viewcode-block" id="WhisperAPIVersion"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.whisperWrapper.WhisperAPIVersion.html#speechtotext.model.whisperWrapper.WhisperAPIVersion">[docs]</a><span class="k">class</span> <span class="nc">WhisperAPIVersion</span><span class="p">(</span><span class="n">ModelVersion</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Enum for the available Whisper API models.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		Enum (WhisperAPIVersion): Available whisper API models.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">WHISPER_1</span> 	<span class="o">=</span> <span class="s2">&quot;whisper-1&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Online whisper version.</span>
+<span class="sd">	&quot;&quot;&quot;</span></div>
+
+  
+<div class="viewcode-block" id="WhisperAPIWrapper"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.whisperWrapper.WhisperAPIWrapper.html#speechtotext.model.whisperWrapper.WhisperAPIWrapper">[docs]</a><span class="k">class</span> <span class="nc">WhisperAPIWrapper</span><span class="p">(</span><span class="n">ModelWrapper</span><span class="p">):</span> 
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Wrapper for whisper API. OPENAI_ORGANIZATION and OPENAI_API_KEY need to be in .env file in current directory.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span><span class="n">WhisperAPIVersion</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Wrapper for whisper model.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			model_version (WhisperAPIWrapper): Model version of whisper to use.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model_version</span><span class="p">)</span>
+
+<div class="viewcode-block" id="WhisperAPIWrapper.get_model"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.whisperWrapper.WhisperAPIWrapper.html#speechtotext.model.whisperWrapper.WhisperAPIWrapper.get_model">[docs]</a>	<span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get model.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="n">openai</span><span class="o">.</span><span class="n">organization</span> <span class="o">=</span> <span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;OPENAI_ORGANIZATION&quot;</span><span class="p">)</span>
+		<span class="n">openai</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">)</span></div>
+
+	<span class="k">def</span> <span class="nf">get_transcript_of_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get transcript of audio file with API call.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			audio_file_name (str): Path to audio file.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			str: Transcript of audio file.</span>
+<span class="sd">		&quot;&quot;&quot;</span>		  
+		<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio_file_name</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+		<span class="n">transcription</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">Audio</span><span class="o">.</span><span class="n">transcribe</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">model_version</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span>
+		<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+		<span class="k">return</span> <span class="n">transcription</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">]</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

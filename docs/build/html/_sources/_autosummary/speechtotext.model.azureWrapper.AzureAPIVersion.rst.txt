@@ -1,0 +1,24 @@
+speechtotext.model.azureWrapper.AzureAPIVersion
+===============================================
+
+.. currentmodule:: speechtotext.model.azureWrapper
+
+.. autoclass:: AzureAPIVersion
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AzureAPIVersion.AZURE_DEFAULT
+   
+   

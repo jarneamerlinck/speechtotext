@@ -1,0 +1,6 @@
+speechtotext.functions.timing
+=============================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: timing

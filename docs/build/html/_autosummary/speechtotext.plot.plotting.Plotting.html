@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.plot.plotting.Plotting &mdash; speechtotext 0.3.14 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset" href="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">speechtotext</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.html">speechtotext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.benchmark.html">speechtotext.benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.model.html">speechtotext.model</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechtotext.plot.html">speechtotext.plot</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.plot.customErrorPlots.html">speechtotext.plot.customErrorPlots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.plot.customPlots.html">speechtotext.plot.customPlots</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="speechtotext.plot.plotting.html">speechtotext.plot.plotting</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.plot.plotting.BaseMatPlotLib.html">speechtotext.plot.plotting.BaseMatPlotLib</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.plot.plotting.BasePlotly.html">speechtotext.plot.plotting.BasePlotly</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset.html">speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset.html">speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">speechtotext.plot.plotting.Plotting</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.plot.html">speechtotext.plot</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.plot.plotting.html">speechtotext.plot.plotting</a></li>
+      <li class="breadcrumb-item active">speechtotext.plot.plotting.Plotting</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="speechtotext-plot-plotting-plotting">
+<h1>speechtotext.plot.plotting.Plotting<a class="headerlink" href="#speechtotext-plot-plotting-plotting" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Plotting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/plot/plotting.html#Plotting"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.plot.plotting.Plotting" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Class that is used to create plots for an benchmark.</p>
+<p>Creates plotting object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>results</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><em>pd.core.frame.DataFrame</em><em>]</em>) – List of result dataframes.</p></li>
+<li><p><strong>errors</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><em>pd.core.frame.DataFrame</em><em>]</em>) – List of error dataframes.</p></li>
+<li><p><strong>report_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Name of report.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.plot.plotting.Plotting.launch_dtale" title="speechtotext.plot.plotting.Plotting.launch_dtale"><code class="xref py py-obj docutils literal notranslate"><span class="pre">launch_dtale</span></code></a></p></td>
+<td><p>Launch webui to explore the data.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.plot.plotting.Plotting.save_all" title="speechtotext.plot.plotting.Plotting.save_all"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_all</span></code></a></p></td>
+<td><p>Loops over all customPlot classes in CUSTOM_PLOTS to creates and saves the plots.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Attributes</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.plot.plotting.Plotting.CUSTOM_ERRORS" title="speechtotext.plot.plotting.Plotting.CUSTOM_ERRORS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CUSTOM_ERRORS</span></code></a></p></td>
+<td><p>List of error classes that need to be saved.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.plot.plotting.Plotting.CUSTOM_ERROR_PLOTS" title="speechtotext.plot.plotting.Plotting.CUSTOM_ERROR_PLOTS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CUSTOM_ERROR_PLOTS</span></code></a></p></td>
+<td><p>List of error plot classes that need to be saved.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS" title="speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CUSTOM_PLOTS</span></code></a></p></td>
+<td><p>List of plot classes that need to be saved.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.plot.plotting.Plotting.CUSTOM_RESULTS" title="speechtotext.plot.plotting.Plotting.CUSTOM_RESULTS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CUSTOM_RESULTS</span></code></a></p></td>
+<td><p>List of result classes that need to be saved.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.plot.plotting.Plotting.DATASET_NAMES" title="speechtotext.plot.plotting.Plotting.DATASET_NAMES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DATASET_NAMES</span></code></a></p></td>
+<td><p>List of dataset names that were used for the benchmarks.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_ERRORS">
+<span class="sig-name descname"><span class="pre">CUSTOM_ERRORS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a><span class="pre">[</span><a class="reference internal" href="speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_ERRORS" title="Permalink to this definition"></a></dt>
+<dd><p>List of error classes that need to be saved.</p>
+<p>This could be an pandas df, report text file, …</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference internal" href="speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult">BaseResult</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_ERROR_PLOTS">
+<span class="sig-name descname"><span class="pre">CUSTOM_ERROR_PLOTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a><span class="pre">[</span><a class="reference internal" href="speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'speechtotext.plot.customErrorPlots.ErrorCountByModel'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'speechtotext.plot.customErrorPlots.ErrorCountHeatmap'&gt;]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_ERROR_PLOTS" title="Permalink to this definition"></a></dt>
+<dd><p>List of error plot classes that need to be saved.</p>
+<p>This could be an plotly, matplotlib or another plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference internal" href="speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult">BaseResult</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS">
+<span class="sig-name descname"><span class="pre">CUSTOM_PLOTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a><span class="pre">[</span><a class="reference internal" href="speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'speechtotext.plot.customPlots.DynamicallyByModelNameByDataset'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'speechtotext.plot.customPlots.MetricHeatMap'&gt;]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_PLOTS" title="Permalink to this definition"></a></dt>
+<dd><p>List of plot classes that need to be saved.</p>
+<p>This could be an plotly, matplotlib or another plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference internal" href="speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult">BaseResult</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.CUSTOM_RESULTS">
+<span class="sig-name descname"><span class="pre">CUSTOM_RESULTS</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a><span class="pre">[</span><a class="reference internal" href="speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[&lt;class</span> <span class="pre">'speechtotext.metric.customMetrics.BenchmarkResults'&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'speechtotext.metric.customMetrics.ResultMetrics'&gt;]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.CUSTOM_RESULTS" title="Permalink to this definition"></a></dt>
+<dd><p>List of result classes that need to be saved.</p>
+<p>This could be an pandas df, report text file, …</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference internal" href="speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult">BaseResult</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.DATASET_NAMES">
+<span class="sig-name descname"><span class="pre">DATASET_NAMES</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[]</span></em><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.DATASET_NAMES" title="Permalink to this definition"></a></dt>
+<dd><p>List of dataset names that were used for the benchmarks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.launch_dtale">
+<span class="sig-name descname"><span class="pre">launch_dtale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/plot/plotting.html#Plotting.launch_dtale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.launch_dtale" title="Permalink to this definition"></a></dt>
+<dd><p>Launch webui to explore the data.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.plot.plotting.Plotting.save_all">
+<span class="sig-name descname"><span class="pre">save_all</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/plot/plotting.html#Plotting.save_all"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.plot.plotting.Plotting.save_all" title="Permalink to this definition"></a></dt>
+<dd><p>Loops over all customPlot classes in CUSTOM_PLOTS to creates and saves the plots.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset.html" class="btn btn-neutral float-left" title="speechtotext.plot.plotting.DynamicPlotClassesByMetricForEachDataset" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+speechtotext.model.azureWrapper.AzureCancellation
+=================================================
+
+.. currentmodule:: speechtotext.model.azureWrapper
+
+.. autoexception:: AzureCancellation

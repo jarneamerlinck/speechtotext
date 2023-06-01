@@ -1,0 +1,34 @@
+speechtotext.plot.customPlots
+=============================
+
+.. automodule:: speechtotext.plot.customPlots
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      DynamicallyByModelNameByDataset
+      DynamicallyByModelNameForEachDataset
+      MetricHeatMap
+   
+   
+
+   
+   
+   
+
+
+

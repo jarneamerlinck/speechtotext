@@ -1,0 +1,6 @@
+speechtotext.functions.save\_folder\_name
+=========================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: save_folder_name

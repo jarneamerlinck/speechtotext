@@ -1,0 +1,38 @@
+speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark
+============================================================
+
+.. currentmodule:: speechtotext.benchmark.customBenchmarks
+
+.. autoclass:: DeepgramAPIBenchmark
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DeepgramAPIBenchmark.convert_to_pandas
+      ~DeepgramAPIBenchmark.create_models
+      ~DeepgramAPIBenchmark.save_to_csv
+      ~DeepgramAPIBenchmark.set_dataset
+      ~DeepgramAPIBenchmark.update_samples
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DeepgramAPIBenchmark.BENCHMARK_SAMPLES
+      ~DeepgramAPIBenchmark.DATASET
+      ~DeepgramAPIBenchmark.ERROR_LIST
+      ~DeepgramAPIBenchmark.MODEL_BASE
+   
+   

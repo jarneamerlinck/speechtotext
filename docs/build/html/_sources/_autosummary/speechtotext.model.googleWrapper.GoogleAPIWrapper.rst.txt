@@ -1,0 +1,37 @@
+speechtotext.model.googleWrapper.GoogleAPIWrapper
+=================================================
+
+.. currentmodule:: speechtotext.model.googleWrapper
+
+.. autoclass:: GoogleAPIWrapper
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~GoogleAPIWrapper.benchmark_n_samples
+      ~GoogleAPIWrapper.benchmark_sample
+      ~GoogleAPIWrapper.benchmark_samples
+      ~GoogleAPIWrapper.convert_sample
+      ~GoogleAPIWrapper.get_model
+      ~GoogleAPIWrapper.get_transcript_of_file
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GoogleAPIWrapper.LANGUAGE_CODE
+      ~GoogleAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE
+   
+   

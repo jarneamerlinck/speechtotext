@@ -1,0 +1,28 @@
+speechtotext.datasets.SampleDataset
+===================================
+
+.. currentmodule:: speechtotext.datasets
+
+.. autoclass:: SampleDataset
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SampleDataset.get_path_of_fragment
+      ~SampleDataset.get_text_of_id
+      ~SampleDataset.number_of_samples
+      ~SampleDataset.validate_samples
+   
+   
+
+   
+   
+   

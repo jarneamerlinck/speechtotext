@@ -1,0 +1,36 @@
+speechtotext.model.modelWrapper.ModelWrapper
+============================================
+
+.. currentmodule:: speechtotext.model.modelWrapper
+
+.. autoclass:: ModelWrapper
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ModelWrapper.benchmark_n_samples
+      ~ModelWrapper.benchmark_sample
+      ~ModelWrapper.benchmark_samples
+      ~ModelWrapper.convert_sample
+      ~ModelWrapper.get_model
+      ~ModelWrapper.get_transcript_of_file
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~ModelWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE
+   
+   

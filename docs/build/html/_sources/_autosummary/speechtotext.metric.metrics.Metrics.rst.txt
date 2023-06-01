@@ -1,0 +1,26 @@
+speechtotext.metric.metrics.Metrics
+===================================
+
+.. currentmodule:: speechtotext.metric.metrics
+
+.. autoclass:: Metrics
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Metrics.get_all_metric_docs
+      ~Metrics.get_all_metric_names
+   
+   
+
+   
+   
+   

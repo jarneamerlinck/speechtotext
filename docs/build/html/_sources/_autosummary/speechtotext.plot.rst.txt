@@ -1,0 +1,32 @@
+﻿speechtotext.plot
+=================
+
+.. automodule:: speechtotext.plot
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   speechtotext.plot.customErrorPlots
+   speechtotext.plot.customPlots
+   speechtotext.plot.plotting
+

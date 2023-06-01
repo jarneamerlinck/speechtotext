@@ -1,0 +1,37 @@
+﻿speechtotext.model
+==================
+
+.. automodule:: speechtotext.model
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   speechtotext.model.amazonWrapper
+   speechtotext.model.assemblyAIWrapper
+   speechtotext.model.azureWrapper
+   speechtotext.model.deepgramWrapper
+   speechtotext.model.googleWrapper
+   speechtotext.model.modelWrapper
+   speechtotext.model.speechmaticsWrapper
+   speechtotext.model.whisperWrapper
+

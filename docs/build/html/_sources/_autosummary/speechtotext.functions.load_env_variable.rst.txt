@@ -1,0 +1,6 @@
+speechtotext.functions.load\_env\_variable
+==========================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: load_env_variable

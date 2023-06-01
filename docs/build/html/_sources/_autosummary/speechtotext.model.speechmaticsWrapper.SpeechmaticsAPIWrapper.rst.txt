@@ -1,0 +1,38 @@
+speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper
+=============================================================
+
+.. currentmodule:: speechtotext.model.speechmaticsWrapper
+
+.. autoclass:: SpeechmaticsAPIWrapper
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SpeechmaticsAPIWrapper.benchmark_n_samples
+      ~SpeechmaticsAPIWrapper.benchmark_sample
+      ~SpeechmaticsAPIWrapper.benchmark_samples
+      ~SpeechmaticsAPIWrapper.convert_sample
+      ~SpeechmaticsAPIWrapper.get_model
+      ~SpeechmaticsAPIWrapper.get_transcript_of_file
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SpeechmaticsAPIWrapper.CONNECTION_URL
+      ~SpeechmaticsAPIWrapper.LANGUAGE_CODE
+      ~SpeechmaticsAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE
+   
+   

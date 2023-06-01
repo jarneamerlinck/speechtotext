@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.benchmark.customBenchmarks &mdash; speechtotext 0.3.14 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.benchmark.customBenchmarks</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.benchmark.customBenchmarks</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module for benchmarks of speechtotext.</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd"> 	from speechtotext.datasets import Dataset</span>
+<span class="sd">	from speechtotext.benchmark.benchmarks import *</span>
+<span class="sd"> </span>
+<span class="sd">	# Settings</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	dataset = Dataset(path_to_dir=&quot;path/to/dir&quot;, name= &quot;dataset_name&quot;)</span>
+<span class="sd">	Benchmark.set_dataset(dataset)</span>
+
+<span class="sd">	# Create benchmark</span>
+<span class="sd">	wb = WhisperBenchmark()</span>
+<span class="sd"> </span>
+<span class="sd">	# Run benchmark</span>
+<span class="sd">	wb(number_of_samples)</span>
+<span class="sd">	</span>
+<span class="sd">	# Convert metrics to pandas dataframe</span>
+<span class="sd">	df = wb.convert_to_pandas()</span>
+<span class="sd">	print(df)</span>
+<span class="sd"> </span>
+<span class="sd">	# Save metrics to csv (saves with datetime in name)</span>
+<span class="sd">	benchmark_results_to_csv([wb])</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.benchmark.benchmarks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.modelWrapper</span> <span class="kn">import</span> <span class="n">ModelWrapper</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.whisperWrapper</span> <span class="kn">import</span> <span class="n">WhisperVersion</span><span class="p">,</span> <span class="n">WhisperWrapper</span><span class="p">,</span> <span class="n">WhisperAPIWrapper</span><span class="p">,</span> <span class="n">WhisperAPIVersion</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.amazonWrapper</span> <span class="kn">import</span> <span class="n">AmazonAPIVersion</span><span class="p">,</span> <span class="n">AmazonAPIWrapper</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.googleWrapper</span> <span class="kn">import</span> <span class="n">GoogleAPIVersion</span><span class="p">,</span> <span class="n">GoogleAPIWrapper</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.deepgramWrapper</span> <span class="kn">import</span> <span class="n">DeepgramAPIVersion</span><span class="p">,</span> <span class="n">DeepgramAPIWrapper</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.assemblyAIWrapper</span> <span class="kn">import</span> <span class="n">AssemblyAIAPIVersion</span><span class="p">,</span> <span class="n">AssemblyAIAPIWrapper</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.azureWrapper</span> <span class="kn">import</span> <span class="n">AzureAPIVersion</span><span class="p">,</span> <span class="n">AzureAPIWrapper</span>
+<span class="kn">from</span> <span class="nn">speechtotext.model.speechmaticsWrapper</span> <span class="kn">import</span> <span class="n">SpeechmaticsAPIVersion</span><span class="p">,</span> <span class="n">SpeechmaticsAPIWrapper</span>
+
+
+<div class="viewcode-block" id="WhisperBenchmark"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.WhisperBenchmark.html#speechtotext.benchmark.customBenchmarks.WhisperBenchmark">[docs]</a><span class="k">class</span> <span class="nc">WhisperBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Benchmark for local whisper models.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">MODEL_BASE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Whisper&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Name of base model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="WhisperBenchmark.create_models"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.WhisperBenchmark.html#speechtotext.benchmark.customBenchmarks.WhisperBenchmark.create_models">[docs]</a>	<span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+		<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">WhisperVersion</span><span class="p">:</span>
+			<span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WhisperWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">models</span></div></div>
+
+<div class="viewcode-block" id="WhisperAPIBenchmark"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark">[docs]</a><span class="k">class</span> <span class="nc">WhisperAPIBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Benchmark for API whisper models.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">MODEL_BASE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;WhisperAPI&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Name of base model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="WhisperAPIBenchmark.create_models"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark.create_models">[docs]</a>	<span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+		<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">WhisperAPIVersion</span><span class="p">:</span>
+			<span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">WhisperAPIWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">models</span></div></div>
+
+<div class="viewcode-block" id="AmazonAPIBenchmark"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark">[docs]</a><span class="k">class</span> <span class="nc">AmazonAPIBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Benchmark for Amazon API transcribe.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">MODEL_BASE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;AmazonAPI&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Name of base model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AmazonAPIBenchmark.create_models"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark.create_models">[docs]</a>	<span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+		<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">AmazonAPIVersion</span><span class="p">:</span>
+			<span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AmazonAPIWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">models</span></div></div>
+
+<div class="viewcode-block" id="GoogleAPIBenchmark"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark">[docs]</a><span class="k">class</span> <span class="nc">GoogleAPIBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Benchmark for Google API transcribe.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">MODEL_BASE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;GoogleAPI&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Name of base model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="GoogleAPIBenchmark.create_models"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark.create_models">[docs]</a>	<span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+		<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">GoogleAPIVersion</span><span class="p">:</span>
+			<span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">GoogleAPIWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">models</span></div></div>
+
+<div class="viewcode-block" id="DeepgramAPIBenchmark"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark">[docs]</a><span class="k">class</span> <span class="nc">DeepgramAPIBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Benchmark for Deepgram API.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">MODEL_BASE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;DeepgramAPI&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Name of base model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="DeepgramAPIBenchmark.create_models"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.DeepgramAPIBenchmark.create_models">[docs]</a>	<span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+		<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">DeepgramAPIVersion</span><span class="p">:</span>
+			<span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DeepgramAPIWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">models</span></div></div>
+
+<div class="viewcode-block" id="AssemblyAIAPIBenchmark"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark">[docs]</a><span class="k">class</span> <span class="nc">AssemblyAIAPIBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Benchmark for AssemblyAI API.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">MODEL_BASE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;AssemblyAIAPI&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Name of base model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AssemblyAIAPIBenchmark.create_models"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.AssemblyAIAPIBenchmark.create_models">[docs]</a>	<span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+		<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">AssemblyAIAPIVersion</span><span class="p">:</span>
+			<span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AssemblyAIAPIWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">models</span></div></div>
+
+<div class="viewcode-block" id="AzureAPIBenchmark"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark">[docs]</a><span class="k">class</span> <span class="nc">AzureAPIBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Benchmark for Azure API.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">MODEL_BASE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;AzureAPI&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Name of base model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="AzureAPIBenchmark.create_models"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark.create_models">[docs]</a>	<span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+		<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">AzureAPIVersion</span><span class="p">:</span>
+			<span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">AzureAPIWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">models</span></div></div>
+
+<div class="viewcode-block" id="SpeechmaticsAPIBenchmark"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark">[docs]</a><span class="k">class</span> <span class="nc">SpeechmaticsAPIBenchmark</span><span class="p">(</span><span class="n">Benchmark</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Benchmark for Speechmatics API.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">MODEL_BASE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;SpeechmaticsAPI&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Name of base model.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SpeechmaticsAPIBenchmark.create_models"><a class="viewcode-back" href="../../../_autosummary/speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark.html#speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark.create_models">[docs]</a>	<span class="k">def</span> <span class="nf">create_models</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ModelWrapper</span><span class="p">]:</span>
+		<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">version</span> <span class="ow">in</span> <span class="n">SpeechmaticsAPIVersion</span><span class="p">:</span>
+			<span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SpeechmaticsAPIWrapper</span><span class="p">(</span><span class="n">version</span><span class="p">))</span>
+		<span class="k">return</span> <span class="n">models</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

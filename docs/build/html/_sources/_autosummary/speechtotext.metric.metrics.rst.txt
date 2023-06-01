@@ -1,0 +1,32 @@
+speechtotext.metric.metrics
+===========================
+
+.. automodule:: speechtotext.metric.metrics
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      Metrics
+   
+   
+
+   
+   
+   
+
+
+

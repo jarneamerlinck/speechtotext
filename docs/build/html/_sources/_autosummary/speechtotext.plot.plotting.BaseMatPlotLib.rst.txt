@@ -1,0 +1,26 @@
+speechtotext.plot.plotting.BaseMatPlotLib
+=========================================
+
+.. currentmodule:: speechtotext.plot.plotting
+
+.. autoclass:: BaseMatPlotLib
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~BaseMatPlotLib.create_plot
+      ~BaseMatPlotLib.save
+   
+   
+
+   
+   
+   

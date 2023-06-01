@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.model.amazonWrapper &mdash; speechtotext 0.3.14 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.model.amazonWrapper</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.model.amazonWrapper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Modelwrapper implemented for Amazon STT API.</span>
+
+<span class="sd">AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET  need to be in the &#39;.env&#39;.</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd"> 	from speechtotext.model.amazonWrapper import *</span>
+<span class="sd">	from speechtotext.benchmark.benchmarks import *</span>
+<span class="sd">	from speechtotext.datasets import Dataset</span>
+<span class="sd">	</span>
+<span class="sd">	# Create dataset</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	dataset = Dataset(path_to_dir=&quot;path/to/dir&quot;, name= &quot;dataset_name&quot;)</span>
+<span class="sd">	id = &quot;existing_audio_id&quot;</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	</span>
+<span class="sd">	# Create wrapper</span>
+<span class="sd">	amazonWrapper = AmazonAPIVersion(AmazonAPIVersion.AMAZON_DEFAULT)</span>
+
+<span class="sd">	# Get model</span>
+<span class="sd">	amazonWrapper.get_model()</span>
+
+<span class="sd">	# Benchmark choisen sample</span>
+<span class="sd">	amazonWrapper.benchmark_sample(dataset, id)</span>
+<span class="sd">	</span>
+<span class="sd">	# Benchmark n random samples</span>
+<span class="sd">	array = amazonWrapper.benchmark_n_samples(dataset, number_of_samples)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">urllib.request</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">boto3</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.model.modelWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">string_cleaning</span><span class="p">,</span> <span class="n">load_env_variable</span><span class="p">,</span> <span class="n">NoTranscriptReturned</span>
+
+<div class="viewcode-block" id="amazon_delete_job"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.amazonWrapper.amazon_delete_job.html#speechtotext.model.amazonWrapper.amazon_delete_job">[docs]</a><span class="k">def</span> <span class="nf">amazon_delete_job</span><span class="p">(</span><span class="n">transcribe_client</span><span class="p">,</span> <span class="n">job_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Deletes a transcription job. This also deletes the transcript associated with</span>
+<span class="sd">	the job.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		job_name (str): job name.</span>
+<span class="sd">		transcribe_client (boto3.botocore.client.TranscribeService): transcribe client.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">try</span><span class="p">:</span>
+		<span class="n">transcribe_client</span><span class="o">.</span><span class="n">delete_transcription_job</span><span class="p">(</span>
+			<span class="n">TranscriptionJobName</span><span class="o">=</span><span class="n">job_name</span><span class="p">)</span>
+	<span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+		<span class="k">pass</span></div>
+
+<div class="viewcode-block" id="AmazonAPIVersion"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.amazonWrapper.AmazonAPIVersion.html#speechtotext.model.amazonWrapper.AmazonAPIVersion">[docs]</a><span class="k">class</span> <span class="nc">AmazonAPIVersion</span><span class="p">(</span><span class="n">ModelVersion</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Enum for the available AMAZON API models. This is for the  `Custom language model &lt;https://docs.aws.amazon.com/transcribe/latest/APIReference/API_CreateLanguageModel.html&gt;`_.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		Enum (AmazonAPIVersion): Available whisper API models.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">AMAZON_DEFAULT</span> 	<span class="o">=</span> <span class="s2">&quot;AmazonApi&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Default model version.</span>
+<span class="sd">	&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="AmazonAPIWrapper"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.amazonWrapper.AmazonAPIWrapper.html#speechtotext.model.amazonWrapper.AmazonAPIWrapper">[docs]</a><span class="k">class</span> <span class="nc">AmazonAPIWrapper</span><span class="p">(</span><span class="n">ModelWrapper</span><span class="p">):</span> 
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Wrapper for AMAZON API. AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AMAZON_REGION and AMAZON_BUCKET need to be in the &#39;.env&#39; file in current directory.</span>
+<span class="sd"> 	&quot;&quot;&quot;</span>
+
+	<span class="n">LANGUAGE_CODE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;nl-NL&#39;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Code for the language to transcribe.</span>
+<span class="sd">	</span>
+<span class="sd">	See  `supported languages for amazon &lt;https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html&gt;`_</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">BUCKET_EXIST</span><span class="p">:</span><span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;bool: Boolean that represents if the bucket exists.</span>
+<span class="sd">	&quot;&quot;&quot;</span>	
+
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span><span class="n">AmazonAPIVersion</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Wrapper for AMAZON model.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			model_version (AmazonAPIVersion): Model version of AMAZON STT API to use.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model_version</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AmazonAPIWrapper.get_model"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.amazonWrapper.AmazonAPIWrapper.html#speechtotext.model.amazonWrapper.AmazonAPIWrapper.get_model">[docs]</a>	<span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get model.</span>
+<span class="sd">		&quot;&quot;&quot;</span>		  
+		
+		<span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;AWS_ACCESS_KEY_ID&quot;</span><span class="p">),</span> <span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;AWS_SECRET_ACCESS_KEY&quot;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">BUCKET</span> <span class="o">=</span> <span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;AMAZON_BUCKET&quot;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">AMAZON_REGION</span> <span class="o">=</span> <span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;AMAZON_REGION&quot;</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">s3</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">resource</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;s3&#39;</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">AmazonAPIWrapper</span><span class="o">.</span><span class="n">BUCKET_EXIST</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create_bucket</span><span class="p">(</span>
+				<span class="n">ACL</span> <span class="o">=</span> <span class="s1">&#39;private&#39;</span><span class="p">,</span>
+				<span class="n">Bucket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">BUCKET</span>
+			<span class="p">)</span>
+			<span class="n">AmazonAPIWrapper</span><span class="o">.</span><span class="n">BUCKET_EXIST</span> <span class="o">=</span> <span class="kc">True</span>
+			<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;bucket created with name </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BUCKET</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+	<span class="k">def</span> <span class="nf">get_transcript_of_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get transcript of audio file with API call.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			audio_file_name (str): Path to audio file.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			str: Transcript of audio file.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">s3</span><span class="o">.</span><span class="n">Bucket</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BUCKET</span><span class="p">)</span><span class="o">.</span><span class="n">upload_file</span><span class="p">(</span><span class="n">audio_file_name</span><span class="p">,</span> <span class="n">audio_file_name</span><span class="p">)</span>
+		<span class="n">transcribe_client</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;transcribe&#39;</span><span class="p">,</span> <span class="n">region_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">AMAZON_REGION</span><span class="p">)</span>
+
+		<span class="n">file_uri</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;s3://</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">BUCKET</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">audio_file_name</span><span class="si">}</span><span class="s1">&#39;</span>
+		<span class="n">transcriptFileUri</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_transcribe_file_location</span><span class="p">(</span><span class="n">file_uri</span><span class="p">,</span> <span class="n">transcribe_client</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Transcribe-</span><span class="si">{</span><span class="n">string_cleaning</span><span class="p">(</span><span class="n">audio_file_name</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_transcript_from_json_uri</span><span class="p">(</span><span class="n">transcriptFileUri</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AmazonAPIWrapper._get_transcript_from_json_uri"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.amazonWrapper.AmazonAPIWrapper.html#speechtotext.model.amazonWrapper.AmazonAPIWrapper._get_transcript_from_json_uri">[docs]</a>	<span class="k">def</span> <span class="nf">_get_transcript_from_json_uri</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_uri</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get transcript from amazon transcribe json result.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			json_uri (str): Uri of the resulting json file.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			str: Transcript of the audio.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="k">with</span> <span class="n">urllib</span><span class="o">.</span><span class="n">request</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">json_uri</span><span class="p">)</span> <span class="k">as</span> <span class="n">response</span><span class="p">:</span>
+			<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+			<span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;transcripts&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;transcript&quot;</span><span class="p">)</span></div>
+	
+<div class="viewcode-block" id="AmazonAPIWrapper._get_transcribe_file_location"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.amazonWrapper.AmazonAPIWrapper.html#speechtotext.model.amazonWrapper.AmazonAPIWrapper._get_transcribe_file_location">[docs]</a>	<span class="k">def</span> <span class="nf">_get_transcribe_file_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_uri</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">transcribe_client</span><span class="p">,</span> <span class="n">job_name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;Transcribe&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Transcribe and return result location. </span>
+<span class="sd">		Raises:</span>
+<span class="sd">			AmazonNoTranscriptReturned: Exception when API does not return an transcript.</span>
+<span class="sd">		Args:</span>
+<span class="sd">			file_uri (str): S3 path to audio file.</span>
+<span class="sd">			transcribe_client (): Boto3 transcribe client.</span>
+<span class="sd">			file_ext (str): File extention of audio file.</span>
+<span class="sd">			job_name (str, optional): Name of amazon AWS job. Defaults to &quot;Transcribe&quot;.</span>
+<span class="sd">		&quot;&quot;&quot;</span>	
+		<span class="n">amazon_delete_job</span><span class="p">(</span><span class="n">transcribe_client</span><span class="p">,</span> <span class="n">job_name</span><span class="p">)</span>
+		<span class="n">transcribe_client</span><span class="o">.</span><span class="n">start_transcription_job</span><span class="p">(</span>
+			<span class="n">TranscriptionJobName</span><span class="o">=</span><span class="n">job_name</span><span class="p">,</span>
+			<span class="n">Media</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;MediaFileUri&#39;</span><span class="p">:</span> <span class="n">file_uri</span><span class="p">},</span>
+			<span class="n">MediaFormat</span><span class="o">=</span><span class="s1">&#39;wav&#39;</span><span class="p">,</span>
+			<span class="n">LanguageCode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">LANGUAGE_CODE</span><span class="p">,</span>
+		<span class="p">)</span>
+
+		<span class="n">max_tries</span> <span class="o">=</span> <span class="mi">60</span>
+		<span class="k">while</span> <span class="n">max_tries</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+			<span class="n">max_tries</span> <span class="o">-=</span> <span class="mi">1</span>
+			<span class="n">job</span> <span class="o">=</span> <span class="n">transcribe_client</span><span class="o">.</span><span class="n">get_transcription_job</span><span class="p">(</span><span class="n">TranscriptionJobName</span><span class="o">=</span><span class="n">job_name</span><span class="p">)</span>
+			<span class="n">job_status</span> <span class="o">=</span> <span class="n">job</span><span class="p">[</span><span class="s1">&#39;TranscriptionJob&#39;</span><span class="p">][</span><span class="s1">&#39;TranscriptionJobStatus&#39;</span><span class="p">]</span>
+			<span class="k">if</span> <span class="n">job_status</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;COMPLETED&#39;</span><span class="p">,</span> <span class="s1">&#39;FAILED&#39;</span><span class="p">]:</span>
+				<span class="k">if</span> <span class="n">job_status</span> <span class="o">==</span> <span class="s1">&#39;COMPLETED&#39;</span><span class="p">:</span>
+					<span class="k">return</span> <span class="n">job</span><span class="p">[</span><span class="s1">&#39;TranscriptionJob&#39;</span><span class="p">][</span><span class="s1">&#39;Transcript&#39;</span><span class="p">][</span><span class="s1">&#39;TranscriptFileUri&#39;</span><span class="p">]</span>
+				<span class="k">break</span>
+			<span class="k">else</span><span class="p">:</span>
+				<span class="k">pass</span>
+			<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+		<span class="k">raise</span> <span class="n">NoTranscriptReturned</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -14,7 +14,8 @@ conda
 	dependencies:
 	- python<3.11,>=3.9.2
 	- pip
-	- speechtotext-python
+	- pip:
+	  - speechtotext-python
 
 pip
 ---

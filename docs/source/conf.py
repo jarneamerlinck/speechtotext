@@ -17,6 +17,8 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
+import sys
+sys.path.insert(0, os.path.abspath('..')) 
 
 # -- General configuration ------------------------------------------------
 
@@ -32,11 +34,30 @@ import os
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.autodoc',
+				'sphinx.ext.autosummary', 
 				'sphinx.ext.napoleon',
 				'sphinx_markdown_builder',
-    			'sphinx.ext.graphviz',
-       			'sphinx.ext.inheritance_diagram'
+				'sphinx.ext.graphviz',
+				'sphinx.ext.inheritance_diagram',
+				'sphinx.ext.intersphinx',  
+				'sphinx.ext.viewcode', 
+				'sphinx_autodoc_typehints', 
+				'nbsphinx', 
+				'IPython.sphinxext.ipython_console_highlighting'
 			  ]
+
+intersphinx_mapping = {
+    "python": ("https://docs.python.org/3/", None),
+}
+
+autosummary_generate = True  # Turn on sphinx.ext.autosummary
+autoclass_content = "both"  # Add __init__ doc (ie. params) to class summaries
+html_show_sourcelink = False  # Remove 'view source code' from top of page (for html, not python)
+autodoc_inherit_docstrings = True  # If no docstring, inherit from base class
+set_type_checking_flag = True  # Enable 'expensive' imports for sphinx_autodoc_typehints
+nbsphinx_allow_errors = True  # Continue through Jupyter errors
+#autodoc_typehints = "description" # Sphinx-native method. Not as good as sphinx_autodoc_typehints
+add_module_names = False # Remove namespaces from class/method signatures
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -93,7 +114,7 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'press'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -120,32 +141,3 @@ html_favicon = "_static/favicon.ico"
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'examplecodedoc'
-
-
-# -- Options for LaTeX output ---------------------------------------------
-
-latex_elements = {
-	# The paper size ('letterpaper' or 'a4paper').
-	#
-	# 'papersize': 'letterpaper',
-
-	# The font size ('10pt', '11pt' or '12pt').
-	#
-	# 'pointsize': '10pt',
-
-	# Additional stuff for the LaTeX preamble.
-	#
-	# 'preamble': '',
-
-	# Latex figure (float) alignment
-	#
-	# 'figure_align': 'htbp',
-}
-
-# Grouping the document tree into LaTeX files. List of tuples
-# (source start file, target name, title,
-#  author, documentclass [howto, manual, or own class]).
-latex_documents = [
-	(master_doc, 'speechtotext.tex', u'speechtotext Documentation',
-	u'Jarne Amerlinck', 'manual'),
-]

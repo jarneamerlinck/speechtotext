@@ -1,0 +1,28 @@
+speechtotext.datasets.DatasetBare
+=================================
+
+.. currentmodule:: speechtotext.datasets
+
+.. autoclass:: DatasetBare
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DatasetBare.get_path_of_fragment
+      ~DatasetBare.get_text_of_id
+      ~DatasetBare.number_of_samples
+      ~DatasetBare.validate_samples
+   
+   
+
+   
+   
+   

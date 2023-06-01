@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.functions &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.functions</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.functions</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module with functions for the speechtotext package.</span>
+<span class="sd"> </span>
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd"> 	from speechtotext.functions import *</span>
+<span class="sd">	</span>
+<span class="sd">	# Force torch use for cuda</span>
+<span class="sd">	force_cudnn_initialization()</span>
+<span class="sd">	</span>
+<span class="sd">	# Clean string</span>
+<span class="sd">	string_cleaning(&quot;this has.//./8 to be cleaned::@&quot;)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">functools</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span> <span class="nn">dotenv</span> <span class="kn">import</span> <span class="n">load_dotenv</span>
+
+<span class="n">REGEX_STRING_PARSE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;[^A-Za-z0-9 ]+&#39;</span>
+<span class="sd">&quot;&quot;&quot;str: Regex used to clean the transcripts.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">DEFAULT_DATETIME_FORMAT</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s1">&#39;%Y_%m_</span><span class="si">%d</span><span class="s1">_%H_%M_%S&#39;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;str: Default datetime format. (Uses string format for datetime)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">DEFAULT_REPORTS_FOLDER</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;reports&quot;</span>
+<span class="sd">&quot;&quot;&quot;str: Default folder to save the reports.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">DEFAULT_CSV_NAME</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">DEFAULT_REPORTS_FOLDER</span><span class="si">}</span><span class="s2">/Benchmark_results_</span><span class="si">{</span><span class="n">DEFAULT_DATETIME_FORMAT</span><span class="si">}</span><span class="s2">.csv&quot;</span>
+<span class="sd">&quot;&quot;&quot;str: Default path to save Benchmark results.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="force_cudnn_initialization"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.force_cudnn_initialization.html#speechtotext.functions.force_cudnn_initialization">[docs]</a><span class="k">def</span> <span class="nf">force_cudnn_initialization</span><span class="p">():</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Force torch use for cuda if available.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+		<span class="n">s</span> <span class="o">=</span> <span class="mi">32</span>
+		<span class="n">dev</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cuda&#39;</span><span class="p">)</span>
+		<span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">dev</span><span class="p">),</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">dev</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="string_cleaning"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.string_cleaning.html#speechtotext.functions.string_cleaning">[docs]</a><span class="k">def</span> <span class="nf">string_cleaning</span><span class="p">(</span><span class="n">text</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Cleaning of string for STT.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		text (str): Uncleaned string.</span>
+
+<span class="sd">	Returns:</span>
+<span class="sd">		str: Cleaned string.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">REGEX_STRING_PARSE</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="join_benchmark_results"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.join_benchmark_results.html#speechtotext.functions.join_benchmark_results">[docs]</a><span class="k">def</span> <span class="nf">join_benchmark_results</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">],</span> <span class="n">set_index</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Join Benchmark results.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">			results (list[pd.core.frame.DataFrame]): Results of benchmarks.</span>
+<span class="sd">			set_index (bool, optional): Set True if [&quot;model_name&quot;, &quot;audio_ID&quot;] can be set as index. Defaults to True.</span>
+
+<span class="sd">	Returns:</span>
+<span class="sd">			pd.core.frame.DataFrame: Dataframe with results of all benchmarks.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+	<span class="k">if</span> <span class="n">set_index</span><span class="p">:</span>
+		<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="s2">&quot;model_name&quot;</span><span class="p">,</span> <span class="s2">&quot;audio_ID&quot;</span><span class="p">])</span>
+		<span class="k">return</span> <span class="n">df</span>
+	<span class="k">return</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="separate_benchmark_results_by_model"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.separate_benchmark_results_by_model.html#speechtotext.functions.separate_benchmark_results_by_model">[docs]</a><span class="k">def</span> <span class="nf">separate_benchmark_results_by_model</span><span class="p">(</span><span class="n">dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">]:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Seperate benchmark results for each model.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">			dataframe pd.core.frame.DataFrame: Dataframe with results of all benchmarks.</span>
+
+<span class="sd">	Returns:</span>
+<span class="sd">			(list[pd.core.frame.DataFrame]): Results of benchmarks. </span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	
+	<span class="n">model_names</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+
+	<span class="n">DataFrameDict</span> <span class="o">=</span> <span class="p">{</span><span class="n">elem</span> <span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">()</span> <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">model_names</span><span class="p">}</span>
+
+	<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">DataFrameDict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+		<span class="n">df</span> <span class="o">=</span> <span class="n">dataframe</span><span class="p">[:][</span><span class="n">dataframe</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">key</span><span class="p">]</span>
+		<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;audio_ID&quot;</span><span class="p">)</span>
+		<span class="k">del</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;model_name&#39;</span><span class="p">]</span>
+		<span class="n">DataFrameDict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span>
+	
+	<span class="k">return</span> <span class="n">DataFrameDict</span></div>
+
+<div class="viewcode-block" id="benchmark_results_to_csv"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.benchmark_results_to_csv.html#speechtotext.functions.benchmark_results_to_csv">[docs]</a><span class="k">def</span> <span class="nf">benchmark_results_to_csv</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">],</span> <span class="n">save_name</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="n">DEFAULT_CSV_NAME</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Creates csv from benchmark results.</span>
+<span class="sd">	</span>
+<span class="sd">	Args:</span>
+<span class="sd">		results (list[pd.core.frame.DataFrame]): List of results from benchmarks.</span>
+<span class="sd">		save_name (str, optional): Filename of output. Defaults to DEFAULT_CSV_NAME.</span>
+<span class="sd">	&quot;&quot;&quot;</span>  
+	<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+	<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">save_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+ 
+<div class="viewcode-block" id="save_sub_folder_name"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.save_sub_folder_name.html#speechtotext.functions.save_sub_folder_name">[docs]</a><span class="k">def</span> <span class="nf">save_sub_folder_name</span><span class="p">(</span><span class="n">folder_path</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">subfolder_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Creates subfolder path.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		folder_path (str): Path of parent folder.</span>
+<span class="sd">		subfolder_name (str): Subfolder name.</span>
+
+<span class="sd">	Returns:</span>
+<span class="sd">		str: Path to save folder.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="n">folder_name</span> <span class="o">=</span>  <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">folder_path</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">subfolder_name</span><span class="si">}</span><span class="s2">&quot;</span>
+	<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">folder_name</span><span class="p">):</span>
+		<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_name</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">folder_name</span></div>
+
+<div class="viewcode-block" id="save_folder_name"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.save_folder_name.html#speechtotext.functions.save_folder_name">[docs]</a><span class="k">def</span> <span class="nf">save_folder_name</span><span class="p">(</span><span class="n">report_name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">folder_name</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="n">DEFAULT_REPORTS_FOLDER</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Makes folder path.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		report_name (str): Name of report.</span>
+<span class="sd">		folder_name (str, optional): Name of folder. Defaults to DEFAULT_REPORT_FOLDER.</span>
+
+<span class="sd">	Returns:</span>
+<span class="sd">		str: path to save folder.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="n">folder_name</span> <span class="o">=</span>  <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">folder_name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">report_name</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">DEFAULT_DATETIME_FORMAT</span><span class="si">}</span><span class="s2">&quot;</span>
+	<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">folder_name</span><span class="p">):</span>
+		<span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">folder_name</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">folder_name</span></div>
+
+<div class="viewcode-block" id="BaseResult"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult">[docs]</a><span class="k">class</span> <span class="nc">BaseResult</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Parent class for results. </span>
+<span class="sd"> 	Child class should be made and added to Plotting.CUSTOM_RESULTS, Plotting.CUSTOM_ERRORS, Plotting.CUSTOM_PLOTS or Plotting.CUSTOM_ERROR_PLOTS</span>
+<span class="sd">	&quot;&quot;&quot;</span>   
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">report_folder</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Creates object of BaseResult. Child class should be added to Plotting.CUSTOM_RESULTS.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			df (pd.core.frame.DataFrame): Dataframe that needs to be plotted.</span>
+<span class="sd">			report_folder (str): Path to report folder.</span>
+<span class="sd">			file_name (str): Name of saved File.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="bp">self</span><span class="o">.</span><span class="n">report_folder</span> <span class="o">=</span> <span class="n">report_folder</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">file_name</span> <span class="o">=</span> <span class="n">file_name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">save_file_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">report_folder</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_name</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">ext</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<div class="viewcode-block" id="BaseResult.save"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult.save">[docs]</a>	<span class="nd">@abstractmethod</span>
+	<span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Saves Result to report folder.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="k">pass</span></div></div>
+
+<div class="viewcode-block" id="get_extention_of_file_name"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.get_extention_of_file_name.html#speechtotext.functions.get_extention_of_file_name">[docs]</a><span class="k">def</span> <span class="nf">get_extention_of_file_name</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Get extention of file name.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		file_name (str): File name.</span>
+
+<span class="sd">	Returns:</span>
+<span class="sd">		str: Extention of tile name.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="n">_</span> <span class="p">,</span> <span class="n">file_extension</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">file_extension</span></div>
+
+<div class="viewcode-block" id="get_file_name_without_extention"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.get_file_name_without_extention.html#speechtotext.functions.get_file_name_without_extention">[docs]</a><span class="k">def</span> <span class="nf">get_file_name_without_extention</span><span class="p">(</span><span class="n">file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Get extention of file name.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		file_name (str): File name.</span>
+
+<span class="sd">	Returns:</span>
+<span class="sd">		str: Extention of tile name.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="n">file_name</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">file_name</span></div>
+
+<div class="viewcode-block" id="uppercase_for_first_character_in_string"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.uppercase_for_first_character_in_string.html#speechtotext.functions.uppercase_for_first_character_in_string">[docs]</a><span class="k">def</span> <span class="nf">uppercase_for_first_character_in_string</span><span class="p">(</span><span class="n">string</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Return string where first character is uppercase.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		string (str): String to process.</span>
+
+<span class="sd">	Returns:</span>
+<span class="sd">		str: String where first character is uppercase.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">return</span>  <span class="n">string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="n">string</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span></div>
+
+<div class="viewcode-block" id="multidispatch"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.multidispatch.html#speechtotext.functions.multidispatch">[docs]</a><span class="k">def</span> <span class="nf">multidispatch</span><span class="p">(</span><span class="o">*</span><span class="n">types</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Allow for Method overloading for classes.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">def</span> <span class="nf">register</span><span class="p">(</span><span class="n">function</span><span class="p">):</span>
+		<span class="n">name</span> <span class="o">=</span> <span class="n">function</span><span class="o">.</span><span class="vm">__name__</span>
+		<span class="n">mm</span> <span class="o">=</span> <span class="n">multidispatch</span><span class="o">.</span><span class="n">registry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">mm</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+			<span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
+			<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+				<span class="n">types</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">arg</span><span class="o">.</span><span class="vm">__class__</span> <span class="k">for</span> <span class="n">arg</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span> 
+				<span class="n">function</span> <span class="o">=</span> <span class="n">wrapper</span><span class="o">.</span><span class="n">typemap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">types</span><span class="p">)</span>
+				<span class="k">if</span> <span class="n">function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+					<span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;no match&quot;</span><span class="p">)</span>
+				<span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+			<span class="n">wrapper</span><span class="o">.</span><span class="n">typemap</span> <span class="o">=</span> <span class="p">{}</span>
+			<span class="n">mm</span> <span class="o">=</span> <span class="n">multidispatch</span><span class="o">.</span><span class="n">registry</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">wrapper</span>
+		<span class="k">if</span> <span class="n">types</span> <span class="ow">in</span> <span class="n">mm</span><span class="o">.</span><span class="n">typemap</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;duplicate registration&quot;</span><span class="p">)</span>
+		<span class="n">mm</span><span class="o">.</span><span class="n">typemap</span><span class="p">[</span><span class="n">types</span><span class="p">]</span> <span class="o">=</span> <span class="n">function</span>
+		<span class="k">return</span> <span class="n">mm</span>
+	<span class="k">return</span> <span class="n">register</span></div>
+<span class="n">multidispatch</span><span class="o">.</span><span class="n">registry</span> <span class="o">=</span> <span class="p">{}</span>
+
+<div class="viewcode-block" id="RequiredEnvVariablesMissing"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.RequiredEnvVariablesMissing.html#speechtotext.functions.RequiredEnvVariablesMissing">[docs]</a><span class="k">class</span> <span class="nc">RequiredEnvVariablesMissing</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Exception when an required env variable is missing.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env_name</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>     
+				
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Required env variable </span><span class="si">{</span><span class="n">env_name</span><span class="si">}</span><span class="s2"> is missing.&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="load_env_variable"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.load_env_variable.html#speechtotext.functions.load_env_variable">[docs]</a><span class="k">def</span> <span class="nf">load_env_variable</span><span class="p">(</span><span class="n">env_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Loads and returns env variable.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		env_name (str): .env key.</span>
+
+<span class="sd">	Raises:</span>
+<span class="sd">		RequiredEnvVariablesMissing: Prints the variable name if its missing.</span>
+
+<span class="sd">	Returns:</span>
+<span class="sd">		str: Value of the .env key.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="n">load_dotenv</span><span class="p">()</span>
+	<span class="k">if</span> <span class="n">env_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+		<span class="k">raise</span> <span class="n">RequiredEnvVariablesMissing</span><span class="p">(</span><span class="n">env_name</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="n">env_name</span><span class="p">)</span></div>
+
+  
+<div class="viewcode-block" id="timing"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.timing.html#speechtotext.functions.timing">[docs]</a><span class="k">def</span> <span class="nf">timing</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Functions used to time duration of function.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">wrap</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">):</span>
+		<span class="n">ts</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+		<span class="n">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+		<span class="n">te</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+		<span class="k">return</span> <span class="n">result</span><span class="p">,</span> <span class="n">te</span><span class="o">-</span><span class="n">ts</span>
+	<span class="k">return</span> <span class="n">wrap</span></div>
+
+<div class="viewcode-block" id="NoTranscriptReturned"><a class="viewcode-back" href="../../_autosummary/speechtotext.functions.NoTranscriptReturned.html#speechtotext.functions.NoTranscriptReturned">[docs]</a><span class="k">class</span> <span class="nc">NoTranscriptReturned</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Exception when API does not return a transcript.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>     
+				
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="s2">&quot;Results not found&quot;</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

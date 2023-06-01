@@ -1,0 +1,6 @@
+speechtotext.functions.join\_benchmark\_results
+===============================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: join_benchmark_results

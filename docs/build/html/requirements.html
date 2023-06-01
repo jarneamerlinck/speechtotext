@@ -1,235 +1,104 @@
 <!DOCTYPE html>
-<html  lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-      <title>Requirements for speechtotext</title>
-    
-          <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-          <link rel="stylesheet" href="_static/theme.css " type="text/css" />
-          <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      
-      <!-- sphinx script_files -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Requirements for speechtotext &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Code Examples for speechtotext" href="examples.html" />
+    <link rel="prev" title="Installation for speechtotext" href="installation.html" /> 
+</head>
 
-      
-      <!-- bundled in js (rollup iife) -->
-      <!-- <script src="_static/theme-vendors.js"></script> -->
-      <script src="_static/theme.js" defer></script>
-    
-  <link rel="index" title="Index" href="genindex.html" />
-  <link rel="search" title="Search" href="search.html" />
-  <link rel="next" title="Code Examples for speechtotext" href="examples.html" />
-  <link rel="prev" title="Installation for speechtotext" href="installation.html" /> 
-  </head>
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  <body>
-    <div id="app">
-    <div class="theme-container" :class="pageClasses"><navbar @toggle-sidebar="toggleSidebar">
-  <router-link to="index.html" class="home-link">
-    
-      <span class="site-name">speechtotext</span>
-    
-  </router-link>
-
-  <div class="links">
-    <navlinks class="can-hide">
-
-  
-    <div class="nav-item">
-      <a href="index.html#welcome-to-speechtotext-s-documentation"
-         class="nav-link  router-link-active">
-         Get started
-      </a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="index.html#welcome-to-speechtotext-s-documentation"
-         class="nav-link ">
-         Package Contents
-      </a>
-    </div>
-  
-
-
-
-    </navlinks>
-  </div>
-</navbar>
-
-      
-      <div class="sidebar-mask" @click="toggleSidebar(false)">
-      </div>
-        <sidebar @toggle-sidebar="toggleSidebar">
           
-          <navlinks>
-            
-
-  
-    <div class="nav-item">
-      <a href="index.html#welcome-to-speechtotext-s-documentation"
-         class="nav-link  router-link-active">
-         Get started
-      </a>
-    </div>
-  
-    <div class="nav-item">
-      <a href="index.html#welcome-to-speechtotext-s-documentation"
-         class="nav-link ">
-         Package Contents
-      </a>
-    </div>
-  
-
-
-
-            
-          </navlinks><div id="searchbox" class="searchbox" role="search">
-  <div class="caption"><span class="caption-text">Quick search</span>
-    <div class="searchformwrapper">
-      <form class="search" action="search.html" method="get">
-        <input type="text" name="q" />
-        <input type="submit" value="Search" />
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-      </form>
-    </div>
-  </div>
-</div><div class="sidebar-links" role="navigation" aria-label="main navigation">
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#welcome-to-speechtotext-s-documentation">Get started</a></span>
-      </p>
-      <ul class="current">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="installation.html" class="reference internal ">Installation for speechtotext</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 current">
-            
-              <a href="#" class="reference internal current">Requirements for speechtotext</a>
-            
-
-            
-              <ul>
-                
-                  <li class="toctree-l2"><a href="#overview" class="reference internal">Overview</a></li>
-                
-                  <li class="toctree-l2"><a href="#content-of-env" class="reference internal">Content of .env</a></li>
-                
-              </ul>
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="examples.html" class="reference internal ">Code Examples for speechtotext</a>
-            
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
-    <div class="sidebar-group">
-      <p class="caption">
-        <span class="caption-text"><a href="index.html#welcome-to-speechtotext-s-documentation">Package Contents</a></span>
-      </p>
-      <ul class="">
-        
-          <li class="toctree-l1 ">
-            
-              <a href="speechtotext/index.html" class="reference internal ">speechtotext package</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="speechtotext/model/index.html" class="reference internal ">speechtotext model package</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="speechtotext/benchmark/index.html" class="reference internal ">speechtotext benchmark package</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="speechtotext/plot/index.html" class="reference internal ">speechtotext plot package</a>
-            
-
-            
-          </li>
-
-        
-          <li class="toctree-l1 ">
-            
-              <a href="speechtotext/metric/index.html" class="reference internal ">speechtotext metric package</a>
-            
-
-            
-          </li>
-
-        
-      </ul>
-    </div>
-  
+          
+          <a href="index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
-        </sidebar>
-
-      <page>
-          <div class="body-header" role="navigation" aria-label="navigation">
-  
-  <ul class="breadcrumbs">
-    <li><a href="index.html">Docs</a> &raquo;</li>
-    
-    <li>Requirements for speechtotext</li>
-  </ul>
-  
-
-  <ul class="page-nav">
-  <li class="prev">
-    <a href="installation.html"
-       title="previous chapter">← Installation for speechtotext</a>
-  </li>
-  <li class="next">
-    <a href="examples.html"
-       title="next chapter">Code Examples for speechtotext →</a>
-  </li>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Requirements for speechtotext</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#content-of-env">Content of .env</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#whisper-api">Whisper API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#amazon-transcribe">Amazon transcribe</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#google-api">Google API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deepgram-api">Deepgram API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assemblyai-api">AssemblyAI API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#azure-api">Azure API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#speechmatics-api">Speechmatics API</a></li>
 </ul>
-  
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Requirements for speechtotext</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
 </div>
-<hr>
-          <div class="content" role="main" v-pre>
-            
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
   <section id="requirements-for-speechtotext">
-<h1>Requirements for speechtotext<a class="headerlink" href="#requirements-for-speechtotext" title="Permalink to this heading">¶</a></h1>
+<h1>Requirements for speechtotext<a class="headerlink" href="#requirements-for-speechtotext" title="Permalink to this heading"></a></h1>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>Requirements for the speechtotext package:</p>
 <ul class="simple">
 <li><p>Folder with datasets and the <code class="docutils literal notranslate"><span class="pre">transcripts.txt</span></code> to test the models.</p></li>
@@ -237,16 +106,16 @@
 </ul>
 </section>
 <section id="content-of-env">
-<h2>Content of .env<a class="headerlink" href="#content-of-env" title="Permalink to this heading">¶</a></h2>
+<h2>Content of .env<a class="headerlink" href="#content-of-env" title="Permalink to this heading"></a></h2>
 <section id="whisper-api">
-<h3>Whisper API<a class="headerlink" href="#whisper-api" title="Permalink to this heading">¶</a></h3>
+<h3>Whisper API<a class="headerlink" href="#whisper-api" title="Permalink to this heading"></a></h3>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span>sk-somemorerandomnumberlettersandmorerandomnessform
 <span class="nv">OPENAI_ORGANIZATION</span><span class="o">=</span>org-somerandomnumberandlette
 </pre></div>
 </div>
 </section>
 <section id="amazon-transcribe">
-<h3>Amazon transcribe<a class="headerlink" href="#amazon-transcribe" title="Permalink to this heading">¶</a></h3>
+<h3>Amazon transcribe<a class="headerlink" href="#amazon-transcribe" title="Permalink to this heading"></a></h3>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">AWS_ACCESS_KEY_ID</span><span class="o">=</span>access-id
 <span class="nv">AWS_SECRET_ACCESS_KEY</span><span class="o">=</span>acces-key
 <span class="nv">AMAZON_REGION</span><span class="o">=</span>eu-west-3
@@ -261,33 +130,33 @@
 </div>
 </section>
 <section id="google-api">
-<h3>Google API<a class="headerlink" href="#google-api" title="Permalink to this heading">¶</a></h3>
+<h3>Google API<a class="headerlink" href="#google-api" title="Permalink to this heading"></a></h3>
 <p>This is the file for an service account.  <a class="reference external" href="https://developers.google.com/workspace/guides/create-credentials">Link to google cloud docs</a>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">GOOGLE_APPLICATION_CREDENTIALS</span><span class="o">=</span><span class="s2">&quot;/path/to/keyfile.json&quot;</span>
 </pre></div>
 </div>
 </section>
 <section id="deepgram-api">
-<h3>Deepgram API<a class="headerlink" href="#deepgram-api" title="Permalink to this heading">¶</a></h3>
+<h3>Deepgram API<a class="headerlink" href="#deepgram-api" title="Permalink to this heading"></a></h3>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">DEEPGRAM_API_KEY</span><span class="o">=</span>somemorerandomnumberlettersandmorerandomnessform
 </pre></div>
 </div>
 </section>
 <section id="assemblyai-api">
-<h3>AssemblyAI API<a class="headerlink" href="#assemblyai-api" title="Permalink to this heading">¶</a></h3>
+<h3>AssemblyAI API<a class="headerlink" href="#assemblyai-api" title="Permalink to this heading"></a></h3>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">ASSEMBLY_AI_API_KEY</span><span class="o">=</span>somemorerandomnumberlettersandmorerandomnessform
 </pre></div>
 </div>
 </section>
 <section id="azure-api">
-<h3>Azure API<a class="headerlink" href="#azure-api" title="Permalink to this heading">¶</a></h3>
+<h3>Azure API<a class="headerlink" href="#azure-api" title="Permalink to this heading"></a></h3>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">AZURE_SPEECH_KEY</span><span class="o">=</span>somemorerandomnumberlettersandmorerandomnessform
 <span class="nv">AZURE_SPEECH_REGION</span><span class="o">=</span>somemorerandomnumberlettersandmorerandomnessform
 </pre></div>
 </div>
 </section>
 <section id="speechmatics-api">
-<h3>Speechmatics API<a class="headerlink" href="#speechmatics-api" title="Permalink to this heading">¶</a></h3>
+<h3>Speechmatics API<a class="headerlink" href="#speechmatics-api" title="Permalink to this heading"></a></h3>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">SPEECHMATICS_API_KEY</span><span class="o">=</span>somemorerandomnumberlettersandmorerandomnessform
 </pre></div>
 </div>
@@ -296,25 +165,31 @@
 </section>
 
 
+           </div>
           </div>
-          <div class="page-nav">
-            <div class="inner"><ul class="page-nav">
-  <li class="prev">
-    <a href="installation.html"
-       title="previous chapter">← Installation for speechtotext</a>
-  </li>
-  <li class="next">
-    <a href="examples.html"
-       title="next chapter">Code Examples for speechtotext →</a>
-  </li>
-</ul><div class="footer" role="contentinfo">
-      &#169; Copyright 2023 Jarne Amerlinck.
-</div>
-            </div>
-          </div>
-      </page>
-    </div></div>
-    
-    
-  </body>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation for speechtotext" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Code Examples for speechtotext" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
 </html>

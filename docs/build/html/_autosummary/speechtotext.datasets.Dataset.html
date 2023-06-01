@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.datasets.Dataset &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="speechtotext.datasets.DatasetBare" href="speechtotext.datasets.DatasetBare.html" />
+    <link rel="prev" title="speechtotext.datasets" href="speechtotext.datasets.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">speechtotext</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="speechtotext.html">speechtotext</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="speechtotext.datasets.html">speechtotext.datasets</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">speechtotext.datasets.Dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.datasets.DatasetBare.html">speechtotext.datasets.DatasetBare</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.datasets.SampleDataset.html">speechtotext.datasets.SampleDataset</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.functions.html">speechtotext.functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.benchmark.html">speechtotext.benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.model.html">speechtotext.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.plot.html">speechtotext.plot</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.datasets.html">speechtotext.datasets</a></li>
+      <li class="breadcrumb-item active">speechtotext.datasets.Dataset</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="speechtotext-datasets-dataset">
+<h1>speechtotext.datasets.Dataset<a class="headerlink" href="#speechtotext-datasets-dataset" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path_to_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_ext</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.wav'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/datasets.html#Dataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.datasets.Dataset" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="speechtotext.datasets.DatasetBare.html#speechtotext.datasets.DatasetBare" title="speechtotext.datasets.DatasetBare"><code class="xref py py-class docutils literal notranslate"><span class="pre">DatasetBare</span></code></a></p>
+<p>Class to extract data from the dataset folder.</p>
+<p>Creates dataset object.
+There needs to be an transcripts.txt directly in the dir.
+:type path_to_dir: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>
+:param path_to_dir: Path to dir ending with “/”.
+:type path_to_dir: str
+:type name: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>
+:param name: Name of dataset.
+:type name: str
+:type file_ext: <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>
+:param file_ext: Extention of files.
+:type file_ext: str</p>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.datasets.Dataset.get_n_samples" title="speechtotext.datasets.Dataset.get_n_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_n_samples</span></code></a></p></td>
+<td><p>Get n random samples.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.datasets.Dataset.get_path_of_fragment" title="speechtotext.datasets.Dataset.get_path_of_fragment"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_path_of_fragment</span></code></a></p></td>
+<td><p>Gets path of fragment.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.datasets.Dataset.get_text_of_id" title="speechtotext.datasets.Dataset.get_text_of_id"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_text_of_id</span></code></a></p></td>
+<td><p>Get text of fragment id.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.datasets.Dataset.load_transcript" title="speechtotext.datasets.Dataset.load_transcript"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_transcript</span></code></a></p></td>
+<td><p>Loads transcript.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.datasets.Dataset.number_of_samples" title="speechtotext.datasets.Dataset.number_of_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">number_of_samples</span></code></a></p></td>
+<td><p>Get number of samples in dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.datasets.Dataset.validate_samples" title="speechtotext.datasets.Dataset.validate_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">validate_samples</span></code></a></p></td>
+<td><p>Validate if samples have a corresponding file.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset.get_n_samples">
+<span class="sig-name descname"><span class="pre">get_n_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number_of_samples</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/datasets.html#Dataset.get_n_samples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.datasets.Dataset.get_n_samples" title="Permalink to this definition"></a></dt>
+<dd><p>Get n random samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>number_of_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – Number of random samples.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataset with the samples.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="speechtotext.datasets.SampleDataset.html#speechtotext.datasets.SampleDataset" title="speechtotext.datasets.SampleDataset">SampleDataset</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset.get_path_of_fragment">
+<span class="sig-name descname"><span class="pre">get_path_of_fragment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.datasets.Dataset.get_path_of_fragment" title="Permalink to this definition"></a></dt>
+<dd><p>Gets path of fragment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Id of file.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.11)"><strong>FileNotFoundError</strong></a> – If id doesn’t exist.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path to fragment.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset.get_text_of_id">
+<span class="sig-name descname"><span class="pre">get_text_of_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">audio_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.datasets.Dataset.get_text_of_id" title="Permalink to this definition"></a></dt>
+<dd><p>Get text of fragment id.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Id of fragment.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String of spoken text.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset.load_transcript">
+<span class="sig-name descname"><span class="pre">load_transcript</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/datasets.html#Dataset.load_transcript"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.datasets.Dataset.load_transcript" title="Permalink to this definition"></a></dt>
+<dd><p>Loads transcript.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset.number_of_samples">
+<span class="sig-name descname"><span class="pre">number_of_samples</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.datasets.Dataset.number_of_samples" title="Permalink to this definition"></a></dt>
+<dd><p>Get number of samples in dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of samples in dataset.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.datasets.Dataset.validate_samples">
+<span class="sig-name descname"><span class="pre">validate_samples</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#speechtotext.datasets.Dataset.validate_samples" title="Permalink to this definition"></a></dt>
+<dd><p>Validate if samples have a corresponding file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if all samples have a file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="speechtotext.datasets.html" class="btn btn-neutral float-left" title="speechtotext.datasets" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="speechtotext.datasets.DatasetBare.html" class="btn btn-neutral float-right" title="speechtotext.datasets.DatasetBare" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

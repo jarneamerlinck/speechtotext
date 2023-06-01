@@ -1,0 +1,38 @@
+speechtotext.benchmark.customBenchmarks.AmazonAPIBenchmark
+==========================================================
+
+.. currentmodule:: speechtotext.benchmark.customBenchmarks
+
+.. autoclass:: AmazonAPIBenchmark
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~AmazonAPIBenchmark.convert_to_pandas
+      ~AmazonAPIBenchmark.create_models
+      ~AmazonAPIBenchmark.save_to_csv
+      ~AmazonAPIBenchmark.set_dataset
+      ~AmazonAPIBenchmark.update_samples
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AmazonAPIBenchmark.BENCHMARK_SAMPLES
+      ~AmazonAPIBenchmark.DATASET
+      ~AmazonAPIBenchmark.ERROR_LIST
+      ~AmazonAPIBenchmark.MODEL_BASE
+   
+   

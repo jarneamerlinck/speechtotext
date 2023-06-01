@@ -1,0 +1,37 @@
+speechtotext.model.azureWrapper.AzureAPIWrapper
+===============================================
+
+.. currentmodule:: speechtotext.model.azureWrapper
+
+.. autoclass:: AzureAPIWrapper
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~AzureAPIWrapper.benchmark_n_samples
+      ~AzureAPIWrapper.benchmark_sample
+      ~AzureAPIWrapper.benchmark_samples
+      ~AzureAPIWrapper.convert_sample
+      ~AzureAPIWrapper.get_model
+      ~AzureAPIWrapper.get_transcript_of_file
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AzureAPIWrapper.LANGUAGE_CODE
+      ~AzureAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE
+   
+   

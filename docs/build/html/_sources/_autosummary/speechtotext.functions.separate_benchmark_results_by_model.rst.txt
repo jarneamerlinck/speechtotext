@@ -1,0 +1,6 @@
+speechtotext.functions.separate\_benchmark\_results\_by\_model
+==============================================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: separate_benchmark_results_by_model

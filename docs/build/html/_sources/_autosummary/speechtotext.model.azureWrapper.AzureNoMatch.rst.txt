@@ -1,0 +1,6 @@
+speechtotext.model.azureWrapper.AzureNoMatch
+============================================
+
+.. currentmodule:: speechtotext.model.azureWrapper
+
+.. autoexception:: AzureNoMatch

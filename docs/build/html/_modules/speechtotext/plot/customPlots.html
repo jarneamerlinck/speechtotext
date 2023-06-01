@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.plot.customPlots &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.plot.customPlots</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.plot.customPlots</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module to create custom plots for the plotting module</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd">	from speechtotext.functions import BaseResult</span>
+<span class="sd">	from speechtotext.plot.plotting import Plotting</span>
+<span class="sd"> </span>
+<span class="sd">	# Create class with matplotlib picture</span>
+<span class="sd">	class BoxPlotOfModelsWer(BasePlot):</span>
+
+<span class="sd">		def create_plot(self) -&gt; matplotlib.figure.Figure:</span>
+<span class="sd">			plot = sns.boxplot(data=self.df, x=&quot;wer&quot;, y=&quot;model_name&quot;)</span>
+<span class="sd">			fig = plot.get_figure()</span>
+<span class="sd">			return fig</span>
+
+<span class="sd">		def save_plot(self):    </span>
+<span class="sd">			fig = self.create_plot()</span>
+<span class="sd">			fig.savefig(self.save_file_name)</span>
+<span class="sd">	# Add model to Plotting</span>
+<span class="sd">	Plotting.CUSTOM_PLOTS.append(BoxPlotOfModelsWer)</span>
+
+<span class="sd">	# Create class with plotly picture</span>
+<span class="sd">	from speechtotext.plot.plotting import BasePlot, Plotting</span>
+<span class="sd">	class DemoPlotlyExample(BasePlot):</span>
+
+<span class="sd">		def create_plot(self) -&gt; plotly.graph_objs._figure.Figure:</span>
+<span class="sd">			self.df = px.data.gapminder().query(&quot;country==&#39;Canada&#39;&quot;)</span>
+<span class="sd">			fig = px.line(df, x=&quot;year&quot;, y=&quot;lifeExp&quot;, title=&#39;Life expectancy in Canada&#39;)</span>
+<span class="sd">			return fig</span>
+
+<span class="sd">	# Add model to Plotting</span>
+<span class="sd">	Plotting.CUSTOM_PLOTS.append(DemoPlotlyExample)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">plotly</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">px</span>
+<span class="kn">import</span> <span class="nn">plotly.tools</span> <span class="k">as</span> <span class="nn">tls</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objs</span> <span class="k">as</span> <span class="nn">go</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="kn">import</span> <span class="n">ListedColormap</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span>  <span class="n">Plotting</span><span class="p">,</span> <span class="n">DynamicPlotClassesByMetricByDataset</span><span class="p">,</span> <span class="n">DynamicPlotClassesByMetricForEachDataset</span><span class="p">,</span> <span class="n">BaseMatPlotLib</span>
+
+<div class="viewcode-block" id="DynamicallyByModelNameForEachDataset"><a class="viewcode-back" href="../../../_autosummary/speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset.html#speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset">[docs]</a><span class="k">class</span> <span class="nc">DynamicallyByModelNameForEachDataset</span><span class="p">(</span><span class="n">DynamicPlotClassesByMetricForEachDataset</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Class that is used to create plots for an benchmark.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+<div class="viewcode-block" id="DynamicallyByModelNameForEachDataset.create_plot"><a class="viewcode-back" href="../../../_autosummary/speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset.html#speechtotext.plot.customPlots.DynamicallyByModelNameForEachDataset.create_plot">[docs]</a>	<span class="k">def</span> <span class="nf">create_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plotly</span><span class="o">.</span><span class="n">graph_objs</span><span class="o">.</span><span class="n">_figure</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+
+		<span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span>
+		<span class="n">y_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span>
+		<span class="n">y_title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_description</span>
+  
+		<span class="n">x_name</span> <span class="o">=</span> <span class="s2">&quot;model_name&quot;</span>
+		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="p">)):</span>
+			<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+		<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;dataset==&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_name</span><span class="si">}</span><span class="s1">&quot;&#39;</span><span class="p">)</span>
+		
+		<span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+			<span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">],</span>
+			<span class="n">df</span><span class="p">[</span><span class="n">y_name</span><span class="p">]</span>
+		<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+		<span class="n">fig_width</span><span class="o">=</span> <span class="mi">300</span><span class="o">+</span> <span class="mi">75</span><span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+		<span class="n">figure</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">chart_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x_name</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_name</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">fig_width</span><span class="p">)</span>
+		<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+			<span class="n">figure</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s</span><span class="p">,</span>
+							<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">==</span><span class="n">s</span><span class="p">][</span><span class="n">y_name</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+							<span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">==</span><span class="n">s</span><span class="p">][</span><span class="n">x_name</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+							<span class="n">yshift</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+							<span class="n">showarrow</span> <span class="o">=</span> <span class="kc">False</span>
+							<span class="p">)</span>
+		<span class="n">figure</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+			<span class="n">title</span><span class="o">=</span><span class="p">{</span>
+				<span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+				<span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
+				<span class="s1">&#39;xanchor&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+				<span class="s1">&#39;yanchor&#39;</span><span class="p">:</span> <span class="s1">&#39;top&#39;</span><span class="p">},</span>
+			<span class="n">showlegend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+		<span class="n">figure</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span>
+      		<span class="n">title</span><span class="o">=</span><span class="n">y_title</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">figure</span></div></div>
+<span class="c1"># Add model to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_PLOTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DynamicallyByModelNameForEachDataset</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DynamicallyByModelNameByDataset"><a class="viewcode-back" href="../../../_autosummary/speechtotext.plot.customPlots.DynamicallyByModelNameByDataset.html#speechtotext.plot.customPlots.DynamicallyByModelNameByDataset">[docs]</a><span class="k">class</span> <span class="nc">DynamicallyByModelNameByDataset</span><span class="p">(</span><span class="n">DynamicPlotClassesByMetricByDataset</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Class that is used to create plots for an benchmark.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">def</span> <span class="nf">create_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plotly</span><span class="o">.</span><span class="n">graph_objs</span><span class="o">.</span><span class="n">_figure</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+
+		<span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span>
+		<span class="n">y_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_name</span>
+		<span class="n">y_title</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">metric_description</span>
+		<span class="n">x_name</span> <span class="o">=</span> <span class="s2">&quot;model_name&quot;</span>
+		<span class="n">group_name</span> <span class="o">=</span> <span class="s2">&quot;dataset&quot;</span>
+
+		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="p">)):</span>
+			<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+   
+
+		<span class="n">chart_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span>
+			<span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">],</span>
+			<span class="n">df</span><span class="p">[</span><span class="n">y_name</span><span class="p">],</span>
+			<span class="n">df</span><span class="p">[</span><span class="n">group_name</span><span class="p">],</span>
+		<span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+		<span class="n">fig_width</span><span class="o">=</span> <span class="mi">300</span><span class="o">+</span> <span class="mi">75</span><span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">+</span>  <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">*</span><span class="n">df</span><span class="p">[</span><span class="n">group_name</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">*</span> <span class="mi">5</span><span class="p">)</span>
+		<span class="n">figure</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">chart_data</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x_name</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_name</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">group_name</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">fig_width</span><span class="p">)</span>
+		<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+			<span class="n">figure</span><span class="o">.</span><span class="n">add_annotation</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">s</span><span class="p">,</span>
+							<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">==</span><span class="n">s</span><span class="p">][</span><span class="n">y_name</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+							<span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">x_name</span><span class="p">]</span><span class="o">==</span><span class="n">s</span><span class="p">][</span><span class="n">x_name</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+							<span class="n">yshift</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
+							<span class="n">showarrow</span> <span class="o">=</span> <span class="kc">False</span>
+							<span class="p">)</span>
+		<span class="n">figure</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+			<span class="n">title</span><span class="o">=</span><span class="p">{</span>
+				<span class="s1">&#39;text&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span>
+				<span class="s1">&#39;x&#39;</span><span class="p">:</span><span class="mf">0.5</span><span class="p">,</span>
+				<span class="s1">&#39;xanchor&#39;</span><span class="p">:</span> <span class="s1">&#39;center&#39;</span><span class="p">,</span>
+				<span class="s1">&#39;yanchor&#39;</span><span class="p">:</span> <span class="s1">&#39;top&#39;</span><span class="p">},</span>
+			<span class="n">showlegend</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+		<span class="n">figure</span><span class="o">.</span><span class="n">update_yaxes</span><span class="p">(</span>
+      		<span class="n">title</span><span class="o">=</span><span class="n">y_title</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">figure</span></div>
+<span class="c1"># Add model to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_PLOTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DynamicallyByModelNameByDataset</span><span class="p">)</span>
+
+<div class="viewcode-block" id="MetricHeatMap"><a class="viewcode-back" href="../../../_autosummary/speechtotext.plot.customPlots.MetricHeatMap.html#speechtotext.plot.customPlots.MetricHeatMap">[docs]</a><span class="k">class</span> <span class="nc">MetricHeatMap</span><span class="p">(</span><span class="n">BaseMatPlotLib</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Class that is used to create plots for an benchmark.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+<div class="viewcode-block" id="MetricHeatMap.create_plot"><a class="viewcode-back" href="../../../_autosummary/speechtotext.plot.customPlots.MetricHeatMap.html#speechtotext.plot.customPlots.MetricHeatMap.create_plot">[docs]</a>	<span class="k">def</span> <span class="nf">create_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">plotly</span><span class="o">.</span><span class="n">graph_objs</span><span class="o">.</span><span class="n">_figure</span><span class="o">.</span><span class="n">Figure</span><span class="p">:</span>
+
+		<span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span>
+
+		<span class="n">corr</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">numeric_only</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+		<span class="n">cut_off</span> <span class="o">=</span> <span class="mf">0.6</span>  <span class="c1"># only show cells with abs(correlation) at least this value</span>
+		<span class="n">extreme_1</span> <span class="o">=</span> <span class="mf">0.75</span>  <span class="c1"># show with a star</span>
+		<span class="n">extreme_2</span> <span class="o">=</span> <span class="mf">0.85</span>  <span class="c1"># show with a second star</span>
+		<span class="n">extreme_3</span> <span class="o">=</span> <span class="mf">0.95</span>  <span class="c1"># show with a third star</span>
+
+		<span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">triu</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">))</span>
+		<span class="n">mask</span> <span class="o">|=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">corr</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">cut_off</span>
+		<span class="n">corr</span> <span class="o">=</span> <span class="n">corr</span><span class="p">[</span><span class="o">~</span><span class="n">mask</span><span class="p">]</span>  <span class="c1"># fill in NaN in the non-desired cells</span>
+
+		<span class="n">remove_empty_rows_and_cols</span> <span class="o">=</span> <span class="kc">True</span>
+		<span class="k">if</span> <span class="n">remove_empty_rows_and_cols</span><span class="p">:</span>
+			<span class="n">wanted_cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="o">~</span><span class="n">mask</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+			<span class="n">wanted_rows</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="o">~</span><span class="n">mask</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+			<span class="n">corr</span> <span class="o">=</span> <span class="n">corr</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">wanted_cols</span><span class="p">,</span> <span class="n">wanted_rows</span><span class="p">]</span>
+		<span class="n">annot</span> <span class="o">=</span> <span class="p">[[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">val</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span>
+				<span class="o">+</span> <span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">extreme_1</span> <span class="k">else</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">★&#39;</span><span class="p">)</span>  <span class="c1"># add one star if abs(val) &gt;= extreme_1</span>
+				<span class="o">+</span> <span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">extreme_2</span> <span class="k">else</span> <span class="s1">&#39;★&#39;</span><span class="p">)</span>  <span class="c1"># add an extra star if abs(val) &gt;= extreme_2</span>
+				<span class="o">+</span> <span class="p">(</span><span class="s1">&#39;&#39;</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">extreme_3</span> <span class="k">else</span> <span class="s1">&#39;★&#39;</span><span class="p">)</span>  <span class="c1"># add yet an extra star if abs(val) &gt;= extreme_3</span>
+				<span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">row</span><span class="p">]</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">corr</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()]</span>
+
+		<span class="n">cmap_r</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;mako_r&quot;</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+		<span class="n">cmap_n</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">(</span><span class="s2">&quot;mako&quot;</span><span class="p">,</span> <span class="n">as_cmap</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+		<span class="n">colors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">cmap_r</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">256</span><span class="p">)),</span> <span class="n">cmap_n</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">256</span><span class="p">))))</span>
+		<span class="n">cmap</span> <span class="o">=</span> <span class="n">ListedColormap</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span>
+		<span class="n">heatmap</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="n">annot</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">cmap</span><span class="p">)</span>
+		<span class="n">heatmap</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Correlation Heatmap of Metrics&#39;</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;fontsize&#39;</span><span class="p">:</span> <span class="mi">22</span><span class="p">},</span> <span class="n">pad</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+		<span class="n">figure</span> <span class="o">=</span> <span class="n">heatmap</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+		<span class="n">fig_width</span><span class="o">=</span> <span class="mi">14</span><span class="o">+</span> <span class="mi">1</span><span class="o">*</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+		<span class="n">fig_hight</span><span class="o">=</span> <span class="mi">5</span><span class="o">+</span> <span class="nb">round</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;model_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+		<span class="n">figure</span><span class="o">.</span><span class="n">set_size_inches</span><span class="p">(</span><span class="n">fig_width</span><span class="p">,</span> <span class="n">fig_hight</span><span class="p">)</span>
+		<span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+		<span class="n">figure</span><span class="o">.</span><span class="n">subplots_adjust</span><span class="p">(</span><span class="n">right</span><span class="o">=</span><span class="mf">1.05</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">figure</span></div></div>
+<span class="c1"># Add model to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_PLOTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MetricHeatMap</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+speechtotext.plot.plotting
+==========================
+
+.. automodule:: speechtotext.plot.plotting
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      BaseMatPlotLib
+      BasePlotly
+      DynamicPlotClassesByMetricByDataset
+      DynamicPlotClassesByMetricForEachDataset
+      Plotting
+   
+   
+
+   
+   
+   
+
+
+

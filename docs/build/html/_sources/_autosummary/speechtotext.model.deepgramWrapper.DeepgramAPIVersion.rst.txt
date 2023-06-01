@@ -1,0 +1,25 @@
+speechtotext.model.deepgramWrapper.DeepgramAPIVersion
+=====================================================
+
+.. currentmodule:: speechtotext.model.deepgramWrapper
+
+.. autoclass:: DeepgramAPIVersion
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~DeepgramAPIVersion.DEEPGRAM_DEFAULT
+      ~DeepgramAPIVersion.DEEPGRAM_ENHANCED
+   
+   

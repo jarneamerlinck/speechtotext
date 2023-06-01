@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.model &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="speechtotext.model.amazonWrapper" href="speechtotext.model.amazonWrapper.html" />
+    <link rel="prev" title="speechtotext.benchmark.customBenchmarks.WhisperBenchmark" href="speechtotext.benchmark.customBenchmarks.WhisperBenchmark.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">speechtotext</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.html">speechtotext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.benchmark.html">speechtotext.benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">speechtotext.model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.amazonWrapper.html">speechtotext.model.amazonWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.assemblyAIWrapper.html">speechtotext.model.assemblyAIWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.azureWrapper.html">speechtotext.model.azureWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.deepgramWrapper.html">speechtotext.model.deepgramWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.googleWrapper.html">speechtotext.model.googleWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.modelWrapper.html">speechtotext.model.modelWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.speechmaticsWrapper.html">speechtotext.model.speechmaticsWrapper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.model.whisperWrapper.html">speechtotext.model.whisperWrapper</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.plot.html">speechtotext.plot</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">speechtotext</a></li>
+      <li class="breadcrumb-item active">speechtotext.model</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-speechtotext.model">
+<span id="speechtotext-model"></span><h1>speechtotext.model<a class="headerlink" href="#module-speechtotext.model" title="Permalink to this heading"></a></h1>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="speechtotext.model.amazonWrapper.html#module-speechtotext.model.amazonWrapper" title="speechtotext.model.amazonWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">speechtotext.model.amazonWrapper</span></code></a></p></td>
+<td><p>Modelwrapper implemented for Amazon STT API.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="speechtotext.model.assemblyAIWrapper.html#module-speechtotext.model.assemblyAIWrapper" title="speechtotext.model.assemblyAIWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">speechtotext.model.assemblyAIWrapper</span></code></a></p></td>
+<td><p>Modelwrapper implemented for assemblyAi API.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="speechtotext.model.azureWrapper.html#module-speechtotext.model.azureWrapper" title="speechtotext.model.azureWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">speechtotext.model.azureWrapper</span></code></a></p></td>
+<td><p>Modelwrapper implemented for Azure STT API.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="speechtotext.model.deepgramWrapper.html#module-speechtotext.model.deepgramWrapper" title="speechtotext.model.deepgramWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">speechtotext.model.deepgramWrapper</span></code></a></p></td>
+<td><p>Modelwrapper implemented for deepgram API.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="speechtotext.model.googleWrapper.html#module-speechtotext.model.googleWrapper" title="speechtotext.model.googleWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">speechtotext.model.googleWrapper</span></code></a></p></td>
+<td><p>Modelwrapper implemented for google STT API.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="speechtotext.model.modelWrapper.html#module-speechtotext.model.modelWrapper" title="speechtotext.model.modelWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">speechtotext.model.modelWrapper</span></code></a></p></td>
+<td><p>Module with the parent classes for the model wrapper.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="speechtotext.model.speechmaticsWrapper.html#module-speechtotext.model.speechmaticsWrapper" title="speechtotext.model.speechmaticsWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">speechtotext.model.speechmaticsWrapper</span></code></a></p></td>
+<td><p>Modelwrapper implemented for Speechmatics STT API.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="speechtotext.model.whisperWrapper.html#module-speechtotext.model.whisperWrapper" title="speechtotext.model.whisperWrapper"><code class="xref py py-obj docutils literal notranslate"><span class="pre">speechtotext.model.whisperWrapper</span></code></a></p></td>
+<td><p>Modelwrapper implemented for whisper.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="speechtotext.benchmark.customBenchmarks.WhisperBenchmark.html" class="btn btn-neutral float-left" title="speechtotext.benchmark.customBenchmarks.WhisperBenchmark" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="speechtotext.model.amazonWrapper.html" class="btn btn-neutral float-right" title="speechtotext.model.amazonWrapper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

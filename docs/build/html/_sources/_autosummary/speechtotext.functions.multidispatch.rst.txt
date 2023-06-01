@@ -1,0 +1,6 @@
+speechtotext.functions.multidispatch
+====================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: multidispatch

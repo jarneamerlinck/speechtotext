@@ -1,0 +1,37 @@
+speechtotext.benchmark.benchmarks.Benchmark
+===========================================
+
+.. currentmodule:: speechtotext.benchmark.benchmarks
+
+.. autoclass:: Benchmark
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Benchmark.convert_to_pandas
+      ~Benchmark.create_models
+      ~Benchmark.save_to_csv
+      ~Benchmark.set_dataset
+      ~Benchmark.update_samples
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Benchmark.BENCHMARK_SAMPLES
+      ~Benchmark.DATASET
+      ~Benchmark.ERROR_LIST
+   
+   

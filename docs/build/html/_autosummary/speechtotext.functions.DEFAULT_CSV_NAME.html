@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.functions.DEFAULT_CSV_NAME &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="speechtotext.functions.benchmark_results_to_csv" href="speechtotext.functions.benchmark_results_to_csv.html" />
+    <link rel="prev" title="speechtotext.functions.DEFAULT_REPORTS_FOLDER" href="speechtotext.functions.DEFAULT_REPORTS_FOLDER.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">speechtotext</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="speechtotext.html">speechtotext</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.datasets.html">speechtotext.datasets</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="speechtotext.functions.html">speechtotext.functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.REGEX_STRING_PARSE.html">speechtotext.functions.REGEX_STRING_PARSE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.DEFAULT_DATETIME_FORMAT.html">speechtotext.functions.DEFAULT_DATETIME_FORMAT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.DEFAULT_REPORTS_FOLDER.html">speechtotext.functions.DEFAULT_REPORTS_FOLDER</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">speechtotext.functions.DEFAULT_CSV_NAME</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.benchmark_results_to_csv.html">speechtotext.functions.benchmark_results_to_csv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.force_cudnn_initialization.html">speechtotext.functions.force_cudnn_initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.get_extention_of_file_name.html">speechtotext.functions.get_extention_of_file_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.get_file_name_without_extention.html">speechtotext.functions.get_file_name_without_extention</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.join_benchmark_results.html">speechtotext.functions.join_benchmark_results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.load_env_variable.html">speechtotext.functions.load_env_variable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.multidispatch.html">speechtotext.functions.multidispatch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.save_folder_name.html">speechtotext.functions.save_folder_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.save_sub_folder_name.html">speechtotext.functions.save_sub_folder_name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.separate_benchmark_results_by_model.html">speechtotext.functions.separate_benchmark_results_by_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.string_cleaning.html">speechtotext.functions.string_cleaning</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.timing.html">speechtotext.functions.timing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.uppercase_for_first_character_in_string.html">speechtotext.functions.uppercase_for_first_character_in_string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.BaseResult.html">speechtotext.functions.BaseResult</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.NoTranscriptReturned.html">speechtotext.functions.NoTranscriptReturned</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.functions.RequiredEnvVariablesMissing.html">speechtotext.functions.RequiredEnvVariablesMissing</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.benchmark.html">speechtotext.benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.model.html">speechtotext.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.plot.html">speechtotext.plot</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.functions.html">speechtotext.functions</a></li>
+      <li class="breadcrumb-item active">speechtotext.functions.DEFAULT_CSV_NAME</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="speechtotext-functions-default-csv-name">
+<h1>speechtotext.functions.DEFAULT_CSV_NAME<a class="headerlink" href="#speechtotext-functions-default-csv-name" title="Permalink to this heading"></a></h1>
+<dl class="py data">
+<dt class="sig sig-object py" id="speechtotext.functions.DEFAULT_CSV_NAME">
+<span class="sig-name descname"><span class="pre">DEFAULT_CSV_NAME</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'reports/Benchmark_results_2023_06_01_10_05_26.csv'</span></em><a class="headerlink" href="#speechtotext.functions.DEFAULT_CSV_NAME" title="Permalink to this definition"></a></dt>
+<dd><p>Default path to save Benchmark results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="speechtotext.functions.DEFAULT_REPORTS_FOLDER.html" class="btn btn-neutral float-left" title="speechtotext.functions.DEFAULT_REPORTS_FOLDER" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="speechtotext.functions.benchmark_results_to_csv.html" class="btn btn-neutral float-right" title="speechtotext.functions.benchmark_results_to_csv" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

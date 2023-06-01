@@ -1,0 +1,26 @@
+speechtotext.plot.plotting.BasePlotly
+=====================================
+
+.. currentmodule:: speechtotext.plot.plotting
+
+.. autoclass:: BasePlotly
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~BasePlotly.create_plot
+      ~BasePlotly.save
+   
+   
+
+   
+   
+   

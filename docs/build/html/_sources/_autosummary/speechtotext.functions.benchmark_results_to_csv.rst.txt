@@ -1,0 +1,6 @@
+speechtotext.functions.benchmark\_results\_to\_csv
+==================================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: benchmark_results_to_csv

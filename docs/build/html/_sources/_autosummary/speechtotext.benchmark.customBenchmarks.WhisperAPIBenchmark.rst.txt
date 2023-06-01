@@ -1,0 +1,38 @@
+speechtotext.benchmark.customBenchmarks.WhisperAPIBenchmark
+===========================================================
+
+.. currentmodule:: speechtotext.benchmark.customBenchmarks
+
+.. autoclass:: WhisperAPIBenchmark
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~WhisperAPIBenchmark.convert_to_pandas
+      ~WhisperAPIBenchmark.create_models
+      ~WhisperAPIBenchmark.save_to_csv
+      ~WhisperAPIBenchmark.set_dataset
+      ~WhisperAPIBenchmark.update_samples
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~WhisperAPIBenchmark.BENCHMARK_SAMPLES
+      ~WhisperAPIBenchmark.DATASET
+      ~WhisperAPIBenchmark.ERROR_LIST
+      ~WhisperAPIBenchmark.MODEL_BASE
+   
+   

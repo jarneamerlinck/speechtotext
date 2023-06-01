@@ -1,0 +1,26 @@
+speechtotext.plot.customErrorPlots.ErrorCountHeatmap
+====================================================
+
+.. currentmodule:: speechtotext.plot.customErrorPlots
+
+.. autoclass:: ErrorCountHeatmap
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ErrorCountHeatmap.create_plot
+      ~ErrorCountHeatmap.save
+   
+   
+
+   
+   
+   

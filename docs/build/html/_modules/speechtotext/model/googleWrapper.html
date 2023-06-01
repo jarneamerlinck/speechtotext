@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.model.googleWrapper &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.model.googleWrapper</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.model.googleWrapper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Modelwrapper implemented for google STT API.</span>
+
+<span class="sd">GOOGLE_APPLICATION_CREDENTIALS needs to be in the &#39;.env&#39;.</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd"> 	from speechtotext.model.googleWrapper import *</span>
+<span class="sd">	from speechtotext.benchmark.benchmarks import *</span>
+<span class="sd">	from speechtotext.datasets import Dataset</span>
+<span class="sd">	</span>
+<span class="sd">	# Create dataset</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	dataset = Dataset(path_to_dir=&quot;path/to/dir&quot;, name= &quot;dataset_name&quot;)</span>
+<span class="sd">	id = &quot;existing_audio_id&quot;</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	</span>
+<span class="sd">	# Create wrapper</span>
+<span class="sd">	googleWrapper = googleAPIVersion(googleAPIVersion.google_DEFAULT)</span>
+
+<span class="sd">	# Get model</span>
+<span class="sd">	googleWrapper.get_model()</span>
+
+<span class="sd">	# Benchmark choisen sample</span>
+<span class="sd">	googleWrapper.benchmark_sample(dataset, id)</span>
+<span class="sd">	</span>
+<span class="sd">	# Benchmark n random samples</span>
+<span class="sd">	array = googleWrapper.benchmark_n_samples(dataset, number_of_samples)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">pydub.utils</span> <span class="kn">import</span> <span class="n">mediainfo</span>
+<span class="c1"># from google.cloud import speech_v2</span>
+<span class="kn">from</span> <span class="nn">google.cloud</span> <span class="kn">import</span> <span class="n">speech</span>
+<span class="kn">from</span> <span class="nn">google.oauth2</span> <span class="kn">import</span> <span class="n">service_account</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">io</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.model.modelWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">load_env_variable</span>
+
+<div class="viewcode-block" id="GoogleAPIVersion"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.googleWrapper.GoogleAPIVersion.html#speechtotext.model.googleWrapper.GoogleAPIVersion">[docs]</a><span class="k">class</span> <span class="nc">GoogleAPIVersion</span><span class="p">(</span><span class="n">ModelVersion</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Enum for the available google API models.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		Enum (googleAPIVersion): Available whisper API models.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">GOOGLE_DEFAULT</span> 	<span class="o">=</span> <span class="s2">&quot;googleApi&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Default model version.</span>
+<span class="sd">	&quot;&quot;&quot;</span></div>
+	<span class="c1"># GOOGLE_V2 	= &quot;googleApi&quot;</span>
+
+
+
+<div class="viewcode-block" id="GoogleAPIWrapper"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.googleWrapper.GoogleAPIWrapper.html#speechtotext.model.googleWrapper.GoogleAPIWrapper">[docs]</a><span class="k">class</span> <span class="nc">GoogleAPIWrapper</span><span class="p">(</span><span class="n">ModelWrapper</span><span class="p">):</span> 
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Wrapper for google API. GOOGLE_APPLICATION_CREDENTIALS needs to be in the &#39;.env&#39; file in current directory.</span>
+<span class="sd"> 	&quot;&quot;&quot;</span>
+
+	<span class="n">LANGUAGE_CODE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;nl-BE&#39;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Code for the language to transcribe.</span>
+<span class="sd">	</span>
+<span class="sd">	See  `supported languages for google &lt;https://cloud.google.com/speech-to-text/docs/speech-to-text-supported-languages&gt;`_.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span><span class="n">GoogleAPIVersion</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Wrapper for google model.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			model_version (googleAPIVersion): Model version of google STT API to use.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model_version</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GoogleAPIWrapper.get_model"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.googleWrapper.GoogleAPIWrapper.html#speechtotext.model.googleWrapper.GoogleAPIWrapper.get_model">[docs]</a>	<span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get model.</span>
+<span class="sd">		&quot;&quot;&quot;</span>		  
+		
+		<span class="n">credentials_json</span> <span class="o">=</span> <span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;GOOGLE_APPLICATION_CREDENTIALS&quot;</span><span class="p">)</span>
+		<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">credentials_json</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+			<span class="bp">self</span><span class="o">.</span><span class="n">credentials_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+		<span class="n">credentials</span> <span class="o">=</span> <span class="n">service_account</span><span class="o">.</span><span class="n">Credentials</span><span class="o">.</span><span class="n">from_service_account_file</span><span class="p">(</span><span class="n">credentials_json</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">speech</span><span class="o">.</span><span class="n">SpeechClient</span><span class="p">(</span><span class="n">credentials</span><span class="o">=</span><span class="n">credentials</span><span class="p">)</span></div>
+
+
+	<span class="k">def</span> <span class="nf">get_transcript_of_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get transcript of audio file with API call.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			audio_file_name (str): Path to audio file.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			str: Transcript of audio file.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">with</span> <span class="n">io</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">audio_file_name</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">audio_file</span><span class="p">:</span>
+			<span class="n">content</span> <span class="o">=</span> <span class="n">audio_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+		<span class="n">sample_rate</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mediainfo</span><span class="p">(</span><span class="n">audio_file_name</span><span class="p">)[</span><span class="s1">&#39;sample_rate&#39;</span><span class="p">])</span>
+
+		<span class="n">audio</span> <span class="o">=</span> <span class="n">speech</span><span class="o">.</span><span class="n">RecognitionAudio</span><span class="p">(</span><span class="n">content</span><span class="o">=</span><span class="n">content</span><span class="p">)</span>
+		<span class="n">config</span> <span class="o">=</span> <span class="n">speech</span><span class="o">.</span><span class="n">RecognitionConfig</span><span class="p">(</span>
+			<span class="n">encoding</span><span class="o">=</span><span class="n">speech</span><span class="o">.</span><span class="n">RecognitionConfig</span><span class="o">.</span><span class="n">AudioEncoding</span><span class="o">.</span><span class="n">LINEAR16</span><span class="p">,</span>
+			<span class="n">sample_rate_hertz</span><span class="o">=</span><span class="n">sample_rate</span><span class="p">,</span>
+			<span class="n">language_code</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">LANGUAGE_CODE</span><span class="p">,</span>
+			<span class="c1"># use_enhanced=True,</span>
+			<span class="c1"># # A model must be specified to use enhanced model.</span>
+			<span class="c1"># model=&quot;phone_call&quot;,</span>
+		<span class="p">)</span>
+
+		<span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">recognize</span><span class="p">(</span><span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span> <span class="n">audio</span><span class="o">=</span><span class="n">audio</span><span class="p">)</span>
+		<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">result</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">results</span><span class="p">):</span>
+			
+			<span class="n">alternative</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">alternatives</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">transcript</span>
+			<span class="k">break</span>
+		<span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">alternative</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

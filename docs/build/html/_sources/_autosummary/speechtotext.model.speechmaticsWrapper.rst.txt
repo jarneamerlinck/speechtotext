@@ -1,0 +1,33 @@
+speechtotext.model.speechmaticsWrapper
+======================================
+
+.. automodule:: speechtotext.model.speechmaticsWrapper
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      SpeechmaticsAPIVersion
+      SpeechmaticsAPIWrapper
+   
+   
+
+   
+   
+   
+
+
+

@@ -1,0 +1,39 @@
+speechtotext.benchmark.customBenchmarks
+=======================================
+
+.. automodule:: speechtotext.benchmark.customBenchmarks
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      AmazonAPIBenchmark
+      AssemblyAIAPIBenchmark
+      AzureAPIBenchmark
+      DeepgramAPIBenchmark
+      GoogleAPIBenchmark
+      SpeechmaticsAPIBenchmark
+      WhisperAPIBenchmark
+      WhisperBenchmark
+   
+   
+
+   
+   
+   
+
+
+

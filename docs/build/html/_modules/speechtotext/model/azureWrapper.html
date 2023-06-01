@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.model.azureWrapper &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.model.azureWrapper</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.model.azureWrapper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Modelwrapper implemented for Azure STT API.</span>
+
+<span class="sd">AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the &#39;.env&#39;.</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd"> 	from speechtotext.model.azureWrapper import *</span>
+<span class="sd">	from speechtotext.benchmark.benchmarks import *</span>
+<span class="sd">	from speechtotext.datasets import Dataset</span>
+<span class="sd">	</span>
+<span class="sd">	# Create dataset</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	dataset = Dataset(path_to_dir=&quot;path/to/dir&quot;, name= &quot;dataset_name&quot;)</span>
+<span class="sd">	id = &quot;existing_audio_id&quot;</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	</span>
+<span class="sd">	# Create wrapper</span>
+<span class="sd">	azureWrapper = AzureAPIVersion(AzureAPIVersion.AZURE_DEFAULT)</span>
+
+<span class="sd">	# Get model</span>
+<span class="sd">	azureWrapper.get_model()</span>
+
+<span class="sd">	# Benchmark choisen sample</span>
+<span class="sd">	azureWrapper.benchmark_sample(dataset, id)</span>
+<span class="sd">	</span>
+<span class="sd">	# Benchmark n random samples</span>
+<span class="sd">	array = azureWrapper.benchmark_n_samples(dataset, number_of_samples)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">azure.cognitiveservices.speech</span> <span class="k">as</span> <span class="nn">speechsdk</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.model.modelWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">get_extention_of_file_name</span><span class="p">,</span> <span class="n">string_cleaning</span><span class="p">,</span> <span class="n">load_env_variable</span>
+
+<div class="viewcode-block" id="AzureNoMatch"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.azureWrapper.AzureNoMatch.html#speechtotext.model.azureWrapper.AzureNoMatch">[docs]</a><span class="k">class</span> <span class="nc">AzureNoMatch</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Exception when Azure finds not match.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;_summary_</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			message (str): Error message.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;No speech could be recognized: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureCancellation"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.azureWrapper.AzureCancellation.html#speechtotext.model.azureWrapper.AzureCancellation">[docs]</a><span class="k">class</span> <span class="nc">AzureCancellation</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Exception when Azure gives an cancelation message.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;_summary_</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			message (str): Error message.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Canceled: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="AzureAPIVersion"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.azureWrapper.AzureAPIVersion.html#speechtotext.model.azureWrapper.AzureAPIVersion">[docs]</a><span class="k">class</span> <span class="nc">AzureAPIVersion</span><span class="p">(</span><span class="n">ModelVersion</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Enum for the available AZURE API models. </span>
+<span class="sd">	Args:</span>
+<span class="sd">		Enum (AzureAPIVersion): Available whisper API models.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">AZURE_DEFAULT</span> 	<span class="o">=</span> <span class="s2">&quot;AzureApi&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Default model version.</span>
+<span class="sd">	&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="AzureAPIWrapper"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.azureWrapper.AzureAPIWrapper.html#speechtotext.model.azureWrapper.AzureAPIWrapper">[docs]</a><span class="k">class</span> <span class="nc">AzureAPIWrapper</span><span class="p">(</span><span class="n">ModelWrapper</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Wrapper for AZURE API. AZURE_SPEECH_KEY API and AZURE_SPEECH_REGION need to be in the &#39;.env&#39; file in current directory.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">LANGUAGE_CODE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;nl-BE&#39;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Code for the language to transcribe.</span>
+<span class="sd">	</span>
+<span class="sd">	See `supported languages for azure &lt;https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=stt&gt;`_</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span><span class="n">AzureAPIVersion</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Wrapper for AZURE model.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			model_version (AzureAPIVersion): Model version of AZURE STT API to use.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model_version</span><span class="p">)</span>
+
+<div class="viewcode-block" id="AzureAPIWrapper.get_model"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.azureWrapper.AzureAPIWrapper.html#speechtotext.model.azureWrapper.AzureAPIWrapper.get_model">[docs]</a>	<span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get model.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">AZURE_SPEECH_KEY</span> <span class="o">=</span> <span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;AZURE_SPEECH_KEY&quot;</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">AZURE_SPEECH_REGION</span> <span class="o">=</span> <span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;AZURE_SPEECH_REGION&quot;</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">speech_config</span> <span class="o">=</span> <span class="n">speechsdk</span><span class="o">.</span><span class="n">SpeechConfig</span><span class="p">(</span><span class="n">subscription</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">AZURE_SPEECH_KEY</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">AZURE_SPEECH_REGION</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">speech_config</span><span class="o">.</span><span class="n">speech_recognition_language</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">LANGUAGE_CODE</span></div>
+
+	<span class="k">def</span> <span class="nf">get_transcript_of_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get transcript of audio file with API call.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			audio_file_name (str): Path to audio file.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			str: Transcript of audio file.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="n">audio_config</span> <span class="o">=</span> <span class="n">speechsdk</span><span class="o">.</span><span class="n">audio</span><span class="o">.</span><span class="n">AudioConfig</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">audio_file_name</span><span class="p">)</span>
+		<span class="n">speech_recognizer</span> <span class="o">=</span> <span class="n">speechsdk</span><span class="o">.</span><span class="n">SpeechRecognizer</span><span class="p">(</span><span class="n">speech_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">speech_config</span><span class="p">,</span> <span class="n">audio_config</span><span class="o">=</span><span class="n">audio_config</span><span class="p">)</span>
+		<span class="n">result</span> <span class="o">=</span> <span class="n">speech_recognizer</span><span class="o">.</span><span class="n">recognize_once</span><span class="p">()</span>
+		<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="n">speechsdk</span><span class="o">.</span><span class="n">ResultReason</span><span class="o">.</span><span class="n">NoMatch</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="n">AzureNoMatch</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">no_match_details</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="n">speechsdk</span><span class="o">.</span><span class="n">ResultReason</span><span class="o">.</span><span class="n">Canceled</span><span class="p">:</span>
+			<span class="n">cancellation_details</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">cancellation_details</span>
+			<span class="c1"># print(&quot;Speech Recognition canceled: {}&quot;.format(cancellation_details.reason))</span>
+			<span class="n">error_message</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="n">cancellation_details</span><span class="o">.</span><span class="n">reason</span>
+			<span class="k">if</span> <span class="n">cancellation_details</span><span class="o">.</span><span class="n">reason</span> <span class="o">==</span> <span class="n">speechsdk</span><span class="o">.</span><span class="n">CancellationReason</span><span class="o">.</span><span class="n">Error</span><span class="p">:</span>
+				<span class="n">error_message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">error_message</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">cancellation_details</span><span class="o">.</span><span class="n">error_details</span><span class="si">}</span><span class="s2">&quot;</span>
+			<span class="k">raise</span> <span class="n">AzureCancellation</span><span class="p">(</span><span class="n">error_message</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">result</span><span class="o">.</span><span class="n">text</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

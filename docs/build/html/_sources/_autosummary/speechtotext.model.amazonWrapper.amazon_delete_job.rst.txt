@@ -1,0 +1,6 @@
+speechtotext.model.amazonWrapper.amazon\_delete\_job
+====================================================
+
+.. currentmodule:: speechtotext.model.amazonWrapper
+
+.. autofunction:: amazon_delete_job

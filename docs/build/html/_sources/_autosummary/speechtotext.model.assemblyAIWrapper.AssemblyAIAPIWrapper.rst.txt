@@ -1,0 +1,42 @@
+speechtotext.model.assemblyAIWrapper.AssemblyAIAPIWrapper
+=========================================================
+
+.. currentmodule:: speechtotext.model.assemblyAIWrapper
+
+.. autoclass:: AssemblyAIAPIWrapper
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~AssemblyAIAPIWrapper.benchmark_n_samples
+      ~AssemblyAIAPIWrapper.benchmark_sample
+      ~AssemblyAIAPIWrapper.benchmark_samples
+      ~AssemblyAIAPIWrapper.convert_sample
+      ~AssemblyAIAPIWrapper.get_model
+      ~AssemblyAIAPIWrapper.get_transcript_of_file
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AssemblyAIAPIWrapper.API_URL
+      ~AssemblyAIAPIWrapper.LANGUAGE_CODE
+      ~AssemblyAIAPIWrapper.PATH_OF_TEMP_CONVERTED_AUDIO_FILE
+      ~AssemblyAIAPIWrapper.POLLING_ENDPOINT
+      ~AssemblyAIAPIWrapper.TIME_SLEEP
+      ~AssemblyAIAPIWrapper.TRANSCRIPT_ENDPOINT
+      ~AssemblyAIAPIWrapper.UPLOAD_ENDPOINT
+   
+   

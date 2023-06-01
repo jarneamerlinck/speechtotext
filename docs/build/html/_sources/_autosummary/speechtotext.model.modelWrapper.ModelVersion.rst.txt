@@ -1,0 +1,18 @@
+speechtotext.model.modelWrapper.ModelVersion
+============================================
+
+.. currentmodule:: speechtotext.model.modelWrapper
+
+.. autoclass:: ModelVersion
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   
+
+   
+   
+   

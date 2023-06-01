@@ -1,0 +1,26 @@
+speechtotext.metric.customMetrics.BenchmarkResults
+==================================================
+
+.. currentmodule:: speechtotext.metric.customMetrics
+
+.. autoclass:: BenchmarkResults
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~BenchmarkResults.create_df
+      ~BenchmarkResults.save
+   
+   
+
+   
+   
+   

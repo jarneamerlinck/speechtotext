@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.model.speechmaticsWrapper &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.model.speechmaticsWrapper</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.model.speechmaticsWrapper</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Modelwrapper implemented for Speechmatics STT API.</span>
+
+<span class="sd">.. warning::</span>
+
+<span class="sd">	Package version speechmatics-python==1.6.4 is needed to run the script. Errors on 1.7.0</span>
+
+<span class="sd">SPEECHMATICS_API_KEY needs to be in the &#39;.env&#39; file in current directory.</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd"> 	from speechtotext.model.speechmaticsWrapper import *</span>
+<span class="sd">	from speechtotext.benchmark.benchmarks import *</span>
+<span class="sd">	from speechtotext.datasets import Dataset</span>
+<span class="sd">	</span>
+<span class="sd">	# Create dataset</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	dataset = Dataset(path_to_dir=&quot;path/to/dir&quot;, name= &quot;dataset_name&quot;)</span>
+<span class="sd">	id = &quot;existing_audio_id&quot;</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	</span>
+<span class="sd">	# Create wrapper</span>
+<span class="sd">	speechmaticsWrapper = SpeechmaticsAPIVersion(SpeechmaticsAPIVersion.SPEECHMATICS_DEFAULT)</span>
+
+<span class="sd">	# Get model</span>
+<span class="sd">	speechmaticsWrapper.get_model()</span>
+
+<span class="sd">	# Benchmark choisen sample</span>
+<span class="sd">	speechmaticsWrapper.benchmark_sample(dataset, id)</span>
+<span class="sd">	</span>
+<span class="sd">	# Benchmark n random samples</span>
+<span class="sd">	array = speechmaticsWrapper.benchmark_n_samples(dataset, number_of_samples)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">speechmatics</span>
+<span class="kn">import</span> <span class="nn">nest_asyncio</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.model.modelWrapper</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">get_extention_of_file_name</span><span class="p">,</span> <span class="n">string_cleaning</span><span class="p">,</span> <span class="n">load_env_variable</span>
+
+
+<div class="viewcode-block" id="SpeechmaticsAPIVersion"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion.html#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIVersion">[docs]</a><span class="k">class</span> <span class="nc">SpeechmaticsAPIVersion</span><span class="p">(</span><span class="n">ModelVersion</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Enum for the available SPEECHMATICS API models. </span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		Enum (SpeechmaticsAPIVersion): Available Speechmatic API models.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">SPEECHMATICS_DEFAULT</span> 	<span class="o">=</span> <span class="s2">&quot;SpeechmaticsApi&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Default model version.</span>
+<span class="sd">	&quot;&quot;&quot;</span></div>
+
+<div class="viewcode-block" id="SpeechmaticsAPIWrapper"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.html#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper">[docs]</a><span class="k">class</span> <span class="nc">SpeechmaticsAPIWrapper</span><span class="p">(</span><span class="n">ModelWrapper</span><span class="p">):</span> 
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Wrapper for SPEECHMATICS API. SPEECHMATICS_API_KEY needs to be in the &#39;.env&#39; file in current directory.</span>
+<span class="sd"> 	&quot;&quot;&quot;</span>
+	<span class="n">LANGUAGE_CODE</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;nl&#39;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Code for the language to transcribe.</span>
+<span class="sd">	</span>
+<span class="sd">	See  `supported languages for speechmatics &lt;https://docs.speechmatics.com/introduction/supported-languages&gt;`_.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">CONNECTION_URL</span><span class="p">:</span><span class="nb">str</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;wss://eu2.rt.speechmatics.com/v2/&quot;</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;str: Connection url for the API.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	
+ 
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_version</span><span class="p">:</span><span class="n">SpeechmaticsAPIVersion</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Wrapper for SPEECHMATICS model.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			model_version (SpeechmaticsAPIVersion): Model version of SPEECHMATICS STT API to use.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="bp">self</span><span class="o">.</span><span class="n">partial_transcripts</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">model_version</span><span class="p">)</span>
+  
+	<span class="k">def</span> <span class="nf">__api_event_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">:</span><span class="nb">dict</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Event handler for API.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			msg (dict): Api result.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="bp">self</span><span class="o">.</span><span class="n">partial_transcripts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;metadata&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;transcript&quot;</span><span class="p">))</span>
+
+<div class="viewcode-block" id="SpeechmaticsAPIWrapper.get_model"><a class="viewcode-back" href="../../../_autosummary/speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.html#speechtotext.model.speechmaticsWrapper.SpeechmaticsAPIWrapper.get_model">[docs]</a>	<span class="k">def</span> <span class="nf">get_model</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get model.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">SPEECHMATICS_API_KEY</span> <span class="o">=</span> <span class="n">load_env_variable</span><span class="p">(</span><span class="s2">&quot;SPEECHMATICS_API_KEY&quot;</span><span class="p">)</span>
+ 
+		<span class="bp">self</span><span class="o">.</span><span class="n">ws</span> <span class="o">=</span> <span class="n">speechmatics</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">WebsocketClient</span><span class="p">(</span>
+
+			<span class="n">speechmatics</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ConnectionSettings</span><span class="p">(</span>
+				<span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">CONNECTION_URL</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">LANGUAGE_CODE</span><span class="p">,</span>
+				<span class="n">auth_token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">SPEECHMATICS_API_KEY</span><span class="p">,</span>
+				<span class="n">generate_temp_token</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+			<span class="p">)</span>
+		<span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">ws</span><span class="o">.</span><span class="n">add_event_handler</span><span class="p">(</span>
+			<span class="n">event_name</span><span class="o">=</span><span class="n">speechmatics</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">ServerMessageType</span><span class="o">.</span><span class="n">AddTranscript</span><span class="p">,</span>
+			<span class="n">event_handler</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__api_event_handler</span><span class="p">,</span>
+		<span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">settings</span> <span class="o">=</span> <span class="n">speechmatics</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">AudioSettings</span><span class="p">()</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">conf</span> <span class="o">=</span> <span class="n">speechmatics</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">TranscriptionConfig</span><span class="p">(</span>
+			<span class="n">language</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">LANGUAGE_CODE</span><span class="p">,</span>
+			<span class="n">enable_partials</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+			<span class="n">max_delay</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+			<span class="n">enable_entities</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+		<span class="p">)</span></div>
+
+	<span class="k">def</span> <span class="nf">get_transcript_of_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_file_name</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get transcript of audio file with API call.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			audio_file_name (str): Path to audio file.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			str: Transcript of audio file.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">audio_file_name</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+			<span class="k">try</span><span class="p">:</span>
+				<span class="bp">self</span><span class="o">.</span><span class="n">ws</span><span class="o">.</span><span class="n">run_synchronously</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">conf</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">settings</span><span class="p">)</span>
+			<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+				<span class="k">pass</span>
+		
+		<span class="n">result</span> <span class="o">=</span>  <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">partial_transcripts</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">partial_transcripts</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="n">result</span> <span class="o">=</span> <span class="n">string_cleaning</span><span class="p">(</span><span class="n">result</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># remove space at end of transcript</span>
+
+		<span class="k">return</span> <span class="n">result</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

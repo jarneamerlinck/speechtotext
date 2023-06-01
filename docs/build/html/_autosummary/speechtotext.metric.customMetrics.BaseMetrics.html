@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.metric.customMetrics.BaseMetrics &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="speechtotext.metric.customMetrics.BenchmarkResults" href="speechtotext.metric.customMetrics.BenchmarkResults.html" />
+    <link rel="prev" title="speechtotext.metric.customMetrics" href="speechtotext.metric.customMetrics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">speechtotext</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.html">speechtotext</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.benchmark.html">speechtotext.benchmark</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="speechtotext.metric.html">speechtotext.metric</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="speechtotext.metric.customMetrics.html">speechtotext.metric.customMetrics</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">speechtotext.metric.customMetrics.BaseMetrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.metric.customMetrics.BenchmarkResults.html">speechtotext.metric.customMetrics.BenchmarkResults</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.metric.customMetrics.ErrorMetrics.html">speechtotext.metric.customMetrics.ErrorMetrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="speechtotext.metric.customMetrics.ResultMetrics.html">speechtotext.metric.customMetrics.ResultMetrics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="speechtotext.metric.metrics.html">speechtotext.metric.metrics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.model.html">speechtotext.model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="speechtotext.plot.html">speechtotext.plot</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.html">speechtotext</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.metric.html">speechtotext.metric</a></li>
+          <li class="breadcrumb-item"><a href="speechtotext.metric.customMetrics.html">speechtotext.metric.customMetrics</a></li>
+      <li class="breadcrumb-item active">speechtotext.metric.customMetrics.BaseMetrics</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="speechtotext-metric-custommetrics-basemetrics">
+<h1>speechtotext.metric.customMetrics.BaseMetrics<a class="headerlink" href="#speechtotext-metric-custommetrics-basemetrics" title="Permalink to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.BaseMetrics">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BaseMetrics</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">report_folder</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/metric/customMetrics.html#BaseMetrics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.metric.customMetrics.BaseMetrics" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="speechtotext.functions.BaseResult.html#speechtotext.functions.BaseResult" title="speechtotext.functions.BaseResult"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseResult</span></code></a></p>
+<p>Base class used to create metrics for result dataframe.</p>
+<p>Creates object of BaseResult. Child class should be added to Plotting.CUSTOM_RESULTS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>df</strong> (<em>pd.core.frame.DataFrame</em>) – Dataframe that needs to be plotted.</p></li>
+<li><p><strong>report_folder</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Path to report folder.</p></li>
+<li><p><strong>file_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – Name of saved File.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#speechtotext.metric.customMetrics.BaseMetrics.create_df" title="speechtotext.metric.customMetrics.BaseMetrics.create_df"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_df</span></code></a></p></td>
+<td><p>Creates df that needs to be saved.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#speechtotext.metric.customMetrics.BaseMetrics.save" title="speechtotext.metric.customMetrics.BaseMetrics.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a></p></td>
+<td><p>Saves Result to report folder.</p></td>
+</tr>
+</tbody>
+</table>
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.BaseMetrics.create_df">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_df</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/metric/customMetrics.html#BaseMetrics.create_df"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.metric.customMetrics.BaseMetrics.create_df" title="Permalink to this definition"></a></dt>
+<dd><p>Creates df that needs to be saved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dataframe that needs to be saved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>pd.core.frame.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="speechtotext.metric.customMetrics.BaseMetrics.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/speechtotext/metric/customMetrics.html#BaseMetrics.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#speechtotext.metric.customMetrics.BaseMetrics.save" title="Permalink to this definition"></a></dt>
+<dd><p>Saves Result to report folder.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="speechtotext.metric.customMetrics.html" class="btn btn-neutral float-left" title="speechtotext.metric.customMetrics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="speechtotext.metric.customMetrics.BenchmarkResults.html" class="btn btn-neutral float-right" title="speechtotext.metric.customMetrics.BenchmarkResults" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

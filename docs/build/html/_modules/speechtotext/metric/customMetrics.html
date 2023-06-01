@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.metric.customMetrics &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.metric.customMetrics</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.metric.customMetrics</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module to create custom metrics to save with the plots from the plotting module.</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd">	from speechtotext.functions import BaseResult</span>
+<span class="sd">	from speechtotext.plot.plotting import Plotting</span>
+<span class="sd"> </span>
+<span class="sd">	# Create class with matplotlib picture</span>
+<span class="sd">	class BenchmarkResults(BaseMetrics):</span>
+<span class="sd">		def create_df(self) -&gt; pd.core.frame.DataFrame:</span>
+<span class="sd">			return self.df</span>
+
+<span class="sd">	# Add model to Plotting</span>
+<span class="sd">	Plotting.CUSTOM_RESULTS.append(BenchmarkResults)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">abstractmethod</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.metric.metrics</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">BaseResult</span>
+<span class="kn">from</span> <span class="nn">speechtotext.plot.plotting</span> <span class="kn">import</span> <span class="n">Plotting</span>
+
+<div class="viewcode-block" id="BaseMetrics"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.customMetrics.BaseMetrics.html#speechtotext.metric.customMetrics.BaseMetrics">[docs]</a><span class="k">class</span> <span class="nc">BaseMetrics</span><span class="p">(</span><span class="n">BaseResult</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Base class used to create metrics for result dataframe.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">report_folder</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">ext</span> <span class="o">=</span> <span class="s2">&quot;.csv&quot;</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">report_folder</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span>
+
+<div class="viewcode-block" id="BaseMetrics.save"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.customMetrics.BaseMetrics.html#speechtotext.metric.customMetrics.BaseMetrics.save">[docs]</a>	<span class="k">def</span> <span class="nf">save</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="n">df_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">create_df</span><span class="p">()</span>
+		<span class="n">df_result</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">save_file_name</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="BaseMetrics.create_df"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.customMetrics.BaseMetrics.html#speechtotext.metric.customMetrics.BaseMetrics.create_df">[docs]</a>	<span class="nd">@abstractmethod</span>
+	<span class="k">def</span> <span class="nf">create_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Creates df that needs to be saved.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			pd.core.frame.DataFrame: Dataframe that needs to be saved.</span>
+<span class="sd">		&quot;&quot;&quot;</span>	  
+		<span class="k">pass</span></div></div>
+
+<div class="viewcode-block" id="BenchmarkResults"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.customMetrics.BenchmarkResults.html#speechtotext.metric.customMetrics.BenchmarkResults">[docs]</a><span class="k">class</span> <span class="nc">BenchmarkResults</span><span class="p">(</span><span class="n">BaseMetrics</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;This class saves the results of the benchmark.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+<div class="viewcode-block" id="BenchmarkResults.create_df"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.customMetrics.BenchmarkResults.html#speechtotext.metric.customMetrics.BenchmarkResults.create_df">[docs]</a>	<span class="k">def</span> <span class="nf">create_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span></div></div>
+<span class="c1"># Add metrics to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_RESULTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">BenchmarkResults</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ResultMetrics"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.customMetrics.ResultMetrics.html#speechtotext.metric.customMetrics.ResultMetrics">[docs]</a><span class="k">class</span> <span class="nc">ResultMetrics</span><span class="p">(</span><span class="n">BaseMetrics</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;This class calulates the default statistic metrics on the benchmark results.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+<div class="viewcode-block" id="ResultMetrics.create_df"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.customMetrics.ResultMetrics.html#speechtotext.metric.customMetrics.ResultMetrics.create_df">[docs]</a>	<span class="k">def</span> <span class="nf">create_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+		<span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">df</span>
+		<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DatetimeIndex</span><span class="p">,</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="p">)):</span>
+			<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+		<span class="c1"># remove any pre-existing indices for ease of use in the D-Tale code, but this is not required</span>
+		<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;index&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+		<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">]</span>  <span class="c1"># update columns to strings in case they are numbers</span>
+
+		<span class="n">list_of_df</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">metric_name</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;wer&quot;</span><span class="p">,</span> <span class="s2">&quot;mer&quot;</span><span class="p">,</span> <span class="s2">&quot;wil&quot;</span><span class="p">,</span> <span class="s2">&quot;wip&quot;</span><span class="p">,</span> <span class="s2">&quot;cer&quot;</span><span class="p">]:</span>
+			<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;reference&#39;</span><span class="p">]]]</span>
+			<span class="c1"># main statistics</span>
+			<span class="n">stats</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+			<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;sum&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+			<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;median&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+			<span class="n">mode</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span><span class="o">.</span><span class="n">mode</span><span class="p">()</span><span class="o">.</span><span class="n">values</span>
+			<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;mode&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mode</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="n">mode</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+			<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;var&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span><span class="o">.</span><span class="n">var</span><span class="p">()</span>
+			<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;sem&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span><span class="o">.</span><span class="n">sem</span><span class="p">()</span>
+
+			<span class="n">sequential_diffs</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">metric_name</span><span class="p">]</span><span class="o">.</span><span class="n">diff</span><span class="p">()</span>
+
+			<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;min_diff&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">sequential_diffs</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+			<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;max_diff&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">sequential_diffs</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+			<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;avg_diff&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">sequential_diffs</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+			<span class="n">stats</span><span class="p">[</span><span class="s1">&#39;diff_vals&#39;</span><span class="p">]</span>  <span class="o">=</span> <span class="n">sequential_diffs</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+			<span class="n">columnsTitlesOrder</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;count&#39;</span><span class="p">,</span> <span class="s1">&#39;unique&#39;</span><span class="p">,</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="s1">&#39;freq&#39;</span><span class="p">,</span> <span class="s1">&#39;sum&#39;</span><span class="p">,</span> <span class="s1">&#39;median&#39;</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="s1">&#39;var&#39;</span><span class="p">,</span> <span class="s1">&#39;sem&#39;</span><span class="p">,</span> <span class="s1">&#39;min_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;max_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;avg_diff&#39;</span><span class="p">,</span> <span class="s1">&#39;diff_vals&#39;</span><span class="p">]</span>
+
+			<span class="n">stats</span> <span class="o">=</span> <span class="n">stats</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="n">columnsTitlesOrder</span><span class="p">)</span>
+			<span class="n">list_of_df</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span>
+		
+		<span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">list_of_df</span><span class="p">)</span></div></div>
+<span class="c1"># Add metrics to Plotting</span>
+<span class="n">Plotting</span><span class="o">.</span><span class="n">CUSTOM_RESULTS</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ResultMetrics</span><span class="p">)</span>
+
+<div class="viewcode-block" id="ErrorMetrics"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.customMetrics.ErrorMetrics.html#speechtotext.metric.customMetrics.ErrorMetrics">[docs]</a><span class="k">class</span> <span class="nc">ErrorMetrics</span><span class="p">(</span><span class="n">BaseMetrics</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;This class calulates the error statistic on the benchmark results.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+<div class="viewcode-block" id="ErrorMetrics.create_df"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.customMetrics.ErrorMetrics.html#speechtotext.metric.customMetrics.ErrorMetrics.create_df">[docs]</a>	<span class="k">def</span> <span class="nf">create_df</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+		<span class="k">pass</span></div></div>
+<span class="c1"># Add metrics to Plotting</span>
+
+<span class="c1"># Plotting.CUSTOM_ERRORS.append(ErrorMetrics)</span>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

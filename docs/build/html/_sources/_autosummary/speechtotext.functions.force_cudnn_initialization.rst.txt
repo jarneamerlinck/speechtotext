@@ -1,0 +1,6 @@
+speechtotext.functions.force\_cudnn\_initialization
+===================================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: force_cudnn_initialization

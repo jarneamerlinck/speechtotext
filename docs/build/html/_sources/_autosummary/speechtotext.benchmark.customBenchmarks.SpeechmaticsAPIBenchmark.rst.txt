@@ -1,0 +1,38 @@
+speechtotext.benchmark.customBenchmarks.SpeechmaticsAPIBenchmark
+================================================================
+
+.. currentmodule:: speechtotext.benchmark.customBenchmarks
+
+.. autoclass:: SpeechmaticsAPIBenchmark
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~SpeechmaticsAPIBenchmark.convert_to_pandas
+      ~SpeechmaticsAPIBenchmark.create_models
+      ~SpeechmaticsAPIBenchmark.save_to_csv
+      ~SpeechmaticsAPIBenchmark.set_dataset
+      ~SpeechmaticsAPIBenchmark.update_samples
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~SpeechmaticsAPIBenchmark.BENCHMARK_SAMPLES
+      ~SpeechmaticsAPIBenchmark.DATASET
+      ~SpeechmaticsAPIBenchmark.ERROR_LIST
+      ~SpeechmaticsAPIBenchmark.MODEL_BASE
+   
+   

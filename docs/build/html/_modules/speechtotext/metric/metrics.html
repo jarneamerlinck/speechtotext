@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.metric.metrics &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.metric.metrics</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.metric.metrics</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module that calculates the metrics for speechtotext models.</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd">	from speechtotext.metric.metrics import Metrics</span>
+<span class="sd">	</span>
+<span class="sd">	# Create metrics</span>
+<span class="sd">	m = Metrics(&quot;This is the original text, the source.&quot;, &quot;This is the hypothesis text..&quot;, &quot;id_from_dataset&quot;, duration=0.5)</span>
+<span class="sd">	print(m)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">typing_extensions</span> <span class="kn">import</span> <span class="n">override</span>
+<span class="kn">from</span> <span class="nn">jiwer</span> <span class="kn">import</span> <span class="n">cer</span><span class="p">,</span> <span class="n">process_words</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">docstring_parser</span> <span class="kn">import</span> <span class="n">parse</span>
+
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">nltk</span> <span class="kn">import</span> <span class="n">word_tokenize</span>
+<span class="kn">from</span> <span class="nn">nltk.translate.bleu_score</span> <span class="kn">import</span> <span class="n">sentence_bleu</span><span class="p">,</span><span class="n">SmoothingFunction</span>
+<span class="kn">from</span> <span class="nn">nltk.translate.meteor_score</span> <span class="kn">import</span> <span class="n">meteor_score</span>
+<span class="kn">from</span> <span class="nn">rouge</span> <span class="kn">import</span> <span class="n">Rouge</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">string_cleaning</span>
+
+<div class="viewcode-block" id="Metrics"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.metrics.Metrics.html#speechtotext.metric.metrics.Metrics">[docs]</a><span class="k">class</span> <span class="nc">Metrics</span><span class="p">():</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Class to calulate the metrics.</span>
+<span class="sd">	</span>
+<span class="sd">	Attributes:</span>
+<span class="sd">		wer (float): Word error rate (WER).</span>
+
+<span class="sd">			The WER is how many words there were made errors on.</span>
+<span class="sd">		mer (float): Match error rate (MER).</span>
+<span class="sd">  </span>
+<span class="sd">			The MER indicates the percentage of words that were incorrectly predicted and inserted. </span>
+<span class="sd">		wil (float): Word information lost (WIL).</span>
+<span class="sd">  </span>
+<span class="sd">			The WIL represents the word information that is lost.</span>
+<span class="sd">		wip (float): Word information preserved (WIP).</span>
+<span class="sd">  </span>
+<span class="sd">			The WIP represents the word information that is preserved.</span>
+<span class="sd">		cer (float): Character error rate (CER).</span>
+<span class="sd">  </span>
+<span class="sd">			The CER is how many characters there were made errors on.</span>
+<span class="sd">		substitutions (int): Number of words substituted (substitutions).</span>
+<span class="sd">  </span>
+<span class="sd">			The substitutions is the number of words that were replaced.</span>
+<span class="sd">		insertions (int): Number of words inserted (insertions).</span>
+<span class="sd">  </span>
+<span class="sd">			The insertions is the number of words that were added.</span>
+<span class="sd">		hits (int): Number of words correct (hits).</span>
+<span class="sd">  </span>
+<span class="sd">			The hits is the number of words correctly predicted.</span>
+<span class="sd">		deletions (int): Number of words deleted (deletions).</span>
+
+<span class="sd">			The deletions is the number of words that were removed.</span>
+<span class="sd">		duration (float): Duration of the transcribing (duration).</span>
+
+<span class="sd">			The duration is how long it took to transcribe the audiofile.</span>
+<span class="sd">		meteor (float): Metric for Evaluation of Translation with Explicit ORdering (METEOR).</span>
+
+<span class="sd">			METEOR is an automatic metric for machine translation evaluation that is based on a generalized concept of</span>
+<span class="sd">			unigram matching between the machine-produced translation and human-produced reference translations.</span>
+<span class="sd">		bleu (float): Bilingual Evaluation Understudy (BLEU).</span>
+
+<span class="sd">			BLEU is used in comparing a candidate translation to one or more reference translations.</span>
+<span class="sd"> 		rouge_1_r (float): Recall-Oriented Understudy for Gisting Evaluation recall of 1-grams (ROUGE-1-r).</span>
+
+<span class="sd">			ROUGE includes measures to automatically determine the quality of a summary </span>
+<span class="sd">   			by comparing it to other (ideal) summaries created by humans.</span>
+<span class="sd">			ROUGE-1-r is the recall of 1-grams.</span>
+<span class="sd">		rouge_1_p (float): Recall-Oriented Understudy for Gisting Evaluation precision of 1-grams (ROUGE-1-p).</span>
+
+<span class="sd">			ROUGE includes measures to automatically determine the quality of a summary </span>
+<span class="sd">   			by comparing it to other (ideal) summaries created by humans.</span>
+<span class="sd">			ROUGE-1-p is the precision of 1-grams.</span>
+<span class="sd">		rouge_1_f (float): Recall-Oriented Understudy for Gisting Evaluation F1-score of 1-grams (ROUGE-1-f).</span>
+
+<span class="sd">			ROUGE includes measures to automatically determine the quality of a summary </span>
+<span class="sd">   			by comparing it to other (ideal) summaries created by humans.</span>
+<span class="sd">			ROUGE-1-f is the F1-score of 1-grams.</span>
+<span class="sd">		rouge_2_r (float): Recall-Oriented Understudy for Gisting Evaluation recall of 2-grams (ROUGE-2-r).</span>
+
+<span class="sd">			ROUGE includes measures to automatically determine the quality of a summary </span>
+<span class="sd">   			by comparing it to other (ideal) summaries created by humans.</span>
+<span class="sd">			ROUGE-2-r is the recall of 2-grams.</span>
+<span class="sd">		rouge_2_p (float): Recall-Oriented Understudy for Gisting Evaluation precision of 2-grams (ROUGE-2-p).</span>
+
+<span class="sd">			ROUGE includes measures to automatically determine the quality of a summary </span>
+<span class="sd">   			by comparing it to other (ideal) summaries created by humans.</span>
+<span class="sd">			ROUGE-2-p is the precision of 2-grams.</span>
+<span class="sd">		rouge_2_f (float): Recall-Oriented Understudy for Gisting Evaluation F1-score of 2-grams (ROUGE-2-f).</span>
+
+<span class="sd">			ROUGE includes measures to automatically determine the quality of a summary </span>
+<span class="sd">   			by comparing it to other (ideal) summaries created by humans.</span>
+<span class="sd">			ROUGE-2-f is the F1-score of 2-grams.  </span>
+<span class="sd">		rouge_l_r (float): Recall-Oriented Understudy for Gisting Evaluation recall of LCS (ROUGE-L-r).</span>
+
+<span class="sd">			ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.</span>
+<span class="sd">			ROUGE-L-r is the recall of LCS.</span>
+<span class="sd">		rouge_l_p (float): Recall-Oriented Understudy for Gisting Evaluation precision of LCS (ROUGE-L-p).</span>
+
+<span class="sd">			ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.</span>
+<span class="sd">			ROUGE-l-p is the precision of LCS.</span>
+<span class="sd">		rouge_l_f (float): Recall-Oriented Understudy for Gisting Evaluation F1-score of LCS (ROUGE-L-f).</span>
+
+<span class="sd">			ROUGE-L is based on the longest common subsequence (LCS) between our model output and reference.</span>
+<span class="sd">			ROUGE-L-f is the F1-score of LCS.</span>
+<span class="sd">   </span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">reference</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">hypothesis</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">audio_id</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">duration</span><span class="p">:</span><span class="nb">float</span><span class="p">,</span> <span class="n">with_cleaning</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">	</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Class to calulate the metrics.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			reference (str): Reference transcript.</span>
+<span class="sd">			hypothesis (str): Hypothesis transcript.</span>
+<span class="sd">   			audio_id (str): Id of the audio file.</span>
+<span class="sd">			with_cleaning (bool, optional): Set True to clean transcripts. Defaults to True.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="k">if</span> <span class="n">with_cleaning</span><span class="p">:</span>
+			<span class="n">reference</span> <span class="o">=</span> <span class="n">string_cleaning</span><span class="p">(</span><span class="n">reference</span><span class="p">)</span>
+			<span class="n">hypothesis</span> <span class="o">=</span> <span class="n">string_cleaning</span><span class="p">(</span><span class="n">hypothesis</span><span class="p">)</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">reference</span> <span class="o">=</span> <span class="n">reference</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">hypothesis</span> <span class="o">=</span> <span class="n">hypothesis</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">audio_id</span> <span class="o">=</span> <span class="n">audio_id</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span>
+		<span class="bp">self</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Metrics.__call__"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.metrics.Metrics.html#speechtotext.metric.metrics.Metrics.__call__">[docs]</a>	<span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Calculate the metrics.</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="c1"># Order here is used in the outputs</span>
+		<span class="n">result</span> <span class="o">=</span> <span class="n">process_words</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hypothesis</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">wer</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">wer</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">mer</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">mer</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">wil</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">wil</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">wip</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">wip</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">cer</span> <span class="o">=</span> <span class="n">cer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hypothesis</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">insertions</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">insertions</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">deletions</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">deletions</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">substitutions</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">substitutions</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">hits</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">hits</span>
+
+		<span class="bp">self</span><span class="o">.</span><span class="n">meteor</span> <span class="o">=</span> <span class="n">meteor_score</span><span class="p">(</span><span class="n">references</span><span class="o">=</span><span class="p">[</span><span class="n">word_tokenize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">)],</span>
+                             <span class="n">hypothesis</span><span class="o">=</span><span class="n">word_tokenize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hypothesis</span><span class="p">))</span>
+
+		<span class="n">rouge_scores</span> <span class="o">=</span> <span class="n">Rouge</span><span class="p">()</span><span class="o">.</span><span class="n">get_scores</span><span class="p">(</span><span class="n">hyps</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">hypothesis</span><span class="p">,</span> <span class="n">refs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">,</span> <span class="n">avg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+		<span class="p">[</span><span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">rouge_type</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">metric</span><span class="si">}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">),</span> <span class="n">rouge_scores</span><span class="p">[</span><span class="n">rouge_type</span><span class="p">][</span><span class="n">metric</span><span class="p">])</span> <span class="k">for</span> <span class="n">rouge_type</span> <span class="ow">in</span> <span class="n">rouge_scores</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">for</span> <span class="n">metric</span> <span class="ow">in</span> <span class="n">rouge_scores</span><span class="p">[</span><span class="n">rouge_type</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">bleu</span> <span class="o">=</span> <span class="n">sentence_bleu</span><span class="p">(</span><span class="n">references</span><span class="o">=</span><span class="p">[</span><span class="n">word_tokenize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="p">)],</span>
+                             <span class="n">hypothesis</span><span class="o">=</span><span class="n">word_tokenize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">hypothesis</span><span class="p">),</span>
+                             <span class="n">smoothing_function</span><span class="o">=</span><span class="n">SmoothingFunction</span><span class="p">()</span><span class="o">.</span><span class="n">method4</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Metrics.get_all_metric_names"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.metrics.Metrics.html#speechtotext.metric.metrics.Metrics.get_all_metric_names">[docs]</a>	<span class="k">def</span> <span class="nf">get_all_metric_names</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Returns all possible metric names in a list. </span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			list[str]: List of all metric names.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="n">m</span>  <span class="o">=</span> <span class="n">Metrics</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="n">hypothesis</span><span class="o">=</span> <span class="s2">&quot;hypothesis&quot;</span><span class="p">,</span> <span class="n">audio_id</span><span class="o">=</span> <span class="s2">&quot;audio_id&quot;</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">with_cleaning</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+		<span class="n">list_of_metrics</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">vars</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+		<span class="c1"># Only keep metrics</span>
+		<span class="n">list_of_metrics</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;reference&quot;</span><span class="p">)</span>
+		<span class="n">list_of_metrics</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;hypothesis&quot;</span><span class="p">)</span>
+		<span class="n">list_of_metrics</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s2">&quot;audio_id&quot;</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="n">list_of_metrics</span></div>
+
+<div class="viewcode-block" id="Metrics.get_all_metric_docs"><a class="viewcode-back" href="../../../_autosummary/speechtotext.metric.metrics.Metrics.html#speechtotext.metric.metrics.Metrics.get_all_metric_docs">[docs]</a>	<span class="k">def</span> <span class="nf">get_all_metric_docs</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Returns all descriptions of metrics returned by get_all_metric_names in the correct order.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			list[str]: List of all metric descriptions.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="n">m</span>  <span class="o">=</span> <span class="n">Metrics</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span> <span class="s2">&quot;reference&quot;</span><span class="p">,</span> <span class="n">hypothesis</span><span class="o">=</span> <span class="s2">&quot;hypothesis&quot;</span><span class="p">,</span> <span class="n">audio_id</span><span class="o">=</span> <span class="s2">&quot;audio_id&quot;</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">with_cleaning</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+		<span class="n">docstring</span> <span class="o">=</span> <span class="n">parse</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+		<span class="n">list_of_metrics_docs</span> <span class="o">=</span> <span class="p">[]</span>
+		<span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">docstring</span><span class="o">.</span><span class="n">params</span><span class="p">:</span>
+			<span class="n">to_add</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">param</span><span class="o">.</span><span class="n">description</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+			<span class="n">to_add</span> <span class="o">=</span> <span class="n">to_add</span><span class="p">[:</span><span class="n">to_add</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+			<span class="n">list_of_metrics_docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">to_add</span><span class="p">)</span>
+   
+
+
+		<span class="k">def</span> <span class="nf">prepare_for_sorting</span><span class="p">(</span><span class="n">s</span><span class="p">:</span><span class="nb">str</span><span class="p">):</span>
+			<span class="n">start</span> <span class="o">=</span> <span class="s1">&#39;(&#39;</span>
+			<span class="n">end</span> <span class="o">=</span> <span class="s1">&#39;)&#39;</span>
+			<span class="k">return</span> <span class="p">((</span><span class="n">s</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">start</span><span class="p">))[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">end</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;_&quot;</span><span class="p">)</span>
+
+		<span class="n">order</span> <span class="o">=</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span><span class="n">index</span> <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">value</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">Metrics</span><span class="o">.</span><span class="n">get_all_metric_names</span><span class="p">())}</span>
+		<span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">list_of_metrics_docs</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">order</span><span class="p">[</span><span class="n">prepare_for_sorting</span><span class="p">(</span><span class="n">x</span><span class="p">)])</span></div>
+
+	<span class="nd">@override</span>
+	<span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+		<span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;wer: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">wer</span><span class="si">}</span><span class="s2">, mer: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">mer</span><span class="si">}</span><span class="s2">, wil: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">wil</span><span class="si">}</span><span class="s2">, wip: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">wip</span><span class="si">}</span><span class="s2">, cer: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cer</span><span class="si">}</span><span class="s2">&quot;</span></div>
+	
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

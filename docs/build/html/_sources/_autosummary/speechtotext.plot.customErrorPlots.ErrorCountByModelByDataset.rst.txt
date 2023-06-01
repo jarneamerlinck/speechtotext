@@ -1,0 +1,26 @@
+speechtotext.plot.customErrorPlots.ErrorCountByModelByDataset
+=============================================================
+
+.. currentmodule:: speechtotext.plot.customErrorPlots
+
+.. autoclass:: ErrorCountByModelByDataset
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~ErrorCountByModelByDataset.create_plot
+      ~ErrorCountByModelByDataset.save
+   
+   
+
+   
+   
+   

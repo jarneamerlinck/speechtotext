@@ -1,0 +1,33 @@
+speechtotext.model.deepgramWrapper
+==================================
+
+.. automodule:: speechtotext.model.deepgramWrapper
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      DeepgramAPIVersion
+      DeepgramAPIWrapper
+   
+   
+
+   
+   
+   
+
+
+

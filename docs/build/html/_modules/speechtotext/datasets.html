@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>speechtotext.datasets &mdash; speechtotext 0.3.13 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            speechtotext
+          </a>
+              <div class="version">
+                0.3
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../requirements.html">Requirements for speechtotext</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Code Examples for speechtotext</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Package Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api.html">speechtotext</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">speechtotext</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">speechtotext.datasets</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for speechtotext.datasets</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Module to create the datasets for the speechtotext package.</span>
+
+<span class="sd">The dataset requires an ``transcripts.txt`` in the dataset folder. In there are relative links to the audiofiles followed by ``|`` and the transcript of that file.</span>
+
+<span class="sd">Example of entry::</span>
+
+<span class="sd">	20000_mijlen/20000_mijlen_0001.wav|This is the trancsript of the audio</span>
+
+<span class="sd">Use this module like this:</span>
+<span class="sd">	</span>
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">	# Imports</span>
+<span class="sd"> 	from speechtotext.datasets import Dataset</span>
+<span class="sd">	from speechtotext.benchmarks import *</span>
+<span class="sd">	</span>
+<span class="sd">	# Settings</span>
+<span class="sd">	path_to_dir = &quot;path/to/dir&quot;</span>
+<span class="sd">	dataset_name = &quot;dataset_name&quot;</span>
+<span class="sd">	id = &quot;existing_id&quot;</span>
+<span class="sd">	number_of_samples = 10</span>
+<span class="sd">	</span>
+<span class="sd">	# Create dataset</span>
+<span class="sd">	dataset = Dataset(path_to_dir=path_to_dir, name= dataset_name)</span>
+<span class="sd"> </span>
+<span class="sd">	# Print number of samples</span>
+<span class="sd">	print(dataset.number_of_samples())</span>
+<span class="sd"> </span>
+<span class="sd">	# Get audio file from id</span>
+<span class="sd">	dataset.get_path_of_fragment(id)</span>
+<span class="sd"> </span>
+<span class="sd">	# Get transcript from id</span>
+<span class="sd">	dataset.get_text_of_id(id)</span>
+<span class="sd">	</span>
+<span class="sd">	# Get n trandom samples</span>
+<span class="sd">	dataset_n_random: SampleDataset = dataset.get_n_samples(number_of_samples)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">os.path</span> <span class="kn">import</span> <span class="n">exists</span><span class="p">,</span> <span class="n">isfile</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">get_file_name_without_extention</span>
+
+<div class="viewcode-block" id="DatasetBare"><a class="viewcode-back" href="../../_autosummary/speechtotext.datasets.DatasetBare.html#speechtotext.datasets.DatasetBare">[docs]</a><span class="k">class</span> <span class="nc">DatasetBare</span><span class="p">():</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Bare dataset class.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_ext</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;.wav&quot;</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Creates dataset object.</span>
+<span class="sd">		There needs to be an transcripts.txt directly in the dir.</span>
+<span class="sd">		Args:</span>
+<span class="sd">			path_to_dir (str): Path to dir ending with &quot;/&quot;.</span>
+<span class="sd">			name (str): Name of dataset.</span>
+<span class="sd">			file_ext (str): Extention of files.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">path_to_dir</span> <span class="o">=</span> <span class="n">path_to_dir</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">file_ext</span> <span class="o">=</span> <span class="n">file_ext</span>
+
+<div class="viewcode-block" id="DatasetBare.number_of_samples"><a class="viewcode-back" href="../../_autosummary/speechtotext.datasets.DatasetBare.html#speechtotext.datasets.DatasetBare.number_of_samples">[docs]</a>	<span class="k">def</span> <span class="nf">number_of_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get number of samples in dataset.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			int: Number of samples in dataset.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+  
+<div class="viewcode-block" id="DatasetBare.get_path_of_fragment"><a class="viewcode-back" href="../../_autosummary/speechtotext.datasets.DatasetBare.html#speechtotext.datasets.DatasetBare.get_path_of_fragment">[docs]</a>	<span class="k">def</span> <span class="nf">get_path_of_fragment</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_id</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Gets path of fragment.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			id (str): Id of file.</span>
+
+<span class="sd">		Raises:</span>
+<span class="sd">			FileNotFoundError: If id doesn&#39;t exist.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			str: Path to fragment.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="n">path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path_to_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">audio_id</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_ext</span><span class="si">}</span><span class="s2">&quot;</span>
+
+		<span class="k">if</span> <span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+			<span class="k">return</span> <span class="n">path</span>
+		<span class="k">else</span><span class="p">:</span>
+			<span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">()</span></div>
+		 
+<div class="viewcode-block" id="DatasetBare.get_text_of_id"><a class="viewcode-back" href="../../_autosummary/speechtotext.datasets.DatasetBare.html#speechtotext.datasets.DatasetBare.get_text_of_id">[docs]</a>	<span class="k">def</span> <span class="nf">get_text_of_id</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">audio_id</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get text of fragment id.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			id (str): Id of fragment.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			str: String of spoken text.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="n">row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">audio_id</span><span class="p">]</span>
+		<span class="k">try</span><span class="p">:</span>
+			<span class="k">return</span> <span class="n">row</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+		<span class="k">except</span><span class="p">:</span>
+			<span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="DatasetBare.validate_samples"><a class="viewcode-back" href="../../_autosummary/speechtotext.datasets.DatasetBare.html#speechtotext.datasets.DatasetBare.validate_samples">[docs]</a>	<span class="k">def</span> <span class="nf">validate_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Validate if samples have a corresponding file.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			bool: True if all samples have a file.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="nb">id</span><span class="p">:</span> <span class="n">isfile</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path_to_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">id</span><span class="si">}{</span><span class="bp">self</span><span class="o">.</span><span class="n">file_ext</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)))</span></div></div>
+
+<div class="viewcode-block" id="SampleDataset"><a class="viewcode-back" href="../../_autosummary/speechtotext.datasets.SampleDataset.html#speechtotext.datasets.SampleDataset">[docs]</a><span class="k">class</span> <span class="nc">SampleDataset</span><span class="p">(</span><span class="n">DatasetBare</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Sample of dataset.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_ext</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;.wav&quot;</span><span class="p">):</span>
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">path_to_dir</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">file_ext</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="Dataset"><a class="viewcode-back" href="../../_autosummary/speechtotext.datasets.Dataset.html#speechtotext.datasets.Dataset">[docs]</a><span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">DatasetBare</span><span class="p">):</span>
+<span class="w">	</span><span class="sd">&quot;&quot;&quot;Class to extract data from the dataset folder.</span>
+<span class="sd">	&quot;&quot;&quot;</span>    
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path_to_dir</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_ext</span><span class="p">:</span><span class="nb">str</span><span class="o">=</span><span class="s2">&quot;.wav&quot;</span><span class="p">):</span>  
+		<span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">path_to_dir</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">file_ext</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">load_transcript</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Dataset.load_transcript"><a class="viewcode-back" href="../../_autosummary/speechtotext.datasets.Dataset.html#speechtotext.datasets.Dataset.load_transcript">[docs]</a>	<span class="k">def</span> <span class="nf">load_transcript</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Loads transcript.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="n">file_path</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">path_to_dir</span><span class="si">}</span><span class="s2">/transcripts.txt&quot;</span>
+
+		<span class="n">df</span><span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&quot;|&quot;</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+		<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> 
+		<span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">,</span> <span class="s2">&quot;text&quot;</span><span class="p">]</span>
+		<span class="n">df</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="nb">id</span> <span class="p">:</span><span class="n">get_file_name_without_extention</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">DataFrame</span> <span class="o">=</span> <span class="n">df</span></div>
+
+<div class="viewcode-block" id="Dataset.get_n_samples"><a class="viewcode-back" href="../../_autosummary/speechtotext.datasets.Dataset.html#speechtotext.datasets.Dataset.get_n_samples">[docs]</a>	<span class="k">def</span> <span class="nf">get_n_samples</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number_of_samples</span><span class="p">:</span><span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SampleDataset</span><span class="p">:</span>
+<span class="w">		</span><span class="sd">&quot;&quot;&quot;Get n random samples.</span>
+
+<span class="sd">		Args:</span>
+<span class="sd">			number_of_samples (int): Number of random samples.</span>
+
+<span class="sd">		Returns:</span>
+<span class="sd">			SampleDataset: Dataset with the samples.</span>
+<span class="sd">		&quot;&quot;&quot;</span>     
+		<span class="k">if</span> <span class="n">number_of_samples</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_of_samples</span><span class="p">():</span>
+			<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;number larger then samples in dataset. Using full dataset&quot;</span><span class="p">)</span>
+			<span class="n">number_of_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">number_of_samples</span><span class="p">()</span>
+		<span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">number_of_samples</span><span class="p">)</span>
+
+		<span class="k">return</span> <span class="n">SampleDataset</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path_to_dir</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_ext</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 Jarne Amerlinck.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

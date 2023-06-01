@@ -1,0 +1,6 @@
+speechtotext.functions.DEFAULT\_CSV\_NAME
+=========================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autodata:: DEFAULT_CSV_NAME

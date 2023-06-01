@@ -1,0 +1,31 @@
+speechtotext.metric
+===================
+
+.. automodule:: speechtotext.metric
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
+.. autosummary::
+   :toctree:
+   :template: custom-module-template.rst
+   :recursive:
+
+   speechtotext.metric.customMetrics
+   speechtotext.metric.metrics
+

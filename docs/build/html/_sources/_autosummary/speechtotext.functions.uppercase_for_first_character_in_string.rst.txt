@@ -1,0 +1,6 @@
+speechtotext.functions.uppercase\_for\_first\_character\_in\_string
+===================================================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autofunction:: uppercase_for_first_character_in_string

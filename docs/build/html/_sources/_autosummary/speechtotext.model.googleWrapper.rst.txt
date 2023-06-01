@@ -1,0 +1,33 @@
+speechtotext.model.googleWrapper
+================================
+
+.. automodule:: speechtotext.model.googleWrapper
+
+   
+   
+   
+
+   
+   
+   
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :toctree:
+      :template: custom-class-template.rst
+      :nosignatures:
+   
+      GoogleAPIVersion
+      GoogleAPIWrapper
+   
+   
+
+   
+   
+   
+
+
+

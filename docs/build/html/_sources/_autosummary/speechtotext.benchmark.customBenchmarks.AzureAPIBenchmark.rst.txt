@@ -1,0 +1,38 @@
+speechtotext.benchmark.customBenchmarks.AzureAPIBenchmark
+=========================================================
+
+.. currentmodule:: speechtotext.benchmark.customBenchmarks
+
+.. autoclass:: AzureAPIBenchmark
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~AzureAPIBenchmark.convert_to_pandas
+      ~AzureAPIBenchmark.create_models
+      ~AzureAPIBenchmark.save_to_csv
+      ~AzureAPIBenchmark.set_dataset
+      ~AzureAPIBenchmark.update_samples
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~AzureAPIBenchmark.BENCHMARK_SAMPLES
+      ~AzureAPIBenchmark.DATASET
+      ~AzureAPIBenchmark.ERROR_LIST
+      ~AzureAPIBenchmark.MODEL_BASE
+   
+   

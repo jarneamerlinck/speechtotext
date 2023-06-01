@@ -1,0 +1,27 @@
+speechtotext.plot.plotting.DynamicPlotClassesByMetricByDataset
+==============================================================
+
+.. currentmodule:: speechtotext.plot.plotting
+
+.. autoclass:: DynamicPlotClassesByMetricByDataset
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~DynamicPlotClassesByMetricByDataset.create_plot
+      ~DynamicPlotClassesByMetricByDataset.create_plot_classes
+      ~DynamicPlotClassesByMetricByDataset.save
+   
+   
+
+   
+   
+   

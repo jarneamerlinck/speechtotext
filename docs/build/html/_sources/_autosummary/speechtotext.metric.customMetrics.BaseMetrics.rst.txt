@@ -1,0 +1,26 @@
+speechtotext.metric.customMetrics.BaseMetrics
+=============================================
+
+.. currentmodule:: speechtotext.metric.customMetrics
+
+.. autoclass:: BaseMetrics
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~BaseMetrics.create_df
+      ~BaseMetrics.save
+   
+   
+
+   
+   
+   

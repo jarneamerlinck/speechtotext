@@ -1,0 +1,38 @@
+speechtotext.benchmark.customBenchmarks.GoogleAPIBenchmark
+==========================================================
+
+.. currentmodule:: speechtotext.benchmark.customBenchmarks
+
+.. autoclass:: GoogleAPIBenchmark
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~GoogleAPIBenchmark.convert_to_pandas
+      ~GoogleAPIBenchmark.create_models
+      ~GoogleAPIBenchmark.save_to_csv
+      ~GoogleAPIBenchmark.set_dataset
+      ~GoogleAPIBenchmark.update_samples
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~GoogleAPIBenchmark.BENCHMARK_SAMPLES
+      ~GoogleAPIBenchmark.DATASET
+      ~GoogleAPIBenchmark.ERROR_LIST
+      ~GoogleAPIBenchmark.MODEL_BASE
+   
+   

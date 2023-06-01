@@ -1,0 +1,36 @@
+speechtotext.plot.plotting.Plotting
+===================================
+
+.. currentmodule:: speechtotext.plot.plotting
+
+.. autoclass:: Plotting
+   :members:
+   :show-inheritance:
+   :inherited-members:
+   :special-members: __call__, __add__, __mul__
+
+   
+   
+   .. rubric:: Methods
+
+   .. autosummary::
+      :nosignatures:
+   
+      ~Plotting.launch_dtale
+      ~Plotting.save_all
+   
+   
+
+   
+   
+   .. rubric:: Attributes
+
+   .. autosummary::
+   
+      ~Plotting.CUSTOM_ERRORS
+      ~Plotting.CUSTOM_ERROR_PLOTS
+      ~Plotting.CUSTOM_PLOTS
+      ~Plotting.CUSTOM_RESULTS
+      ~Plotting.DATASET_NAMES
+   
+   

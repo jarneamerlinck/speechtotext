@@ -1,0 +1,6 @@
+speechtotext.functions.NoTranscriptReturned
+===========================================
+
+.. currentmodule:: speechtotext.functions
+
+.. autoexception:: NoTranscriptReturned

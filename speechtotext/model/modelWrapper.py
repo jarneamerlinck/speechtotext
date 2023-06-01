@@ -52,7 +52,8 @@ import os
 from urllib.error import HTTPError
 from pydub import AudioSegment
 import pandas as pd
-from  torch.cuda import OutOfMemoryError
+import torch
+# from  torch.cuda import OutOfMemoryError
 from speechtotext.datasets import Dataset, SampleDataset
 from speechtotext.metric.metrics import Metrics
 from speechtotext.functions import timing, NoTranscriptReturned
@@ -231,7 +232,7 @@ class ModelWrapper(ABC, metaclass=_CombinedMeta):
 			audio_id = row["id"]
 			try:
 				metrics_array.append(self.benchmark_sample(samples, audio_id, with_cleaning))
-			except OutOfMemoryError as e:
+			except torch.cuda.OutOfMemoryError as e:
 				error = "CUDA out of memory"
 				self._append_error(samples, audio_id, error)
 
@@ -240,6 +241,7 @@ class ModelWrapper(ABC, metaclass=_CombinedMeta):
 				self._append_error(samples, audio_id, error)
 
 			except Exception as e:
+				print(type(e))
 				error = f'"{e}"'
 				self._append_error(samples, audio_id, error)
 

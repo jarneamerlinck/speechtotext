@@ -1,5 +1,5 @@
-documentation
-=============
+speechtotext
+============
 
 .. autosummary::
    :toctree: _autosummary
@@ -7,3 +7,7 @@ documentation
    :recursive:
 
    speechtotext
+   speechtotext.benchmark
+   speechtotext.metric
+   speechtotext.model
+   speechtotext.plot

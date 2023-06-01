@@ -8,6 +8,11 @@ Welcome to speechtotext's documentation!
 	installation.rst
 	requirements.rst
 	examples.rst
+
+.. toctree::
+   	:maxdepth: 1
+	:caption: Package
+	
 	api.rst
 
 

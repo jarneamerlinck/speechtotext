@@ -135,7 +135,8 @@
 <span class="kn">from</span> <span class="nn">urllib.error</span> <span class="kn">import</span> <span class="n">HTTPError</span>
 <span class="kn">from</span> <span class="nn">pydub</span> <span class="kn">import</span> <span class="n">AudioSegment</span>
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">from</span>  <span class="nn">torch.cuda</span> <span class="kn">import</span> <span class="n">OutOfMemoryError</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="c1"># from  torch.cuda import OutOfMemoryError</span>
 <span class="kn">from</span> <span class="nn">speechtotext.datasets</span> <span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">SampleDataset</span>
 <span class="kn">from</span> <span class="nn">speechtotext.metric.metrics</span> <span class="kn">import</span> <span class="n">Metrics</span>
 <span class="kn">from</span> <span class="nn">speechtotext.functions</span> <span class="kn">import</span> <span class="n">timing</span><span class="p">,</span> <span class="n">NoTranscriptReturned</span>
@@ -314,7 +315,7 @@
 			<span class="n">audio_id</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
 			<span class="k">try</span><span class="p">:</span>
 				<span class="n">metrics_array</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">benchmark_sample</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">audio_id</span><span class="p">,</span> <span class="n">with_cleaning</span><span class="p">))</span>
-			<span class="k">except</span> <span class="n">OutOfMemoryError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+			<span class="k">except</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">OutOfMemoryError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
 				<span class="n">error</span> <span class="o">=</span> <span class="s2">&quot;CUDA out of memory&quot;</span>
 				<span class="bp">self</span><span class="o">.</span><span class="n">_append_error</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">audio_id</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
 
@@ -323,6 +324,7 @@
 				<span class="bp">self</span><span class="o">.</span><span class="n">_append_error</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">audio_id</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
 
 			<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+				<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
 				<span class="n">error</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s1">&quot;&#39;</span>
 				<span class="bp">self</span><span class="o">.</span><span class="n">_append_error</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">audio_id</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
 

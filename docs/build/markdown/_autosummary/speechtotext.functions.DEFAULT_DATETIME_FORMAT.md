@@ -1,7 +1,7 @@
 # speechtotext.functions.DEFAULT_DATETIME_FORMAT
 
 
-### DEFAULT_DATETIME_FORMAT(_: [str](https://docs.python.org/3/library/stdtypes.html#str_ _ = '2023_06_13_16_22_36_ )
+### DEFAULT_DATETIME_FORMAT(_: [str](https://docs.python.org/3/library/stdtypes.html#str_ _ = '2023_06_15_14_30_08_ )
 Default datetime format. (Uses string format for datetime)
 
 
